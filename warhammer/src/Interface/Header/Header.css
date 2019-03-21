@@ -1,0 +1,45 @@
+.Header {
+    text-align: left;
+    background-color: rgb(6, 41, 34);
+    height: 12%;
+    width : 100%;
+    display: table;
+    
+    
+  
+}
+
+.Header__Logo {
+    height: 70px;
+    width : auto;
+    
+    margin-left: 20px;
+    margin-bottom: -5px;
+    padding: 0px;
+    
+}
+
+.Header__Title {
+    
+    height: 70px;
+    margin:0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding:15px;
+    font-family: "Times New Roman", fantasy;
+    color:white;
+    text-align: center;
+    border:0px;
+}
+
+.Header__div_block {
+
+    display:table-cell;
+    margin-right: -0.25em;
+    margin-bottom: -0.25em;
+    overflow: auto;
+    padding:0px;
+    vertical-align: middle;
+    width:20%;
+}
+

@@ -1,0 +1,24 @@
+html {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  margin:0px;
+  overflow: auto;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.MainClass {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

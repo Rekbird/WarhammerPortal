@@ -1,0 +1,30 @@
+.MainMenu__Body {
+    background-color: rgb(6, 41, 34);
+    color: white;
+    height: 88%;
+    width: 15%;
+    float: left;
+    
+    
+}
+
+.MainMenu__Categories {
+    list-style-type: none;
+    background-color: rgb(17, 112, 93);
+}
+
+.MainMenu__Categories:hover {
+    list-style-type: none;
+    background-color: rgb(19, 138, 114);
+}
+
+.MainMenu__Categories:active {
+    list-style-type: none;
+    background-color: rgb(21, 156, 129);
+}
+
+.MainMenu__Buttons {
+    list-style-type: none;
+    background-color: rgb(6, 41, 34);
+}
+

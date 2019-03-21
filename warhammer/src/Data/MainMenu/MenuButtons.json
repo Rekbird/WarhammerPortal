@@ -1,0 +1,17 @@
+{
+   "buttons": [
+    {   
+        "id" : "1",
+        "CategoryName" : "Художественные статьи",
+        "Name" : ""
+    },
+    {
+        "id" : "2",
+        "CategoryName" : "Правила"
+    },
+    {
+        "id" : "3",
+        "CategoryName" : "Ростеры"
+    }
+]
+}

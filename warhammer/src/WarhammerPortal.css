@@ -1,0 +1,10 @@
+.HeaderBox {
+    position: fixed;
+}
+
+.MainMenuBox {
+    
+    height: 100;
+    width: 20;
+    float: left;
+}
