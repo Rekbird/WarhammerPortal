@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-//import "./WorkingArea.css";
+import "./WorkingArea.css";
 import UsefulLinks from '../UsefulLinks/UsefulLinks.js';
 import Paragraph from "../Paragraph/Paragraph.js";
+import FactionGraphicList from "../FactionGraphicList/FactionGraphicList.js";
 
 
 function WorkingArea(props) {
@@ -42,8 +43,7 @@ function WorkingArea(props) {
         case 6 :
             NeededArea = 
             <div>
-                <h3>Раздел находится в разработке. Здесь будет следующее:</h3>
-                <h3>Создать новый</h3>
+                <FactionGraphicList />
             </div>;
         break;
         case 7 :
@@ -69,7 +69,7 @@ function WorkingArea(props) {
     }
     
     return (
-        <div>{NeededArea}</div>     
+        <div className = "WorkingArea_Body">{NeededArea}</div>     
     );
 }
 

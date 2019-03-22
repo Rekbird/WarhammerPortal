@@ -1,7 +1,9 @@
 .WorkingArea_Body {
-    height: 88%;
-    overflow: scroll;
-    position: fixed;
-    clear: both;
+    top: 10%;
+    height: 87%;
+    overflow: auto;
+    margin: 0px;
+    
+    
     
 }

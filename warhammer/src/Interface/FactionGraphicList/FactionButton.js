@@ -6,10 +6,15 @@ class FactionButton extends Component {
         super(props);
     }
     render() {
-        <td>
-            <img src = {this.props.FactionImage} alt = {this.props.FactionName} />
-            {this.props.FactionName}
-        </td>
+        return (
+            <td className = "FactionGraphicList__Cell">
+                <figure className = "FactionGraphicList__Fig">
+                    <img className = "FactionGraphicList__Image" src = {this.props.Faction.Image} alt = {this.props.Faction.Name} />
+                    <figcaption>{this.props.Faction.Name}</figcaption>
+                </figure>
+            </td>
+        )
+        
     }
 }
 

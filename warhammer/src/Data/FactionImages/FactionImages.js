@@ -1,40 +1,40 @@
-import AdeptaSororitasImage from "./AdeptaSororitasImage.png";
+import AdeptaSororitasImage from "./AdeptaSororitasImage.jpg";
 import AdeptusCustodesImage from "./AdeptusCustodesImage.png";
 import AdeptusMechanicusImage from "./AdeptusMechanicusImage.png";
 import AstraMilitarumImage from "./AstraMilitarumImage.png";
-import BloodAngelsImage from "./BloodAngelsImage.png";
-import DarkAngelsImage from "./DarkAngelsImage.png";
-import DeathCorpsofKriegImage from "./DeathCorpsofKriegImage.png";
-import DeathwatchImage from "./DeathwatchImage.png";
-import ElisyanDropTroopsImage from "./ElisyanDropTroopsImage.png";
+import BloodAngelsImage from "./BloodAngelsImage.jpg";
+import DarkAngelsImage from "./DarkAngelsImage.jpg";
+import DeathCorpsofKriegImage from "./DeathCorpsofKriegImage.jpg";
+import DeathwatchImage from "./Deathwatch.jpg";
+import ElisyanDropTroopsImage from "./ElysianDropTroopsImage.jpg";
 import GreyKnightsImage from "./GreyKnightsImage.png";
-import ImperialKnightsImage from "./ImperialKnightsImage.png";
-import InquisitionImage from "./InquisitionImage.png";
-import OfficioAssasinorumImage from "./OfficioAssasinorumImage.png";
-import SistersofSilenceImage from "./SistersofSilenceImage.png";
-import SpaceMarinesImage from "./SpaceMarinesImage.png";
+import ImperialKnightsImage from "./ImperialKnightsImage.jpg";
+import InquisitionImage from "./InquisitionImage.jpg";
+import OfficioAssasinorumImage from "./OfficioAssasinorumImage.jpg";
+import SistersofSilenceImage from "./SistersofSilenceImage.jpg";
+import SpaceMarinesImage from "./SpaceMarinesImage.jpg";
 import SpaceWolvesImage from "./SpaceWolvesImage.png";
-import TitanLegionsImage from "./TitanLegionsImage.png";
-import ChaosBastionsImage from "./ChaosBastionsImage.png";
-import ChaosDaemonsImage from "./ChaosDaemonsImage.png";
-import ChaosSpaceMarinesImage from "./ChaosSpaceMarinesImage.png";
+import TitanLegionsImage from "./TitanLegionsImage.jpg";
+import ChaosBastionsImage from "./ChaosBastionsImage.jpg";
+import ChaosDaemonsImage from "./ChaosDaemons.png";
+import ChaosSpaceMarinesImage from "./ChaosSpaceMarinesImage.jpg";
 import DeathGuardImage from "./DeathGuardImage.png";
 import EmperorsChildrenImage from "./EmperorsChildrenImage.png";
-import HereticTitanLegionsImage from "./HereticTitanLegionsImage.png";
-import QuestorTraitorisImage from "./QuestorTraitorisImage.png";
+import HereticTitanLegionsImage from "./HereticTitanLegionsImage.jpg";
+import QuestorTraitorisImage from "./QuestorTraitorisImage.jpg";
 import RenegadesandHereticsImage from "./RenegadesandHereticsImage.png";
 import ThousandSonsImage from "./ThousandSonsImage.png";
-import WorldEatersImage from "./WorldEatersImage.png";
+import WorldEatersImage from "./WorldEatersImage.jpg";
 import CraftworldsImage from "./CraftworldsImage.png";
-import DrukhariImage from "./DrukhariImage.png";
-import HarlequinsImage from "./HarlequinsImage.png";
+import DrukhariImage from "./DrukhariImage.jpg";
+import HarlequinsImage from "./HarlequinsImage.jpg";
 import YnnariImage from "./YnnariImage.png";
-import GenestealerCultsImage from "./GenestealerCultsImage.png";
-import NecronsImage from "./NecronsImage.png";
-import OrksImage from "./OrksImage.png";
+import GenestealerCultsImage from "./GenestealerCultsImage.jpg";
+import NecronsImage from "./NecronsImage.jpg";
+import OrksImage from "./OrksImage.jpg";
 import TauEmpireImage from "./TauEmpireImage.png";
-import TyranidsImage from "./TyranidsImage.png";
-import FortificationsImage from "./FortificationsImage.png";
+import TyranidsImage from "./TyranidsImage.jpg";
+import FortificationsImage from "./FortificationsImage.jpg";
 
 function ReturnFactionImages() {
     var Faction1 = {
@@ -304,8 +304,9 @@ function ReturnFactionImages() {
         Image: FortificationsImage
     };
     
-    
-    return [Faction1, Faction2, Faction3, Faction4,Faction5,Faction6,Faction7,Faction8,Faction9,Faction10,Faction11,Faction12,Faction13,Faction14,Faction15,Faction16,Faction17,Faction18,Faction19,Faction20,Faction22,Faction23,Faction24,Faction25,Faction26,Faction27,Faction28,Faction29,Faction30,Faction31,Faction32,Faction33,Faction34,Faction35,Faction36,Faction37];    
+     
+    var Factions = [Faction1, Faction2, Faction3, Faction4,Faction5,Faction6,Faction7,Faction8,Faction9,Faction10,Faction11,Faction12,Faction13,Faction14,Faction15,Faction16,Faction17,Faction18,Faction19,Faction20,Faction21,Faction22,Faction23,Faction24,Faction25,Faction26,Faction27,Faction28,Faction29,Faction30,Faction31,Faction32,Faction33,Faction34,Faction35,Faction36,Faction37];    
+    return Factions;
 }
 
 export default ReturnFactionImages;
