@@ -1,0 +1,60 @@
+.Header__profile_block {
+    
+    overflow: auto;
+    display:table;
+    
+}
+
+p {
+    color: white;
+    font-family: "Times New Roman", fantasy;
+}
+
+.Header__profile_div {
+    
+    display:table-cell;
+    top:0px;
+    overflow: auto;
+    margin: 0 auto;
+    padding:0px;
+}
+
+.ProfileButton,
+.ProfileButton:focus {
+    margin: 20px;
+    background-color: rgb(6, 41, 34);
+    color: white;
+    padding:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    border: 0px;
+    border-radius:0px;
+    font-family: "Times New Roman", fantasy;
+    box-shadow: none;
+    outline: none;
+    height: 40px;
+    display:table-cell;
+}
+
+.ProfileButton:hover {
+    background-color: rgb(6, 86, 87);
+    border-color: rgb(6, 86, 87);
+    outline: none;
+    background: rgb(6, 86, 87);
+    box-shadow: none;
+}
+ 
+.ProfileButton:active {
+    border-color: rgb(39, 193, 196);
+    transition: 0.5s;
+}
+
+.ProfileButton__button_div {
+    
+    display:table;
+    top:0px;
+    overflow: auto;
+    margin: 0 auto;
+    padding:0px;
+    height: 40px;
+}

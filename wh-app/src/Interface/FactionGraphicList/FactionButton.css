@@ -1,0 +1,14 @@
+.FactionGraphicList__Cell {
+    height: 10%;
+}
+
+.FactionGraphicList__Image {
+    height: 100px;
+    width: auto;
+}
+
+.FactionGraphicList__Fig {
+    text-align: center;
+    display: block;
+    margin: 0px;
+}
