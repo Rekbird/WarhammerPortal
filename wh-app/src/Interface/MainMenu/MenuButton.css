@@ -1,9 +1,0 @@
-.MainMenu__Button:hover {
-    list-style-type: none;
-    background-color: rgb(11, 80, 66);
-}
-
-.MainMenu__Button:active {
-    list-style-type: none;
-    background-color: rgb(14, 102, 84);
-}
