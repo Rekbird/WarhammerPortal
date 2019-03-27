@@ -1,9 +1,46 @@
-.model__title {
+.model__main {
+    width: 30%;
+}
 
+.model__title {
+text-align: left;
+vertical-align: middle;
+margin-right: 15px;
+font-size: 16px;
+font-family: 'Courier New', Courier, monospace;
 
 }
 
 .model__buttons {
+        width: 17px;
+        height: 17px;
+        line-height: 1px;
+        vertical-align: bottom;
+        user-select: none;
+        color: rgb(0,0,0);
+        outline: none;
+        border: 1px solid rgba(0,0,0,.4);
+        border-top-color: rgba(0,0,0,.3);
+        border-radius: 2px;
+        background: linear-gradient(rgb(255,255,255), rgb(240,240,240));
+        box-shadow:
+         0 0 3px rgba(0,0,0,0) inset,
+         0 1px 1px 1px rgba(255,255,255,.2),
+         0 -1px 1px 1px rgba(0,0,0,0);
+        transition: .2s ease-in-out;
+}
 
-    
+
+.model__buttons:hover:not(:active) {
+  box-shadow:
+   0 0 3px rgba(0,0,0,0) inset,
+   0 1px 1px 1px rgba(0,255,255,.5),
+   0 -1px 1px 1px rgba(0,255,255,.5);
+}
+.model__buttons:active {
+  background: linear-gradient(rgb(250,250,250), rgb(235,235,235));
+  box-shadow:
+   0 0 3px rgba(0,0,0,.5) inset,
+   0 1px 1px 1px rgba(255,255,255,.4),
+   0 -1px 1px 1px rgba(0,0,0,.1);
 }

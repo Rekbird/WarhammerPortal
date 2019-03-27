@@ -3,7 +3,7 @@ import "./WorkingArea.css";
 import UsefulLinks from '../UsefulLinks/UsefulLinks.js';
 import Paragraph from "../Paragraph/Paragraph.js";
 import FactionGraphicList from "../FactionGraphicList/FactionGraphicList.js";
-
+import ModelMenuButton from '../NewRosterCreation/Model/Model.js';
 
 function WorkingArea(props) {
     var NeededArea;
@@ -44,6 +44,7 @@ function WorkingArea(props) {
             NeededArea = 
             <div>
                 <FactionGraphicList />
+                <ModelMenuButton />
             </div>;
         break;
         case 7 :
