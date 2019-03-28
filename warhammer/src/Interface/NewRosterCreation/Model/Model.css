@@ -1,14 +1,35 @@
-.model__main {
-    width: 30%;
+
+.model__element {
+    width: 450px;
 }
 
 .model__title {
-text-align: left;
-vertical-align: middle;
-margin-right: 15px;
-font-size: 16px;
-font-family: 'Courier New', Courier, monospace;
+    display: inline-block;
+    width: auto;
+  }
 
+.model__buttonsSet {
+    visibility: hidden;
+    opacity: 0;
+    display: inline-block;
+    width: 60px;
+    transition: 0.3s;
+}
+
+
+.model__element:hover .model__buttonsSet {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.model__titleText {
+  font-weight: bold;
+  text-align: left;
+  vertical-align: middle;
+  margin-right: 15px;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .model__buttons {
@@ -32,15 +53,15 @@ font-family: 'Courier New', Courier, monospace;
 
 
 .model__buttons:hover:not(:active) {
-  box-shadow:
-   0 0 3px rgba(0,0,0,0) inset,
-   0 1px 1px 1px rgba(0,255,255,.5),
-   0 -1px 1px 1px rgba(0,255,255,.5);
+    box-shadow:
+    0 0 3px rgba(0,0,0,0) inset,
+    0 1px 1px 1px rgba(0,255,255,.5),
+    0 -1px 1px 1px rgba(0,255,255,.5);
 }
 .model__buttons:active {
-  background: linear-gradient(rgb(250,250,250), rgb(235,235,235));
-  box-shadow:
-   0 0 3px rgba(0,0,0,.5) inset,
-   0 1px 1px 1px rgba(255,255,255,.4),
-   0 -1px 1px 1px rgba(0,0,0,.1);
+    background: linear-gradient(rgb(250,250,250), rgb(235,235,235));
+    box-shadow:
+    0 0 3px rgba(0,0,0,.5) inset,
+    0 1px 1px 1px rgba(255,255,255,.4),
+    0 -1px 1px 1px rgba(0,0,0,.1);
 }

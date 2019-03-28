@@ -4,25 +4,30 @@ import EditMenuButton from '../../../Data/ModelMenuButtons/EditMenuButton.png';
 import CopyMenuButton from '../../../Data/ModelMenuButtons/CopyMenuButton.png';
 import DeleteMenuButton from '../../../Data/ModelMenuButtons/DeleteMenuButton.png';
 
-class ModelMenuButton extends Component {
+class ModelListElement extends Component {
     constructor(props) {
         super(props);
     }
 
+    selectButton() {
+        this.props.handleModelButtonClick(this.props.singleModel.id, buttonName);
+    }
+
     render() {
+        const Name = this.props.singleModel.ModelName;
         return (
-            <div className = 'model__main'>
-                <div style = {{display: 'inline-block', width: '80%'}}>
-                    <span className = 'model__title' >Model name</span>
+            <div className = 'model__element'>
+                <div className = 'model__title'>
+                    <span className = 'model__titleText' >{Name}</span>
                 </div>
-                <div style = {{display: 'inline-block', width: '20%'}}>
+                <div className = 'model__buttonsSet'>
                     <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' />
                     <img src = {CopyMenuButton} className = 'model__buttons' alt = 'Copy' />
-                    <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete' />
+                    <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete'/>
                 </div>
             </div>
         )
     }
 }
 
-export default ModelMenuButton;
+export default ModelListElement;
