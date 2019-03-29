@@ -7,26 +7,34 @@ import getTestModels from '../../../Data/ModelObjects/TestModels.js';
 class UnitModelsList extends Component {
      constructor(props) {
         super(props);
-        this.handleModelButtonClick = this.handleModelButtonClick.bind(this, ModelListElement);
+        this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
+        this.models =  getTestModels();
+        this.recordCounter = this.models.length;
         this.state = {
-            selectedModelButton: ""
+            isUpdated : true
         };
-         
      }
      
-    handleModelButtonClick(ButtonName,model) {
+    handleModelButtonClick = (model,ButtonName) => {
         if (ButtonName == "Delete") {
-            if (models.indexOf(model) != -1){
-                models.splice((models.indexOf(model)), 1);
-            }
+                this.models.splice((this.models.indexOf(model)), 1);
+                this.setState({isUpdated : true});
+            
         } else if (ButtonName == "Copy") {
-            models.splice((models.length),0,model);
+            this.recordCounter = this.recordCounter + 1;
+            const newModel = Object.assign({}, model);
+            newModel.id = this.recordCounter;
+            this.models.splice((this.models.length),0,newModel);
+            this.setState({isUpdated : true});
+
+        } else {
+            this.setState({isUpdated : false});
         }
     }
 
      render() {
-         const models = getTestModels();
-         const modelsList = models.map(
+        if (this.state.isUpdated) {
+         const modelsList = this.models.map(
              (model) => 
                 <ModelListElement key = {model.id} singleModel = {model} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
@@ -35,6 +43,8 @@ class UnitModelsList extends Component {
                 <ul>{modelsList}</ul>
              </div>
          )
+    
+        }    
     }
 }
 

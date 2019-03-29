@@ -5,12 +5,15 @@ import CopyMenuButton from '../../../Data/ModelMenuButtons/CopyMenuButton.png';
 import DeleteMenuButton from '../../../Data/ModelMenuButtons/DeleteMenuButton.png';
 
 class ModelListElement extends Component {
-    constructor(props) {
-        super(props);
+
+    DeleteButton = () => {
+        console.log("pressed delete");
+        this.props.handleModelButtonClick(this.props.singleModel, 'Delete');
     }
 
-    selectButton() {
-        this.props.handleModelButtonClick(this.props.singleModel.id, buttonName);
+    CopyButton = () => {
+        console.log("pressed copy");
+        this.props.handleModelButtonClick(this.props.singleModel, 'Copy');
     }
 
     render() {
@@ -22,8 +25,8 @@ class ModelListElement extends Component {
                 </div>
                 <div className = 'model__buttonsSet'>
                     <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' />
-                    <img src = {CopyMenuButton} className = 'model__buttons' alt = 'Copy' />
-                    <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete'/>
+                    <img src = {CopyMenuButton} className = 'model__buttons' alt = 'Copy' onClick = {this.CopyButton}/>
+                    <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete' onClick = {this.DeleteButton}/>
                 </div>
             </div>
         )
