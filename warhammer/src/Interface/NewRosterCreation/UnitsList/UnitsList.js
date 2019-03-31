@@ -18,7 +18,6 @@ class UnitsList extends Component {
         }
         return (
             <div>
-                <h1 style = {{textAlign: "center"}}>Select a unit</h1>
                 {Roles}
             </div>
         )

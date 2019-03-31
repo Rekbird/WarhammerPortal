@@ -1,0 +1,17 @@
+.UnitRolesList__Block{
+    
+    text-align: center;
+    border: 1px solid rgb(6, 41, 34);
+    border-radius: 5px;
+    
+}
+
+.UnitRolesList__RoleButton {
+    background-color: rgb(6, 41, 34);
+    color: white;
+    font-family: "Times New Roman", fantasy;
+    border: 1px solid rgb(20, 126, 105);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}

@@ -5,6 +5,7 @@ import Paragraph from "../Paragraph/Paragraph.js";
 import FactionGraphicList from "../FactionGraphicList/FactionGraphicList.js";
 import UnitsList from "../NewRosterCreation/UnitsList/UnitsList.js";
 import GetFactions from "../../Scripts/GetFactions.js";
+import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 
 
 function WorkingArea(props) {
@@ -46,8 +47,7 @@ function WorkingArea(props) {
             var Factions = GetFactions();
             NeededArea = 
             <div>
-                <UnitsList Faction = {Factions[27]} />
-                <FactionGraphicList />
+                <UnitSelection Faction = {Factions[27]} />
             </div>;
         break;
         case 7 :
