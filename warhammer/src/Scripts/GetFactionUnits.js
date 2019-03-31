@@ -2,6 +2,7 @@ import ReturnUnits from "../Data/Units/Units.js";
 
 function GetFactionUnits(FactionId) {
     var Units = ReturnUnits();
+    console.log("ReturnUnits" + Units.length);
     var ReturnedUnits = [];
     if(Units && (Units.length>0) && FactionId) {
         for(var i=0;i<Units.length;i++) {
@@ -11,7 +12,7 @@ function GetFactionUnits(FactionId) {
             }
         }
     }
-    
+    console.log("ReturnedUnits " + ReturnedUnits.length);
     return ReturnedUnits;
 }
 

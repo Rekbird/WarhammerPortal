@@ -1,3 +1,5 @@
+import RoleTroopsImage from "./RoleTroopsImage.png";
+
 function ReturnUnitRoles() {
     var UnitRoles = [];
     var Hq = {
@@ -10,7 +12,7 @@ function ReturnUnitRoles() {
     var Troops = {
         id:2,
         Name: "Troops",
-        Image: ""
+        Image: RoleTroopsImage
     };
     UnitRoles.push(Troops);
 

@@ -9,6 +9,7 @@ class UnitsList extends Component {
     }
     render() {
         var Roles = GetAvailableRoles(this.props.Faction.id);
+        console.log("GetAvailableRoles" + Roles.length);
        if(Roles && (Roles.length > 0)) {
             var Roles = Roles.map(
                 (role) =>
@@ -17,8 +18,8 @@ class UnitsList extends Component {
         }
         return (
             <div>
-                <h3>Select a unit</h3>
-                {Roles.length}
+                <h1 style = {{textAlign: "center"}}>Select a unit</h1>
+                {Roles}
             </div>
         )
     } 

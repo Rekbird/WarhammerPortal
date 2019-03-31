@@ -1,3 +1,5 @@
+import CraftworldsLogo from "./CraftworldsLogo.png";
+
 function ReturnFactions() {
     var Faction1 = {
         id: 1,
@@ -199,7 +201,7 @@ function ReturnFactions() {
         Name: "Craftworlds",
         FlavorText: "",
         Description: "",
-        Image: ""
+        Image: CraftworldsLogo
     };
     var Faction29 = {
         id: 29,

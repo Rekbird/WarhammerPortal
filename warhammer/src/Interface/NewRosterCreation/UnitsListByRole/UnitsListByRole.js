@@ -10,15 +10,18 @@ class UnitsListByRole extends Component {
 
     render() {
         var Units = GetFactionUnitsByRole(this.props.Faction.id, this.props.UnitRole.id)
+        console.log("Units in UnitListByRole "+Units.length);
         if(Units && (Units.length > 0)) {
             Units = Units.map(
                 (unit) => 
-                <UnitProfile key = {unit.id} Unit = {unit} /> 
+                <div>
+                    <UnitProfile key = {unit.id} Unit = {unit} RosterCreation = {true} />
+                </div>
             );
         }
         return (
             <div>
-                <h2>{this.props.UnitRole.Name}</h2>
+                <h2 style = {{textAlign: "center"}}>{this.props.UnitRole.Name}</h2>
                 {Units}
             </div>
 

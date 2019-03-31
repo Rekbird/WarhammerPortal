@@ -11,6 +11,7 @@ function GetFactionUnitsByRole(FactionId, RoleId) {
             }
         }
     }
+    console.log("Units in list by roles "+ReturnedUnits.length);
     return ReturnedUnits;
 }
 
