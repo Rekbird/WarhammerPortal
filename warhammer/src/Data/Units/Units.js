@@ -5,6 +5,9 @@ import DireAvengersImage from "./DireAvengersImage.jpg";
 import GuardiansDefendersImage from "./GuardiansDefendersImage.jpg";
 import StormGuardiansImage from "./StormGuardiansImage.jpg";
 import RangersImage from "./RangersImage.jpg";
+import FireDragonsImage from "./FireDragonsImage.jpg";
+import HowlingBansheesImage from "./HowlingBansheesImage.jpg";
+import StrikingScorpionsImage from "./StrikingScorpionsImage.jpg";
 
 function ReturnUnits() {
     var Factions = ReturnFactions();
@@ -90,6 +93,66 @@ function ReturnUnits() {
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Rangers"
     };
     Units.push(Rangers);
+
+    var FireDragons = {
+        id: 5,
+        Name: "Fire Dragons",
+        Codex: "",
+        Description: "This unit contains 5 Fire Dragons. It can include up to 5 additional Fire Dragons (Power Rating +6). A Fire Dragon Exarch can take the place of one Fire Dragon. Each model is armed with a fusion gun and melta bombs.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: "",
+        Image: FireDragonsImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[2],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Fire-Dragons"
+    };
+    Units.push(FireDragons);
+
+    var HowlingBanshees = {
+        id: 6,
+        Name: "Howling Banshees",
+        Codex: "",
+        Description: "This unit contains 5 Howling Banshees. It can include up to 5 additional Howling Banshees (Power Rating +3). A Howling Banshee Exarch can take the place of one Howling Banshee. Each model is armed with a shuriken pistol and a power sword.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: "",
+        Image: HowlingBansheesImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[2],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Howling-Banshees"
+    };
+    Units.push(HowlingBanshees);
+
+    var StrikingScorpions = {
+        id: 7,
+        Name: "Striking Scorpions",
+        Codex: "",
+        Description: "This unit contains 5 Striking Scorpions. It can include up to 5 additional Striking Scorpions (Power Rating +3). A Striking Scorpion Exarch can take the place of one Striking Scorpion. Each model is armed with a shuriken pistol, a scorpion chainsword and plasma grenades.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: "",
+        Image: StrikingScorpionsImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[2],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Striking-Scorpions"
+    };
+    Units.push(StrikingScorpions);
 
     console.log("Units" + Units.length);
     return Units;

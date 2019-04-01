@@ -6,6 +6,25 @@ import UnitRolesList from "../UnitRolesList/UnitRolesList.js";
 class UnitSelection extends Component {
     constructor(props) {
         super(props);
+        this.ScrollToUnitsByRole = this.ScrollToUnitsByRole.bind(props);
+    }
+
+    ScrollToUnitsByRole(name) {
+        console.log("Выбранная роль "+name);
+        var theElement = document.getElementById(name);
+        console.log(theElement.id);
+            var selectedPosX = 0;
+            var selectedPosY = 0;
+            if (theElement != null) {
+                console.log(theElement != null);
+                //selectedPosX += theElement.offsetLeft;
+                //selectedPosY += theElement.current.offsetTop;
+                //theElement = theElement.offsetParent;
+            }
+            theElement.scrollIntoView();
+           // console.log(selectedPosX);
+           // console.log(selectedPosY);
+           // window.scrollTo(0, selectedPosY);
     }
 
     render() {
@@ -14,7 +33,7 @@ class UnitSelection extends Component {
                 <h1 className = "UnitSelection__Header">Select a unit</h1>
                 <div className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList"><UnitsList Faction = {this.props.Faction} /></div>
-                    <div className = "UnitSelection__RolesList"><UnitRolesList FactionId = {this.props.Faction.id} /></div>
+                    <div className = "UnitSelection__RolesList"><UnitRolesList FactionId = {this.props.Faction.id} ScrollToUnitsByRole = {this.ScrollToUnitsByRole}/></div>
                 </div>
             </div>
         )

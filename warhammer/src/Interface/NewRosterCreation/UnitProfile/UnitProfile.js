@@ -20,8 +20,8 @@ class UnitProfile extends Component {
                 </div>
                 <div className = "UnitProfile__Header_block">
                     <img className = "UnitProfile__Header_image" src= {this.props.Unit.UnitRole.Image} alt={this.props.Unit.UnitRole.Name} />
-                    <p className = "UnitProfile__Header_div"><h3 className = "UnitProfile__Header">{this.props.Unit.Name}</h3></p>
                     <img className = "UnitProfile__Header_image" src= {this.props.Unit.Faction.Image} alt={this.props.Unit.Faction.Name} />
+                    <div className = "UnitProfile__Header_div"><h3 className = "UnitProfile__Header">{this.props.Unit.Name}</h3></div>
                 </div>
                 <p style={{color: "black", margin: "10px"}}>{this.props.Unit.Description}</p>
             </div>

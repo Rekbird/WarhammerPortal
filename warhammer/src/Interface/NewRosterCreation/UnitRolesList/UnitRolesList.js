@@ -5,6 +5,11 @@ import GetAvailableRoles from "../../../Scripts/GetAvailableRoles.js";
 class UnitRolesList extends Component {
     constructor(props) {
         super(props);
+        this.ScrollToUnitsByRole = this.props.ScrollToUnitsByRole.bind(this);
+    }
+
+    ScrollToUnitsByRole() {
+        this.props.ScrollToUnitsByRole();
     }
 
     render() {
@@ -12,12 +17,12 @@ class UnitRolesList extends Component {
         if(Roles && (Roles.length > 0)) {
             Roles = Roles.map(
                 (role) =>
-                <h3 key = {role.id} className = "UnitRolesList__RoleButton">{role.Name}</h3>
+                <h3 key = {role.id} className = "UnitRolesList__RoleButton" onClick = {this.ScrollToUnitsByRole.bind(this, role.Name)}>{role.Name}</h3>
             )
         }
         return(
             <div className = "UnitRolesList__Block">
-                <h2>Available roles</h2>
+                <h2 style={{color: "rgb(6, 41, 34)"}}>Available roles</h2>
                 {Roles}
             </div>
         )

@@ -15,3 +15,17 @@
     padding: 5px;
     margin: 5px;
 }
+
+.UnitRolesList__RoleButton:hover {
+    background-color: rgb(6, 86, 87);
+    border-color: rgb(6, 86, 87);
+    outline: none;
+    background: rgb(6, 86, 87);
+    box-shadow: none;
+    transition: 0.2s;
+}
+
+.UnitRolesList__RoleButton:active {
+    border: 2px solid rgb(39, 193, 196);
+    transition: 0.5s;
+}

@@ -20,8 +20,8 @@ class UnitsListByRole extends Component {
             );
         }
         return (
-            <div>
-                <h2 style = {{textAlign: "center"}}>{this.props.UnitRole.Name}</h2>
+            <div id = {this.props.UnitRole.Name}>
+                <h2 style = {{textAlign: "center", color: "rgb(6, 41, 34)"}}>{this.props.UnitRole.Name}</h2>
                 {Units}
             </div>
 
