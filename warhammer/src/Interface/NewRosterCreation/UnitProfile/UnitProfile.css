@@ -1,0 +1,99 @@
+.UnitProfile__Block {
+    padding: 0px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    margin: 10px;
+    clear: both;
+    border: 1px solid rgb(6, 41, 34);
+    border-radius:5px;
+    overflow: hidden;
+    
+}
+
+.UnitProfile__Button,
+.UnitProfile__Button:focus {
+    background-color: rgb(6, 41, 34);
+    color: white;
+    border: 0px;
+    border-radius:5px;
+    font-family: "Times New Roman", fantasy;
+    box-shadow: none;
+    outline: none;
+    height: 30px;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top:5px;
+    margin-right: -4px;
+}
+
+.UnitProfile__Button:hover {
+    background-color: rgb(6, 86, 87);
+    border-color: rgb(6, 86, 87);
+    outline: none;
+    background: rgb(6, 86, 87);
+    box-shadow: none;
+    transition: 0.2s;
+}
+
+.UnitProfile__Button:active {
+    border-color: rgb(39, 193, 196);
+    background-color: rgb(7, 119, 121);
+    transition: 0.2s;
+}
+
+.UnitProfile__Image_block {
+    float: left;
+    padding: 0px;
+    margin:0px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+.UnitProfile__Image {
+    height: 100px;
+    width: 100px;
+    margin: 0px;
+}
+
+.UnitProfile__Button_block {
+    width: 80px;
+    text-align: center;
+    margin: auto;
+}
+
+.UnitProfile__Header_block {
+    height: 40px;
+    padding: 10px;
+    
+    background-color: rgb(6, 86, 87);
+    margin: auto;
+    
+}
+
+.UnitProfile__Header_div {
+    
+    color: black;
+    display: inline-block;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+}
+
+.UnitProfile__Header {
+    text-align: center;
+    margin: 10px;
+    
+    color: white;
+    
+}
+
+.UnitProfile__Header_image {
+    height: 40px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}

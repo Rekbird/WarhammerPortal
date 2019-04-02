@@ -3,6 +3,9 @@ import "./WorkingArea.css";
 import UsefulLinks from '../UsefulLinks/UsefulLinks.js';
 import Paragraph from "../Paragraph/Paragraph.js";
 import FactionGraphicList from "../FactionGraphicList/FactionGraphicList.js";
+import UnitsList from "../NewRosterCreation/UnitsList/UnitsList.js";
+import GetFactions from "../../Scripts/GetFactions.js";
+import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 
 
 function WorkingArea(props) {
@@ -41,9 +44,10 @@ function WorkingArea(props) {
             </div>;
         break;
         case 6 :
+            var Factions = GetFactions();
             NeededArea = 
             <div>
-                <FactionGraphicList />
+                <UnitSelection Faction = {Factions[27]} />
             </div>;
         break;
         case 7 :
