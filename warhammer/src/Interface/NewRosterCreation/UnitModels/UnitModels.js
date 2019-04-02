@@ -10,6 +10,8 @@ class UnitModelsList extends Component {
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
         this.models =  getTestModels();
         this.recordCounter = this.models.length;
+        this.modelsMaxCount = 9;
+        this.modelMinCount = 3;
         this.state = {
             isUpdated : true
         };
@@ -32,15 +34,30 @@ class UnitModelsList extends Component {
         }
     }
 
+    showCopyButton = (currentModel) =>{
+        if (this.models.length >= this.modelMaxCount) {
+            return false;
+
+        } else if (!currentModel.maxCount) {
+            return true;
+        
+        } else if (this.models.filter(function (model){           
+            return model.baseModel.id = currentModel.id}
+            ).length >= currentModel.maxCount) {
+                return false;
+        } else {
+                return true;
+        }
+    }
      render() {
         if (this.state.isUpdated) {
          const modelsList = this.models.map(
              (model) => 
-                <ModelListElement key = {model.id} singleModel = {model} handleModelButtonClick = {this.handleModelButtonClick}/>
+                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.baseModel)} showDeleteButton = {(this.models.length > this.modelMinCount)} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
          return (
              <div>
-                <ul>{modelsList}</ul>
+                <ul className = 'unitModels__list'>{modelsList}</ul>
              </div>
          )
     

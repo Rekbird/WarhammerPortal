@@ -7,17 +7,25 @@ import DeleteMenuButton from '../../../Data/ModelMenuButtons/DeleteMenuButton.pn
 class ModelListElement extends Component {
 
     DeleteButton = () => {
-        console.log("pressed delete");
         this.props.handleModelButtonClick(this.props.singleModel, 'Delete');
     }
 
     CopyButton = () => {
-        console.log("pressed copy");
         this.props.handleModelButtonClick(this.props.singleModel, 'Copy');
     }
 
     render() {
-        const Name = this.props.singleModel.ModelName;
+        const Name = this.props.singleModel.baseModel.ModelName;
+        var CopyButton = null;
+        var DeleteButton = null;
+        if (this.props.showCopyButton) {
+            CopyButton = <img src = {CopyMenuButton} className = 'model__buttons' alt = 'Copy' onClick = {this.CopyButton}/>;
+        }
+        if (this.props.showDeleteButton) {
+            DeleteButton = <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete' onClick = {this.DeleteButton}/>
+        }
+
+
         return (
             <div className = 'model__element'>
                 <div className = 'model__title'>
@@ -25,8 +33,8 @@ class ModelListElement extends Component {
                 </div>
                 <div className = 'model__buttonsSet'>
                     <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' />
-                    <img src = {CopyMenuButton} className = 'model__buttons' alt = 'Copy' onClick = {this.CopyButton}/>
-                    <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete' onClick = {this.DeleteButton}/>
+                    {CopyButton}
+                    {DeleteButton}
                 </div>
             </div>
         )
