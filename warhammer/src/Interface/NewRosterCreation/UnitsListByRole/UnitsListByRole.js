@@ -15,7 +15,7 @@ class UnitsListByRole extends Component {
             Units = Units.map(
                 (unit) => 
                 <div>
-                    <UnitProfile key = {unit.id} Unit = {unit} RosterCreation = {true} />
+                    <UnitProfile key = {unit.id} Unit = {unit} UnitSelection = {true} />
                 </div>
             );
         }

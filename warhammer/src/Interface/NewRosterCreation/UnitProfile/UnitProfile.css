@@ -39,7 +39,8 @@
 
 .UnitProfile__Button:active {
     border-color: rgb(39, 193, 196);
-    transition: 0.5s;
+    background-color: rgb(7, 119, 121);
+    transition: 0.2s;
 }
 
 .UnitProfile__Image_block {

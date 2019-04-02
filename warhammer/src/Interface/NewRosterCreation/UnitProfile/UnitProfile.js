@@ -8,7 +8,7 @@ class UnitProfile extends Component {
 
     render() {
         console.log("UnitProfile "+this.props.Unit);
-        var AddButton = (this.props.RosterCreation && (<button className = "UnitProfile__Button" style = {{float: "left"}}>Add</button>));
+        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}}>Add</button>));
         return(
             <div className = "UnitProfile__Block">
                 <div className = "UnitProfile__Image_block">
