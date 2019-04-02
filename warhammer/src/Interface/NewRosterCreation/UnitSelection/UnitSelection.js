@@ -30,9 +30,11 @@ class UnitSelection extends Component {
     render() {
         return (
             <div>
-                <h1 className = "UnitSelection__Header">Select a unit</h1>
                 <div className = "UnitSelection__SelectionArea">
-                    <div className = "UnitSelection__UnitList"><UnitsList Faction = {this.props.Faction} /></div>
+                    <div className = "UnitSelection__UnitList">
+                        <h1 className = "UnitSelection__Header">Select a unit</h1>
+                        <UnitsList Faction = {this.props.Faction} />
+                    </div>
                     <div className = "UnitSelection__RolesList"><UnitRolesList FactionId = {this.props.Faction.id} ScrollToUnitsByRole = {this.ScrollToUnitsByRole}/></div>
                 </div>
             </div>
