@@ -1,9 +1,22 @@
+.MainMenu__Button {
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 16px;
+    border: 1px solid rgb(6,86,87);
+    background-color: rgb(11, 77, 63);
+    border-radius: 5px;
+    user-select: none;
+}
+
 .MainMenu__Button:hover {
     list-style-type: none;
-    background-color: rgb(11, 80, 66);
+    background-color: rgb(14, 97, 80);
+    transition: 0.3s;
 }
 
 .MainMenu__Button:active {
     list-style-type: none;
-    background-color: rgb(14, 102, 84);
+    background-color: rgb(18, 136, 112);
+    transition: 0.3s;
+    border-color: rgb(20, 148, 122);
 }

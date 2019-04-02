@@ -9,24 +9,42 @@
     
     
 }
+.MainMenu__Categories_list {
+    padding-left: 0px;
+    margin:0px;
+}
 
 .MainMenu__Categories {
     list-style-type: none;
     background-color: rgb(17, 112, 93);
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    border: 1px solid rgb(6,86,87);
+    border-radius: 5px;
+    position: relative;
+    left: 0px;
+    user-select: none;
 }
 
 .MainMenu__Categories:hover {
     list-style-type: none;
     background-color: rgb(19, 138, 114);
+    transition: 0.5s;
 }
 
 .MainMenu__Categories:active {
     list-style-type: none;
     background-color: rgb(21, 156, 129);
+    transition: 0.2s;
+    border-color: rgb(20, 148, 122);
 }
 
 .MainMenu__Buttons {
     list-style-type: none;
     background-color: rgb(6, 41, 34);
+    margin: auto;
+    padding-left: 10px;
+    
 }
 
