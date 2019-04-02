@@ -10,17 +10,17 @@ class UnitSelection extends Component {
     }
 
     ScrollToUnitsByRole(name) {
-        console.log("Выбранная роль "+name);
-        var theElement = document.getElementById(name);
+        //console.log("Выбранная роль "+name);
+        var theElement = document.getElementById("UnitListByRole"+name);
         console.log(theElement.id);
-            var selectedPosX = 0;
-            var selectedPosY = 0;
-            if (theElement != null) {
-                console.log(theElement != null);
+           // var selectedPosX = 0;
+           // var selectedPosY = 0;
+            //if (theElement != null) {
+             //   console.log(theElement != null);
                 //selectedPosX += theElement.offsetLeft;
                 //selectedPosY += theElement.current.offsetTop;
                 //theElement = theElement.offsetParent;
-            }
+           // }
             theElement.scrollIntoView();
            // console.log(selectedPosX);
            // console.log(selectedPosY);
