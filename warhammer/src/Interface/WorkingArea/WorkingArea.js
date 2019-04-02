@@ -3,6 +3,8 @@ import "./WorkingArea.css";
 import UsefulLinks from '../UsefulLinks/UsefulLinks.js';
 import Paragraph from "../Paragraph/Paragraph.js";
 import FactionGraphicList from "../FactionGraphicList/FactionGraphicList.js";
+import ModelMenuButton from '../NewRosterCreation/Model/Model.js';
+import UnitModelsList from '../NewRosterCreation/UnitModels/UnitModels.js';
 import UnitsList from "../NewRosterCreation/UnitsList/UnitsList.js";
 import GetFactions from "../../Scripts/GetFactions.js";
 import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
@@ -47,7 +49,6 @@ function WorkingArea(props) {
             var Factions = GetFactions();
             NeededArea = 
             <div>
-                <UnitSelection Faction = {Factions[27]} />
             </div>;
         break;
         case 7 :
