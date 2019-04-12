@@ -20,7 +20,9 @@ import GetMenuCategoryButtons from '../../Scripts/GetMenuCategoryButtons';
         var buttons = GetMenuCategoryButtons(category);
         buttons = buttons.map(
             (button) => 
-        <MenuButton key = {button.id} button = {button}  selectMenuButton = {this.props.selectMenuButton}/>
+            
+                <MenuButton key = {button.id} button = {button}  selectMenuButton = {this.props.selectMenuButton}/>
+            
         );
         buttons = <ul className="MainMenu__Buttons">{buttons}</ul>;
         

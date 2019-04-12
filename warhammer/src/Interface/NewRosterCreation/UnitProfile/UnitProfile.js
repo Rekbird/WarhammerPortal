@@ -8,14 +8,14 @@ class UnitProfile extends Component {
 
     render() {
         console.log("UnitProfile "+this.props.Unit);
-        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}}>Add</button>));
+        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}}>ADD</button>));
         return(
             <div className = "UnitProfile__Block">
                 <div className = "UnitProfile__Image_block">
                     <img className="UnitProfile__Image" src={this.props.Unit.Image} alt = {this.props.Unit.Name} />
                     <div className = "UnitProfile__Button_block">
                         {AddButton}
-                        <div><a href={this.props.Unit.ForeignLink} target="_blank"><button  className = "UnitProfile__Button">View</button></a></div>
+                        <div><a href={this.props.Unit.ForeignLink} target="_blank"><button  className = "UnitProfile__Button">VIEW</button></a></div>
                     </div>
                 </div>
                 <div className = "UnitProfile__Header_block">

@@ -25,6 +25,7 @@
     position: relative;
     left: 0px;
     user-select: none;
+    
 }
 
 .MainMenu__Categories:hover {
@@ -45,6 +46,5 @@
     background-color: rgb(6, 41, 34);
     margin: auto;
     padding-left: 10px;
-    
 }
 
