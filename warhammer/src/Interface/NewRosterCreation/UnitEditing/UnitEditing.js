@@ -14,7 +14,7 @@ class UnitEditing extends Component {
         return (
             <div>
                 <UnitProfile Unit = {this.props.Unit} UnitSelection = {false}/>
-                <EditUnitPsychicPowers AvailableSpells = {Spells} SelectedSpells = {[]}/>
+                <EditUnitPsychicPowers AvailableSpells = {Spells} SelectedSpells = {[]} MaxSpells = {3} KnowsSmite = {true}/>
             </div>
         )
     }
