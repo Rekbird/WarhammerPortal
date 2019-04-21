@@ -16,17 +16,18 @@ class ChoiceUnitPsychicPower extends Component {
             console.log(this.props.SelectLabel+" "+AvailablePowers.length);
             var PsychicPowers = AvailablePowers.map(
                 (power) =>
-                <option key = {power.id} value = {power.id}>{power.Name}</option>
+                <option className = "EditUnitPsychicPowers__Option" key = {power.id} value = {power.id}>{power.Name}</option>
             )
         } else {
             console.log(this.props.SelectLabel+" EMPTY LIST");
         }
         return (
-            <label>{this.props.SelectLabel}
-                <select multiple = {true} onChange = {this.ChoosePsychicPowers.bind(this)}>
-                    {PsychicPowers}
-                </select>
-            </label>
+            <div className = "EditUnitPsychicPowers__ChoiceDiv">
+                <h3 className = "EditUnitPsychicPowers__Label">{this.props.SelectLabel}</h3>
+                    <select className = "EditUnitPsychicPowers__Select" multiple = {true} onChange = {this.ChoosePsychicPowers.bind(this)} size = {6}>
+                        {PsychicPowers}
+                    </select>
+            </div>
         )
     }
 }

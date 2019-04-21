@@ -66,7 +66,17 @@ class EditUnitPsychicPowers extends Component {
         } else {
             console.log("Empty list");
         }
-      this.ChosenAvailableSpells = Spells;
+        if(Spells.length + this.state.SelectedSpells.length > this.props.MaxSpells) {
+            this.ChosenAvailableSpells = [];
+            this.setState({
+                AddButtonLocked: true
+           });
+        } else {
+            this.ChosenAvailableSpells = Spells;
+            this.setState({
+                AddButtonLocked: false
+           });
+        }
        
       
        console.log(this.ChosenAvailableSpells.length);
@@ -88,7 +98,18 @@ class EditUnitPsychicPowers extends Component {
         } else {
             console.log("Empty list");
         }
-        this.ChosenSelectedSpells = Spells;
+        if(Spells.length == 1 && Spells[0].id == 1) {
+            this.ChosenSelectedSpells = [];
+            this.setState({
+                RemoveButtonLocked: true
+           });
+        } else {
+            this.ChosenSelectedSpells = Spells;
+            this.setState({
+                RemoveButtonLocked: false
+           });
+        }
+        
         console.log(Spells);
     }
 
@@ -154,11 +175,27 @@ class EditUnitPsychicPowers extends Component {
     }
 
     render() {
+        let RemoveButton;
+        let AddButton;
+        if(this.state.RemoveButtonLocked) {
+            RemoveButton = <button disabled = {true} className = "EditUnitPsychicPowers__Button_Locked">{"<"}</button>
+        } else {
+            RemoveButton = <button className = "EditUnitPsychicPowers__Button" onClick = {this.RemovePsychicPowers.bind(this)}>{"<"}</button>
+        }
+
+        if(this.state.AddButtonLocked) {
+            AddButton = <button disabled = {true} className = "EditUnitPsychicPowers__Button_Locked">{">"}</button>
+        } else {
+            AddButton = <button className = "EditUnitPsychicPowers__Button" onClick = {this.AddPsychicPowers.bind(this)}>{">"}</button>
+        }
+
         return(
-            <div>
+            <div className = "EditUnitPsychicPowers">
                 <ChoiceUnitPsychicPower SelectLabel = "Available Psychic Powers" ChoosePsychicPowers = {this.ChooseAvailablePsychicPowers} AvailablePowers = {this.state.AvailableSpells}/>
-                <button onClick = {this.AddPsychicPowers.bind(this)}>{">"}</button>
-                <button onClick = {this.RemovePsychicPowers.bind(this)}>{"<"}</button>
+                <div className = "EditUnitPsychicPowers__ButtonsDiv">
+                    {AddButton}
+                    {RemoveButton}
+                </div> 
                 <ChoiceUnitPsychicPower SelectLabel = "Selected Psychic Powers"  ChoosePsychicPowers = {this.ChooseSelectedPsychicPowers} AvailablePowers = {this.state.SelectedSpells}/>
             </div>
         )
