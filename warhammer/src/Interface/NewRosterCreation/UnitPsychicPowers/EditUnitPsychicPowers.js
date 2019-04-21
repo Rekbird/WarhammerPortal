@@ -191,6 +191,7 @@ class EditUnitPsychicPowers extends Component {
 
         return(
             <div className = "EditUnitPsychicPowers">
+                <h2 className = "EditUnitPsychicPowers__Header">Edit Unit Psychic Powers</h2>
                 <ChoiceUnitPsychicPower SelectLabel = "Available Psychic Powers" ChoosePsychicPowers = {this.ChooseAvailablePsychicPowers} AvailablePowers = {this.state.AvailableSpells}/>
                 <div className = "EditUnitPsychicPowers__ButtonsDiv">
                     {AddButton}
