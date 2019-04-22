@@ -9,42 +9,42 @@ function ReturnPsychicPowers() {
 
     var Spell2 = {
         id: 2,
-		Name: "CONCEAL/REVEAL",
+		Name: "Conceal/Reveal",
 		DisciplineName: ""
     };
     Spells.push(Spell2);
 
     var Spell3 = {
         id: 3,
-		Name: "EMBOLDEN/HORRIFY",
+		Name: "Embolden/Horrify",
 		DisciplineName: ""
     };
     Spells.push(Spell3);
 
     var Spell4 = {
         id: 4,
-		Name: "ENHANCE/DRAIN",
+		Name: "Enhance/Drain",
 		DisciplineName: ""
     };
     Spells.push(Spell4);
 
     var Spell5 = {
         id: 5,
-		Name: "PROTECT/JINX",
+		Name: "Protect/Jinx",
 		DisciplineName: ""
     };
     Spells.push(Spell5);
 
     var Spell6 = {
         id: 6,
-		Name: "QUICKEN/RESTRAIN",
+		Name: "Quicken/Restrain",
 		DisciplineName: ""
     };
     Spells.push(Spell6);
 
     var Spell7 = {
         id: 7,
-		Name: "EMPOWER/ENERVATE",
+		Name: "Empower/Enerwate",
 		DisciplineName: ""
     };
     Spells.push(Spell7);

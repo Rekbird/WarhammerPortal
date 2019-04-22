@@ -24,9 +24,11 @@ class ChoiceUnitPsychicPower extends Component {
         return (
             <div className = "EditUnitPsychicPowers__ChoiceDiv">
                 <h3 className = "EditUnitPsychicPowers__Label">{this.props.SelectLabel}</h3>
-                    <select className = "EditUnitPsychicPowers__Select" multiple = {true} onChange = {this.ChoosePsychicPowers.bind(this)} size = {6}>
-                        {PsychicPowers}
-                    </select>
+                    <div className = "EditUnitPsychicPowers__SelectDiv">
+                        <select className = "EditUnitPsychicPowers__Select" multiple = {true} onChange = {this.ChoosePsychicPowers.bind(this)} size = {6}>
+                            {PsychicPowers}
+                        </select>
+                    </div>
             </div>
         )
     }
