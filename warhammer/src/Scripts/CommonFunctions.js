@@ -260,3 +260,107 @@ function GetWargear(OptionId) {
     }
     return ReturnedWargears;
 }
+
+function GetFactions() {
+    let Factions = [];
+    let ReturnedFactions = [];
+    let Faction1 = {
+        id: 1,
+        Name: "Craftworlds",
+        CodexImage: "",
+		IndexImage:"",
+		FactionLogo: ""
+    };
+    Factions.push(Faction1);
+    let Faction2 = {
+        id: 2,
+        Name: "Tyranids",
+        CodexImage: "",
+		IndexImage:"",
+		FactionLogo: ""
+    };
+    Factions.push(Faction2);
+
+    for(let i=0;i<Factions.length;i++) {
+        ReturnedFactions.push(new Faction1(Factions[i].id,Factions[i].Name,Factions[i].CodexImage,Factions[i].IndexImage,Factions[i].FactionLogo));
+    }
+    return ReturnedFactions;
+}
+export default GetFactions;
+
+function GetChapterTactics(FactionId) {
+    let ChapterTactics = [];
+    let ReturnedChapterTactics = [];
+    let ChapterTactic1 = {
+        id: 1,
+		Name: "Alaitoc"
+    };
+    ChapterTactics.push(ChapterTactic1);
+
+    let ChapterTactic2 = {
+        id: 2,
+		Name: "Kronos"
+    };
+    ChapterTactics.push(ChapterTactic2);
+
+    for(let i=0;i<ChapterTactics.length;i++) {
+        ReturnedChapterTactics.push(new ChapterTactic1(ChapterTactics[i].id,ChapterTactics[i].Name));
+    }
+    return ReturnedChapterTactics;
+}
+
+export default GetChapterTactics;
+
+function GetDetachments() {
+    let Detachments = [];
+    let ReturnedDetachments = [];
+    let Detach1 = {
+        id: 1,
+		CommandBenefit: 5,
+		Restrictions: "",
+		Image: ""
+    };
+    Detachments.push(Detach1);
+    let Detach2 = {
+        id: 2,
+		CommandBenefit: 1,
+		Restrictions: "",
+		Image: ""
+    };
+    Detachments.push(Detach2);
+
+    for(let i=0;i<Detachments.length;i++) {
+        ReturnedDetachments.push(new Detachments(Detachments[i].id,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
+    }
+    return Detachments;
+}
+
+export default GetDetachments;
+
+function GetDetachmentOptions(DetachmentId) {
+    let Options = [];
+    let ReturnedOptions = [];
+
+    let Option1 = {
+        id: 1,
+		UnitRole: "",
+		MaxQuant: 6,
+		MinQuant: 3
+    };
+    Options.push(Option1);
+
+    let Option2 = {
+        id: 2,
+		UnitRole: "",
+		MaxQuant: 6,
+		MinQuant: 3
+    };
+    Options.push(Option2);
+
+    for(let i=0;i<Options.length;i++) {
+        ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
+    }
+    return ReturnedOptions;
+}
+
+export default GetDetachmentOptions;
