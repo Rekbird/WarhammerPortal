@@ -19,7 +19,7 @@ class DetachmentEditing extends Component {
     }
 
     componentWillMount() {
-       let DetachmentName = (!!this.props.Detachment.name) ? (this.props.Detachment.name) : ("New Detachment");
+       let DetachmentName = (!!this.props.Detachment.Name) ? (this.props.Detachment.Name) : ("New Detachment");
        let DetachmentFaction = (!!this.props.Faction) ? (this.props.Faction) : (null);
        let DetachmentChapterTactic = (!!this.props.ChapterTactic) ? (this.props.ChapterTactic) : (null);
        let Detachment = (!!this.props.Detachment) ? (this.props.Detachment) : (null);
