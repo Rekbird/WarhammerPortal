@@ -316,6 +316,7 @@ function GetDetachments() {
     let ReturnedDetachments = [];
     let Detach1 = {
         id: 1,
+        Name: "Batallion",
 		CommandBenefit: 5,
 		Restrictions: "",
 		Image: ""
@@ -323,6 +324,7 @@ function GetDetachments() {
     Detachments.push(Detach1);
     let Detach2 = {
         id: 2,
+        Name: "Spearhead",
 		CommandBenefit: 1,
 		Restrictions: "",
 		Image: ""
@@ -336,6 +338,12 @@ function GetDetachments() {
 }
 
 export default GetDetachments;
+
+function GetDetachment(DetachmentId) {
+    return GetDetachments().filter((Detachment) => Detachment.id == DetachmentId)[0];
+}
+
+export default GetDetachment;
 
 function GetDetachmentOptions(DetachmentId) {
     let Options = [];
