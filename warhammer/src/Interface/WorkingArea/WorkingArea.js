@@ -13,6 +13,7 @@ import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
 import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
 
 
+
 function WorkingArea(props) {
     var NeededArea;
     switch(props.SelectedMenuId) {
