@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import ReturnFactionImages from "../Data/FactionImages/FactionImages.js";
 
-function GetFactions() {
+function GetFactionsImages() {
     var Factions = ReturnFactionImages();
     return Factions;
 }
 
-export default GetFactions;
+export default GetFactionsImages;

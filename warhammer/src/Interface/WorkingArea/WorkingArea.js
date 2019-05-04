@@ -10,6 +10,8 @@ import GetFactions from "../../Scripts/GetFactions.js";
 import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 import UnitEditing from "../NewRosterCreation/UnitEditing/UnitEditing.js";
 import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
+import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
+
 
 
 function WorkingArea(props) {
@@ -49,10 +51,10 @@ function WorkingArea(props) {
         break;
         case 6 :
             var Factions = GetFactions();
-            var Units = GetFactionUnits(Factions[27].id);
+            var Units = GetFactionUnits(Factions[27].id)
             NeededArea = 
             <div>
-                <UnitEditing Unit = {Units[0]}/>
+                <UnitEditing Unit = {Units[0]} />
             </div>;
         break;
         case 7 :
