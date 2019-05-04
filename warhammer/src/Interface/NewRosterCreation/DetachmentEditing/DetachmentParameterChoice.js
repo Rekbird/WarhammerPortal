@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import "./DetachmentEditing.css";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class DetachmentParameterChoice extends Component {
     constructor(props) {
@@ -19,12 +20,12 @@ class DetachmentParameterChoice extends Component {
             */
             let ObjectsArray = [];
             if(this.props.ListTypeNumber == 1) {
-                ObjectsArray = GetDetachments();
+                ObjectsArray = utils.GetDetachments();
             } else if(this.props.ListTypeNumber == 2) {
-                ObjectsArray = GetFactions();
+                ObjectsArray = utils.GetFactions();
             } else {
                 if(this.state.DetachmentFaction) {
-                    ObjectsArray = GetChapterTactics(this.state.DetachmentFaction.id);
+                    ObjectsArray = utils.GetChapterTactics(this.state.DetachmentFaction.id);
                 }
             }
             let options = ObjectsArray.map(

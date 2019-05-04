@@ -1,4 +1,4 @@
-function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
+export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     //Эмуляционный вызов
     let WarlordTraits = [];
     let WarlordTraitIds = [];
@@ -43,9 +43,9 @@ function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     }
 }
 
-export default GetWarlordTrait;
+// export default GetWarlordTrait;
 
-function GetNumberOfSpells(UnitId) {
+export function GetNumberOfSpells(UnitId) {
     let ReturnedNumberOfSpells = [];
     //Эмуляция вызова
     let NumberOfSpellsFromBase = ReturnNumberOfSpells();
@@ -67,9 +67,9 @@ function GetNumberOfSpells(UnitId) {
     return ReturnedNumberOfSpells;
 }
 
-export default GetNumberOfSpells;
+// export default GetNumberOfSpells;
 
-function GetAvailableSpells(UnitId) {
+export function GetAvailableSpells(UnitId) {
     let ReturnedPsychicPowers = [];
     //Эмуляция вызова
     let Spells = [];
@@ -92,9 +92,9 @@ function GetAvailableSpells(UnitId) {
     }
     return Spells;
 }
-export default GetAvailableSpells;
+// export default GetAvailableSpells;
 
-function GetUnitRole(RoleId) {
+export function GetUnitRole(RoleId) {
     let UnitRoles = [];
     let ReturnedUnitRoles =[];
     let Hq = {
@@ -117,9 +117,9 @@ function GetUnitRole(RoleId) {
     return ReturnedUnitRoles;
 }
 
-export default GetUnitRole;
+// export default GetUnitRole;
 
-function GetUnitPowerLevel(UnitId) {
+export function GetUnitPowerLevel(UnitId) {
     let UnitPowerLevels =[];
     let ReturnedUnitPowerLevels = [];
 
@@ -143,9 +143,9 @@ function GetUnitPowerLevel(UnitId) {
     return ReturnedUnitPowerLevels;
 }
 
-export default GetUnitPowerLevel;
+// export default GetUnitPowerLevel;
 
-function GetModel(UnitId) {
+export function GetModel(UnitId) {
     let ReturnedModels = [];
     let UnitModels = [];
     let Model1 = {
@@ -176,9 +176,9 @@ function GetModel(UnitId) {
     return ReturnedModels;
 }
 
-export default GetModel;
+// export default GetModel;
 
-function GetWargearSlot(ModelId) {
+export function GetWargearSlot(ModelId) {
     let ReturnedWargearSlots = [];
     let WargearSlots = [];
     let WargearSlot1 = {
@@ -199,9 +199,9 @@ function GetWargearSlot(ModelId) {
     return ReturnedWargearSlots;
 }
 
-export default GetWargearSlot;
+// export default GetWargearSlot;
 
-function GetWargearOption(SlotId) {
+export function GetWargearOption(SlotId) {
     let ReturnedWargearOptions = [];
     let WargearOptions = [];
     let WargearOption1 = {
@@ -227,9 +227,9 @@ function GetWargearOption(SlotId) {
     return ReturnedWargearOptions;
 }
 
-export default GetWargearOption;
+// export default GetWargearOption;
 
-function GetWargear(OptionId) {
+export function GetWargear(OptionId) {
     let ReturnedWargears = [];
     let Wargears = [];
     let Wargear1 = {
@@ -261,7 +261,7 @@ function GetWargear(OptionId) {
     return ReturnedWargears;
 }
 
-function GetFactions() {
+export function GetFactions() {
     let Factions = [];
     let ReturnedFactions = [];
     let Faction1 = {
@@ -286,9 +286,15 @@ function GetFactions() {
     }
     return ReturnedFactions;
 }
-export default GetFactions;
+// export default GetFactions;
 
-function GetChapterTactics(FactionId) {
+export function GetFaction(FactionId) {
+    return GetFactions().filter((Faction) => Faction.id == FactionId)[0];
+}
+
+// export default GetFaction;
+
+export function GetChapterTactics(FactionId) {
     let ChapterTactics = [];
     let ReturnedChapterTactics = [];
     let ChapterTactic1 = {
@@ -309,9 +315,15 @@ function GetChapterTactics(FactionId) {
     return ReturnedChapterTactics;
 }
 
-export default GetChapterTactics;
+// export default GetChapterTactics;
 
-function GetDetachments() {
+export function GetChapterTactic(TacticId) {
+    return GetChapterTactics().filter((Tactic) => Tactic.id == TacticId)[0];
+}
+
+// export default GetChapterTactic;
+
+export function GetDetachments() {
     let Detachments = [];
     let ReturnedDetachments = [];
     let Detach1 = {
@@ -337,15 +349,15 @@ function GetDetachments() {
     return Detachments;
 }
 
-export default GetDetachments;
+// export default GetDetachments;
 
-function GetDetachment(DetachmentId) {
+export function GetDetachment(DetachmentId) {
     return GetDetachments().filter((Detachment) => Detachment.id == DetachmentId)[0];
 }
 
-export default GetDetachment;
+// export default GetDetachment;
 
-function GetDetachmentOptions(DetachmentId) {
+export function GetDetachmentOptions(DetachmentId) {
     let Options = [];
     let ReturnedOptions = [];
 
@@ -371,4 +383,4 @@ function GetDetachmentOptions(DetachmentId) {
     return ReturnedOptions;
 }
 
-export default GetDetachmentOptions;
+// export default GetDetachmentOptions;

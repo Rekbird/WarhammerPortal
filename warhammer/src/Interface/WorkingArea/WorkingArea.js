@@ -10,6 +10,7 @@ import GetFactions from "../../Scripts/GetFactions.js";
 import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 import UnitEditing from "../NewRosterCreation/UnitEditing/UnitEditing.js";
 import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
+import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
 
 
 function WorkingArea(props) {
