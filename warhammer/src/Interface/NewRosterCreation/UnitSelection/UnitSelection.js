@@ -21,7 +21,7 @@ class UnitSelection extends Component {
                 //selectedPosY += theElement.current.offsetTop;
                 //theElement = theElement.offsetParent;
            // }
-            theElement.scrollIntoView();
+            theElement.scrollIntoView({behavior: "smooth"});
            // console.log(selectedPosX);
            // console.log(selectedPosY);
            // window.scrollTo(0, selectedPosY);
