@@ -15,7 +15,7 @@ class FactionGraphicList extends Component {
         let TableRows = [];
         while(Factions && Factions.length > 0) {
             let RowButtons = Factions.splice(0,5);
-            RowButtons.map(
+            RowButtons = RowButtons.map(
                 (Button)  => <FactionButton Faction = {Button} />
             )
             TableRows.push(<tr>{RowButtons}</tr>)

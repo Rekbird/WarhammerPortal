@@ -1,4 +1,15 @@
+import {PsychicPower} from "../Classes/CommonClasses.js";
+import {UnitPowerLevel} from "../Classes/CommonClasses.js";
+import {WargearSlot} from "../Classes/CommonClasses.js";
+import {WargearOption} from "../Classes/CommonClasses.js";
+import {Wargear} from "../Classes/CommonClasses.js";
+import {DetachmentOption} from "../Classes/CommonClasses.js";
+import {Detachment} from "../Classes/CommonClasses.js";
+import {Faction} from "../Classes/CommonClasses.js";
+import {ChapterTactic} from "../Classes/CommonClasses.js";
+
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
+    /*
     //Эмуляционный вызов
     let WarlordTraits = [];
     let WarlordTraitIds = [];
@@ -41,11 +52,13 @@ export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     } else {
         return null;
     }
+    */
 }
 
 // export default GetWarlordTrait;
 
 export function GetNumberOfSpells(UnitId) {
+    /*
     let ReturnedNumberOfSpells = [];
     //Эмуляция вызова
     let NumberOfSpellsFromBase = ReturnNumberOfSpells();
@@ -65,6 +78,7 @@ export function GetNumberOfSpells(UnitId) {
          
     }
     return ReturnedNumberOfSpells;
+    */
 }
 
 // export default GetNumberOfSpells;
@@ -282,7 +296,7 @@ export function GetFactions() {
     Factions.push(Faction2);
 
     for(let i=0;i<Factions.length;i++) {
-        ReturnedFactions.push(new Faction1(Factions[i].id,Factions[i].Name,Factions[i].CodexImage,Factions[i].IndexImage,Factions[i].FactionLogo));
+        ReturnedFactions.push(new Faction(Factions[i].id,Factions[i].Name,Factions[i].CodexImage,Factions[i].IndexImage,Factions[i].FactionLogo));
     }
     return ReturnedFactions;
 }
@@ -310,7 +324,7 @@ export function GetChapterTactics(FactionId) {
     ChapterTactics.push(ChapterTactic2);
 
     for(let i=0;i<ChapterTactics.length;i++) {
-        ReturnedChapterTactics.push(new ChapterTactic1(ChapterTactics[i].id,ChapterTactics[i].Name));
+        ReturnedChapterTactics.push(new ChapterTactic(ChapterTactics[i].id,ChapterTactics[i].Name));
     }
     return ReturnedChapterTactics;
 }
@@ -344,9 +358,9 @@ export function GetDetachments() {
     Detachments.push(Detach2);
 
     for(let i=0;i<Detachments.length;i++) {
-        ReturnedDetachments.push(new Detachments(Detachments[i].id,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
+        ReturnedDetachments.push(new Detachment(Detachments[i].id,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
     }
-    return Detachments;
+    return ReturnedDetachments;
 }
 
 // export default GetDetachments;

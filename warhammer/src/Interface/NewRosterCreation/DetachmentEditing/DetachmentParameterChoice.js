@@ -24,8 +24,8 @@ class DetachmentParameterChoice extends Component {
             } else if(this.props.ListTypeNumber == 2) {
                 ObjectsArray = utils.GetFactions();
             } else {
-                if(this.state.DetachmentFaction) {
-                    ObjectsArray = utils.GetChapterTactics(this.state.DetachmentFaction.id);
+                if(this.props.ObjectId) {
+                    ObjectsArray = utils.GetChapterTactics(this.props.ObjectId);
                 }
             }
             let options = ObjectsArray.map(

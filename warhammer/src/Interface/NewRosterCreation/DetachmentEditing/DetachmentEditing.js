@@ -20,7 +20,7 @@ class DetachmentEditing extends Component {
     }
 
     componentWillMount() {
-       let DetachmentName = (!!this.props.RosterDetachment.Detachment.Name) ? (this.props.RosterDetachment.Detachment.Name) : ("New Detachment");
+       let DetachmentName = (this.props.RosterDetachment.Detachment && !!this.props.RosterDetachment.Detachment.Name) ? (this.props.RosterDetachment.Detachment.Name) : ("New Detachment");
        let DetachmentFaction = (!!this.props.RosterDetachment.Faction) ? (this.props.RosterDetachment.Faction) : (null);
        let DetachmentChapterTactic = (!!this.props.RosterDetachment.ChapterTactic) ? (this.props.RosterDetachment.ChapterTactic) : (null);
        let Detachment = (!!this.props.RosterDetachment.Detachment) ? (this.props.RosterDetachment.Detachment) : (null);
@@ -62,9 +62,9 @@ class DetachmentEditing extends Component {
             <div>
                 <h1>Edit {this.state.DetachmentName}</h1>
                 <div>
-                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment.id} onChange = {this.handleDetachmentNameChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {2} ObjectId = {this.state.DetachmentFaction.id} onChange = {this.handleDetachmentFactionChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {3} ObjectId = {this.state.DetachmentChapterTactic.id} onChange = {this.handleDetachmentChapterTacticChange} />
+                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : null} onChange = {this.handleDetachmentNameChange} />
+                    <DetachmentParameterChoice ListTypeNumber = {2} ObjectId = {this.state.DetachmentFaction ? this.state.DetachmentFaction.id : null} onChange = {this.handleDetachmentFactionChange} />
+                    <DetachmentParameterChoice ListTypeNumber = {3} ObjectId = {this.state.DetachmentChapterTactic ? this.state.DetachmentChapterTactic.id : null} onChange = {this.handleDetachmentChapterTacticChange} />
                 </div>
                 <FactionGraphicList />
             </div>
