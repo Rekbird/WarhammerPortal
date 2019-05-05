@@ -19,12 +19,17 @@ class DetachmentParameterChoice extends Component {
                 3 - ChapterTactics
             */
             let ObjectsArray = [];
+            let SelectLabel = "";
             if(this.props.ListTypeNumber == 1) {
                 ObjectsArray = utils.GetDetachments();
+                SelectLabel = "Choose Detachment";
             } else if(this.props.ListTypeNumber == 2) {
                 ObjectsArray = utils.GetFactions();
+                SelectLabel = "Choose Faction";
             } else {
+                SelectLabel = "Choose Tactic";
                 if(this.props.ObjectId) {
+                    
                     ObjectsArray = utils.GetChapterTactics(this.props.ObjectId);
                 }
             }
@@ -33,9 +38,12 @@ class DetachmentParameterChoice extends Component {
                 <option key = {object.id} value = {object.id}>{object.Name}</option>
             );
             return (
-                <select value = {this.props.ObjectId} onChange = {this.handleChange}>
-                    {options}
-                </select>
+                <div>
+                    <h4>{SelectLabel}</h4>
+                    <select value = {this.props.ObjectId} onChange = {this.handleChange}>
+                        {options}
+                    </select>
+                </div>
             )
         }
 }

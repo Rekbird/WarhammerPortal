@@ -62,9 +62,9 @@ class DetachmentEditing extends Component {
             <div>
                 <h1>Edit {this.state.DetachmentName}</h1>
                 <div>
-                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : null} onChange = {this.handleDetachmentNameChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {2} ObjectId = {this.state.DetachmentFaction ? this.state.DetachmentFaction.id : null} onChange = {this.handleDetachmentFactionChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {3} ObjectId = {this.state.DetachmentChapterTactic ? this.state.DetachmentChapterTactic.id : null} onChange = {this.handleDetachmentChapterTacticChange} />
+                    <button>Choose faction</button>
+                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : ""} onChange = {this.handleDetachmentNameChange} />
+                    <DetachmentParameterChoice ListTypeNumber = {3} ObjectId = {this.state.DetachmentChapterTactic ? this.state.DetachmentChapterTactic.id : ""} onChange = {this.handleDetachmentChapterTacticChange} />
                 </div>
                 <FactionGraphicList />
             </div>

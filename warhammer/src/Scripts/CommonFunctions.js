@@ -358,7 +358,7 @@ export function GetDetachments() {
     Detachments.push(Detach2);
 
     for(let i=0;i<Detachments.length;i++) {
-        ReturnedDetachments.push(new Detachment(Detachments[i].id,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
+        ReturnedDetachments.push(new Detachment(Detachments[i].id,Detachments[i].Name,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
     }
     return ReturnedDetachments;
 }
