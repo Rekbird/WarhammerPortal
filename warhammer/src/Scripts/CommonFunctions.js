@@ -7,36 +7,38 @@ import {DetachmentOption} from "../Classes/CommonClasses.js";
 import {Detachment} from "../Classes/CommonClasses.js";
 import {Faction} from "../Classes/CommonClasses.js";
 import {ChapterTactic} from "../Classes/CommonClasses.js";
+import {Model} from "../Classes/CommonClasses.js";
+import {NumberOfSpells} from "../Classes/CommonClasses.js";
+import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     /*
-    //Эмуляционный вызов
+    Первый шаг - проверка того что юнит не именной. Если именной то в нем есть атрибут с айди трейта и по этому айди мы возвращаем объект трейта. Конец функции
+    Второй шаг - Если юнит не именной мы возвращаем массив трейтов которые мы селектим по айди фракции и айди чаптер тактики.
+    */
+    //Эмуляционный вызов 
     let WarlordTraits = [];
-    let WarlordTraitIds = [];
-    if(UnitId) {
-        let Units = ReturnUnits();
-        for (let i=0;i<Units.length;i++) {
-            if(Units[i].id == UnitId) {
-                WarlordTraitIds = Units[i].WarlordTraits.concat(WarlordTraitIds);
-                let WarlordTraitsFromBase = ReturnWarlordTraits();
-                for(let j=0;j<WarlordTraitIds.length;j++) {
-                    let TraitId = WarlordTraitIds[j];
-                    for(let k=0;k<WarlordTraitsFromBase;k++)
-                    if(WarlordTraitsFromBase[k].id == TraitId) {
-                        WarlordTraits.push(WarlordTraitsFromBase[k]);
-                    }
-                }
-            }
-        }
-    } else if(FactionId && ChapterTacticId) {
-        let WarlordTraitsFromBase = ReturnWarlordTraits();
-        for (let i=0;i<WarlordTraitsFromBase.length;i++) {
-            if(WarlordTraitsFromBase[i].id_Faction == FactionId && WarlordTraitsFromBase[i].id_Chapter_tactic == ChapterTacticId) {
-                WarlordTraits.push(WarlordTraitsFromBase[i]);
-            }
+    let Unit;
+    let TraitIds = [];
+    if (!!UnitId) {
+    //Cелектим айдишники трейтов SELECT WarlordTrait FROM Unit_table WHERE Id = UnitId AND Named = true
+        TraitIds = [23];
+    } else if (!!FactionId && !!ChapterTacticId) {
+    //Селектим айдишники SELECT Id FROM WarlordTraits_table WHERE id_Faction =  FactionId AND id_ChapterTactic = ChapterTacticId
+        TraitIds = [24,25,26];
+    }
+    //Эмуляция получения объектов из базы
+    if (!!TraitIds && TraitIds.length > 0) {
+        for (let i = 0; i < TraitIds.length; i++) {
+            let WarlordTrait = {
+                    id : TraitIds[i],
+                    Name : "TraitName" + TraitIds[i],
+                    Description : "TratiDescr" + TraitIds[i]
+            };
+            WarlordTraits.push(WarlordTrait);
         }
     }
-    //Эмуляционный вызов
+    //Обработка объектов из базы, преобразование их в экземпляры классов
     if(!!WarlordTraits && WarlordTraits.length > 0) {
         if(WarlordTraits.length == 1) {
             let WarlordTrait = new WarlordTrait(WarlordTraits[0].id,WarlordTraits[0].Name,WarlordTraits[0].Description);
@@ -51,37 +53,51 @@ export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
         }
     } else {
         return null;
-    }
-    */
+    }    
 }
 
-// export default GetWarlordTrait;
 
 export function GetNumberOfSpells(UnitId) {
-    /*
+    
     let ReturnedNumberOfSpells = [];
-    //Эмуляция вызова
-    let NumberOfSpellsFromBase = ReturnNumberOfSpells();
-    let NumberOfSpells = [];
-    for (let i=0;i<NumberOfSpellsFromBase.length;i++) {
-        if(NumberOfSpellsFromBase[i].id_Unit == UnitId) {
-            NumberOfSpells.push(NumberOfSpellsFromBase[i]);
-        }
+    let NumberOfSpellsFromBase = [];
+    //Селект из базы по юнит айди
+    if (!!UnitId) {
+        NumberOfSpellsFromBase = [
+            {
+                id : 1,
+                NumberOfModels : 3,
+                NumberOfSpells : 1
+            },
+            {
+                id : 2,
+                NumberOfModels : 4,
+                NumberOfSpells : 2
+            },
+            {
+                id : 3,
+                NumberOfModels : 5,
+                NumberOfSpells : 2
+            },
+            {
+                id : 4,
+                NumberOfModels : 6,
+                NumberOfSpells : 3
+            }
+        ];
     }
 
     //Эмуляция вызова
-    if(NumberOfSpells && NumberOfSpells.length > 0) {
+    if(NumberOfSpellsFromBase && NumberOfSpellsFromBase.length > 0) {
         
-        for(let i=0;i<NumberOfSpells.length;i++) {
-            ReturnedNumberOfSpells.push(new NumberOfSpells(NumberOfSpells[i].id,NumberOfSpells[i].NumberOfModels,NumberOfSpells[i].NumberOfSpells))
+        for(let i=0;i<NumberOfSpellsFromBase.length;i++) {
+            ReturnedNumberOfSpells.push(new NumberOfSpells(NumberOfSpellsFromBase[i].id,NumberOfSpellsFromBase[i].NumberOfModels,NumberOfSpellsFromBase[i].NumberOfSpells))
         }
          
     }
     return ReturnedNumberOfSpells;
-    */
 }
 
-// export default GetNumberOfSpells;
 
 export function GetAvailableSpells(UnitId) {
     let ReturnedPsychicPowers = [];
@@ -106,7 +122,7 @@ export function GetAvailableSpells(UnitId) {
     }
     return Spells;
 }
-// export default GetAvailableSpells;
+
 
 export function GetUnitRole(RoleId) {
     let UnitRoles = [];
@@ -128,7 +144,7 @@ export function GetUnitRole(RoleId) {
     for(let i=0;i<UnitRoles.length;i++) {
         ReturnedUnitRoles.push(new PsychicPower(UnitRoles[i].id,UnitRoles[i].Name,UnitRoles[i].Image));
     }
-    return ReturnedUnitRoles;
+    return ReturnedUnitRoles[0];
 }
 
 // export default GetUnitRole;
@@ -159,7 +175,7 @@ export function GetUnitPowerLevel(UnitId) {
 
 // export default GetUnitPowerLevel;
 
-export function GetModel(UnitId) {
+export function GetUnitModels(UnitId) {
     let ReturnedModels = [];
     let UnitModels = [];
     let Model1 = {
@@ -178,21 +194,21 @@ export function GetModel(UnitId) {
         Name: "Hive Tyrant",
         Cost: 450,
         MaxQuant: 1,
-        MinQuant: 1,
+        MinQuant: "",
         ModelsIncluding: 1,
         UnitId: ""
     };
     UnitModels.push(Model2);
 
     for(let i=0;i<UnitModels.length;i++) {
-        ReturnedModels.push(new Model1(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].UnitId));
+        ReturnedModels.push(new Model(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].UnitId));
     }
     return ReturnedModels;
 }
 
-// export default GetModel;
 
-export function GetWargearSlot(ModelId) {
+
+export function GetWargearSlots(ModelId) {
     let ReturnedWargearSlots = [];
     let WargearSlots = [];
     let WargearSlot1 = {
@@ -215,7 +231,7 @@ export function GetWargearSlot(ModelId) {
 
 // export default GetWargearSlot;
 
-export function GetWargearOption(SlotId) {
+export function GetWargearOptions(SlotId) {
     let ReturnedWargearOptions = [];
     let WargearOptions = [];
     let WargearOption1 = {
@@ -223,6 +239,7 @@ export function GetWargearOption(SlotId) {
         Name: "Option1",
         CountPerModel: 1,
         PerXmodels: 1,
+        Default: true,
         LinkedOptionsId: []
     };
     WargearOptions.push(WargearOption1);
@@ -231,12 +248,13 @@ export function GetWargearOption(SlotId) {
         Name: "Option2",
         CountPerModel: 1,
         PerXmodels: 1,
+        Default: false,
         LinkedOptionsId: []
     };
     WargearOptions.push(WargearOption2);
 
     for(let i=0;i<WargearOptions.length;i++) {
-        ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].LinkedOptionsId));
+        ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].Default,WargearOptions[i].LinkedOptionsId));
     }
     return ReturnedWargearOptions;
 }
@@ -252,7 +270,6 @@ export function GetWargear(OptionId) {
         Cost: 10,
         Type: "",
         Relic: false,
-        Default: true,
         Image: "",
         ChapterTacticId: ""
     };
@@ -263,17 +280,35 @@ export function GetWargear(OptionId) {
         Cost: 10,
         Type: "",
         Relic: false,
-        Default: true,
         Image: "",
         ChapterTacticId: ""
     };
     Wargears.push(Wargear2);
 
     for(let i=0;i<Wargears.length;i++) {
-        ReturnedWargears.push(new Wargear(Wargears[i].id,Wargears[i].Name,Wargears[i].Cost,Wargears[i].Type,Wargears[i].Relic,Wargears[i].Default,Wargears[i].Image,Wargears[i].ChapterTacticId));
+        ReturnedWargears.push(new Wargear(Wargears[i].id,Wargears[i].Name,Wargears[i].Cost,Wargears[i].Type,Wargears[i].Relic,Wargears[i].Image,Wargears[i].ChapterTacticId));
     }
     return ReturnedWargears;
 }
+
+export function GetRosterWargearSlots(BaseWargearSlots) {
+    let ReturnedSlots;
+    if (!!BaseWargearSlots && BaseWargearSlots.length > 0) {
+        let count = 1;
+        for (let i = 0; i < BaseWargearSlots.length; i++) {
+
+            const SelectedOption = BaseWargearSlots[i].Options.filter(Option => Option.Default == true);
+
+            let CurrentSlot = new RosterWargearSlot(count, BaseWargearSlots[i].Name, SelectedOption[0]);
+            ReturnedSlots.push(CurrentSlot);
+            count++;
+        }
+        return ReturnedSlots;
+    } else {
+        return null;
+    }
+}
+
 
 export function GetFactions() {
     let Factions = [];

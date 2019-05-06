@@ -76,7 +76,7 @@ export class Model {
         this.MinQuant = MinQuant;
         this.ModelsIncluding = ModelsIncluding;
         this.UnitId = UnitId;
-        //this.WargearSlots = utils.GetWargearSlots(id);
+        this.WargearSlots = utils.GetWargearSlots(id);
     }
 }
 
@@ -84,7 +84,7 @@ export class WargearSlot {
     constructor(id,Name) {
         this.id = id;
         this.Name = Name;
-        this.Options = utils.GetWargearOption(id);
+        this.Options = utils.GetWargearOptions(id);
     }
 
     get DefaultWargearOption() {
@@ -94,24 +94,24 @@ export class WargearSlot {
 }
 
 export class WargearOption {
-    constructor(id,Name,CountPerModel,PerXmodels,LinkedOptionsId) {
+    constructor(id,Name,CountPerModel,PerXmodels,Default,LinkedOptionsId) {
         this.id = id;
         this.Name = Name;
         this.CountPerModel = CountPerModel;
         this.PerXmodels = PerXmodels;
+        this.Default = Default;
         this.LinkedOptionsId = LinkedOptionsId;
-        //this.WargearIncluded = utils.GetWargearForOption(id);
+        this.WargearIncluded = utils.GetWargear(id);
     }
 }
 
 export class Wargear {
-    constructor(id,Name,Cost,Type,Relic,Default,Image,ChapterTacticId) {
+    constructor(id,Name,Cost,Type,Relic,Image,ChapterTacticId) {
         this.id = id;
         this.Name = Name;
         this.Cost = Cost;
         this.Type = Type;
         this.Relic = Relic;
-        this.Default = Default;
         this.Image = Image;
         this.ChapterTacticId = ChapterTacticId;
     }
@@ -160,7 +160,7 @@ export class DetachmentOption {
 }
 
 //<Roster creation Unit Elements>------------------------------------
-/*
+
 export class RosterModel {
     constructor(id,BaseModel,RosterUnitId,TotalCost) {
         this.id = id;
@@ -216,4 +216,3 @@ export class Roster {
         this.UserId = UserId;
     }
 }
-*/
