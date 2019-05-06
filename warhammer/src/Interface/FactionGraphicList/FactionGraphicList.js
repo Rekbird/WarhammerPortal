@@ -13,12 +13,14 @@ class FactionGraphicList extends Component {
     render() {
         var Factions = GetFactions();
         let TableRows = [];
+        let RowsCount = 0;
         while(Factions && Factions.length > 0) {
             let RowButtons = Factions.splice(0,5);
             RowButtons = RowButtons.map(
-                (Button)  => <FactionButton Faction = {Button} />
+                (Button)  => <FactionButton key = {Button.id} buttonClick = {this.props.buttonClick} Faction = {Button} />
             )
-            TableRows.push(<tr>{RowButtons}</tr>)
+            RowsCount++;
+            TableRows.push(<tr key = {RowsCount}>{RowButtons}</tr>)
         }
         return (
             <table className="FactionGraphciList__Table">

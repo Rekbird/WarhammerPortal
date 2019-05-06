@@ -279,7 +279,7 @@ export function GetFactions() {
     let Factions = [];
     let ReturnedFactions = [];
     let Faction1 = {
-        id: 1,
+        id: 28,
         Name: "Craftworlds",
         CodexImage: "",
 		IndexImage:"",
@@ -287,7 +287,7 @@ export function GetFactions() {
     };
     Factions.push(Faction1);
     let Faction2 = {
-        id: 2,
+        id: 36,
         Name: "Tyranids",
         CodexImage: "",
 		IndexImage:"",
