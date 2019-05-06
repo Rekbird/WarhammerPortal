@@ -52,9 +52,10 @@ function WorkingArea(props) {
         case 6 :
             var Factions = GetFactions();
             var Units = GetFactionUnits(Factions[27].id)
+            let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null}
             NeededArea = 
             <div>
-                <UnitEditing Unit = {Units[0]} />
+                <DetachmentEditing RosterDetachment = {RosterDetachment}/>
             </div>;
         break;
         case 7 :

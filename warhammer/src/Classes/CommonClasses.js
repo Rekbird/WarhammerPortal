@@ -1,7 +1,8 @@
 'use strict';
+import * as utils from "../Scripts/CommonFunctions.js";
 
 //<Dictionary Unit Elements>------------------------------------
-class Unit {
+export class Unit {
     constructor(id,Name,Description,MaxModelQuant,KnowsSmite,Named,UnitRoleId,IndexUnit,ExternalURL,FactionId) {
         this.id = id;
         this.Name = Name;
@@ -9,13 +10,13 @@ class Unit {
         this.MaxModelQuant = MaxModelQuant;
         this.KnowsSmite = KnowsSmite;
         this.Named = Named;
-        this.WarlordTrait = GetWarlordTrait(id);
-        this.NumberOfSpells = GetNumberOfSpells(id);
-        this.AvailableSpells = GetAvailableSpells(id);
-        this.UnitRole = GetUnitRole(UnitRoleId);//this function can be used for Unit and for DetachmentOption
+        this.WarlordTrait = utils.GetWarlordTrait(id);
+        this.NumberOfSpells = utils.GetNumberOfSpells(id);
+        this.AvailableSpells = utils.GetAvailableSpells(id);
+        this.UnitRole = utils.GetUnitRole(UnitRoleId);//this function can be used for Unit and for DetachmentOption
         this.IndexUnit = IndexUnit;
         this.ExternalURL = ExternalURL;
-        this.PowerLevel = GetPowerLevel(id);
+        this.PowerLevel = utils.GetUnitPowerLevel(id);
         this.FactionId = FactionId;
     }
 
@@ -25,7 +26,7 @@ class Unit {
     }
 }
 
-class NumberOfSpells {
+export class NumberOfSpells {
     constructor(id,NumberOfModels,NumberOfSpells) {
         this.id = id;
         this.NumberOfModels = NumberOfModels;
@@ -33,7 +34,7 @@ class NumberOfSpells {
     }
 }
 
-class PsychicPower {
+export class PsychicPower {
     constructor(id,Name,DisciplineName) {
         this.id = id;
         this.Name = Name;
@@ -41,7 +42,7 @@ class PsychicPower {
     }
 }
 
-class UnitPowerLevel {
+export class UnitPowerLevel {
     constructor(id,PowerLevel,NumberOfModels) {
         this.id = id;
         this.PowerLevel = PowerLevel;
@@ -49,7 +50,7 @@ class UnitPowerLevel {
     }
 }
 
-class WarlordTrait {
+export class WarlordTrait {
     constructor(id,Name,Description) {
         this.id = id;
         this.Name = Name;
@@ -57,7 +58,7 @@ class WarlordTrait {
     }
 }
 
-class UnitRole {
+export class UnitRole {
     constructor(id,Name,Image) {
         this.id = id;
         this.Name = Name;
@@ -66,7 +67,7 @@ class UnitRole {
 }
 
 //<Dictionary Model Elements>------------------------------------
-class Model {
+export class Model {
     constructor(id,Name,Cost,MaxQuant,MinQuant,ModelsIncluding,UnitId) {
         this.id = id;
         this.Name = Name;
@@ -75,15 +76,15 @@ class Model {
         this.MinQuant = MinQuant;
         this.ModelsIncluding = ModelsIncluding;
         this.UnitId = UnitId;
-        this.WargearSlots = GetWargearSlots(id);
+        //this.WargearSlots = utils.GetWargearSlots(id);
     }
 }
 
-class WargearSlot {
+export class WargearSlot {
     constructor(id,Name) {
         this.id = id;
         this.Name = Name;
-        this.Options = GetWargearOptions(id);
+        this.Options = utils.GetWargearOption(id);
     }
 
     get DefaultWargearOption() {
@@ -92,18 +93,18 @@ class WargearSlot {
     }
 }
 
-class WargearOption {
+export class WargearOption {
     constructor(id,Name,CountPerModel,PerXmodels,LinkedOptionsId) {
         this.id = id;
         this.Name = Name;
         this.CountPerModel = CountPerModel;
         this.PerXmodels = PerXmodels;
         this.LinkedOptionsId = LinkedOptionsId;
-        this.WargearIncluded = GetWargearForOption(id);
+        //this.WargearIncluded = utils.GetWargearForOption(id);
     }
 }
 
-class Wargear {
+export class Wargear {
     constructor(id,Name,Cost,Type,Relic,Default,Image,ChapterTacticId) {
         this.id = id;
         this.Name = Name;
@@ -118,18 +119,18 @@ class Wargear {
 
 //<Dictionary Faction Elements>------------------------------------
 
-class Faction {
+export class Faction {
     constructor(id,Name,CodexImage,IndexImage,FactionLogo) {
         this.id = id;
         this.Name = Name;
         this.CodexImage = CodexImage;
         this.IndexImage = IndexImage;
         this.FactionLogo = FactionLogo;
-        this.ChapterTactics = GetChapterTactics(id);
+        this.ChapterTactics = utils.GetChapterTactics(id);
     }
 }
 
-class ChapterTactic {
+export class ChapterTactic {
     constructor(id,Name) {
         this.id = id;
         this.Name = Name;
@@ -138,39 +139,39 @@ class ChapterTactic {
 
 //<Dictionary Core Elements>------------------------------------
 
-class Detachment {
+export class Detachment {
     constructor(id,Name,CommandBenefit,Restrictions,Image) {
         this.id = id;
         this.Name = Name;
         this.CommandBenefit = CommandBenefit;
         this.Restrictions = Restrictions;
         this.Image = Image;
-        this.DetachOptions = GetDetachOptions(id);
+        this.DetachOptions = utils.GetDetachmentOptions(id);
     }
 }
 
-class DetachmentOption {
+export class DetachmentOption {
     constructor(id,UnitRoleId,MaxQuant,MinQuant) {
         this.id = id;
-        this.UnitRole = GetUnitRole(UnitRoleId);
+        this.UnitRole = utils.GetUnitRole(UnitRoleId);
         this.MaxQuant = MaxQuant;
         this.MinQuant = MinQuant;
     }
 }
 
 //<Roster creation Unit Elements>------------------------------------
-
-class RosterModel {
+/*
+export class RosterModel {
     constructor(id,BaseModel,RosterUnitId,TotalCost) {
         this.id = id;
         this.BaseModel = BaseModel;
         this.RosterUnitId = RosterUnitId;
         this.TotalCost = TotalCost;
-        this.RosterWargearSlots = GetRosterWargearSlots(BaseModel.WargearSlots);
+        this.RosterWargearSlots = utils.GetRosterWargearSlots(BaseModel.WargearSlots);
     }
 }
 
-class RosterWargearSlot {
+export class RosterWargearSlot {
     constructor(id,Name,WargearOption) {
         this.id = id;
         this.Name = Name;
@@ -178,7 +179,7 @@ class RosterWargearSlot {
     }
 }
 
-class RosterUnit {
+export class RosterUnit {
     constructor(id,Models,BaseUnit,SpellsSelected,TotalCost,RosterDetachmentId) {
         this.id = id;
         this.Models = Models;
@@ -189,7 +190,7 @@ class RosterUnit {
     }
 }
 
-class RosterDetachment {
+export class RosterDetachment {
     constructor(id,RosterUnits,ChapterTactic,Detachment,Faction,RosterId,TotalDetachCost,TotalDetachPL) {
         this.id = id;
         this.RosterUnits = RosterUnits;
@@ -202,7 +203,7 @@ class RosterDetachment {
     }
 }
 
-class Roster {
+export class Roster {
     constructor(id,Name,RosterDetachments,TotalPTS,TotalPL,TotalCP,MaxPL,MaxPTS,UserId) {
         this.id = id;
         this.Name = Name;
@@ -215,3 +216,4 @@ class Roster {
         this.UserId = UserId;
     }
 }
+*/
