@@ -42,26 +42,26 @@ class DetachmentParameterChoice extends Component {
             let SelectLabel = "";
             if(this.props.ListTypeNumber == 1) {
                 ObjectsArray = utils.GetDetachments();
-                SelectLabel = "Choose Detachment";
+                SelectLabel = "Select Detachment";
             } else if(this.props.ListTypeNumber == 2) {
                 ObjectsArray = utils.GetFactions();
-                SelectLabel = "Choose Faction";
+                SelectLabel = "Select Faction";
             } else {
-                SelectLabel = "Choose Tactic";
+                SelectLabel = "Select Tactic";
                 if(this.props.FactionId) {
                     
                     ObjectsArray = utils.GetChapterTactics(this.props.FactionId);
                 }
             }
-            let options = (this.state.NeedEmptyOption) ? [<option key = {0} value = ''>--none--</option>] : [];
+            let options = (this.state.NeedEmptyOption) ? [<option className = "DetachmentEditing__Select" key = {0} value = ''>--none--</option>] : [];
             options = options.concat(ObjectsArray.map(
                 (object) =>
-                <option key = {object.id} value = {object.id}>{object.Name}</option>
+                <option className = "DetachmentEditing__Option" key = {object.id} value = {object.id}>{object.Name}</option>
             ));
             return (
-                <div>
-                    <h4>{SelectLabel}</h4>
-                    <select value = {this.props.ObjectId} onChange = {this.handleChange}>
+                <div className = "DetachmentEditing__SelectDiv">
+                    <h3 className = "DetachmentEditing__SelectLabel">{SelectLabel}</h3>
+                    <select className = "DetachmentEditing__Select" value = {this.props.ObjectId} onChange = {this.handleChange}>
                         {options}
                     </select>
                 </div>

@@ -76,13 +76,17 @@ class DetachmentEditing extends Component {
                 </div>
             ) : null
         );
+        let FactionImage;
+        if(this.state.DetachmentFaction) {
+            FactionImage = <img src = {this.state.DetachmentFaction.Image}/>
+        }
         return (
-            <div>
-                <h1>Edit {this.state.DetachmentName}</h1>
-                <div>
-                    <div>
-                        <button onClick = {this.showFactionSelectionWindow}>Select faction</button><br />
-                        Choosen Faction : {this.state.DetachmentFaction ? this.state.DetachmentFaction.Name : "none"}
+            <div className = "DetachmentEditing">
+                <h1 className = "DetachmentEditing__Header">Edit {this.state.DetachmentName}</h1>
+                <div className = "DetachmentEditing__MiddleDiv">
+                    <div className = "DetachmentEditing__SelectDiv">
+                        <button className = "DetachmentEditing__Button" onClick = {this.showFactionSelectionWindow}>Select faction</button><br />
+                        <span className = "DetachmentEditing__ChosenFactionLabel">Chosen Faction : <span className = "DetachmentEditing__ChosenFactionTitle">{FactionImage}{this.state.DetachmentFaction ? this.state.DetachmentFaction.Name : "none"}</span></span>
                     </div>
                     <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : ""} handleChange = {this.handleDetachmentNameChange} />
                     <DetachmentParameterChoice ListTypeNumber = {3} FactionId = {this.state.DetachmentFaction && this.state.DetachmentFaction.id ? this.state.DetachmentFaction.id : ""} ObjectId = {this.state.DetachmentChapterTactic && this.state.DetachmentChapterTactic.id ? this.state.DetachmentChapterTactic.id : ""} handleChange = {this.handleDetachmentChapterTacticChange} />
