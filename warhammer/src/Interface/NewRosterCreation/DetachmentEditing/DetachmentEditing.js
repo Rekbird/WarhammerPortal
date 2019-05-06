@@ -11,16 +11,18 @@ class DetachmentEditing extends Component {
             Detachment: null,
             DetachmentName: null,
             DetachmentFaction: null,
-            DetachmentChapterTactic: null
+            DetachmentChapterTactic: null,
+            FactionSelection: false
         }
         this.componentWillMount = this.componentWillMount.bind(this);
         this.handleDetachmentNameChange = this.handleDetachmentNameChange.bind(this);
         this.handleDetachmentFactionChange = this.handleDetachmentFactionChange.bind(this);
         this.handleDetachmentChapterTacticChange = this.handleDetachmentChapterTacticChange.bind(this);
+        this.showFactionSelectionWindow = this.showFactionSelectionWindow.bind(this);
     }
 
     componentWillMount() {
-       let DetachmentName = (!!this.props.RosterDetachment.Detachment.Name) ? (this.props.RosterDetachment.Detachment.Name) : ("New Detachment");
+       let DetachmentName = (this.props.RosterDetachment.Detachment && !!this.props.RosterDetachment.Detachment.Name) ? (this.props.RosterDetachment.Detachment.Name) : ("New Detachment");
        let DetachmentFaction = (!!this.props.RosterDetachment.Faction) ? (this.props.RosterDetachment.Faction) : (null);
        let DetachmentChapterTactic = (!!this.props.RosterDetachment.ChapterTactic) ? (this.props.RosterDetachment.ChapterTactic) : (null);
        let Detachment = (!!this.props.RosterDetachment.Detachment) ? (this.props.RosterDetachment.Detachment) : (null);
@@ -38,15 +40,17 @@ class DetachmentEditing extends Component {
         this.setState({
             Detachment: Detachment,
             DetachmentName: Detachment.Name
-        })
+        });
     }
 
     handleDetachmentFactionChange(FactionId) {
         let Faction = utils.GetFaction(FactionId);
         this.props.RosterDetachment.Faction = Faction;
         this.setState({
-            DetachmentFaction: Faction
-        })
+            DetachmentFaction: Faction,
+            FactionSelection: false,
+            DetachmentChapterTactic: null
+        });
     }
 
     handleDetachmentChapterTacticChange(ChapterTacticId) {
@@ -54,19 +58,36 @@ class DetachmentEditing extends Component {
         this.props.RosterDetachment.ChapterTactic = ChapterTactic;
         this.setState({
             DetachmentChapterTactic: ChapterTactic
-        })
+        });
+    }
+
+    showFactionSelectionWindow() {
+        this.setState({
+            FactionSelection: true
+        });
     }
 
     render() {
+        let FactionSelectionWindow = (
+            this.state.FactionSelection ? (
+                <div>
+                    <h2>Choose the Roster's faction</h2>
+                    <FactionGraphicList buttonClick = {this.handleDetachmentFactionChange}/>
+                </div>
+            ) : null
+        );
         return (
             <div>
                 <h1>Edit {this.state.DetachmentName}</h1>
                 <div>
-                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment.id} onChange = {this.handleDetachmentNameChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {2} ObjectId = {this.state.DetachmentFaction.id} onChange = {this.handleDetachmentFactionChange} />
-                    <DetachmentParameterChoice ListTypeNumber = {3} ObjectId = {this.state.DetachmentChapterTactic.id} onChange = {this.handleDetachmentChapterTacticChange} />
+                    <div>
+                        <button onClick = {this.showFactionSelectionWindow}>Select faction</button><br />
+                        Choosen Faction : {this.state.DetachmentFaction ? this.state.DetachmentFaction.Name : "none"}
+                    </div>
+                    <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : ""} handleChange = {this.handleDetachmentNameChange} />
+                    <DetachmentParameterChoice ListTypeNumber = {3} FactionId = {this.state.DetachmentFaction && this.state.DetachmentFaction.id ? this.state.DetachmentFaction.id : ""} ObjectId = {this.state.DetachmentChapterTactic && this.state.DetachmentChapterTactic.id ? this.state.DetachmentChapterTactic.id : ""} handleChange = {this.handleDetachmentChapterTacticChange} />
                 </div>
-                <FactionGraphicList />
+                {FactionSelectionWindow}
             </div>
         )
     }
