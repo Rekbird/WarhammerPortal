@@ -8,7 +8,7 @@ class WargearElement extends Component {
     }
 
     SelectedWargearOption  = (event) => {
-        this.props.SelectedWargearOption(event);
+        this.props.SelectedWargearOption(event,this.props.CurrentSlot);
     }
     
     render() {
