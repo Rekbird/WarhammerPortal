@@ -11,6 +11,7 @@ import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 import UnitEditing from "../NewRosterCreation/UnitEditing/UnitEditing.js";
 import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
 import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
+import WargearElement from "../NewRosterCreation/WargearSelection/WargearElement/WargearElement.js";
 
 
 
@@ -55,7 +56,7 @@ function WorkingArea(props) {
             let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null}
             NeededArea = 
             <div>
-                <DetachmentEditing RosterDetachment = {RosterDetachment}/>
+                <WargearElement/>
             </div>;
         break;
         case 7 :
