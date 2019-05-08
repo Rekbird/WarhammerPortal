@@ -1,0 +1,112 @@
+.DetachmentEditing {
+    padding:5px;
+}
+
+.DetachmentEditing__Header {
+    border: 2px solid;
+    border-color: rgb(6, 86, 87);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    border-radius: 5px;
+    vertical-align: middle;
+    text-align: center;
+    margin:0px;
+    padding:5px;
+    
+}
+
+.DetachmentEditing__Button {
+    border: 1px solid;
+    border-color: rgb(6, 86, 87);
+    border-radius: 5px;
+    background-color: rgb(6, 86, 87);
+    color: white;
+    margin:10px;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.DetachmentEditing__Button:hover {
+    border-color: rgb(39, 193, 196);
+    background-color: rgb(7, 119, 121);
+    transition: 0.2s;
+}
+
+.DetachmentEditing__Button:active {
+    border-color: rgb(39, 193, 196);
+    background-color: rgb(7, 166, 168);
+    transition: 0.2s;
+}
+
+.DetachmentEditing__ChosenFactionLabel{
+    color: rgb(6, 86, 87);
+    margin:10px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.DetachmentEditing__ChosenFactionTitle{
+    background-color: rgb(6, 86, 87);
+    color: white;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 20px solid;
+    border-radius: 5px;
+    border: 1px solid;
+    text-align: center;
+    border-color: rgb(6, 86, 87);
+}
+
+.DetachmentEditing__SelectDiv {
+    display: inline-block;
+    padding: 15px;
+    margin: 15px;
+    width:270px;
+}
+
+.DetachmentEditing__MiddleDiv {
+    padding-left: auto;
+    padding-right: auto;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.DetachmentEditing__SelectLabel {
+    font-size: 20px;
+    color: rgb(6, 86, 87);
+    margin:10px;
+    padding:5px;
+}
+
+.DetachmentEditing__Select {
+    
+    width: 80%;
+    border: 1px solid;
+    border-color: rgb(6, 86, 87);
+    border-radius: 5px;
+    scrollbar-width: 2px; 
+    box-shadow: none;
+    padding:5px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+    color:rgb(6, 86, 87);
+}
+
+.DetachmentEditing__Option {
+    margin:5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color:white;
+}
+
+
+.DetachmentEditing__Option:hover,
+.DetachmentEditing__Option:focus,
+.DetachmentEditing__Option:active{
+    background-color:rgb(6, 86, 87);
+    color:white;
+}
