@@ -63,7 +63,7 @@ class DetachmentEditing extends Component {
 
     showFactionSelectionWindow() {
         this.setState({
-            FactionSelection: true
+            FactionSelection: !this.state.FactionSelection
         });
     }
 

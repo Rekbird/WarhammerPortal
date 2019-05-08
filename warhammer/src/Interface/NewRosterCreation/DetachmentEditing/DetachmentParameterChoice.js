@@ -6,29 +6,31 @@ class DetachmentParameterChoice extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        /*
         this.state = {
             NeedEmptyOption: !(this.props.ObjectId && this.props.ObjectId.length > 0)
         };
+        */
     }
 
-    componentWillUpdate() {
-        let NeedEmptyOption = !(this.props.ObjectId && this.props.ObjectId.length > 0);
+    /*
+    componentDidUpdate() {
+        let NeedEmptyOption = !(!!this.props.ObjectId && this.props.ObjectId.length > 0);
         if(NeedEmptyOption != this.state.NeedEmptyOption) {
             this.setState({
                 NeedEmptyOption: NeedEmptyOption
             });
         }
     }
+    */
     handleChange(e) {
+        /*
         if(!!e.target.value && e.target.value.length > 0) {
             this.setState({
-                NeedEmptyOption: false
-            });
-        } else {
-            this.setState({
-                NeedEmptyOption: true
+                NeedEmptyOption: !(!!e.target.value && e.target.value.length > 0)
             });
         }
+        */
         this.props.handleChange(e.target.value);
     }
 
@@ -53,7 +55,7 @@ class DetachmentParameterChoice extends Component {
                     ObjectsArray = utils.GetChapterTactics(this.props.FactionId);
                 }
             }
-            let options = (this.state.NeedEmptyOption) ? [<option className = "DetachmentEditing__Select" key = {0} value = ''>--none--</option>] : [];
+            let options = (!(this.props.ObjectId > 0)) ? [<option className = "DetachmentEditing__Option" key = {0} value = ''>--none--</option>] : [];
             options = options.concat(ObjectsArray.map(
                 (object) =>
                 <option className = "DetachmentEditing__Option" key = {object.id} value = {object.id}>{object.Name}</option>
