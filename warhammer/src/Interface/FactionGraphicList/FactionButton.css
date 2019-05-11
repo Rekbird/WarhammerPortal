@@ -1,5 +1,9 @@
 .FactionGraphicList__Cell {
     height: 10%;
+    border: 1px solid rgb(6, 86, 87);
+    color: white;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .FactionGraphicList__Image {
@@ -11,4 +15,14 @@
     text-align: center;
     display: block;
     margin: 0px;
+}
+
+.FactionGraphicList__Title {
+    border: 1px solid rgb(6, 86, 87);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    border-radius: 5px;
+    text-align: center;
+    padding-bottom: 2px;
+    padding-top: 2px;
 }

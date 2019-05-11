@@ -1,5 +1,7 @@
 .DetachmentEditing {
     padding:5px;
+    text-align: center;
+    z-index:0;
 }
 
 .DetachmentEditing__Header {
@@ -21,7 +23,8 @@
     border-radius: 5px;
     background-color: rgb(6, 86, 87);
     color: white;
-    margin:10px;
+    margin:2px;
+    margin-left: 15px;
     font-size: 16px;
     padding: 5px;
 }
@@ -40,16 +43,16 @@
 
 .DetachmentEditing__ChosenFactionLabel{
     color: rgb(6, 86, 87);
-    margin:10px;
-    padding: 5px;
+    
     font-size: 20px;
+    
 }
 
 .DetachmentEditing__ChosenFactionTitle{
-    background-color: rgb(6, 86, 87);
-    color: white;
-    padding-left:10px;
-    padding-right:10px;
+    background-color: white;
+    color: rgb(6, 86, 87);
+    padding-left:2px;
+    padding-right:2px;
     padding-top: 2px;
     padding-bottom: 2px;
     font-size: 20px solid;
@@ -57,20 +60,38 @@
     border: 1px solid;
     text-align: center;
     border-color: rgb(6, 86, 87);
+    vertical-align: middle;
+    font-weight: 700;
 }
 
 .DetachmentEditing__SelectDiv {
-    display: inline-block;
+    vertical-align: top;
     padding: 15px;
     margin: 15px;
     width:270px;
 }
 
 .DetachmentEditing__MiddleDiv {
-    padding-left: auto;
-    padding-right: auto;
-    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 5px;
+    vertical-align: top;
     text-align: center;
+    height: 300px;
+    width: 400px;
+    
+}
+
+.DetachmentEditing__FactionDiv {
+    display: inline-block;
+    
+    padding:15px;
+    height: 300px;
+    margin:15px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    width:400px;
+    overflow: auto;
+    
 }
 
 .DetachmentEditing__SelectLabel {
@@ -109,4 +130,98 @@
 .DetachmentEditing__Option:active{
     background-color:rgb(6, 86, 87);
     color:white;
+}
+
+.DetachmentEditing__FactionImage {
+    height: 100px;
+    width: auto;
+    margin: 10px;
+}
+
+.DetachmentEditing__CurrentFaction {
+    margin:0px;
+    padding: 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: center;
+    vertical-align: middle;
+    overflow: auto;
+}
+
+.DetachmentEditing__CurrentFaction p{
+    color: rgb(6, 86, 87); 
+    font-size: 20px; 
+    display:inline; 
+    margin:5px; 
+    padding:5px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.DetachmentEditing__FactionSelectionWindow {
+    background: white;
+    height: 60%;
+    width:auto;
+    border: 2px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    margin:5%;
+    margin-right: 10%;
+    margin-left: 10%;
+    position: fixed;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.DetachmentEditing__FactionSelectionWindow_Header {
+    border: 2px solid;
+    border-color: rgb(6, 86, 87);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    vertical-align: middle;
+    text-align: center;
+    margin:0px;
+    padding:5px;
+    
+}
+
+.DetachmentEditing__FactionSelectionWindow_CloseButton {
+    right:0%;
+    top:0%;
+    position: absolute;
+    float: right;
+    margin:0px;
+    border: 1px solid;
+    border-color: rgb(6, 86, 87);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    font-size: 20px;
+    font-weight: 700;
+    padding: 7px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.DetachmentEditing__FactionSelectionWindow_CloseButton:hover {
+    border-color: rgb(7, 119, 121);
+    background-color: rgb(7, 119, 121);
+    transition: 0.2s;
+}
+
+.DetachmentEditing__FactionSelectionWindow_CloseButton:active {
+    border-color: rgb(7, 119, 121);
+    background-color: rgb(7, 166, 168);
+    transition: 0.2s;
+}
+
+.DetachmentEditing__DetachmentImageFigure {
+    width: 800px;
+    margin: auto;
+    margin-top: 0px;
+    
+}
+
+.DetachmentEditing__DetachmentImage {
+    height: auto;
+    width: 90%;
+   
 }

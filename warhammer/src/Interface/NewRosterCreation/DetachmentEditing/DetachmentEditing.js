@@ -19,6 +19,7 @@ class DetachmentEditing extends Component {
         this.handleDetachmentFactionChange = this.handleDetachmentFactionChange.bind(this);
         this.handleDetachmentChapterTacticChange = this.handleDetachmentChapterTacticChange.bind(this);
         this.showFactionSelectionWindow = this.showFactionSelectionWindow.bind(this);
+        this.hideFactionSelectionWindow = this.hideFactionSelectionWindow.bind(this);
     }
 
     componentWillMount() {
@@ -63,35 +64,54 @@ class DetachmentEditing extends Component {
 
     showFactionSelectionWindow() {
         this.setState({
-            FactionSelection: !this.state.FactionSelection
+            FactionSelection: true
+        });
+    }
+
+    hideFactionSelectionWindow() {
+        this.setState({
+            FactionSelection: false
         });
     }
 
     render() {
         let FactionSelectionWindow = (
             this.state.FactionSelection ? (
-                <div>
-                    <h2>Choose the Roster's faction</h2>
+                <div className = "DetachmentEditing__FactionSelectionWindow">
+                    <h2 className = "DetachmentEditing__FactionSelectionWindow_Header">Choose the Roster's faction</h2>
+                    <button onClick = {this.hideFactionSelectionWindow} className = "DetachmentEditing__FactionSelectionWindow_CloseButton">x</button>
                     <FactionGraphicList buttonClick = {this.handleDetachmentFactionChange}/>
                 </div>
             ) : null
         );
         let FactionImage;
         if(this.state.DetachmentFaction) {
-            FactionImage = <img src = {this.state.DetachmentFaction.Image}/>
+            FactionImage = <img className = "DetachmentEditing__FactionImage" src = {this.state.DetachmentFaction.CodexImage} alt = {this.state.DetachmentFaction.Name}/>
+        }
+        let DetachmentImage;
+        if(this.state.Detachment) {
+            DetachmentImage = 
+            <figure className = "DetachmentEditing__DetachmentImageFigure">
+                <img className = "DetachmentEditing__DetachmentImage" src = {this.state.Detachment.Image} alt = {this.state.DetachmentName}/>
+            </figure>
         }
         return (
             <div className = "DetachmentEditing">
                 <h1 className = "DetachmentEditing__Header">Edit {this.state.DetachmentName}</h1>
-                <div className = "DetachmentEditing__MiddleDiv">
-                    <div className = "DetachmentEditing__SelectDiv">
-                        <button className = "DetachmentEditing__Button" onClick = {this.showFactionSelectionWindow}>Select faction</button><br />
-                        <span className = "DetachmentEditing__ChosenFactionLabel">Chosen Faction : <span className = "DetachmentEditing__ChosenFactionTitle">{FactionImage}{this.state.DetachmentFaction ? this.state.DetachmentFaction.Name : "none"}</span></span>
+                {FactionSelectionWindow}
+                <div className = "DetachmentEditing__FactionDiv">
+                    <h3 className = "DetachmentEditing__SelectLabel">Select Faction</h3>
+                    <div className="DetachmentEditing__CurrentFaction">
+                        <button className = "DetachmentEditing__Button" onClick = {this.showFactionSelectionWindow}>Faction's list</button>
+                        <p>Current chosen Faction : </p>
                     </div>
+                    <div className = "DetachmentEditing__ChosenFactionLabel"><figure className = "DetachmentEditing__ChosenFactionTitle">{FactionImage}<figcaption>{this.state.DetachmentFaction ? this.state.DetachmentFaction.Name : "--none--"}</figcaption></figure></div>
+                </div>
+                <div className = "DetachmentEditing__MiddleDiv">
                     <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.state.Detachment ? this.state.Detachment.id : ""} handleChange = {this.handleDetachmentNameChange} />
                     <DetachmentParameterChoice ListTypeNumber = {3} FactionId = {this.state.DetachmentFaction && this.state.DetachmentFaction.id ? this.state.DetachmentFaction.id : ""} ObjectId = {this.state.DetachmentChapterTactic && this.state.DetachmentChapterTactic.id ? this.state.DetachmentChapterTactic.id : ""} handleChange = {this.handleDetachmentChapterTacticChange} />
                 </div>
-                {FactionSelectionWindow}
+                {DetachmentImage}
             </div>
         )
     }

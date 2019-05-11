@@ -10,6 +10,10 @@ import {ChapterTactic} from "../Classes/CommonClasses.js";
 import {Model} from "../Classes/CommonClasses.js";
 import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
+import CraftworldsImage from "../Data/FactionImages/CraftworldsImage.png";
+import TyranidsImage from "../Data/FactionImages/TyranidsImage.jpg";
+import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
+import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     /*
@@ -316,7 +320,7 @@ export function GetFactions() {
     let Faction1 = {
         id: 28,
         Name: "Craftworlds",
-        CodexImage: "",
+        CodexImage: CraftworldsImage,
 		IndexImage:"",
 		FactionLogo: ""
     };
@@ -324,7 +328,7 @@ export function GetFactions() {
     let Faction2 = {
         id: 36,
         Name: "Tyranids",
-        CodexImage: "",
+        CodexImage: TyranidsImage,
 		IndexImage:"",
 		FactionLogo: ""
     };
@@ -380,7 +384,7 @@ export function GetDetachments() {
         Name: "Batallion",
 		CommandBenefit: 5,
 		Restrictions: "",
-		Image: ""
+		Image: BattalionImage
     };
     Detachments.push(Detach1);
     let Detach2 = {
@@ -388,7 +392,7 @@ export function GetDetachments() {
         Name: "Spearhead",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: ""
+		Image: SpearheadImage
     };
     Detachments.push(Detach2);
 
