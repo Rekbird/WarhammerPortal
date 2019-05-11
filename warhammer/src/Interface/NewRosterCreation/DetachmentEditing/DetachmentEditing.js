@@ -100,7 +100,6 @@ class DetachmentEditing extends Component {
                 <h1 className = "DetachmentEditing__Header">Edit {this.state.DetachmentName}</h1>
                 {FactionSelectionWindow}
                 <div className = "DetachmentEditing__FactionDiv">
-                    <h3 className = "DetachmentEditing__SelectLabel">Select Faction</h3>
                     <div className="DetachmentEditing__CurrentFaction">
                         <button className = "DetachmentEditing__Button" onClick = {this.showFactionSelectionWindow}>Faction's list</button>
                         <p>Current chosen Faction : </p>

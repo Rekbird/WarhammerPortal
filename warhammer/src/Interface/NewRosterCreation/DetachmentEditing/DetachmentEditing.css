@@ -53,8 +53,7 @@
     color: rgb(6, 86, 87);
     padding-left:2px;
     padding-right:2px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    
     font-size: 20px solid;
     border-radius: 5px;
     border: 1px solid;
@@ -76,7 +75,7 @@
     margin-bottom: 5px;
     vertical-align: top;
     text-align: center;
-    height: 300px;
+    height: 230px;
     width: 400px;
     
 }
@@ -84,9 +83,9 @@
 .DetachmentEditing__FactionDiv {
     display: inline-block;
     
-    padding:15px;
-    height: 300px;
-    margin:15px;
+    padding:10px;
+    height: 230px;
+    margin:10px;
     margin-bottom: 5px;
     vertical-align: middle;
     width:400px;
@@ -97,7 +96,7 @@
 .DetachmentEditing__SelectLabel {
     font-size: 20px;
     color: rgb(6, 86, 87);
-    margin:10px;
+    margin:5px;
     padding:5px;
 }
 
