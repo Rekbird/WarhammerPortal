@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import "./FactionButton.css";
 import "./FactionGraphicList.css";
-import GetFactions from "../../Scripts/GetFactions.js";
 import FactionButton from "./FactionButton.js";
+import * as utils from "../../Scripts/CommonFunctions.js";
 
 class FactionGraphicList extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class FactionGraphicList extends Component {
 
     
     render() {
-        var Factions = GetFactions();
+        var Factions = utils.GetFactions();
         let TableRows = [];
         let RowsCount = 0;
         while(Factions && Factions.length > 0) {

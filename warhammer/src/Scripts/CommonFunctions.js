@@ -10,8 +10,8 @@ import {ChapterTactic} from "../Classes/CommonClasses.js";
 import {Model} from "../Classes/CommonClasses.js";
 import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
-import CraftworldsImage from "../Data/FactionImages/CraftworldsImage.png";
-import TyranidsImage from "../Data/FactionImages/TyranidsImage.jpg";
+import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
+import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
 import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
 import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 

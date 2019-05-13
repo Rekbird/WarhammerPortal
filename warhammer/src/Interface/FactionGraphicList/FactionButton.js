@@ -15,7 +15,7 @@ class FactionButton extends Component {
         return (
             <td className = "FactionGraphicList__Cell" onClick = {this.buttonClick}>
                 <figure className = "FactionGraphicList__Fig">
-                    <img className = "FactionGraphicList__Image" src = {this.props.Faction.Image} alt = {this.props.Faction.Name} />
+                    <img className = "FactionGraphicList__Image" src = {this.props.Faction.CodexImage} alt = {this.props.Faction.Name} />
                     <figcaption className = "FactionGraphicList__Title">{this.props.Faction.Name}</figcaption>
                 </figure>
             </td>
