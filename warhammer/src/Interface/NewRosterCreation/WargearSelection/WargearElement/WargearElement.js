@@ -1,6 +1,17 @@
 import React, {Component} from "react";
 import "./WargearElement.css";
 
+/*
+in:
+SelectedOption
+AvailableOptions
+ChoosedWargearOption()
+CurrentSlot
+
+out:
+SelectedOption.id
+*/
+
 class WargearElement extends Component {
     constructor(props) {
         super(props);
@@ -8,7 +19,7 @@ class WargearElement extends Component {
     }
 
     SelectedWargearOption  = (event) => {
-        this.props.SelectedWargearOption(event,this.props.CurrentSlot);
+        this.props.SelectedWargearOption(event.target.value,this.props.CurrentSlot);
     }
     
     render() {
