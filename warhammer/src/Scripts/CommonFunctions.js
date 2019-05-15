@@ -437,3 +437,24 @@ export function GetDetachmentOptions(DetachmentId) {
 }
 
 // export default GetDetachmentOptions;
+
+export function GetDetachmentUnitsRoles(DetachmentUnits) {
+    let Roles = [];
+    for(let i = 0;i<DetachmentUnits.length;i++) {
+        let Role = DetachmentUnits[i].BaseUnit.UnitRole;
+        if(Roles.length > 0) {
+            if(Roles.filter((role) => role.id == Role.id).length === 0) {
+                Roles.push(Role);
+            }
+        }
+    }
+    return Roles;
+}
+
+export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
+    let Answer;
+    let UnitsByRole = DetachmentUnits.filter((unit) => unit.BaseUnit.UnitRole.id == Role.id);
+    let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
+    Answer = (UnitsByRole.length > DetachmentOption.MaxQuant);
+    return Answer;
+}
