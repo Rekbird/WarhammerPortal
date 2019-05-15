@@ -10,6 +10,7 @@ import {ChapterTactic} from "../Classes/CommonClasses.js";
 import {Model} from "../Classes/CommonClasses.js";
 import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
+import {RosterModel} from "../Classes/CommonClasses.js";
 import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
 import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
 import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
@@ -457,4 +458,13 @@ export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
     let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
     Answer = (UnitsByRole.length > DetachmentOption.MaxQuant);
     return Answer;
+}
+
+export function GetRosterUnitModels(RosterUnit) {
+    let RosterUnitModels = [];
+    let BaseModels = GetUnitModels(RosterUnit.BaseUnit);
+    for(let i=0;i<BaseModels.length;i++) {
+        let RosterModel = new RosterModel(i+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
+        RosterUnitModels.push(RosterModel);
+    }
 }

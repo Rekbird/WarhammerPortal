@@ -24,7 +24,17 @@ class RosterMenu extends Component{
         let NewButton = <li onClick = {this.handleNewClick}>+ New Detachment</li>
         if(!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) {
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
-                <RosterDetachmentItem key = {detachment.id} RosterDetachment = {this.props.Roster} EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} NewUnitClick = {this.props.NewUnitClick}/>
+                <RosterDetachmentItem 
+                    key = {detachment.id} 
+                    RosterDetachment = {this.props.Roster} 
+                    EditClick = {this.props.EditClick} 
+                    CopyClick = {this.props.CopyClick} 
+                    DeleteClick = {this.props.DeleteClick} 
+                    NewUnitClick = {this.props.NewUnitClick}
+                    EditDetachmentClick = {this.props.EditDetachmentClick}
+                    CopyDetachmentClick = {this.props.CopyDetachmentClick}
+                    DeleteDetachmentClick = {this.props.DeleteDetachmentClick}
+                />
             );
         }
         DetachmentsList = 

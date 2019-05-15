@@ -10,6 +10,18 @@ class RosterDetachmentItem extends Component{
         super(props);
     }
 
+    handleEditClick = () => {
+        this.props.EditDetachmentClick(this.props.RosterDetachment);
+    }
+
+    handleCopyClick = () => {
+        this.props.CopyDetachmentClick(this.props.RosterDetachment);
+    }
+
+    handleDeleteClick = () => {
+        this.props.DeleteDetachmentClick(this.props.RosterDetachment);
+    }
+
     render = () => {
         let UnitRoles = [];
         let UnitList = [];
