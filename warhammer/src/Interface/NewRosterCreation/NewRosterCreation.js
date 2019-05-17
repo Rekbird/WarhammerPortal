@@ -46,31 +46,42 @@ class RosterCreation extends Component{
             Action: "Detachment Editing",
             Roster: Roster,
             ActiveDetachment: Detachment
-        })
+        });
     }
 
     CopyDetachment = (Detachment) => {
         let Roster = this.state.Roster;
         let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
-        let NewDetachment = new RosterDetachment(NewId,Detachment.[],Detachment.null,null,null,Roster.id,null,null);
+        let NewDetachment = Detachment.copyRosterDetachment();
+        NewDetachment.id = NewId;
         Roster.RosterDetachments.push(NewDetachment);
         this.setState({
             Action: "Detachment Editing",
             Roster: Roster,
             ActiveDetachment: NewDetachment
-        })
+        });
     }
 
-    DeleteDetachment = () => {
-        
+    DeleteDetachment = (Detachment) => {
+        let Roster = this.state.Roster;
+        Roster.RosterDetachments.splice(Roster.RosterDetachments.indexOf(Detachment), 1);
+        this.setState({
+            Roster: Roster
+        });
     }
 
-    AddNewUnit = () => {
-        
+    AddNewUnit = (Detachment) => {
+        this.setState({
+            Action: "Unit Editing",
+            ActiveDetachment: Detachment
+        });
     }
 
-    EditUnit = () => {
-        
+    EditUnit = (Unit) => {
+        this.setState({
+            Action: "Unit Editing",
+            ActiveUnit: Unit
+        });
     }
 
     CopyUnit = () => {
