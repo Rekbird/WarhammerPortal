@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 import RosterDetachmentItem from "./RosterDetachmentItem.js";
 import EditButtonImage from "../../../Data/RosterMenuIcons/EditIcon.png";
+import "./RosterMenu.css";
 
 class RosterMenu extends Component{
     constructor(props) {
@@ -10,11 +11,11 @@ class RosterMenu extends Component{
         this.handleNewClick = this.handleNewClick.bind(this);
     }
 
-    handleEditClick() {
+    handleEditClick = () => {
         this.props.EditRosterClick();
     }
 
-    handleNewClick() {
+    handleNewClick = () => {
         this.props.NewDetachmentClick();
     }
 
@@ -26,7 +27,7 @@ class RosterMenu extends Component{
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
                 <RosterDetachmentItem 
                     key = {detachment.id} 
-                    RosterDetachment = {this.props.Roster} 
+                    RosterDetachment = {detachment} 
                     EditClick = {this.props.EditClick} 
                     CopyClick = {this.props.CopyClick} 
                     DeleteClick = {this.props.DeleteClick} 
@@ -43,11 +44,11 @@ class RosterMenu extends Component{
                 {NewButton}
             </ul>
         return (
-            <div>
+            <div className = "RosterMenu">
                 <div>
                     <div>
                         <h4>{this.props.Roster.Name}</h4>
-                        <img onClick = {this.handleEditClick} src = {EditButtonImage}/>
+                        <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                     </div>
                     <p>
                         Total PTS: {this.props.Roster.TotalPTS}

@@ -42,16 +42,20 @@ class DetachmentEditing extends Component {
             Detachment: Detachment,
             DetachmentName: Detachment.Name
         });
+        this.props.handleRosterChange();
     }
 
     handleDetachmentFactionChange(FactionId) {
         let Faction = utils.GetFaction(FactionId);
         this.props.RosterDetachment.Faction = Faction;
+        console.log("фракция детачмента "+Faction.id);
+        console.log("фракция детачмента в пропсах "+this.props.RosterDetachment.Faction.id);
         this.setState({
             DetachmentFaction: Faction,
             FactionSelection: false,
             DetachmentChapterTactic: null
         });
+        this.props.handleRosterChange();
     }
 
     handleDetachmentChapterTacticChange(ChapterTacticId) {
@@ -60,6 +64,7 @@ class DetachmentEditing extends Component {
         this.setState({
             DetachmentChapterTactic: ChapterTactic
         });
+        this.props.handleRosterChange();
     }
 
     showFactionSelectionWindow() {

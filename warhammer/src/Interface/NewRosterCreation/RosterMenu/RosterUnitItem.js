@@ -3,6 +3,7 @@ import * as utils from "../../../Scripts/CommonFunctions.js";
 import EditButtonImage from "../../../Data/RosterMenuIcons/EditIcon.png";
 import CopyButtonImage from "../../../Data/RosterMenuIcons/CopyIcon.png";
 import DeleteButtonImage from "../../../Data/RosterMenuIcons/DeleteIcon.png";
+import "./RosterMenu.css";
 
 class RosterUnitItem extends Component {
     constructor(props) {
@@ -17,20 +18,20 @@ class RosterUnitItem extends Component {
     }
 
     handleCopyClick() {
-        this.props.CopyClick(this.props.RosterUnitId);
+        this.props.CopyClick(this.props.Detachment, this.props.RosterUnitId);
     }
 
     handleDeleteClick() {
-        this.props.DeleteClick(this.props.RosterUnitId);
+        this.props.DeleteClick(this.props.Detachment, this.props.RosterUnitId);
     }
 
     render() {
         return(
             <li>
                 {this.props.RosterUnitName}
-                <img onClick = {this.handleEditClick} src = {EditButtonImage}/>
-                <img onClick = {this.handleCopyClick} src = {CopyButtonImage}/>
-                <img onClick = {this.handleDeleteClick} src = {DeleteButtonImage}/>
+                <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
+                <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
+                <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
             </li>
         )
     }

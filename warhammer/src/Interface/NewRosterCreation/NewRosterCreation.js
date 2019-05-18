@@ -6,6 +6,8 @@ import UnitSelection from "./UnitSelection/UnitSelection.js";
 import UnitEditing from "./UnitEditing/UnitEditing.js";
 import {RosterDetachment} from "../../Classes/CommonClasses.js";
 import {RosterUnit} from "../../Classes/CommonClasses.js";
+import {Roster} from "../../Classes/CommonClasses.js";
+import "./NewRosterCreation.css";
 
 class RosterCreation extends Component{
     constructor(props) {
@@ -26,10 +28,18 @@ class RosterCreation extends Component{
         this.DeleteUnit = this.DeleteUnit.bind(this);
         this.EditRoster = this.EditRoster.bind(this);
         this.showUnitSelectionList = this.showUnitSelectionList.bind(this);
+        this.handleRosterChange = this.handleRosterChange.bind(this);
+    }
+
+    handleRosterChange = () => {
+        this.setState({
+            Roster: this.state.Roster
+        })
     }
 
     AddNewDetachment = () => {
         let Roster = this.state.Roster;
+        this.state.Action = null;
         let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
         let NewDetachment = new RosterDetachment(NewId,[],null,null,null,Roster.id,null,null);
         Roster.RosterDetachments.push(NewDetachment);
@@ -42,6 +52,7 @@ class RosterCreation extends Component{
 
     EditDetachment = (Detachment) => {
         let Roster = this.state.Roster;
+        this.state.Action = null;
         this.setState({
             Action: "Detachment Editing",
             Roster: Roster,
@@ -70,34 +81,54 @@ class RosterCreation extends Component{
         });
     }
 
-    AddNewUnit = (Detachment) => {
+    AddNewUnit = (Detachment, Unit) => {
         this.setState({
+            Roster: this.state.Roster,
             Action: "Unit Editing",
-            ActiveDetachment: Detachment
+            ActiveDetachment: Detachment,
+            ActiveUnit: Unit
         });
     }
 
     EditUnit = (Unit) => {
         this.setState({
+            Roster: this.state.Roster,
             Action: "Unit Editing",
             ActiveUnit: Unit
         });
     }
 
-    CopyUnit = () => {
-        
+    CopyUnit = (Detachment, Unit) => {
+        let UnitCopy = Unit.copyRosterUnit();
+        Detachment.RosterUnits.push(UnitCopy);
+        UnitCopy.id = Detachment.RosterUnits.length;
+        this.setState({
+            Roster: this.state.Roster
+        });
     }
 
-    DeleteUnit = () => {
-        
+    DeleteUnit = (Detachment, Unit) => {
+        Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
+        this.setState({
+            Roster: this.state.Roster
+        });
     }
 
     EditRoster = () => {
-
+        this.setState({
+            Roster: this.state.Roster,
+            Action: "Roster Editing"
+        });
     }
 
-    showUnitSelectionList = () => {
-
+    showUnitSelectionList = (Detachment) => {
+        console.log("объект детачмента "+Detachment);
+        console.log("фракция детачмента "+Detachment.Faction);
+        console.log("равенство детачей "+Detachment.id);
+        this.setState({
+            Action: "Unit Selection",
+            ActiveDetachment: Detachment
+        });
     }
 
     render = () => {
@@ -108,11 +139,11 @@ class RosterCreation extends Component{
             break;
 
             case "Detachment Editing": 
-                WorkingArea = <DetachmentEditing RosterDetachment = {this.state.ActiveDetachment}/>;
+                WorkingArea = <DetachmentEditing handleRosterChange = {this.handleRosterChange} RosterDetachment = {this.state.ActiveDetachment}/>;
             break;
 
             case "Unit Selection": 
-                WorkingArea = <UnitSelection />;
+                WorkingArea = <UnitSelection Faction = {this.state.ActiveDetachment.Faction} Detachment = {this.state.ActiveDetachment}/>;
             break;
 
             case "Unit Editing": 
@@ -123,11 +154,17 @@ class RosterCreation extends Component{
             <div>
                 <RosterMenu 
                     Roster = {this.state.Roster}
+                    NewDetachmentClick = {this.AddNewDetachment}
                     EditDetachmentClick = {this.EditDetachment}
                     CopyDetachmentClick = {this.CopyDetachment}
                     DeleteDetachmentClick  = {this.DeleteDetachment}
+                    EditClick = {this.EditUnit} 
+                    CopyClick = {this.CopyUnit} 
+                    DeleteClick = {this.DeleteUnit} 
+                    NewUnitClick = {this.showUnitSelectionList}
+                    EditRosterClick = {this.EditRoster}
                 />
-                {WorkingArea}
+                <div className = "RosterEditing_WorkingArea">{WorkingArea}</div>
             </div>
         )
     }
