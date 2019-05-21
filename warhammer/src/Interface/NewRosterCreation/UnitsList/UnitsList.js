@@ -13,7 +13,7 @@ class UnitsList extends Component {
        if(Roles && (Roles.length > 0)) {
             var Roles = Roles.map(
                 (role) =>
-                <UnitsListByRole key = {role.id} Faction = {this.props.Faction} UnitRole = {role} />
+                <UnitsListByRole key = {role.id} Faction = {this.props.Faction} UnitRole = {role} handleUnitSelection = {this.props.handleUnitSelection}/>
             )
         }
         return (

@@ -18,7 +18,7 @@ class UnitEditing extends Component {
         var Spells = GetPsychicPowers();
         return (
             <div>
-                <UnitProfile Unit = {this.props.Unit} UnitSelection = {false}/>
+                <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>
                 <EditUnitPsychicPowers AvailableSpells = {Spells} SelectedSpells = {[]} MaxSpells = {3} KnowsSmite = {true}/>
                 <UnitModelsList/>
                 <WargearElement/>

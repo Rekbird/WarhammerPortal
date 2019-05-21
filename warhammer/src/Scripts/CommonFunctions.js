@@ -11,10 +11,12 @@ import {Model} from "../Classes/CommonClasses.js";
 import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 import {RosterModel} from "../Classes/CommonClasses.js";
+import {UnitRole} from "../Classes/CommonClasses.js";
 import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
 import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
 import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
 import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
+import GetFactionUnitsByRole from "./GetFactionUnitsByRole";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     /*
@@ -130,26 +132,30 @@ export function GetAvailableSpells(UnitId) {
 
 
 export function GetUnitRole(RoleId) {
+   
     let UnitRoles = [];
     let ReturnedUnitRoles =[];
-    let Hq = {
+    let Role1 = {
         id:1,
-        Name: "HQ",
-        Image: ""
-    };
-    UnitRoles.push(Hq);
-
-    let Troops = {
-        id:2,
         Name: "Troops",
         Image: ""
     };
-    UnitRoles.push(Troops);
-
+    UnitRoles.push(Role1);
+    //console.log(RoleId+" "+Role1.id == RoleId);
+    let Role2 = {
+        id:2,
+        Name: "Elites",
+        Image: ""
+    };
+    UnitRoles.push(Role2);
+    
+    //console.log(RoleId+" "+Role2.id == RoleId);
     for(let i=0;i<UnitRoles.length;i++) {
-        ReturnedUnitRoles.push(new PsychicPower(UnitRoles[i].id,UnitRoles[i].Name,UnitRoles[i].Image));
+        ReturnedUnitRoles.push(new UnitRole(UnitRoles[i].id,UnitRoles[i].Name,UnitRoles[i].Image));
     }
-    return ReturnedUnitRoles[0];
+   return ReturnedUnitRoles.filter((role) => role.id == RoleId)[0];
+   //return ReturnedUnitRoles[RoleId];
+   
 }
 
 // export default GetUnitRole;
@@ -417,7 +423,7 @@ export function GetDetachmentOptions(DetachmentId) {
 
     let Option1 = {
         id: 1,
-		UnitRole: "",
+		//UnitRole: GetUnitRole("1"),
 		MaxQuant: 6,
 		MinQuant: 3
     };
@@ -425,14 +431,14 @@ export function GetDetachmentOptions(DetachmentId) {
 
     let Option2 = {
         id: 2,
-		UnitRole: "",
+		//UnitRole: GetUnitRole("2"),
 		MaxQuant: 6,
 		MinQuant: 3
     };
     Options.push(Option2);
 
     for(let i=0;i<Options.length;i++) {
-        ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
+        ReturnedOptions.push(new DetachmentOption(Options[i].id,i+1,Options[i].MaxQuant,Options[i].MinQuant));
     }
     return ReturnedOptions;
 }
@@ -447,6 +453,8 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
             if(Roles.filter((role) => role.id == Role.id).length === 0) {
                 Roles.push(Role);
             }
+        } else {
+            Roles.push(Role);
         }
     }
     return Roles;
@@ -454,7 +462,7 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
 
 export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
     let Answer;
-    let UnitsByRole = DetachmentUnits.filter((unit) => unit.BaseUnit.UnitRole.id == Role.id);
+    let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
     let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
     Answer = (UnitsByRole.length > DetachmentOption.MaxQuant);
     return Answer;
@@ -467,4 +475,8 @@ export function GetRosterUnitModels(RosterUnit) {
         let RosterModel = new RosterModel(i+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
         RosterUnitModels.push(RosterModel);
     }
+}
+
+export function GetRosterUnitsByRole(RosterUnits, RoleId) {
+    return RosterUnits.filter((unit) => unit.BaseUnit.UnitRole.id == RoleId);
 }

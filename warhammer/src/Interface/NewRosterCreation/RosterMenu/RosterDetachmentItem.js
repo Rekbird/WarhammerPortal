@@ -37,11 +37,16 @@ class RosterDetachmentItem extends Component{
         let NewButton = <li onClick = {this.NewUnitClick}>+ New unit</li>
         if(this.props.RosterDetachment.RosterUnits && this.props.RosterDetachment.RosterUnits.length > 0) {
             UnitRoles = utils.GetDetachmentUnitsRoles(this.props.RosterDetachment.RosterUnits);
+            if(UnitRoles && UnitRoles.length > 0){
+                console.log("Количество ролей "+UnitRoles.length);
+            } else {
+                console.log("Роли пусты");
+            }
         }
 
         if(UnitRoles.length > 0) {
             UnitRoles = UnitRoles.map((role) => 
-                <RosterUnitRoleItem key = {role.id} AllowedCopy = {utils.CheckDetachmentOptionFull(this.props.RosterDetachment.RosterUnits, role, this.props.RosterDetachment)} EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} RoleName = {role.Name} Detachment = {this.props.RosterDetachment}/>
+                <RosterUnitRoleItem key = {role.id} AllowedCopy = {utils.CheckDetachmentOptionFull(this.props.RosterDetachment.RosterUnits, role, this.props.RosterDetachment.Detachment)} EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} RoleName = {role.Name} Detachment = {this.props.RosterDetachment} Units = {utils.GetRosterUnitsByRole(this.props.RosterDetachment.RosterUnits, role.id)}/>
             );
         }
         UnitList = 

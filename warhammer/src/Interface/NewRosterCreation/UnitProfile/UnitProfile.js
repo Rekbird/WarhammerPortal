@@ -4,11 +4,16 @@ import "./UnitProfile.css";
 class UnitProfile extends Component {
     constructor(props) {
         super(props);
+        this.handleUnitSelection = this.handleUnitSelection.bind(this);
+    }
+
+    handleUnitSelection = () => {
+        this.props.handleUnitSelection(this.props.Unit);
     }
 
     render() {
         console.log("UnitProfile "+this.props.Unit);
-        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}}>ADD</button>));
+        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}} onClick = {this.handleUnitSelection}>ADD</button>));
         return(
             <div className = "UnitProfile__Block">
                 <div className = "UnitProfile__Image_block">

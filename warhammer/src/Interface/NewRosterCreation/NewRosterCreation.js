@@ -16,8 +16,11 @@ class RosterCreation extends Component{
             Action: "Roster Editing",
             Roster: this.props.Roster,
             ActiveDetachment: null,
-            ActiveUnit: null
+            ActiveUnit: null,
+            RosterChanged: false
         };
+        this.ActiveDetachment = null;
+        this.ActiveUnit = null;
         this.AddNewDetachment = this.AddNewDetachment.bind(this);
         this.EditDetachment = this.EditDetachment.bind(this);
         this.CopyDetachment = this.CopyDetachment.bind(this);
@@ -28,13 +31,28 @@ class RosterCreation extends Component{
         this.DeleteUnit = this.DeleteUnit.bind(this);
         this.EditRoster = this.EditRoster.bind(this);
         this.showUnitSelectionList = this.showUnitSelectionList.bind(this);
-        this.handleRosterChange = this.handleRosterChange.bind(this);
+        this.handleRosterDetachmentChange = this.handleRosterDetachmentChange.bind(this);
     }
 
-    handleRosterChange = () => {
-        this.setState({
-            Roster: this.state.Roster
-        })
+    handleRosterDetachmentChange = (RosterDetachment, Faction, DetachmentType, ChapterTactic) => {
+        if(RosterDetachment) {
+            if(Faction) {
+                RosterDetachment.Faction = Faction;
+                console.log("Меняли детач фракция "+Faction.Name);
+            }
+            if(DetachmentType) {
+                RosterDetachment.Detachment = DetachmentType;
+                console.log("Меняли детач детач "+DetachmentType.Name);
+            }
+            if(ChapterTactic) {
+                RosterDetachment.ChapterTactic = ChapterTactic;
+                console.log("Меняли детач чаптер тактика "+ChapterTactic.Name);
+            }
+            this.setState({
+                //Roster: this.state.Roster,
+                RosterChanged: !this.state.RosterChanged
+            });
+        }
     }
 
     AddNewDetachment = () => {
@@ -45,31 +63,37 @@ class RosterCreation extends Component{
         Roster.RosterDetachments.push(NewDetachment);
         this.setState({
             Action: "Detachment Editing",
-            Roster: Roster,
-            ActiveDetachment: NewDetachment
+            ActiveDetachment: NewDetachment,
+            RosterChanged: !this.state.RosterChanged
         })
     }
 
     EditDetachment = (Detachment) => {
-        let Roster = this.state.Roster;
+        //let Roster = this.state.Roster;
         this.state.Action = null;
+        console.log("Детач из параметров "+Detachment.id);
+        this.ActiveDetachment = Detachment;
         this.setState({
             Action: "Detachment Editing",
-            Roster: Roster,
-            ActiveDetachment: Detachment
+            ActiveDetachment: Detachment,
+            RosterChanged: !this.state.RosterChanged
         });
+        console.log("Детач из стейта "+this.state.ActiveDetachment.id);
+        console.log("Детач из конструктора "+this.ActiveDetachment.id);
+        console.log("Ростер из стейта "+this.state.Roster.id);
     }
 
     CopyDetachment = (Detachment) => {
         let Roster = this.state.Roster;
         let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
-        let NewDetachment = Detachment.copyRosterDetachment();
+        let NewDetachment = [Detachment.copyRosterDetachment()].slice()[0];
         NewDetachment.id = NewId;
         Roster.RosterDetachments.push(NewDetachment);
         this.setState({
             Action: "Detachment Editing",
             Roster: Roster,
-            ActiveDetachment: NewDetachment
+            ActiveDetachment: NewDetachment,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
@@ -77,24 +101,29 @@ class RosterCreation extends Component{
         let Roster = this.state.Roster;
         Roster.RosterDetachments.splice(Roster.RosterDetachments.indexOf(Detachment), 1);
         this.setState({
-            Roster: Roster
+            //Roster: Roster,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
     AddNewUnit = (Detachment, Unit) => {
+        Detachment.RosterUnits.push(Unit);
+        Unit.id = Detachment.RosterUnits.length;
         this.setState({
-            Roster: this.state.Roster,
+            //Roster: this.state.Roster,
             Action: "Unit Editing",
-            ActiveDetachment: Detachment,
-            ActiveUnit: Unit
+            //ActiveDetachment: Detachment,
+            ActiveUnit: Unit,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
     EditUnit = (Unit) => {
         this.setState({
-            Roster: this.state.Roster,
+            //Roster: this.state.Roster,
             Action: "Unit Editing",
-            ActiveUnit: Unit
+            ActiveUnit: Unit,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
@@ -103,20 +132,22 @@ class RosterCreation extends Component{
         Detachment.RosterUnits.push(UnitCopy);
         UnitCopy.id = Detachment.RosterUnits.length;
         this.setState({
-            Roster: this.state.Roster
+            //Roster: this.state.Roster,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
     DeleteUnit = (Detachment, Unit) => {
         Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
         this.setState({
-            Roster: this.state.Roster
+            //Roster: this.state.Roster,
+            RosterChanged: !this.state.RosterChanged
         });
     }
 
     EditRoster = () => {
         this.setState({
-            Roster: this.state.Roster,
+            //Roster: this.state.Roster,
             Action: "Roster Editing"
         });
     }
@@ -139,15 +170,16 @@ class RosterCreation extends Component{
             break;
 
             case "Detachment Editing": 
-                WorkingArea = <DetachmentEditing handleRosterChange = {this.handleRosterChange} RosterDetachment = {this.state.ActiveDetachment}/>;
+                console.log("Детач из конструктора в рендере "+this.state.ActiveDetachment.id);
+                WorkingArea = <DetachmentEditing handleRosterDetachmentChange = {this.handleRosterDetachmentChange} RosterDetachment = {this.state.ActiveDetachment}/>;
             break;
 
             case "Unit Selection": 
-                WorkingArea = <UnitSelection Faction = {this.state.ActiveDetachment.Faction} Detachment = {this.state.ActiveDetachment}/>;
+                WorkingArea = <UnitSelection Faction = {this.state.ActiveDetachment.Faction} Detachment = {this.state.ActiveDetachment} AddNewUnit = {this.AddNewUnit}/>;
             break;
 
             case "Unit Editing": 
-                WorkingArea = <UnitEditing Unit = {null}/>;
+                WorkingArea = <UnitEditing Unit = {this.state.ActiveUnit}/>;
             break;
         }
         return(
