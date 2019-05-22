@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./UnitsListByRole.css";
 import UnitProfile from "../UnitProfile/UnitProfile.js";
 import GetFactionUnitsByRole from "../../../Scripts/GetFactionUnitsByRole.js";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class UnitsListByRole extends Component {
     constructor(props) {
@@ -9,13 +10,14 @@ class UnitsListByRole extends Component {
     }
 
     render() {
+        let AllowedAdding = !utils.CheckDetachmentOptionFull(this.props.Detachment.RosterUnits, this.props.UnitRole, this.props.Detachment.Detachment)
         var Units = GetFactionUnitsByRole(this.props.Faction.id, this.props.UnitRole.id)
         console.log("Units in UnitListByRole "+Units.length);
         if(Units && (Units.length > 0)) {
             Units = Units.map(
                 (unit) => 
                 <div>
-                    <UnitProfile key = {unit.id} Unit = {unit} UnitSelection = {true} handleUnitSelection = {this.props.handleUnitSelection}/>
+                    <UnitProfile key = {unit.id} Unit = {unit} UnitSelection = {true} handleUnitSelection = {this.props.handleUnitSelection} AllowedAdding = {AllowedAdding}/>
                 </div>
             );
         }

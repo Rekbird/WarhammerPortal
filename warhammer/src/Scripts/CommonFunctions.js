@@ -17,6 +17,8 @@ import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
 import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
 import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 import GetFactionUnitsByRole from "./GetFactionUnitsByRole";
+import ReturnUnits from "../Data/Units/Units.js";
+import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     /*
@@ -303,7 +305,7 @@ export function GetWargear(OptionId) {
 }
 
 export function GetRosterWargearSlots(BaseWargearSlots) {
-    let ReturnedSlots;
+    let ReturnedSlots = [];
     if (!!BaseWargearSlots && BaseWargearSlots.length > 0) {
         let count = 1;
         for (let i = 0; i < BaseWargearSlots.length; i++) {
@@ -464,7 +466,7 @@ export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
     let Answer;
     let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
     let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
-    Answer = (UnitsByRole.length > DetachmentOption.MaxQuant);
+    Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
     return Answer;
 }
 
@@ -472,9 +474,12 @@ export function GetRosterUnitModels(RosterUnit) {
     let RosterUnitModels = [];
     let BaseModels = GetUnitModels(RosterUnit.BaseUnit);
     for(let i=0;i<BaseModels.length;i++) {
-        let RosterModel = new RosterModel(i+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
-        RosterUnitModels.push(RosterModel);
+        let NewRosterModel = new RosterModel(i+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
+        RosterUnitModels.push(NewRosterModel);
+        console.log(NewRosterModel);
     }
+    console.log(RosterUnitModels.length);
+    return RosterUnitModels;
 }
 
 export function GetRosterUnitsByRole(RosterUnits, RoleId) {

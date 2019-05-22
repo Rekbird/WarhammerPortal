@@ -13,7 +13,13 @@ class UnitProfile extends Component {
 
     render() {
         console.log("UnitProfile "+this.props.Unit);
-        var AddButton = (this.props.UnitSelection && (<button className = "UnitProfile__Button" style = {{float: "left"}} onClick = {this.handleUnitSelection}>ADD</button>));
+        var AddButton = (this.props.UnitSelection && (
+        (this.props.AllowedAdding) ? (
+                <button className = "UnitProfile__Button" style = {{float: "left"}} onClick = {this.handleUnitSelection}>ADD</button>
+            ) : (
+                <button className = "UnitProfile__Button" style = {{float: "left"}} disabled = {true}>ADD</button>)
+            )
+        );
         return(
             <div className = "UnitProfile__Block">
                 <div className = "UnitProfile__Image_block">

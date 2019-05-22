@@ -15,7 +15,7 @@ class ModelListElement extends Component {
     }
 
     render() {
-        const Name = this.props.singleModel.baseModel.ModelName;
+        const Name = this.props.singleModel.BaseModel.Name;
         var CopyButton = null;
         var DeleteButton = null;
         if (this.props.showCopyButton) {

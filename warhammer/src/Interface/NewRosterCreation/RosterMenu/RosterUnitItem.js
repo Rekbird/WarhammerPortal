@@ -14,23 +14,26 @@ class RosterUnitItem extends Component {
     }
 
     handleEditClick() {
-        this.props.EditClick(this.props.RosterUnitId);
+        this.props.EditClick(this.props.RosterUnit);
     }
 
     handleCopyClick() {
-        this.props.CopyClick(this.props.Detachment, this.props.RosterUnitId);
+        this.props.CopyClick(this.props.Detachment, this.props.RosterUnit);
     }
 
     handleDeleteClick() {
-        this.props.DeleteClick(this.props.Detachment, this.props.RosterUnitId);
+        this.props.DeleteClick(this.props.Detachment, this.props.RosterUnit);
     }
 
     render() {
+        let CopyButton = (!this.props.AllowedCopy) ? (
+            <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
+         ): null; 
         return(
             <li>
-                {this.props.RosterUnitName}
+                {this.props.RosterUnit.BaseUnit.Name}
                 <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
-                <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
+                {CopyButton}
                 <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
             </li>
         )
