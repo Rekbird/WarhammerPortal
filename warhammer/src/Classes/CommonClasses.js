@@ -252,9 +252,9 @@ export class Roster {
         this.id = id;
         this.Name = Name;
         this.RosterDetachments = RosterDetachments;
-        this.TotalPTS = TotalPTS;
-        this.TotalPL = TotalPL;
-        this.TotalCP = TotalCP;
+        this.TotalPTS = (TotalPTS) ? TotalPTS : 0;
+        this.TotalPL = (TotalPL) ? TotalPL : 0;
+        this.TotalCP = (TotalCP) ? TotalCP : 0;
         this.MaxPL = MaxPL;
         this.MaxPTS = MaxPTS;
         this.UserId = UserId;

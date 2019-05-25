@@ -22,7 +22,7 @@ class RosterMenu extends Component{
     render = () => {
         let DetachmentsList;
         let Detachments = [];
-        let NewButton = <li onClick = {this.handleNewClick}>+ New Detachment</li>
+        let NewButton = <li className = "RosterMenu__DetachmentListNewButton" onClick = {this.handleNewClick}>+ New Detachment</li>
         if(!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) {
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
                 <RosterDetachmentItem 
@@ -39,21 +39,21 @@ class RosterMenu extends Component{
             );
         }
         DetachmentsList = 
-            <ul>
+            <ul className = "RosterMenu__DetachmentList">
                 {Detachments}
                 {NewButton}
             </ul>
         return (
             <div className = "RosterMenu">
-                <div>
-                    <div>
-                        <h4>{this.props.Roster.Name}</h4>
+                <div className = "RosterMenu__HeaderDiv">
+                    <div className = "RosterMenu__HeaderNameDiv">
+                        <text className = "RosterMenu__HeaderName">{this.props.Roster.Name}</text>
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                     </div>
                     <p>
-                        Total PTS: {this.props.Roster.TotalPTS}
-                        Total PL : {this.props.Roster.TotalPL}
-                        Total CP : {this.props.Roster.TotalCP}
+                        Total PTS&nbsp;: {this.props.Roster.TotalPTS}<br/>
+                        Total PL&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalPL}<br/>
+                        Total CP&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalCP}<br/>
                     </p>
                 </div>
                 {DetachmentsList}

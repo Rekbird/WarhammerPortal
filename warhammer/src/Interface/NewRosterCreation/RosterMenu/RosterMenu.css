@@ -1,6 +1,6 @@
 .RosterMenu {
     
-    width: 15%;
+    width: 20%;
     height:100%;
     float: left;
 }
@@ -8,4 +8,143 @@
 .RosterMenu__ButtonImage{
     height:15px;
     width:auto;
+    padding:1px;
+}
+
+.RosterMenu__HeaderDiv {
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    margin:5px;
+    padding: 3px;
+    width:94%;
+}
+
+.RosterMenu__HeaderDiv p{
+    color: rgb(6, 86, 87);
+    background-color: white;
+    padding: 5px;
+}
+
+.RosterMenu__HeaderNameDiv {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    background-color: rgb(6, 86, 87);
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.RosterMenu__HeaderName {
+    margin:5px;
+    padding: 5px;
+    left: 0px;
+}
+
+.RosterMenu__HeaderNameDiv .RosterMenu__ButtonImage {
+    right: 5px;
+    float: right;
+    
+}
+
+.RosterMenu__DetachmentList {
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    margin: 0px;
+    margin-left:5px;
+    margin-bottom:5px;
+    padding: 5px;
+    list-style-type: none;
+    font-size: 16px;
+    user-select: none;
+}
+
+.RosterMenu__DetachmentListItem {
+    margin:2px;
+    padding:5px;
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(6, 86, 87);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.RosterMenu__ButtonBlock {
+    text-align: center;
+    vertical-align: middle;
+    float: right;
+}
+
+.RosterMenu__DetachmentListNewButton {
+    margin:2px;
+    padding:5px;
+    border: 1px solid rgb(236, 52, 46);
+    border-radius: 5px;
+    color: rgb(236, 52, 46);
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
+.RosterMenu__UnitListNewButton {
+    margin:2px;
+    padding:2px;
+    border: 1px solid rgb(236, 52, 46);
+    border-radius: 5px;
+    color: rgb(236, 52, 46);
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.RosterMenu__RoleCategory {
+    margin:2px;
+    padding:5px;
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    color: rgb(6, 86, 87);
+    background-color: white;
+    text-align: left;
+    vertical-align: middle;
+    
+    font-size: 14px;
+}
+
+.RosterMenu__DetachmentRolesList {
+    margin: 0px;
+    margin-right:0px;
+    margin-bottom:5px;
+    padding: 5px;
+    padding-right: 0px;
+    list-style-type: none;
+    user-select: none;
+}
+
+.RosterMenu__DetachmentUnitsList {
+    margin: 0px;
+    margin-right:0px;
+    margin-bottom:5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 2px;
+    list-style-type: none;
+    user-select: none;
+}
+
+.RosterMenu__UnitItem {
+    margin:2px;
+    margin-right:0px;
+    padding:5px;
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(6, 86, 87);
+    text-align: left;
+    vertical-align: middle;
+    
+    font-size: 12px;
 }

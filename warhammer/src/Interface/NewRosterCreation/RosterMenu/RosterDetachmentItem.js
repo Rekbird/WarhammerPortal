@@ -34,7 +34,7 @@ class RosterDetachmentItem extends Component{
     render = () => {
         let UnitRoles = [];
         let UnitList = [];
-        let NewButton = <li onClick = {this.NewUnitClick}>+ New unit</li>
+        let NewButton = (this.props.RosterDetachment.Faction && this.props.RosterDetachment.Detachment) ? (<li className = "RosterMenu__DetachmentListNewButton" onClick = {this.NewUnitClick}>+ New unit</li>) : null;
         if(this.props.RosterDetachment.RosterUnits && this.props.RosterDetachment.RosterUnits.length > 0) {
             UnitRoles = utils.GetDetachmentUnitsRoles(this.props.RosterDetachment.RosterUnits);
             if(UnitRoles && UnitRoles.length > 0){
@@ -50,19 +50,21 @@ class RosterDetachmentItem extends Component{
             );
         }
         UnitList = 
-        <ul>
+        <ul className = "RosterMenu__DetachmentRolesList">
             {UnitRoles}
             {NewButton}
         </ul>
         return(
             <li>
-                <div>
+                <div className = "RosterMenu__DetachmentListItem">
                     {(!!this.props.RosterDetachment.Detachment) ? this.props.RosterDetachment.Detachment.Name : "New Detachment"}
-                    <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
-                    <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
-                    <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
+                    <div className = "RosterMenu__ButtonBlock">
+                        <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
+                        <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
+                        <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
+                    </div>
                 </div>
-                <div>{UnitList}</div>
+                {UnitList}
             </li>
         )
     }

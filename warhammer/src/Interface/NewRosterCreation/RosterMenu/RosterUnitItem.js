@@ -30,11 +30,13 @@ class RosterUnitItem extends Component {
             <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
          ): null; 
         return(
-            <li>
+            <li className = "RosterMenu__UnitItem">
                 {this.props.RosterUnit.BaseUnit.Name}
-                <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
-                {CopyButton}
-                <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
+                <div className = "RosterMenu__ButtonBlock">
+                    <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
+                    {CopyButton}
+                    <img className = "RosterMenu__ButtonImage" onClick = {this.handleDeleteClick} src = {DeleteButtonImage} alt = "Delete"/>
+                </div>
             </li>
         )
     }
