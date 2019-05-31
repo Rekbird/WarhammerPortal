@@ -8,6 +8,7 @@ import {RosterDetachment} from "../../Classes/CommonClasses.js";
 import {RosterUnit} from "../../Classes/CommonClasses.js";
 import {Roster} from "../../Classes/CommonClasses.js";
 import "./NewRosterCreation.css";
+import RosterEditing from "./RosterEditing/RosterEditing.js";
 
 class RosterCreation extends Component{
     constructor(props) {
@@ -32,6 +33,7 @@ class RosterCreation extends Component{
         this.EditRoster = this.EditRoster.bind(this);
         this.showUnitSelectionList = this.showUnitSelectionList.bind(this);
         this.handleRosterDetachmentChange = this.handleRosterDetachmentChange.bind(this);
+        this.handleRosterChange = this.handleRosterChange.bind(this);
     }
 
     handleRosterDetachmentChange = (RosterDetachment, Faction, DetachmentType, ChapterTactic) => {
@@ -100,8 +102,13 @@ class RosterCreation extends Component{
     DeleteDetachment = (Detachment) => {
         let Roster = this.state.Roster;
         Roster.RosterDetachments.splice(Roster.RosterDetachments.indexOf(Detachment), 1);
+        let CurrentAction = this.state.Action;
+        if(Roster.RosterDetachments.length === 0) {
+            CurrentAction = "Roster Editing";
+        }
+        
         this.setState({
-            //Roster: Roster,
+            Action: CurrentAction,
             RosterChanged: !this.state.RosterChanged
         });
     }
@@ -139,8 +146,13 @@ class RosterCreation extends Component{
 
     DeleteUnit = (Detachment, Unit) => {
         Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
+        let CurrentAction = this.state.Action;
+        if(Detachment.RosterUnits.length === 0) {
+            CurrentAction = "Detachment Editing";
+        }
         this.setState({
-            //Roster: this.state.Roster,
+            Action: CurrentAction,
+            ActiveDetachment: Detachment,
             RosterChanged: !this.state.RosterChanged
         });
     }
@@ -149,6 +161,22 @@ class RosterCreation extends Component{
         this.setState({
             //Roster: this.state.Roster,
             Action: "Roster Editing"
+        });
+    }
+
+    handleRosterChange = (Name,MaxPL,MaxPTS) => {
+        let Roster = this.state.Roster;
+        if(Name != "--none--") {
+            Roster.Name = Name;
+        }
+        if(MaxPL != "--none--") {
+            Roster.MaxPL = MaxPL;
+        }
+        if(MaxPTS != "--none--") {
+            Roster.MaxPTS = MaxPTS;
+        }
+        this.setState({
+            Roster: Roster
         });
     }
 
@@ -166,7 +194,7 @@ class RosterCreation extends Component{
         let WorkingArea;
         switch(this.state.Action) {
             case "Roster Editing": 
-                WorkingArea = <div>Here will be roster editing</div>;
+                WorkingArea = <RosterEditing Roster = {this.state.Roster} handleRosterChange = {this.handleRosterChange}/>;
             break;
 
             case "Detachment Editing": 

@@ -22,6 +22,8 @@ class RosterMenu extends Component{
     render = () => {
         let DetachmentsList;
         let Detachments = [];
+        let MaxPTS = (this.props.Roster.MaxPTS) ? (<text>/{this.props.Roster.MaxPTS}</text>) : null;
+        let MaxPL = (this.props.Roster.MaxPL) ? (<text>/{this.props.Roster.MaxPL}</text>) : null;
         let NewButton = <li className = "RosterMenu__DetachmentListNewButton" onClick = {this.handleNewClick}>+ New Detachment</li>
         if(!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) {
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
@@ -51,9 +53,9 @@ class RosterMenu extends Component{
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                     </div>
                     <p>
-                        Total PTS&nbsp;: {this.props.Roster.TotalPTS}<br/>
-                        Total PL&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalPL}<br/>
-                        Total CP&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalCP}<br/>
+                        <text>Total PTS&nbsp;: {this.props.Roster.TotalPTS}</text>{MaxPTS}<br/>
+                        <text>Total PL&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalPL}</text>{MaxPL}<br/>
+                        <text>Total CP&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalCP}</text><br/>
                     </p>
                 </div>
                 {DetachmentsList}

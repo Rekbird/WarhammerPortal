@@ -34,7 +34,7 @@ class RosterDetachmentItem extends Component{
     render = () => {
         let UnitRoles = [];
         let UnitList = [];
-        let NewButton = (this.props.RosterDetachment.Faction && this.props.RosterDetachment.Detachment) ? (<li className = "RosterMenu__DetachmentListNewButton" onClick = {this.NewUnitClick}>+ New unit</li>) : null;
+        let NewButton = (this.props.RosterDetachment.Faction && this.props.RosterDetachment.Detachment) ? (<li className = "RosterMenu__UnitListNewButton" onClick = {this.NewUnitClick}>+ New unit</li>) : null;
         if(this.props.RosterDetachment.RosterUnits && this.props.RosterDetachment.RosterUnits.length > 0) {
             UnitRoles = utils.GetDetachmentUnitsRoles(this.props.RosterDetachment.RosterUnits);
             if(UnitRoles && UnitRoles.length > 0){
