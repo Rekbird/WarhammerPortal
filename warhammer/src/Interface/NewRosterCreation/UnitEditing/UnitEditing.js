@@ -15,16 +15,15 @@ class UnitEditing extends Component {
     }
 
     render() {
-        var Spells = GetPsychicPowers();
+        let EditUnitPsychicPowers = (this.props.Unit.BaseUnit.KnowsSmite || this.props.Unit.BaseUnit.AvailableSpells > 0) ? (
+            <EditUnitPsychicPowers AvailableSpells = {this.props.Unit.BaseUnit.AvailableSpells} SelectedSpells = {this.props.Unit.SelectedSpells} MaxSpells = {this.props.Unit.BaseUnit.NumberOfSpells} KnowsSmite = {this.props.Unit.BaseUnit.KnowsSmite}/>
+        ) : null;
         return (
             <div>
-                <UnitProfile Unit = {this.props.Unit} UnitSelection = {false}/>
-                <EditUnitPsychicPowers AvailableSpells = {Spells} SelectedSpells = {[]} MaxSpells = {3} KnowsSmite = {true}/>
-                <UnitModelsList/>
+                <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>
+                {EditUnitPsychicPowers}
+                <UnitModelsList Models = {this.props.Unit.Models}/>
                 <WargearElement/>
-
-                
-
             </div>
         )
     }

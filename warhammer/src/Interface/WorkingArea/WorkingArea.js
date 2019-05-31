@@ -11,6 +11,8 @@ import UnitSelection from "../NewRosterCreation/UnitSelection/UnitSelection.js";
 import UnitEditing from "../NewRosterCreation/UnitEditing/UnitEditing.js";
 import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
 import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
+import {Roster} from "../../Classes/CommonClasses.js";
+import RosterCreation from "../NewRosterCreation/NewRosterCreation.js";
 
 
 
@@ -52,10 +54,11 @@ function WorkingArea(props) {
         case 6 :
             var Factions = GetFactions();
             var Units = GetFactionUnits(Factions[27].id)
-            let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null}
+            let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null};
+            let NewRoster = new Roster(1,"New Roster",[],null,null,null,null,null,null);
             NeededArea = 
             <div>
-                <DetachmentEditing RosterDetachment = {RosterDetachment}/>
+                <RosterCreation Roster = {NewRoster}/>
             </div>;
         break;
         case 7 :
