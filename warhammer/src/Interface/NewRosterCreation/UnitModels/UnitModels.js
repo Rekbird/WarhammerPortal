@@ -8,7 +8,7 @@ class UnitModelsList extends Component {
      constructor(props) {
         super(props);
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
-        this.models =  getTestModels();
+        this.models =  this.props.Models;
         this.recordCounter = this.models.length;
         this.modelsMaxCount = 9;
         this.modelMinCount = 3;
@@ -38,12 +38,12 @@ class UnitModelsList extends Component {
         if (this.models.length >= this.modelMaxCount) {
             return false;
 
-        } else if (!currentModel.maxCount) {
+        } else if (!currentModel.MaxQuant) {
             return true;
         
         } else if (this.models.filter(function (model){           
-            return model.baseModel.id = currentModel.id}
-            ).length >= currentModel.maxCount) {
+            return model.BaseModel.id = currentModel.id}
+            ).length >= currentModel.MaxQuant) {
                 return false;
         } else {
                 return true;
@@ -53,7 +53,7 @@ class UnitModelsList extends Component {
         if (this.state.isUpdated) {
          const modelsList = this.models.map(
              (model) => 
-                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.baseModel)} showDeleteButton = {(this.models.length > this.modelMinCount)} handleModelButtonClick = {this.handleModelButtonClick}/>
+                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > this.modelMinCount)} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
          return (
              <div>

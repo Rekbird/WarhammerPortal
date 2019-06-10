@@ -6,8 +6,8 @@ class EditUnitPsychicPowers extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            SelectedSpells: this.props.SelectedSpells.slice(0),
-            AvailableSpells: this.props.AvailableSpells.slice(0),
+            SelectedSpells: (this.props.SelectedSpells && this.props.SelectedSpells.length > 0) ? this.props.SelectedSpells.slice(0) : [],
+            AvailableSpells: (this.props.AvailableSpells && this.props.AvailableSpells.length > 0) ? this.props.AvailableSpells.slice(0) : [],
             RemoveButtonLocked: true,
             AddButtonLocked: false
         }
@@ -22,8 +22,8 @@ class EditUnitPsychicPowers extends Component {
     componentWillMount() {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let AvailableSpells = this.props.AvailableSpells.slice(0);
-        let SelectedSpells = this.props.SelectedSpells.slice(0);
+        let AvailableSpells = this.state.AvailableSpells.slice(0);
+        let SelectedSpells = this.state.SelectedSpells.slice(0);
         if(!this.props.SelectedSpells || this.props.SelectedSpells.length == 0) {
             AddButtonLocked = false;
             RemoveButtonLocked = true;
