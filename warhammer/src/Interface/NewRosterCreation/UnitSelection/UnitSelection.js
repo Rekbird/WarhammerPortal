@@ -2,29 +2,32 @@ import React, {Component} from "react";
 import "./UnitSelection.css";
 import UnitsList from "../UnitsList/UnitsList.js";
 import UnitRolesList from "../UnitRolesList/UnitRolesList.js";
+import {RosterUnit} from "../../../Classes/CommonClasses.js";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class UnitSelection extends Component {
     constructor(props) {
         super(props);
-        this.ScrollToUnitsByRole = this.ScrollToUnitsByRole.bind(props);
+        this.ScrollToUnitsByRole = this.ScrollToUnitsByRole.bind(this);
+        this.handleUnitSelection = this.handleUnitSelection.bind(this);
     }
 
-    ScrollToUnitsByRole(name) {
-        //console.log("Выбранная роль "+name);
+    ScrollToUnitsByRole = (name) => {
         var theElement = document.getElementById("UnitListByRole"+name);
-        console.log(theElement.id);
-           // var selectedPosX = 0;
-           // var selectedPosY = 0;
-            //if (theElement != null) {
-             //   console.log(theElement != null);
-                //selectedPosX += theElement.offsetLeft;
-                //selectedPosY += theElement.current.offsetTop;
-                //theElement = theElement.offsetParent;
-           // }
-            theElement.scrollIntoView({behavior: "smooth"});
-           // console.log(selectedPosX);
-           // console.log(selectedPosY);
-           // window.scrollTo(0, selectedPosY);
+        theElement.scrollIntoView({behavior: "smooth"});
+    }
+
+    handleUnitSelection = (BaseUnit) => {
+        let NewUnit = new RosterUnit(
+            null,
+            [],
+            BaseUnit,
+            [],
+            null,
+            this.props.Detachment.id
+        );
+        NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
+        this.props.AddNewUnit(this.props.Detachment, NewUnit)
     }
 
     render() {
@@ -33,7 +36,7 @@ class UnitSelection extends Component {
                 <div className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList">
                         <h1 className = "UnitSelection__Header">Select a unit</h1>
-                        <UnitsList Faction = {this.props.Faction} />
+                        <UnitsList Faction = {this.props.Faction} handleUnitSelection = {this.handleUnitSelection} Detachment = {this.props.Detachment}/>
                     </div>
                     <div className = "UnitSelection__RolesList"><UnitRolesList FactionId = {this.props.Faction.id} ScrollToUnitsByRole = {this.ScrollToUnitsByRole}/></div>
                 </div>

@@ -1,4 +1,13 @@
 .FactionGraphciList__Table {
     margin: auto;
     padding: 3%;
+    width:100%;
+    table-layout: fixed;
+}
+
+.FactionGraphciList__Div {
+    height: 80%;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    overflow: auto;
 }

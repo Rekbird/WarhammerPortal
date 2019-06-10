@@ -11,21 +11,21 @@ import RoleLordsOfWarImage from "./RoleLordsOfWarImage.png";
 function ReturnUnitRoles() {
     var UnitRoles = [];
     var Hq = {
-        id:1,
+        id:3,
         Name: "HQ",
         Image: RoleHQImage
     };
     UnitRoles.push(Hq);
 
     var Troops = {
-        id:2,
+        id:1,
         Name: "Troops",
         Image: RoleTroopsImage
     };
     UnitRoles.push(Troops);
 
     var Elites = {
-        id:3,
+        id:2,
         Name: "Elites",
         Image: RoleElitesImage
     };

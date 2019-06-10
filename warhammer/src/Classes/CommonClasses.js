@@ -169,6 +169,19 @@ export class RosterModel {
         this.TotalCost = TotalCost;
         this.RosterWargearSlots = utils.GetRosterWargearSlots(BaseModel.WargearSlots);
     }
+
+    copyRosterModel = () => {
+        let ModelCopy = new RosterModel(null,this.BaseModel,this.RosterUnitId,this.TotalCost);
+        if(!!this.RosterWargearSlots && this.RosterWargearSlots.length > 0) {
+            for(let i=0;i<this.RosterWargearSlots.length;i++) {
+                let Slot = this.RosterWargearSlots[i];
+                let SlotCopy = Slot.copyRosterWargearSlot();
+                SlotCopy.id = i+1;
+                ModelCopy.RosterWargearSlots.push(SlotCopy);
+            }
+        }
+        return ModelCopy;
+    }
 }
 
 export class RosterWargearSlot {
@@ -177,6 +190,11 @@ export class RosterWargearSlot {
         this.Name = Name;
         this.SelectedOption = WargearOption;
         this.BaseSlot = BaseSlot;
+    }
+
+    copyRosterWargearSlot = () => {
+        let SlotCopy = new RosterWargearSlot(null,this.Name, this.SelectedOptions);
+        return SlotCopy;
     }
 }
 
@@ -188,6 +206,19 @@ export class RosterUnit {
         this.SpellsSelected = SpellsSelected;
         this.TotalCost = TotalCost;
         this.RosterDetachmentId = RosterDetachmentId;
+    }
+
+    copyRosterUnit = () => {
+        let UnitCopy = new RosterUnit(null,[],this.BaseUnit,this.SpellsSelected,this.TotalCost,this.RosterDetachmentId);
+        if(!!this.Models && this.Models.length > 0) {
+            for(let i=0;i<this.Models.length;i++) {
+                let Model = this.Models[i];
+                let ModelCopy = Model.copyRosterModel();
+                ModelCopy.id = i+1;
+                UnitCopy.Models.push(ModelCopy);
+            }
+        }
+        return UnitCopy;
     }
 }
 
@@ -202,6 +233,19 @@ export class RosterDetachment {
         this.TotalDetachCost = TotalDetachCost;
         this.TotalDetachPL = TotalDetachPL;
     }
+
+    copyRosterDetachment = () => {
+        let DetachmentCopy = new RosterDetachment(null,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
+        if(!!this.RosterUnits && this.RosterUnits.length > 0) {
+            for(let i=0;i<this.RosterUnits.length;i++) {
+                let Unit = this.RosterUnits[i];
+                let UnitCopy = Unit.copyRosterUnit();
+                UnitCopy.id = i+1;
+                DetachmentCopy.RosterUnits.push(UnitCopy);
+            }
+        }
+        return DetachmentCopy;
+    }
 }
 
 export class Roster {
@@ -209,9 +253,9 @@ export class Roster {
         this.id = id;
         this.Name = Name;
         this.RosterDetachments = RosterDetachments;
-        this.TotalPTS = TotalPTS;
-        this.TotalPL = TotalPL;
-        this.TotalCP = TotalCP;
+        this.TotalPTS = (TotalPTS) ? TotalPTS : 0;
+        this.TotalPL = (TotalPL) ? TotalPL : 0;
+        this.TotalCP = (TotalCP) ? TotalCP : 0;
         this.MaxPL = MaxPL;
         this.MaxPTS = MaxPTS;
         this.UserId = UserId;
