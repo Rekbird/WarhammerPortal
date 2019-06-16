@@ -207,8 +207,8 @@ export class RosterUnit {
         this.RosterDetachmentId = RosterDetachmentId;
     }
 
-    copyRosterUnit = () => {
-        let UnitCopy = new RosterUnit(null,[],this.BaseUnit,this.SpellsSelected,this.TotalCost,this.RosterDetachmentId);
+    copyRosterUnit = (NewId = null) => {
+        let UnitCopy = new RosterUnit(NewId,[],this.BaseUnit,this.SpellsSelected,this.TotalCost,this.RosterDetachmentId);
         if(!!this.Models && this.Models.length > 0) {
             for(let i=0;i<this.Models.length;i++) {
                 let Model = this.Models[i];
@@ -233,8 +233,8 @@ export class RosterDetachment {
         this.TotalDetachPL = TotalDetachPL;
     }
 
-    copyRosterDetachment = () => {
-        let DetachmentCopy = new RosterDetachment(null,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
+    copyRosterDetachment = (NewId = null) => {
+        let DetachmentCopy = new RosterDetachment(NewId,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
         if(!!this.RosterUnits && this.RosterUnits.length > 0) {
             for(let i=0;i<this.RosterUnits.length;i++) {
                 let Unit = this.RosterUnits[i];
