@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
 import "./WorkingArea.css";
 import UsefulLinks from '../UsefulLinks/UsefulLinks.js';
 import Paragraph from "../Paragraph/Paragraph.js";
@@ -88,4 +90,15 @@ function WorkingArea(props) {
     );
 }
 
-export default WorkingArea;
+const mapStateToProps = (state) => {
+    return {
+        SelectedMenuId: state.MainMenuCategoryKey
+    }
+}
+
+
+const containerWorkingArea = connect(
+    mapStateToProps
+  )(WorkingArea);
+
+export default containerWorkingArea;

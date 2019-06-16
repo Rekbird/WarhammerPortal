@@ -70,7 +70,7 @@ export function NewDetachment(NewId) {
         NewId: NewId
     }
 }
-//WTF???
+/*WTF???
 export function NewDetachment(DetachmentId, NewId) {
     return {
         type: "NewDetachment",
@@ -78,6 +78,7 @@ export function NewDetachment(DetachmentId, NewId) {
         NewId: NewId
     }
 }
+*/
 
 export function CopyDetachment(DetachmentId, NewId) {
     return {
