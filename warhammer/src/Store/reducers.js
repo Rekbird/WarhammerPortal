@@ -92,6 +92,8 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             return Object.assign({}, state, {Roster: SetRosterMaxPTS(state.Roster, action)});
         case "ActiveDetachment":
             return Object.assign({}, state, {ActiveDetachment: SetActiveDetachment(action)});
+        case "UpdateUnitModels":
+            return Object.assign({}, state, {Roster: SetUnitModels(state.Roster, action)});
         default:
             console.log(state);
             return (!!state) ? state : {
@@ -103,21 +105,32 @@ function RosterEditing(state = RosterEditingInitialState, action) {
     }
 }
 
+const SetUnitModels = (roster, action) => {
+    let NewUnit = Object.assign({}, action.Unit, {Models: action.UnitModels});
+    let NeededDetachment;
+    let NewRoster = Object.assign({}, roster);
+    NewRoster.Detachments.forEach(function(element) {
+        if (element.RosterUnits.indexOf(action.CurrentUnit) != -1) {
+            NeededDetachment = element;
+        }
+    });
+    NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0] = NewUnit;
+
+    return  NewRoster;
+}
+
 const SetUnitPsychicPowers = (roster, action) => {
     let NewUnit = Object.assign({}, action.Unit, {SpellsSelected: action.SelectedSpells});
-    let NeededDetachment = null;
-    for(let i =0; i< roster.Detachments.length;i++) {
-        let Detachment = roster.Detachments[i];
-        for(let j=0; j< Detachment.RosterUnits.length; j++) {
-            if(Detachment.RosterUnits[j].id === NewUnit.id) {
-                NeededDetachment = Detachment;
-            }
+    let NeededDetachment;
+    let NewRoster = Object.assign({}, roster);
+    NewRoster.Detachments.forEach(function(element) {
+        if (element.RosterUnits.indexOf(action.CurrentUnit) != -1) {
+            NeededDetachment = element;
         }
-    }
-    const Units = NeededDetachment.RosterUnits.slice();
-    Units.filter((unit) => unit.id === NewUnit.id)[0] = NewUnit;
-    NeededDetachment.RosterUnits = Units;
-    return Object.assign({}, roster, {RosterDetachments: roster.RosterDetachments.slice()});
+    });
+    NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0] = NewUnit;
+
+    return  NewRoster;
 }
 
 const SetDetachmentFaction = (roster, action) => {

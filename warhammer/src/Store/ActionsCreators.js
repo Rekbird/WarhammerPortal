@@ -169,3 +169,11 @@ export function ActiveDetachment(ActiveDetachment) {
         ActiveDetachment: ActiveDetachment
     }
 }
+
+export function UpdateUnitModels(UnitModels, CurrentUnit) {
+    return {
+        type: "UpdateUnitModels",
+        UnitModels,
+        CurrentUnit
+    }
+}

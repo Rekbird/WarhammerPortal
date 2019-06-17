@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './UnitModels.css';
 import ModelListElement from '../Model/Model.js';
-import getTestModels from '../../../Data/ModelObjects/TestModels.js';
-
+import * as ActionCreators from "../../../Store/ActionsCreators.js";
+import {connect} from 'redux';
 
 class UnitModelsList extends Component {
      constructor(props) {
@@ -10,32 +10,28 @@ class UnitModelsList extends Component {
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
         this.models =  this.props.Models;
         this.recordCounter = this.models.length;
-        this.modelsMaxCount = 9;
-        this.modelMinCount = 3;
-        this.state = {
-            isUpdated : true
-        };
      }
      
     handleModelButtonClick = (model,ButtonName) => {
         if (ButtonName == "Delete") {
-                this.models.splice((this.models.indexOf(model)), 1);
-                this.setState({isUpdated : true});
+            this.models.splice((this.models.indexOf(model)), 1);
+            this.props.handleModelButtonClick(model,ButtonName);
             
         } else if (ButtonName == "Copy") {
             this.recordCounter = this.recordCounter + 1;
             const newModel = Object.assign({}, model);
             newModel.id = this.recordCounter;
             this.models.splice((this.models.length),0,newModel);
-            this.setState({isUpdated : true});
+            this.props.handleModelButtonClick(model,ButtonName);
 
         } else {
-            this.setState({isUpdated : false});
+           
         }
+        
     }
 
     showCopyButton = (currentModel) =>{
-        if (this.models.length >= this.modelMaxCount) {
+        if (this.models.length >= currentModel.MaxQuant) {
             return false;
 
         } else if (!currentModel.MaxQuant) {
@@ -53,7 +49,7 @@ class UnitModelsList extends Component {
         if (this.state.isUpdated) {
          const modelsList = this.models.map(
              (model) => 
-                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > this.modelMinCount)} handleModelButtonClick = {this.handleModelButtonClick}/>
+                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
          return (
              <div>
@@ -65,4 +61,21 @@ class UnitModelsList extends Component {
     }
 }
 
-export default UnitModelsList;
+const mapStateToProps = (state) => {
+    return {
+        Models: state.RosterEditing.ActiveUnit.Models
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleModelButtonClick: (model,ButtonName) => dispatch(ActionCreators.UpdateUnitModels(model,ButtonName))
+    }
+}
+
+const containerUnitModelsList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(UnitModelsList);
+
+export default containerUnitModelsList;
