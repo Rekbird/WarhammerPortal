@@ -6,7 +6,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import WarhammerPortal from './Store/reducers.js';
+import WarhammerPortalStore from './Store/reducers.js';
 import './index.css';
 import Warhammerportal from './WarhammerPortal.js';
 import {Roster} from "../src/Classes/CommonClasses.js";
@@ -29,7 +29,7 @@ const InitialState = {
 }
 
 const store = createStore(
-                WarhammerPortal,
+                WarhammerPortalStore,
                 InitialState
             );
 

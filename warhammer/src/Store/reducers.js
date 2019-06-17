@@ -6,7 +6,7 @@ import {RosterUnit} from "../Classes/CommonClasses.js";
 import {Roster} from "../Classes/CommonClasses.js";
 import {RosterDetachment} from "../Classes/CommonClasses.js";
 
-const WarhammerPortal = combineReducers(
+const WarhammerPortalStore = combineReducers(
                             {
                                 MainMenuCategoryKey,
                                 FactionSelection,
@@ -15,7 +15,7 @@ const WarhammerPortal = combineReducers(
                             }
                         );
 
-export default WarhammerPortal;
+export default WarhammerPortalStore;
 
 const RosterEditingInitialState = {
     Action: "Roster Editing",
