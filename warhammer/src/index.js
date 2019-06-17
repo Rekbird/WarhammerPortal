@@ -5,13 +5,33 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import * as reducers from './Store/reducers.js';
+
+import WarhammerPortalStore from './Store/reducers.js';
 import './index.css';
 import Warhammerportal from './WarhammerPortal.js';
+import {Roster} from "../src/Classes/CommonClasses.js";
 
 //const heading = <h1 className="site-heading">Hello, React</h1>;
 
-const store = createStore(combineReducers(reducers), applyMiddleware(thunk));
+const InitialState = {
+    MainMenuCategoryKey: 1,
+    FactionSelection: false,
+    PsychicPowerMenuButtons: {
+        RemoveButtonLocked: true, 
+        AddButtonLocked: false
+    },
+    RosterEditing: {
+        Action: "Roster Editing",
+        Roster: new Roster(1,"New Roster",[],null,null,null,null,null,null),		
+        ActiveDetachment: null,
+        ActiveUnit: null	
+    }	
+}
+
+const store = createStore(
+                WarhammerPortalStore,
+                InitialState
+            );
 
 class Application extends Component {
     render() {
