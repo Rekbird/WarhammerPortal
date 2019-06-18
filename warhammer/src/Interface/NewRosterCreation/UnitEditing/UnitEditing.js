@@ -6,7 +6,7 @@ import UnitProfile from "../UnitProfile/UnitProfile.js";
 import UnitModelsList from "../UnitModels/UnitModels.js";
 import WargearSelection from "../WargearSelection/WargearSelection.js";
 import EditUnitPsychicPowers from "../UnitPsychicPowers/EditUnitPsychicPowers.js";
-import GetPsychicPowers from "../../../Scripts/GetPsychicPowers.js";
+//import GetPsychicPowers from "../../../Scripts/GetPsychicPowers.js";
 
 class UnitEditing extends Component {
     constructor(props) {
@@ -15,16 +15,16 @@ class UnitEditing extends Component {
     }
 
     render() {
-        let EditUnitPsychicPowers = (this.props.Unit.BaseUnit.KnowsSmite || this.props.Unit.BaseUnit.AvailableSpells > 0) ? (
+        let EditUnitPsychicPowersComponent = (this.props.Unit.BaseUnit.KnowsSmite || this.props.Unit.BaseUnit.AvailableSpells > 0) ? (
             <EditUnitPsychicPowers AvailableSpells = {this.props.Unit.BaseUnit.AvailableSpells} SelectedSpells = {this.props.Unit.SelectedSpells} MaxSpells = {this.props.Unit.BaseUnit.NumberOfSpells} KnowsSmite = {this.props.Unit.BaseUnit.KnowsSmite}/>
         ) : null;
-        let WargearSelection = (this.props.ActiveModel) ? <WargearSelection/> : null;
+        let WargearSelectionComponent = (this.props.ActiveModel) ? <WargearSelection/> : null;
         return (
             <div>
                 <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>
-                {EditUnitPsychicPowers}
+                {EditUnitPsychicPowersComponent}
                 <UnitModelsList/>
-                {WargearSelection}
+                {WargearSelectionComponent}
             </div>
         )
     }
