@@ -18,7 +18,7 @@ class WargearSelection extends Component {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
-        this.UpdateSelectedWargearOptions = this.UpdateSelectedWargearOptions.bind(this);
+        
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
