@@ -169,3 +169,10 @@ export function ActiveDetachment(ActiveDetachment) {
         ActiveDetachment: ActiveDetachment
     }
 }
+
+export function NewRoster(Roster) {
+    return {
+        type: "NewRoster",
+        Roster: Roster
+    }
+}

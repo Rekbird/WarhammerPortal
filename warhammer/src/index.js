@@ -11,7 +11,7 @@ import './index.css';
 import Warhammerportal from './WarhammerPortal.js';
 import {Roster} from "../src/Classes/CommonClasses.js";
 
-//const heading = <h1 className="site-heading">Hello, React</h1>;
+//const heading = <h1 className="site-heading">Hello, React</h1>; new Roster(1,"New Roster",[],null,null,null,null,null,null)
 
 const InitialState = {
     MainMenuCategoryKey: 1,
@@ -22,7 +22,7 @@ const InitialState = {
     },
     RosterEditing: {
         Action: "Roster Editing",
-        Roster: new Roster(1,"New Roster",[],null,null,null,null,null,null),		
+        Roster: null,		
         ActiveDetachment: null,
         ActiveUnit: null	
     }	
@@ -30,7 +30,8 @@ const InitialState = {
 
 const store = createStore(
                 WarhammerPortalStore,
-                InitialState
+                InitialState,
+                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
             );
 
 class Application extends Component {

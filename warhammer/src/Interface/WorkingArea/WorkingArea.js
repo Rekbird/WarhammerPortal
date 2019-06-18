@@ -15,7 +15,7 @@ import GetFactionUnits from "../../Scripts/GetFactionUnits.js";
 import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/DetachmentEditing.js";
 import {Roster} from "../../Classes/CommonClasses.js";
 import RosterCreation from "../NewRosterCreation/NewRosterCreation.js";
-
+import * as ActionCreators from "../../Store/ActionsCreators.js";
 
 
 function WorkingArea(props) {
@@ -57,10 +57,11 @@ function WorkingArea(props) {
             var Factions = GetFactions();
             var Units = GetFactionUnits(Factions[27].id)
             let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null};
-            let NewRoster = new Roster(1,"New Roster",[],null,null,null,null,null,null);
+            //let NewRoster = new Roster(1,"New Roster",[],null,null,null,null,null,null);
+            //props.NewRoster(NewRoster);
             NeededArea = 
             <div>
-                <RosterCreation Roster = {NewRoster}/>
+                <RosterCreation Roster = {props.Roster}/>
             </div>;
         break;
         case 7 :
@@ -92,9 +93,12 @@ function WorkingArea(props) {
 
 const mapStateToProps = (state) => {
     return {
-        SelectedMenuId: state.MainMenuCategoryKey
+        SelectedMenuId: state.MainMenuCategoryKey,
+        Roster: state.RosterEditing.Roster
     }
 }
+
+
 
 
 const containerWorkingArea = connect(
