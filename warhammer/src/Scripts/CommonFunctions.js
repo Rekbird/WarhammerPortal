@@ -251,7 +251,7 @@ export function GetWargearOptions(SlotId) {
         id: 1,
         Name: "Option1",
         CountPerModel: 1,
-        PerXmodels: 1,
+        PerXmodels: null,
         Default: true,
         LinkedOptionsId: []
     };
@@ -260,11 +260,21 @@ export function GetWargearOptions(SlotId) {
         id: 2,
         Name: "Option2",
         CountPerModel: 1,
-        PerXmodels: 1,
+        PerXmodels: null,
         Default: false,
         LinkedOptionsId: []
     };
     WargearOptions.push(WargearOption2);
+
+    let WargearOption3 = {
+        id: 3,
+        Name: "Option3",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: []
+    };
+    WargearOptions.push(WargearOption3);
 
     for(let i=0;i<WargearOptions.length;i++) {
         ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].Default,WargearOptions[i].LinkedOptionsId));

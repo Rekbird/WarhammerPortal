@@ -107,7 +107,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "UpdateUnitModels":
             return Object.assign({}, state, {Roster: SetUnitModels(state.Roster,state.ActiveUnit, action)});
         case "EditModelWargear":
-            return Object.assign({}, state, {ActiveModel: EditModelWargear(state.ActiveModel, action)});
+            return Object.assign({}, state, {ActiveModel: EditModelWargear(action)});
         case "UpdateModelWargear":
             return Object.assign({}, state, {ActiveModel: UpdateModelWargear(state.ActiveModel, state.ActiveUnit, action)});
         case "NewRoster":
@@ -129,9 +129,8 @@ const UpdateModelWargear = (ActiveModel, ActiveUnit, action) => {
     return  NewModel;
 }
 
-const EditModelWargear = (ActiveModel, action) => {
-    ActiveModel = action.CurrentModel;
-    return  ActiveModel;
+const EditModelWargear = (action) => {
+    return  action.CurrentModel;
 }
 
 const SetUnitModels = (roster, ActiveUnit, action) => {
