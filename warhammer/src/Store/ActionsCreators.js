@@ -168,9 +168,32 @@ export function ActiveDetachment(ActiveDetachment) {
     }
 }
 
+
+export function UpdateUnitModels(UnitModels) {
+    return {
+        UnitModels,
+        type: "UpdateUnitModels"
+    }
+}
+
+export function EditModelWargear(CurrentModel) {
+    return {
+        CurrentModel,
+        type: "EditModelWargear"
+    }
+}
+
+export function UpdateModelWargear(WargearSlots) {
+    return {
+        WargearSlots,
+        type: "UpdateModelWargear"
+    }
+}
+
 export function NewRoster(Roster) {
     return {
         type: "NewRoster",
         Roster: Roster
     }
 }
+

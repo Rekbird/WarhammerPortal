@@ -14,6 +14,10 @@ class ModelListElement extends Component {
         this.props.handleModelButtonClick(this.props.singleModel, 'Copy');
     }
 
+    EditButton = () => {
+        this.props.handleModelButtonClick(this.props.singleModel, 'Edit');
+    }
+
     render() {
         const Name = this.props.singleModel.BaseModel.Name;
         var CopyButton = null;
@@ -32,7 +36,7 @@ class ModelListElement extends Component {
                     <span className = 'model__titleText' >{Name}</span>
                 </div>
                 <div className = 'model__buttonsSet'>
-                    <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' />
+                    <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' onClick = {this.EditButton}/>
                     {CopyButton}
                     {DeleteButton}
                 </div>
