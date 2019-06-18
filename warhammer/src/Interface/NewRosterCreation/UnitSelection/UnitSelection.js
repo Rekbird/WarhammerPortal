@@ -18,6 +18,7 @@ class UnitSelection extends Component {
     }
 
     handleUnitSelection = (BaseUnit) => {
+        /*
         let NewUnit = new RosterUnit(
             null,
             [],
@@ -27,7 +28,8 @@ class UnitSelection extends Component {
             this.props.Detachment.id
         );
         NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
-        this.props.AddNewUnit(this.props.Detachment, NewUnit)
+        */
+        this.props.AddNewUnit(this.props.Detachment, BaseUnit)
     }
 
     render() {

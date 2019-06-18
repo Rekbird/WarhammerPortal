@@ -1,16 +1,22 @@
 import React, {Component} from "react";
+import { connect } from 'react-redux';
+
 import "./EditUnitPsychicPowers.css";
 import ChoiceUnitPsychicPower from "./ChoiceUnitPsychicPower.js";
+import * as ActionCreators from "../../../Store/ActionsCreators.js";
+
 
 class EditUnitPsychicPowers extends Component {
     constructor(props) {
         super(props);
+        /*
         this.state = {
             SelectedSpells: (this.props.SelectedSpells && this.props.SelectedSpells.length > 0) ? this.props.SelectedSpells.slice(0) : [],
             AvailableSpells: (this.props.AvailableSpells && this.props.AvailableSpells.length > 0) ? this.props.AvailableSpells.slice(0) : [],
             RemoveButtonLocked: true,
             AddButtonLocked: false
         }
+        */
         this.ChosenAvailableSpells = [];
         this.ChosenSelectedSpells = [];
         this.ChooseAvailablePsychicPowers = this.ChooseAvailablePsychicPowers.bind(this);
@@ -22,8 +28,8 @@ class EditUnitPsychicPowers extends Component {
     componentWillMount() {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let AvailableSpells = this.state.AvailableSpells.slice(0);
-        let SelectedSpells = this.state.SelectedSpells.slice(0);
+        let AvailableSpells = this.props.AvailableSpells.slice(0);
+        let SelectedSpells = this.props.SelectedSpells.slice(0);
         if(!this.props.SelectedSpells || this.props.SelectedSpells.length == 0) {
             AddButtonLocked = false;
             RemoveButtonLocked = true;
@@ -38,27 +44,30 @@ class EditUnitPsychicPowers extends Component {
         } else {
             AddButtonLocked = true;
             RemoveButtonLocked = false;
-        }
+        }/*
         this.setState({
             AvailableSpells: AvailableSpells,
             SelectedSpells: SelectedSpells,
             RemoveButtonLocked: RemoveButtonLocked,
             AddButtonLocked: AddButtonLocked
         });
-        
+        */
+       this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
+       this.props.SetUnitPsychicPowers(SelectedSpells);
     }
 
     ChooseAvailablePsychicPowers(event) {
         let SelectedOptions = event.target.selectedOptions;
         let Spells = [];
         //this.ChosenAvailableSpells = [];
+        let AddButtonLocked;
         if(SelectedOptions && (SelectedOptions.length > 0)) {
 
             
             for(let i=0;i<SelectedOptions.length;i++) {
                 //let SpellID = SelectedOptions.item(i).value;
                //console.log(SpellID);
-                let Spell = this.state.AvailableSpells.filter(function(spell) {return spell.id == SelectedOptions.item(i).value})[0];
+                let Spell = this.props.AvailableSpells.filter(function(spell) {return spell.id == SelectedOptions.item(i).value})[0];
                 console.log(Spell);
                 Spells.push(Spell);
             }
@@ -66,18 +75,24 @@ class EditUnitPsychicPowers extends Component {
         } else {
             console.log("Empty list");
         }
-        if(Spells.length + this.state.SelectedSpells.length > this.props.MaxSpells) {
+        if(Spells.length + this.props.SelectedSpells.length > this.props.MaxSpells) {
             this.ChosenAvailableSpells = [];
+            /*
             this.setState({
                 AddButtonLocked: true
            });
+           */
+          AddButtonLocked = true;
         } else {
             this.ChosenAvailableSpells = Spells;
+            /*
             this.setState({
                 AddButtonLocked: false
            });
+           */
+          AddButtonLocked = false;
         }
-       
+       this.props.SetPsychicPowerMenuButtons(this.props.AvailableSpells, this.props.SelectedSpells, this.props.RemoveButtonLocked, AddButtonLocked);
       
        console.log(this.ChosenAvailableSpells.length);
     }
@@ -86,11 +101,12 @@ class EditUnitPsychicPowers extends Component {
         let SelectedOptions = event.target.selectedOptions;
         let Spells = [];
         //this.ChosenSelectedSpells = [];
+        let RemoveButtonLocked;
         if(SelectedOptions && (SelectedOptions.length > 0)) {
 
             
             for(let i=0;i<SelectedOptions.length;i++) {
-                let Spell = this.state.SelectedSpells.filter(function(spell) {return spell.id == SelectedOptions.item(i).value})[0];
+                let Spell = this.props.SelectedSpells.filter(function(spell) {return spell.id == SelectedOptions.item(i).value})[0];
                 Spells.push(Spell);
                 console.log(Spell);
             }
@@ -100,24 +116,30 @@ class EditUnitPsychicPowers extends Component {
         }
         if(Spells.length == 1 && Spells[0].id == 1) {
             this.ChosenSelectedSpells = [];
+            /*
             this.setState({
                 RemoveButtonLocked: true
            });
+           */
+          RemoveButtonLocked = true;
         } else {
             this.ChosenSelectedSpells = Spells;
+            /*
             this.setState({
                 RemoveButtonLocked: false
            });
+           */
+          RemoveButtonLocked = false;
         }
-        
+        this.props.SetPsychicPowerMenuButtons(this.props.AvailableSpells, this.props.SelectedSpells, RemoveButtonLocked, this.props.AddButtonLocked);
         console.log(Spells);
     }
 
     AddPsychicPowers() {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let AvailableSpells = this.state.AvailableSpells;
-        let SelectedSpells = this.state.SelectedSpells;
+        let AvailableSpells = this.props.AvailableSpells;
+        let SelectedSpells = this.props.SelectedSpells;
         if(this.ChosenAvailableSpells &&(this.ChosenAvailableSpells.length > 0)) {
             console.log("Выбранные доступные спеллы "+this.ChosenAvailableSpells.length);
             
@@ -128,22 +150,26 @@ class EditUnitPsychicPowers extends Component {
             }
             AddButtonLocked = (SelectedSpells.length >= this.props.MaxSpells);
             RemoveButtonLocked = false;
+            /*
             this.setState({
                     AvailableSpells: AvailableSpells,
                     SelectedSpells: SelectedSpells,
                     RemoveButtonLocked: RemoveButtonLocked,
                     AddButtonLocked: AddButtonLocked
                });
+               */
             this.ChosenAvailableSpells = [];
             this.ChosenSelectedSpells = [];
-            console.log("Added spells "+this.state.SelectedSpells.length);
+            console.log("Added spells "+this.props.SelectedSpells.length);
+            this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
+            this.props.SetUnitPsychicPowers(SelectedSpells);
         }
     }
 
     RemovePsychicPowers() {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let SelectedSpells = this.state.SelectedSpells;
+        let SelectedSpells = this.props.SelectedSpells;
         let AvailableSpells = this.props.AvailableSpells.slice();
         if(this.ChosenSelectedSpells &&(this.ChosenSelectedSpells.length > 0)) {
             console.log(this.ChosenSelectedSpells.length);
@@ -163,27 +189,31 @@ class EditUnitPsychicPowers extends Component {
             }
             RemoveButtonLocked = (!SelectedSpells || SelectedSpells.length == 0);
             AddButtonLocked = false;
+            /*
             this.setState({
                 AvailableSpells: AvailableSpells,
                 SelectedSpells: SelectedSpells,
                 RemoveButtonLocked: RemoveButtonLocked,
                 AddButtonLocked: AddButtonLocked
            });
+           */
             this.ChosenAvailableSpells = [];
             this.ChosenSelectedSpells = [];
+            this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
+            this.props.SetUnitPsychicPowers(SelectedSpells);
         }
     }
 
     render() {
         let RemoveButton;
         let AddButton;
-        if(this.state.RemoveButtonLocked) {
+        if(this.props.RemoveButtonLocked) {
             RemoveButton = <button disabled = {true} className = "EditUnitPsychicPowers__Button_Locked">{"<"}</button>
         } else {
             RemoveButton = <button className = "EditUnitPsychicPowers__Button" onClick = {this.RemovePsychicPowers.bind(this)}>{"<"}</button>
         }
 
-        if(this.state.AddButtonLocked) {
+        if(this.props.AddButtonLocked) {
             AddButton = <button disabled = {true} className = "EditUnitPsychicPowers__Button_Locked">{">"}</button>
         } else {
             AddButton = <button className = "EditUnitPsychicPowers__Button" onClick = {this.AddPsychicPowers.bind(this)}>{">"}</button>
@@ -192,15 +222,38 @@ class EditUnitPsychicPowers extends Component {
         return(
             <div className = "EditUnitPsychicPowers">
                 <h2 className = "EditUnitPsychicPowers__Header">Edit Unit Psychic Powers</h2>
-                <ChoiceUnitPsychicPower SelectLabel = "Available Psychic Powers" ChoosePsychicPowers = {this.ChooseAvailablePsychicPowers} AvailablePowers = {this.state.AvailableSpells}/>
+                <ChoiceUnitPsychicPower SelectLabel = "Available Psychic Powers" ChoosePsychicPowers = {this.ChooseAvailablePsychicPowers} AvailablePowers = {this.props.AvailableSpells}/>
                 <div className = "EditUnitPsychicPowers__ButtonsDiv">
                     {AddButton}
                     {RemoveButton}
                 </div> 
-                <ChoiceUnitPsychicPower SelectLabel = "Selected Psychic Powers"  ChoosePsychicPowers = {this.ChooseSelectedPsychicPowers} AvailablePowers = {this.state.SelectedSpells}/>
+                <ChoiceUnitPsychicPower SelectLabel = "Selected Psychic Powers"  ChoosePsychicPowers = {this.ChooseSelectedPsychicPowers} AvailablePowers = {this.props.SelectedSpells}/>
             </div>
         )
     }
 }
 
-export default EditUnitPsychicPowers;
+const mapStateToProps = (state) => {
+    return {
+        AvailableSpells: state.PsychicPowerMenuButtons.AvailableSpells,
+        SelectedSpells: state.PsychicPowerMenuButtons.SelectedSpells,
+        RemoveButtonLocked: state.PsychicPowerMenuButtons.RemoveButtonLocked,
+        AddButtonLocked: state.PsychicPowerMenuButtons.AddButtonLocked,
+        MaxSpells: state.RosterEditing.ActiveUnit.BaseUnit.NumberOfSpells,
+        KnowsSmite: state.RosterEditing.ActiveUnit.BaseUnit.KnowsSmite
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SetPsychicPowerMenuButtons: (AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked) => dispatch(ActionCreators.PsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked)),
+        SetUnitPsychicPowers: (SelectedSpells) => dispatch(ActionCreators.UnitPsychicPowers(SelectedSpells))
+    }
+}
+
+const containerEditUnitPsychicPowers = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EditUnitPsychicPowers);
+
+export default containerEditUnitPsychicPowers;
