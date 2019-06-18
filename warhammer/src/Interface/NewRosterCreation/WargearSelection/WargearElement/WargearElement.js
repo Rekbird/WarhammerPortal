@@ -1,16 +1,36 @@
 import React, {Component} from "react";
 import "./WargearElement.css";
 
+/*
+in:
+SelectedOption
+AvailableOptions
+ChoosedWargearOption()
+CurrentSlot
+
+out:
+SelectedOption.id
+*/
+
 class WargearElement extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            options: [1,2,3]
-          }
+        this.SelectedWargearOption = this.SelectedWargearOption.bind(this);
+    }
+
+    SelectedWargearOption  = (event) => {
+        this.props.SelectedWargearOption(event.target.value,this.props.CurrentSlot);
     }
     
     render() {
-            return <select>{this.state.options.map((option, idx) => <option key={idx}>{option}</option>)}</select>
+        let AvailableOptions = this.props.AvailableOptions;
+        
+            var Options = AvailableOptions.map(
+                (option) =>
+                <option className = "" key = {option.id} value = {option.id}>{option.Name}</option>
+            )
+
+            return <select value = {this.props.SelectedOption.id} onChange = {this.SelectedWargearOption}>{Options}</select>
     }
 }
 

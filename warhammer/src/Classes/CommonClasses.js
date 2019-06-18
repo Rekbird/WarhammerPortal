@@ -185,10 +185,11 @@ export class RosterModel {
 }
 
 export class RosterWargearSlot {
-    constructor(id,Name,WargearOption) {
+    constructor(id,Name,WargearOption,BaseSlot) {
         this.id = id;
         this.Name = Name;
-        this.SelectedOptions = WargearOption;
+        this.SelectedOption = WargearOption;
+        this.BaseSlot = BaseSlot;
     }
 
     copyRosterWargearSlot = () => {
