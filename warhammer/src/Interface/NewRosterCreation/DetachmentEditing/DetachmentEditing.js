@@ -52,6 +52,7 @@ class DetachmentEditing extends Component {
         });
         */
        //RosterDetachment, Faction, DetachmentType, ChapterTactic
+       console.log("ид детачмента из дочернего "+this.props.RosterDetachment.id);
         this.props.handleRosterDetachmentChange(this.props.RosterDetachment,null,Detachment,null);
     }
 
@@ -64,6 +65,8 @@ class DetachmentEditing extends Component {
             FactionSelection: false
         });
         //RosterDetachment, Faction, DetachmentType, ChapterTactic
+        console.log(this.props.RosterDetachment);
+        console.log("ид детачмента из дочернего "+this.props.RosterDetachment.id);
         this.props.handleRosterDetachmentChange(this.props.RosterDetachment,Faction,null,null);
     }
 
@@ -90,7 +93,7 @@ class DetachmentEditing extends Component {
     }
 
     render() {
-        console.log("Вызвали рендер в компоненте DetachmentEditing");
+        console.log("Вызвали рендер в компоненте DetachmentEditing. Ид детачмнта "+this.props.RosterDetachment.id);
         let FactionSelectionWindow = (
             this.state.FactionSelection ? (
                 <div className = "DetachmentEditing__FactionSelectionWindow">

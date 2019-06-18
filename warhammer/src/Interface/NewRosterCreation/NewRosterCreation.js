@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import { connect } from 'react-redux';
+
 import * as utils from "../../Scripts/CommonFunctions.js";
 import RosterMenu from "./RosterMenu/RosterMenu.js";
 import DetachmentEditing from "./DetachmentEditing/DetachmentEditing.js";
@@ -10,9 +12,12 @@ import {Roster} from "../../Classes/CommonClasses.js";
 import "./NewRosterCreation.css";
 import RosterEditing from "./RosterEditing/RosterEditing.js";
 
+import * as ActionCreators from "../../Store/ActionsCreators.js";
+
 class RosterCreation extends Component{
     constructor(props) {
         super(props)
+        /*
         this.state = {
             Action: "Roster Editing",
             Roster: this.props.Roster,
@@ -20,6 +25,7 @@ class RosterCreation extends Component{
             ActiveUnit: null,
             RosterChanged: false
         };
+        */
         this.ActiveDetachment = null;
         this.ActiveUnit = null;
         this.AddNewDetachment = this.AddNewDetachment.bind(this);
@@ -39,25 +45,26 @@ class RosterCreation extends Component{
     handleRosterDetachmentChange = (RosterDetachment, Faction, DetachmentType, ChapterTactic) => {
         if(RosterDetachment) {
             if(Faction) {
-                RosterDetachment.Faction = Faction;
-                console.log("Меняли детач фракция "+Faction.Name);
+                console.log("ид детачмента в родителе "+RosterDetachment.id)
+                this.props.DetachmentFaction(RosterDetachment.id, Faction);
             }
             if(DetachmentType) {
-                RosterDetachment.Detachment = DetachmentType;
-                console.log("Меняли детач детач "+DetachmentType.Name);
+                this.props.DetachmentType(RosterDetachment.id, DetachmentType);
             }
             if(ChapterTactic) {
-                RosterDetachment.ChapterTactic = ChapterTactic;
-                console.log("Меняли детач чаптер тактика "+ChapterTactic.Name);
+                this.props.ChapterTactic(RosterDetachment.id, ChapterTactic);
             }
+            /*
             this.setState({
                 //Roster: this.state.Roster,
                 RosterChanged: !this.state.RosterChanged
             });
+            */
         }
     }
 
     AddNewDetachment = () => {
+        /*
         let Roster = this.state.Roster;
         this.state.Action = null;
         let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
@@ -68,9 +75,14 @@ class RosterCreation extends Component{
             ActiveDetachment: NewDetachment,
             RosterChanged: !this.state.RosterChanged
         })
+        */
+       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
+       this.props.NewDetachment(NewId);
+       //this.props.RosterAction("Detachment Editing");
     }
 
     EditDetachment = (Detachment) => {
+        /*
         //let Roster = this.state.Roster;
         this.state.Action = null;
         console.log("Детач из параметров "+Detachment.id);
@@ -83,9 +95,13 @@ class RosterCreation extends Component{
         console.log("Детач из стейта "+this.state.ActiveDetachment.id);
         console.log("Детач из конструктора "+this.ActiveDetachment.id);
         console.log("Ростер из стейта "+this.state.Roster.id);
+        */
+       this.props.SetActiveDetachment(Detachment);
+       this.props.RosterAction("Detachment Editing");
     }
 
     CopyDetachment = (Detachment) => {
+        /*
         let Roster = this.state.Roster;
         let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
         let NewDetachment = [Detachment.copyRosterDetachment()].slice()[0];
@@ -97,9 +113,14 @@ class RosterCreation extends Component{
             ActiveDetachment: NewDetachment,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
+       this.props.CopyDetachment(Detachment.id, NewId);
+       this.props.RosterAction("Detachment Editing");
     }
 
     DeleteDetachment = (Detachment) => {
+        /*
         let Roster = this.state.Roster;
         Roster.RosterDetachments.splice(Roster.RosterDetachments.indexOf(Detachment), 1);
         let CurrentAction = this.state.Action;
@@ -111,9 +132,12 @@ class RosterCreation extends Component{
             Action: CurrentAction,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+        this.props.DeleteDetachment(Detachment.id);
     }
 
     AddNewUnit = (Detachment, Unit) => {
+        /*
         Detachment.RosterUnits.push(Unit);
         Unit.id = Detachment.RosterUnits.length;
         this.setState({
@@ -123,18 +147,32 @@ class RosterCreation extends Component{
             ActiveUnit: Unit,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+       let NewId = 1;
+       this.props.Roster.RosterDetachments.forEach((element) => {
+           if(!!element.RosterUnits) {
+                NewId = NewId+element.RosterUnits.length;
+           }
+       });
+       this.props.AddNewUnit(Detachment.id, NewId, Unit);
+       this.props.RosterAction("Unit Editing");
     }
 
     EditUnit = (Unit) => {
+        /*
         this.setState({
             //Roster: this.state.Roster,
             Action: "Unit Editing",
             ActiveUnit: Unit,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+       this.props.SetActiveUnit(Unit);
+       this.props.RosterAction("Unit Editing");
     }
 
     CopyUnit = (Detachment, Unit) => {
+        /*
         let UnitCopy = Unit.copyRosterUnit();
         Detachment.RosterUnits.push(UnitCopy);
         UnitCopy.id = Detachment.RosterUnits.length;
@@ -142,9 +180,18 @@ class RosterCreation extends Component{
             //Roster: this.state.Roster,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+       let NewId = 1;
+       this.props.Roster.RosterDetachments.forEach((element) => {
+           if(!!element.RosterUnits) {
+                NewId = NewId+element.RosterUnits.length;
+           }
+       });
+       this.props.CopyUnit(Detachment.id, Unit.id, NewId);
     }
 
     DeleteUnit = (Detachment, Unit) => {
+        /*
         Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
         let CurrentAction = this.state.Action;
         if(Detachment.RosterUnits.length === 0) {
@@ -155,32 +202,43 @@ class RosterCreation extends Component{
             ActiveDetachment: Detachment,
             RosterChanged: !this.state.RosterChanged
         });
+        */
+       this.props.DeleteUnit(Detachment.id, Unit.id);
     }
 
     EditRoster = () => {
+        /*
         this.setState({
             //Roster: this.state.Roster,
             Action: "Roster Editing"
         });
+        */
+       this.props.RosterAction("Roster Editing");
     }
 
     handleRosterChange = (Name,MaxPL,MaxPTS) => {
-        let Roster = this.state.Roster;
+        //let Roster = this.state.Roster;
         if(Name != "--none--") {
-            Roster.Name = Name;
+            //Roster.Name = Name;
+            this.props.RosterName(Name);
         }
         if(MaxPL != "--none--") {
-            Roster.MaxPL = MaxPL;
+            //Roster.MaxPL = MaxPL;
+            this.props.RosterMaxPL(MaxPL);
         }
         if(MaxPTS != "--none--") {
-            Roster.MaxPTS = MaxPTS;
+            //Roster.MaxPTS = MaxPTS;
+            this.props.RosterMaxPTS(MaxPTS);
         }
+        /*
         this.setState({
             Roster: Roster
         });
+        */
     }
 
     showUnitSelectionList = (Detachment) => {
+        /*
         console.log("объект детачмента "+Detachment);
         console.log("фракция детачмента "+Detachment.Faction);
         console.log("равенство детачей "+Detachment.id);
@@ -188,32 +246,35 @@ class RosterCreation extends Component{
             Action: "Unit Selection",
             ActiveDetachment: Detachment
         });
+        */
+       this.props.SetActiveDetachment(Detachment);
+       this.props.RosterAction("Unit Selection");
     }
 
     render = () => {
         let WorkingArea;
-        switch(this.state.Action) {
+        switch(this.props.Action) {
             case "Roster Editing": 
-                WorkingArea = <RosterEditing Roster = {this.state.Roster} handleRosterChange = {this.handleRosterChange}/>;
+                WorkingArea = <RosterEditing Roster = {this.props.Roster} handleRosterChange = {this.handleRosterChange}/>;
             break;
 
             case "Detachment Editing": 
-                console.log("Детач из конструктора в рендере "+this.state.ActiveDetachment.id);
-                WorkingArea = <DetachmentEditing handleRosterDetachmentChange = {this.handleRosterDetachmentChange} RosterDetachment = {this.state.ActiveDetachment}/>;
+                console.log("Детач из конструктора в рендере "+this.props.ActiveDetachment.id);
+                WorkingArea = <DetachmentEditing handleRosterDetachmentChange = {this.handleRosterDetachmentChange} RosterDetachment = {this.props.ActiveDetachment}/>;
             break;
 
             case "Unit Selection": 
-                WorkingArea = <UnitSelection Faction = {this.state.ActiveDetachment.Faction} Detachment = {this.state.ActiveDetachment} AddNewUnit = {this.AddNewUnit}/>;
+                WorkingArea = <UnitSelection Faction = {this.props.ActiveDetachment.Faction} Detachment = {this.props.ActiveDetachment} AddNewUnit = {this.AddNewUnit}/>;
             break;
 
             case "Unit Editing": 
-                WorkingArea = <UnitEditing Unit = {this.state.ActiveUnit}/>;
+                WorkingArea = <UnitEditing Unit = {this.props.ActiveUnit}/>;
             break;
         }
         return(
             <div>
                 <RosterMenu 
-                    Roster = {this.state.Roster}
+                    Roster = {this.props.Roster}
                     NewDetachmentClick = {this.AddNewDetachment}
                     EditDetachmentClick = {this.EditDetachment}
                     CopyDetachmentClick = {this.CopyDetachment}
@@ -230,4 +291,40 @@ class RosterCreation extends Component{
     }
 }
 
-export default RosterCreation;
+const mapStateToProps = (state) => {
+    return {
+        Action: state.RosterEditing.Action,
+        Roster: state.RosterEditing.Roster,
+        ActiveDetachment: state.RosterEditing.ActiveDetachment,
+        ActiveUnit: state.RosterEditing.ActiveUnit
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        DetachmentFaction: (DetachmentId, Faction) => dispatch(ActionCreators.DetachmentFaction(DetachmentId, Faction)),
+        DetachmentType: (DetachmentId, DetachmentType) => dispatch(ActionCreators.DetachmentType(DetachmentId, DetachmentType)),
+        ChapterTactic: (DetachmentId, ChapterTactic) => dispatch(ActionCreators.ChapterTactic(DetachmentId, ChapterTactic)),
+        NewDetachment: (NewId) => dispatch(ActionCreators.NewDetachment(NewId)),
+        SetActiveDetachment: (ActiveDetachment) => dispatch(ActionCreators.ActiveDetachment(ActiveDetachment)),
+        CopyDetachment: (DetachmentId, NewId) => dispatch(ActionCreators.CopyDetachment(DetachmentId, NewId)),
+        DeleteDetachment: (DetachmentId) => dispatch(ActionCreators.DeleteDetachment(DetachmentId)),
+        AddNewUnit: (DetachmentId, NewId, BaseUnit) => dispatch(ActionCreators.AddNewUnit(DetachmentId, NewId, BaseUnit)),
+        SetActiveUnit: (ActiveUnit) => dispatch(ActionCreators.ActiveUnit(ActiveUnit)),
+        CopyUnit: (DetachmentId, UnitId, NewId) => dispatch(ActionCreators.CopyUnit(DetachmentId, UnitId, NewId)),
+        DeleteUnit: (DetachmentId, UnitId) => dispatch(ActionCreators.DeleteUnit(DetachmentId, UnitId)),
+        RosterAction: (ActionNAme) => dispatch(ActionCreators.RosterAction(ActionNAme)),
+        RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
+        RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
+        RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS)),
+        
+    }
+}
+
+const containerRosterCreation = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(RosterCreation);
+
+
+export default containerRosterCreation;
