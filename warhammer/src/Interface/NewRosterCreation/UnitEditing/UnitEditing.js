@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import {connect} from 'redux';
+import { connect } from 'react-redux';
+
 import "./UnitEditing.css";
 import UnitProfile from "../UnitProfile/UnitProfile.js";
 import UnitModelsList from "../UnitModels/UnitModels.js";

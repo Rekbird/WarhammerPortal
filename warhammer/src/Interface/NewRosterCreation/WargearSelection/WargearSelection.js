@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import "./WargearSelection.css";
-import "./WargearElement/WargearElement.js"
+import WargearElement from "./WargearElement/WargearElement.js"
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
-import {connect} from 'redux';
+import { connect } from 'react-redux';
 /*
 in:
 RosterModels
@@ -23,7 +23,7 @@ class WargearSelection extends Component {
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
         CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.filter(option => option.id == SelectedOptionId)[0];
-        UpdateSelectedWargearOptions(this.WargearSlots);
+        this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
 
     GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
@@ -85,7 +85,7 @@ class WargearSelection extends Component {
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
           );
         return (
             <div>

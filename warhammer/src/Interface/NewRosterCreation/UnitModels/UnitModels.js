@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './UnitModels.css';
 import ModelListElement from '../Model/Model.js';
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
-import {connect} from 'redux';
+import { connect } from 'react-redux';
 
 class UnitModelsList extends Component {
      constructor(props) {
@@ -25,7 +25,7 @@ class UnitModelsList extends Component {
             this.props.handleModelButtonClick(this.models);
 
         } else {
-            HandleEditButtonClick(model);
+            this.props.HandleEditButtonClick(model);
         }
         
     }
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleModelButtonClick: (models) => dispatch(ActionCreators.UpdateUnitModels(models)),
-        HandleEditButtonClick: (currentModel, allModels) => dispatch(ActionCreators.EditModelWargear(currentModel))
+        HandleEditButtonClick: (currentModel) => dispatch(ActionCreators.EditModelWargear(currentModel))
     }
 }
 
