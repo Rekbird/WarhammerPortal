@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import "./WargearSelection.css";
 import "./WargearElement/WargearElement.js"
-
+import * as ActionCreators from "../../../Store/ActionsCreators.js";
+import {connect} from 'redux';
 /*
 in:
 RosterModels
@@ -19,11 +20,7 @@ class WargearSelection extends Component {
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         this.UpdateSelectedWargearOptions = this.UpdateSelectedWargearOptions.bind(this);
     }
-
-    UpdateSelectedWargearOptions = (WargearSlots) => {
-        this.props.UpdateSelectedWargearOptions(WargearSlots);
-    }
-
+    
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
         CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.filter(option => option.id == SelectedOptionId)[0];
         UpdateSelectedWargearOptions(this.WargearSlots);
@@ -98,4 +95,22 @@ class WargearSelection extends Component {
     }
 }
 
-export default WargearSelection;
+const mapStateToProps = (state) => {
+    return {
+        CurrentModel: state.RosterEditing.ActiveModel,
+        RosterModels: state.RosterEditing.ActiveUnit.Models
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        UpdateSelectedWargearOptions: (WargearSlots) => dispatch(ActionCreators.UpdateModelWargear(WargearSlots))
+    }
+}
+
+const containerWargearSelection = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(WargearSelection);
+
+export default containerWargearSelection;
