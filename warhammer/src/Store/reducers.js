@@ -124,7 +124,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
 }
 
 const UpdateModelWargear = (ActiveModel, ActiveUnit, action) => {
-    NewModel = Object.assign({}, ActiveModel, {RosterWargearSlots: action.WargearSlots});
+    let NewModel = Object.assign({}, ActiveModel, {RosterWargearSlots: action.WargearSlots});
     ActiveUnit.Models.filter((model) => model.id === NewModel.id)[0] = NewModel;
     return  NewModel;
 }
