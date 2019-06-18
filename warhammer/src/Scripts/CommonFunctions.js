@@ -312,7 +312,7 @@ export function GetRosterWargearSlots(BaseWargearSlots) {
 
             const SelectedOption = BaseWargearSlots[i].Options.filter(Option => Option.Default == true);
 
-            let CurrentSlot = new RosterWargearSlot(count, BaseWargearSlots[i].Name, SelectedOption[0]);
+            let CurrentSlot = new RosterWargearSlot(count, BaseWargearSlots[i].Name, SelectedOption[0], BaseWargearSlots[i]);
             ReturnedSlots.push(CurrentSlot);
             count++;
         }
