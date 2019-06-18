@@ -8,24 +8,24 @@ class UnitModelsList extends Component {
      constructor(props) {
         super(props);
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
-        this.models =  this.props.Models;
+        this.models =  this.props.Models.slice();
         this.recordCounter = this.models.length;
      }
      
     handleModelButtonClick = (model,ButtonName) => {
         if (ButtonName == "Delete") {
             this.models.splice((this.models.indexOf(model)), 1);
-            this.props.handleModelButtonClick(model,ButtonName);
+            this.props.handleModelButtonClick(this.models);
             
         } else if (ButtonName == "Copy") {
             this.recordCounter = this.recordCounter + 1;
             const newModel = Object.assign({}, model);
             newModel.id = this.recordCounter;
             this.models.splice((this.models.length),0,newModel);
-            this.props.handleModelButtonClick(model,ButtonName);
+            this.props.handleModelButtonClick(this.models);
 
         } else {
-           
+            HandleEditButtonClick(model);
         }
         
     }
@@ -46,7 +46,6 @@ class UnitModelsList extends Component {
         }
     }
      render() {
-        if (this.state.isUpdated) {
          const modelsList = this.models.map(
              (model) => 
                 <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
@@ -56,8 +55,6 @@ class UnitModelsList extends Component {
                 <ul className = 'unitModels__list'>{modelsList}</ul>
              </div>
          )
-    
-        }    
     }
 }
 
@@ -69,7 +66,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleModelButtonClick: (model,ButtonName) => dispatch(ActionCreators.UpdateUnitModels(model,ButtonName))
+        handleModelButtonClick: (models) => dispatch(ActionCreators.UpdateUnitModels(models)),
+        HandleEditButtonClick: (currentModel, allModels) => dispatch(ActionCreators.EditModelWargear(currentModel))
     }
 }
 

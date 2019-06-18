@@ -93,7 +93,11 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "ActiveDetachment":
             return Object.assign({}, state, {ActiveDetachment: SetActiveDetachment(action)});
         case "UpdateUnitModels":
-            return Object.assign({}, state, {Roster: SetUnitModels(state.Roster, action)});
+            return Object.assign({}, state, {Roster: SetUnitModels(state.Roster,state.ActiveUnit, action)});
+        case "EditModelWargear":
+            return Object.assign({}, state, {ActiveModel: EditModelWargear(state.ActiveModel, action)});
+        case "UpdateModelWargear":
+            return Object.assign({}, state, {ActiveModel: UpdateModelWargear(state.ActiveModel, state.ActiveUnit, action)});
         default:
             console.log(state);
             return (!!state) ? state : {
@@ -105,8 +109,19 @@ function RosterEditing(state = RosterEditingInitialState, action) {
     }
 }
 
-const SetUnitModels = (roster, action) => {
-    let NewUnit = Object.assign({}, action.Unit, {Models: action.UnitModels});
+const UpdateModelWargear = (ActiveModel, ActiveUnit, action) => {
+    NewModel = Object.assign({}, ActiveModel, {RosterWargearSlots: action.WargearSlots});
+    ActiveUnit.Models.filter((model) => model.id === NewModel.id)[0] = NewModel;
+    return  NewModel;
+}
+
+const EditModelWargear = (ActiveModel, action) => {
+    ActiveModel = action.CurrentModel;
+    return  ActiveModel;
+}
+
+const SetUnitModels = (roster, ActiveUnit, action) => {
+    let NewUnit = Object.assign({}, ActiveUnit, {Models: action.UnitModels});
     let NeededDetachment;
     let NewRoster = Object.assign({}, roster);
     NewRoster.Detachments.forEach(function(element) {

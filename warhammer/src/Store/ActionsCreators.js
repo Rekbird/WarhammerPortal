@@ -170,10 +170,24 @@ export function ActiveDetachment(ActiveDetachment) {
     }
 }
 
-export function UpdateUnitModels(UnitModels, CurrentUnit) {
+export function UpdateUnitModels(UnitModels) {
     return {
-        type: "UpdateUnitModels",
         UnitModels,
-        CurrentUnit
+        type: "UpdateUnitModels"
     }
 }
+
+export function EditModelWargear(CurrentModel) {
+    return {
+        CurrentModel,
+        type: "EditModelWargear"
+    }
+}
+
+export function UpdateModelWargear(WargearSlots) {
+    return {
+        WargearSlots,
+        type: "UpdateModelWargear"
+    }
+}
+
