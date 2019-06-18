@@ -44,13 +44,21 @@ function FactionSelection(state = false, action) {
     }
 }
 
-function PsychicPowerMenuButtons(state = {RemoveButtonLocked: true, AddButtonLocked: false}, action) {
+function PsychicPowerMenuButtons(state = {
+                                    AvailableSpells: [],
+                                    SelectedSpells: [],
+                                    RemoveButtonLocked: true, 
+                                    AddButtonLocked: false
+                                }, action) {
     switch(action.type) {
         case "PsychicPowerMenuButtons":
-            return {
+            return Object.assign({}, state,     
+            {
+                AvailableSpells: action.AvailableSpells,
+                SelectedSpells: action.SelectedSpells,
                 RemoveButtonLocked: action.RemoveButtonLocked,
                 AddButtonLocked: action.AddButtonLocked
-            };
+            });
         default:
             return state;
     }

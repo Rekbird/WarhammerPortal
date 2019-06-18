@@ -12,22 +12,20 @@ export function FactionSelectionWindow(FlagValue) {
     }
 }
 
-export function PsychicPowerMenuButtons(RemoveButtonLocked, AddButtonLocked) {
+export function PsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked) {
     return {
         type: "PsychicPowerMenuButtons",
+        AvailableSpells: AvailableSpells,
+        SelectedSpells: SelectedSpells,
         RemoveButtonLocked: RemoveButtonLocked,
         AddButtonLocked: AddButtonLocked
     }
 }
 
-export function UnitPsychicPowers(Unit, AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked) {
+export function UnitPsychicPowers(SelectedSpells) {
     return {
         type: "UnitPsychicPowers",
-        Unit: Unit,
-        AvailableSpells: AvailableSpells,
-        SelectedSpells: SelectedSpells,
-        RemoveButtonLocked: RemoveButtonLocked,
-        AddButtonLocked: AddButtonLocked
+        SelectedSpells: SelectedSpells
     }
 }
 

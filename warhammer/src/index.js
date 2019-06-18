@@ -17,6 +17,8 @@ const InitialState = {
     MainMenuCategoryKey: 1,
     FactionSelection: false,
     PsychicPowerMenuButtons: {
+        AvailableSpells: [],
+        SelectedSpells: [],
         RemoveButtonLocked: true, 
         AddButtonLocked: false
     },
@@ -24,7 +26,8 @@ const InitialState = {
         Action: "Roster Editing",
         Roster: null,		
         ActiveDetachment: null,
-        ActiveUnit: null	
+        ActiveUnit: null,
+        ActiveModel: null	
     }	
 }
 
