@@ -18,6 +18,7 @@ export class Unit {
         this.ExternalURL = ExternalURL;
         this.PowerLevel = utils.GetUnitPowerLevel(id);
         this.FactionId = FactionId;
+        this.Models = utils.GetUnitModels(id);
     }
 
     get DefaultUnitmodels() {
