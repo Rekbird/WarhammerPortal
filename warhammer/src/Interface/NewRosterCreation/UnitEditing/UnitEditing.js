@@ -6,6 +6,7 @@ import UnitProfile from "../UnitProfile/UnitProfile.js";
 import UnitModelsList from "../UnitModels/UnitModels.js";
 import WargearSelection from "../WargearSelection/WargearSelection.js";
 import EditUnitPsychicPowers from "../UnitPsychicPowers/EditUnitPsychicPowers.js";
+import AddNewModel from "../AddNewModel/AddNewModel.js";
 //import GetPsychicPowers from "../../../Scripts/GetPsychicPowers.js";
 
 class UnitEditing extends Component {
@@ -19,11 +20,13 @@ class UnitEditing extends Component {
             <EditUnitPsychicPowers AvailableSpells = {this.props.Unit.BaseUnit.AvailableSpells} SelectedSpells = {this.props.Unit.SelectedSpells} MaxSpells = {this.props.Unit.BaseUnit.NumberOfSpells} KnowsSmite = {this.props.Unit.BaseUnit.KnowsSmite}/>
         ) : null;
         let WargearSelectionComponent = (this.props.ActiveModel) ? <WargearSelection/> : null;
+        let AddNewModelComponent = (this.props.Unit.BaseUnit.MaxModelQuant < this.props.Unit.Models.length || !this.props.Unit.BaseUnit.MaxModelQuant) ? <AddNewModel/> : null;
         return (
             <div>
                 <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>
                 {EditUnitPsychicPowersComponent}
                 <UnitModelsList/>
+                {AddNewModelComponent}
                 {WargearSelectionComponent}
             </div>
         )
