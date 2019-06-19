@@ -8,8 +8,8 @@ class UnitModelsList extends Component {
      constructor(props) {
         super(props);
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
-        this.models =  this.props.Models.slice();
-        this.recordCounter = this.models.length;
+        this.models = [];
+        this.recordCounter = 0;
      }
      
     handleModelButtonClick = (model,ButtonName) => {
@@ -31,10 +31,10 @@ class UnitModelsList extends Component {
     }
 
     showCopyButton = (currentModel) =>{
-        if (this.models.length >= currentModel.MaxQuant) {
+        if (this.models.length >= currentModel.MaxQuant || this.props.Unit.BaseUnit.MaxModelQuant < this.models.length) {
             return false;
 
-        } else if (!currentModel.MaxQuant) {
+        } else if (!currentModel.MaxQuant && !this.props.Unit.BaseUnit.MaxModelQuant) {
             return true;
         
         } else if (this.models.filter(function (model){           
@@ -46,6 +46,8 @@ class UnitModelsList extends Component {
         }
     }
      render() {
+        this.models =  this.props.Models.slice();
+        this.recordCounter = this.models.length;
          const modelsList = this.models.map(
              (model) => 
                 <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
@@ -60,7 +62,8 @@ class UnitModelsList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        Models: state.RosterEditing.ActiveUnit.Models
+        Models: state.RosterEditing.ActiveUnit.Models,
+        Unit: state.RosterEditing.ActiveUnit
     }
 }
 

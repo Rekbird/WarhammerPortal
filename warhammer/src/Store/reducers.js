@@ -91,9 +91,8 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "CopyUnit":
             return Object.assign({}, state, {Roster: AddUnitCopy(state.Roster, action)});
         case "DeleteUnit":
-            const ReturnedAction = RemoveUnit(state.Roster, action).Action;
-            const ReturnedRoster = RemoveUnit(state.Roster, action).Roster;
-            return Object.assign({}, state, {Action: ReturnedAction, Roster: ReturnedRoster});
+            Result = RemoveUnit(state.Roster, action);
+            return Object.assign({}, state, {Action: Result.Action, Roster: Result.Roster});
         case "RosterAction":
             return Object.assign({}, state, {Action: SetRosterAction(action)});
         case "RosterName":
@@ -105,9 +104,10 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "ActiveDetachment":
             return Object.assign({}, state, {ActiveDetachment: SetActiveDetachment(action)});
         case "UpdateUnitModels":
-            return Object.assign({}, state, {Roster: SetUnitModels(state.Roster,state.ActiveUnit, action)});
+            const returnedObject = SetUnitModels(state.Roster,state.ActiveUnit, action);
+            return Object.assign({}, state, {Roster: returnedObject.roster, ActiveUnit: returnedObject.activeUnit});
         case "EditModelWargear":
-            return Object.assign({}, state, {ActiveModel: EditModelWargear(state.ActiveModel, action)});
+            return Object.assign({}, state, {ActiveModel: EditModelWargear(action)});
         case "UpdateModelWargear":
             return Object.assign({}, state, {ActiveModel: UpdateModelWargear(state.ActiveModel, state.ActiveUnit, action)});
         case "NewRoster":
@@ -129,23 +129,25 @@ const UpdateModelWargear = (ActiveModel, ActiveUnit, action) => {
     return  NewModel;
 }
 
-const EditModelWargear = (ActiveModel, action) => {
-    ActiveModel = action.CurrentModel;
-    return  ActiveModel;
+const EditModelWargear = (action) => {
+    let NewModel = Object.assign({}, action.CurrentModel);
+    return  NewModel;
 }
 
 const SetUnitModels = (roster, ActiveUnit, action) => {
     let NewUnit = Object.assign({}, ActiveUnit, {Models: action.UnitModels});
     let NeededDetachment;
-    let NewRoster = Object.assign({}, roster);
-    NewRoster.Detachments.forEach(function(element) {
-        if (element.RosterUnits.indexOf(action.CurrentUnit) != -1) {
-            NeededDetachment = element;
+    let ReturningRoster = Object.assign({}, roster);
+    ReturningRoster.RosterDetachments.forEach(function(detachment) {
+        if (detachment.RosterUnits.indexOf(ActiveUnit) != -1) {
+            NeededDetachment = detachment;
         }
     });
-    NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0] = NewUnit;
-
-    return  NewRoster;
+    NeededDetachment.RosterUnits.splice((NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0])),1,NewUnit);
+    return  {
+        roster: ReturningRoster,
+        activeUnit: NewUnit
+    };
 }
 
 const SetUnitPsychicPowers = (roster, action) => {
@@ -164,8 +166,6 @@ const SetUnitPsychicPowers = (roster, action) => {
 
 const SetDetachmentFaction = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
-    console.log(action);
-    console.log("ид детачмента "+action.DetachmentId);
     let NeededDetachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
     NeededDetachment.Faction = action.Faction;
     return Object.assign({}, roster, {RosterDetachments: Detachments});
@@ -187,7 +187,6 @@ const SetChapterTactic = (roster, action) => {
 
 const AddNewDetachment = (roster, action) => {
     let Detachments = roster.RosterDetachments.slice();
-    console.log("Новый ид для детача "+action.NewId);
     let NewDetachment = new RosterDetachment(action.NewId,[],null,null,null,roster.id,null,null);
     Detachments.push(NewDetachment);
     return {

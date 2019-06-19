@@ -17,7 +17,7 @@ class WargearSelection extends Component {
     constructor(props) {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
-        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
+        this.WargearSlots = [];
         
     }
     
@@ -25,13 +25,12 @@ class WargearSelection extends Component {
         CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.filter(option => option.id == SelectedOptionId)[0];
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
-
+    
     GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
         let AvailableOptions = [];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
-        //let AllSelectedOptions = GetSelectedUnitOptions(this.props.RosterModels)
         let couldBeIncluded;
 
         if (!!CurrentModel.RosterWargearSlots && CurrentModel.RosterWargearSlots.length > 0) {
@@ -53,7 +52,11 @@ class WargearSelection extends Component {
 
             if (!!BaseOptions[i].CountPerModel) {
                 let alreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
-                couldBeIncluded = couldBeIncluded && (alreadyHave < BaseOptions[i].CountPerModel);
+                if (couldBeIncluded != undefined) {
+                    couldBeIncluded = couldBeIncluded && (alreadyHave < BaseOptions[i].CountPerModel);
+                } else {
+                    couldBeIncluded = (alreadyHave < BaseOptions[i].CountPerModel);
+                }
             }
 
             if (couldBeIncluded) {
@@ -79,17 +82,18 @@ class WargearSelection extends Component {
         }
         return AllSelectedOptions;
     }
- 
+ //this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)
     render() {
-
+        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
-          );
+                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {slot.BaseSlot.Options} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+            );
         return (
             <div>
-               <ul className = ''>{RosterWargearSlots}</ul>
+                <h3>{this.props.CurrentModel.BaseModel.Name}</h3>
+               <ul>{RosterWargearSlots}</ul>
             </div>
         )
     }

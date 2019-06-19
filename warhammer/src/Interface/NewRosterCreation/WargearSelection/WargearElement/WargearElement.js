@@ -24,7 +24,6 @@ class WargearElement extends Component {
     
     render() {
         let AvailableOptions = this.props.AvailableOptions;
-        
             var Options = AvailableOptions.map(
                 (option) =>
                 <option className = "" key = {option.id} value = {option.id}>{option.Name}</option>
