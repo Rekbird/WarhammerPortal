@@ -71,11 +71,14 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "UnitPsychicPowers":
             return Object.assign({}, state, {Roster: SetUnitPsychicPowers(state.Roster, action)});
         case "DetachmentFaction":
-            return Object.assign({}, state, {Roster: SetDetachmentFaction(state.Roster, action)});
+            Result = SetDetachmentFaction(state.Roster, action);
+            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
         case "DetachmentType":
-            return Object.assign({}, state, {Roster: SetDetachmentType(state.Roster, action)});
+            Result = SetDetachmentType(state.Roster, action);
+            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
         case "ChapterTactic":
-            return Object.assign({}, state, {Roster: SetChapterTactic(state.Roster, action)});
+            Result = SetChapterTactic(state.Roster, action);
+            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
         case "NewDetachment":
             Result = AddNewDetachment(state.Roster, action);
             return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.ActiveDetachment, Action: Result.Action});
@@ -167,22 +170,43 @@ const SetUnitPsychicPowers = (roster, action) => {
 const SetDetachmentFaction = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
     let NeededDetachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    let DetachIndex = Detachments.indexOf(DetachIndex);
+    NeededDetachment = Object.assign({}, NeededDetachment);
     NeededDetachment.Faction = action.Faction;
-    return Object.assign({}, roster, {RosterDetachments: Detachments});
+    Detachments.splice(DetachIndex, 1, NeededDetachment);
+    //Detachments.push(NeededDetachment);
+    return {
+        Roster: Object.assign({}, roster, {RosterDetachments: Detachments}),
+        Detachment: NeededDetachment
+    }
 }
 
 const SetDetachmentType = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
     let NeededDetachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    let DetachIndex = Detachments.indexOf(DetachIndex);
+    NeededDetachment = Object.assign({}, NeededDetachment);
     NeededDetachment.Detachment = action.DetachmentType;
-    return Object.assign({}, roster, {RosterDetachments: Detachments});
+    Detachments.splice(DetachIndex, 1, NeededDetachment);
+    //Detachments.push(NeededDetachment);
+    return {
+        Roster: Object.assign({}, roster, {RosterDetachments: Detachments}),
+        Detachment: NeededDetachment
+    }
 }
 
 const SetChapterTactic = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
     let NeededDetachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    let DetachIndex = Detachments.indexOf(DetachIndex);
+    NeededDetachment = Object.assign({}, NeededDetachment);
     NeededDetachment.ChapterTactic = action.ChapterTactic;
-    return Object.assign({}, roster, {RosterDetachments: Detachments});
+    Detachments.splice(DetachIndex, 1, NeededDetachment);
+    //Detachments.push(NeededDetachment);
+    return {
+        Roster: Object.assign({}, roster, {RosterDetachments: Detachments}),
+        Detachment: NeededDetachment
+    }
 }
 
 const AddNewDetachment = (roster, action) => {

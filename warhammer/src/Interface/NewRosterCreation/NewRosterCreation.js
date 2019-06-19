@@ -32,16 +32,17 @@ class RosterCreation extends Component{
         this.EditDetachment = this.EditDetachment.bind(this);
         this.CopyDetachment = this.CopyDetachment.bind(this);
         this.DeleteDetachment = this.DeleteDetachment.bind(this);
-        this.AddNewUnit = this.AddNewUnit.bind(this);
+        //this.AddNewUnit = this.AddNewUnit.bind(this);
         this.EditUnit = this.EditUnit.bind(this);
         this.CopyUnit = this.CopyUnit.bind(this);
         this.DeleteUnit = this.DeleteUnit.bind(this);
         this.EditRoster = this.EditRoster.bind(this);
         this.showUnitSelectionList = this.showUnitSelectionList.bind(this);
-        this.handleRosterDetachmentChange = this.handleRosterDetachmentChange.bind(this);
-        this.handleRosterChange = this.handleRosterChange.bind(this);
+        //this.handleRosterDetachmentChange = this.handleRosterDetachmentChange.bind(this);
+        //this.handleRosterChange = this.handleRosterChange.bind(this);
     }
 
+    /*
     handleRosterDetachmentChange = (RosterDetachment, Faction, DetachmentType, ChapterTactic) => {
         if(RosterDetachment) {
             if(Faction) {
@@ -59,10 +60,10 @@ class RosterCreation extends Component{
                 //Roster: this.state.Roster,
                 RosterChanged: !this.state.RosterChanged
             });
-            */
+            
         }
     }
-
+*/
     AddNewDetachment = () => {
         /*
         let Roster = this.state.Roster;
@@ -135,7 +136,7 @@ class RosterCreation extends Component{
         */
         this.props.DeleteDetachment(Detachment.id);
     }
-
+    /*
     AddNewUnit = (Detachment, Unit) => {
         /*
         Detachment.RosterUnits.push(Unit);
@@ -147,7 +148,7 @@ class RosterCreation extends Component{
             ActiveUnit: Unit,
             RosterChanged: !this.state.RosterChanged
         });
-        */
+        
        let NewId = 1;
        this.props.Roster.RosterDetachments.forEach((element) => {
            if(!!element.RosterUnits) {
@@ -157,7 +158,7 @@ class RosterCreation extends Component{
        this.props.AddNewUnit(Detachment.id, NewId, Unit);
        this.props.RosterAction("Unit Editing");
     }
-
+    */
     EditUnit = (Unit) => {
         /*
         this.setState({
@@ -216,6 +217,7 @@ class RosterCreation extends Component{
        this.props.RosterAction("Roster Editing");
     }
 
+    /*
     handleRosterChange = (Name,MaxPL,MaxPTS) => {
         //let Roster = this.state.Roster;
         if(Name != "--none--") {
@@ -230,12 +232,13 @@ class RosterCreation extends Component{
             //Roster.MaxPTS = MaxPTS;
             this.props.RosterMaxPTS(MaxPTS);
         }
-        /*
+        
         this.setState({
             Roster: Roster
         });
-        */
+        
     }
+    */
 
     showUnitSelectionList = (Detachment) => {
         /*
@@ -255,20 +258,20 @@ class RosterCreation extends Component{
         let WorkingArea;
         switch(this.props.Action) {
             case "Roster Editing": 
-                WorkingArea = <RosterEditing Roster = {this.props.Roster} handleRosterChange = {this.handleRosterChange}/>;
+                WorkingArea = <RosterEditing/>;
             break;
 
             case "Detachment Editing": 
                 console.log("Детач из конструктора в рендере "+this.props.ActiveDetachment.id);
-                WorkingArea = <DetachmentEditing handleRosterDetachmentChange = {this.handleRosterDetachmentChange} RosterDetachment = {this.props.ActiveDetachment}/>;
+                WorkingArea = <DetachmentEditing/>;
             break;
 
             case "Unit Selection": 
-                WorkingArea = <UnitSelection Faction = {this.props.ActiveDetachment.Faction} Detachment = {this.props.ActiveDetachment} AddNewUnit = {this.AddNewUnit}/>;
+                WorkingArea = <UnitSelection/>;
             break;
 
             case "Unit Editing": 
-                WorkingArea = <UnitEditing Unit = {this.props.ActiveUnit}/>;
+                WorkingArea = <UnitEditing/>;
             break;
         }
         return(
