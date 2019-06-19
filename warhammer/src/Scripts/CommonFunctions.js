@@ -204,10 +204,10 @@ export function GetUnitModels(UnitId) {
 
     let Model2 = {
         id: 2,
-        Name: "Hive Tyrant",
-        Cost: 450,
+        Name: "Dire Avenger Exarch",
+        Cost: 11,
         MaxQuant: 1,
-        MinQuant: "",
+        MinQuant: 0,
         ModelsIncluding: 1,
         UnitId: ""
     };
@@ -482,11 +482,15 @@ export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
 
 export function GetRosterUnitModels(RosterUnit) {
     let RosterUnitModels = [];
-    let BaseModels = GetUnitModels(RosterUnit.BaseUnit);
-    for(let i=0;i<BaseModels.length;i++) {
-        let NewRosterModel = new RosterModel(i+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
+    let BaseModels = RosterUnit.BaseUnit.Models;
+    let count = 0;
+    for(let i=0; i<BaseModels.length; i++) {
+        for (let j=0; j < BaseModels[i].MinQuant; j++) {
+        let NewRosterModel = new RosterModel(count+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
+        count++;
         RosterUnitModels.push(NewRosterModel);
         console.log(NewRosterModel);
+        }
     }
     console.log(RosterUnitModels.length);
     return RosterUnitModels;
