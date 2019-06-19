@@ -33,7 +33,8 @@ class UnitEditing extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ActiveModel: state.RosterEditing.ActiveModel
+        ActiveModel: state.RosterEditing.ActiveModel,
+        Unit: state.RosterEditing.ActiveUnit
     }
 }
 
