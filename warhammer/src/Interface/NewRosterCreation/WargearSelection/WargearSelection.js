@@ -17,7 +17,7 @@ class WargearSelection extends Component {
     constructor(props) {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
-        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
+        this.WargearSlots = [];
         
     }
     
@@ -31,7 +31,6 @@ class WargearSelection extends Component {
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
-        //let AllSelectedOptions = GetSelectedUnitOptions(this.props.RosterModels)
         let couldBeIncluded;
 
         if (!!CurrentModel.RosterWargearSlots && CurrentModel.RosterWargearSlots.length > 0) {
@@ -85,7 +84,7 @@ class WargearSelection extends Component {
     }
  //this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)
     render() {
-
+        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
