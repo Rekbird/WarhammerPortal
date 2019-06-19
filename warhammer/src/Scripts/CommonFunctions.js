@@ -12,6 +12,7 @@ import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 import {RosterModel} from "../Classes/CommonClasses.js";
 import {UnitRole} from "../Classes/CommonClasses.js";
+import {WarlordTrait} from "../Classes/CommonClasses.js";
 import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
 import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
 import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
@@ -39,24 +40,24 @@ export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     //Эмуляция получения объектов из базы
     if (!!TraitIds && TraitIds.length > 0) {
         for (let i = 0; i < TraitIds.length; i++) {
-            let WarlordTrait = {
+            let NewWarlordTrait = {
                     id : TraitIds[i],
                     Name : "TraitName" + TraitIds[i],
                     Description : "TratiDescr" + TraitIds[i]
             };
-            WarlordTraits.push(WarlordTrait);
+            WarlordTraits.push(NewWarlordTrait);
         }
     }
     //Обработка объектов из базы, преобразование их в экземпляры классов
     if(!!WarlordTraits && WarlordTraits.length > 0) {
         if(WarlordTraits.length == 1) {
-            let WarlordTrait = new WarlordTrait(WarlordTraits[0].id,WarlordTraits[0].Name,WarlordTraits[0].Description);
-            return WarlordTrait;
+            let NewWarlordTrait = new WarlordTrait(WarlordTraits[0].id,WarlordTraits[0].Name,WarlordTraits[0].Description);
+            return NewWarlordTrait;
         } else {
             let ReturnedTraits = [];
             for(let i=0;i<WarlordTraits.length;i++) {
-                let WarlordTrait = new WarlordTrait(WarlordTraits[i].id,WarlordTraits[i].Name,WarlordTraits[i].Description);
-                ReturnedTraits.push(WarlordTrait);
+                let NewWarlordTrait = new WarlordTrait(WarlordTraits[i].id,WarlordTraits[i].Name,WarlordTraits[i].Description);
+                ReturnedTraits.push(NewWarlordTrait);
             }
             return ReturnedTraits;
         }

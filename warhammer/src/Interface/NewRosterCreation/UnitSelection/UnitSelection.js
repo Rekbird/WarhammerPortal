@@ -49,9 +49,9 @@ class UnitSelection extends Component {
            BaseUnit.UnitRole.id,
            false,
            BaseUnit.ForeignLink,
-           BaseUnit.Faction.id
+           BaseUnit.Faction
            );
-       this.props.AddNewUnit(this.props.Detachment.id, NewId, BaseUnit);
+       this.props.AddNewUnit(this.props.Detachment.id, NewId, ReturnedBaseUnit);
        this.props.RosterAction("Unit Editing");
         //this.props.AddNewUnit(this.props.Detachment, BaseUnit)
     }
