@@ -6,6 +6,7 @@ import "./UnitSelection.css";
 import UnitsList from "../UnitsList/UnitsList.js";
 import UnitRolesList from "../UnitRolesList/UnitRolesList.js";
 import {RosterUnit} from "../../../Classes/CommonClasses.js";
+import {Unit} from "../../../Classes/CommonClasses.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class UnitSelection extends Component {
@@ -38,6 +39,18 @@ class UnitSelection extends Component {
                 NewId = NewId+element.RosterUnits.length;
            }
        });
+       const ReturnedBaseUnit = new Unit(
+           BaseUnit.id,
+           BaseUnit.Name,
+           BaseUnit.Description,
+           BaseUnit.MaxModelQuantity,
+           BaseUnit.KnowsSmite,
+           BaseUnit.Named,
+           BaseUnit.UnitRole.id,
+           false,
+           BaseUnit.ForeignLink,
+           BaseUnit.Faction.id
+           );
        this.props.AddNewUnit(this.props.Detachment.id, NewId, BaseUnit);
        this.props.RosterAction("Unit Editing");
         //this.props.AddNewUnit(this.props.Detachment, BaseUnit)
