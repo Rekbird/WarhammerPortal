@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./RosterEditing.css";
 import { connect } from 'react-redux';
+import * as ActionCreators from "../../../Store/ActionsCreators.js";
 
 class RosterEditing extends Component {
     constructor(props) {
@@ -24,7 +25,8 @@ class RosterEditing extends Component {
             Name: event.target.value
         });
         */
-        this.props.handleRosterChange(event.target.value,"--none--","--none--");
+        //this.props.handleRosterChange(event.target.value,"--none--","--none--");
+        this.props.RosterName(event.target.value);
     }
 
     handleMaxPLChange = (event) => {
@@ -36,7 +38,8 @@ class RosterEditing extends Component {
             MaxPL:MaxPL
         });
         */
-        this.props.handleRosterChange("--none--",MaxPL,"--none--");
+        //this.props.handleRosterChange("--none--",MaxPL,"--none--");
+        this.props.RosterMaxPL(MaxPL);
     }
 
     handleMaxPTSChange = (event) => {
@@ -47,7 +50,8 @@ class RosterEditing extends Component {
             MaxPTS:MaxPTS
         });
         */
-        this.props.handleRosterChange("--none--","--none--",MaxPTS);
+        //this.props.handleRosterChange("--none--","--none--",MaxPTS);
+        this.props.RosterMaxPTS(MaxPTS);
     }
 
     render = () => {
@@ -81,8 +85,17 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
+        RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
+        RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS))
+    }
+}
+
 const containerRosterEditing = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
   )(RosterEditing);
 
 export default containerRosterEditing;

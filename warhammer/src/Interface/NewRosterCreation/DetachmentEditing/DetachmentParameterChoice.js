@@ -40,6 +40,7 @@ class DetachmentParameterChoice extends Component {
                 2- Factions
                 3 - ChapterTactics
             */
+           console.log("Вызвали рендер в компоненте DetachmentParameterChoice")
             let ObjectsArray = [];
             let SelectLabel = "";
             if(this.props.ListTypeNumber == 1) {
