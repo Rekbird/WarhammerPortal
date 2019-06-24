@@ -25,14 +25,16 @@ class UnitEditing extends Component {
             <div className = 'UnitEditing__Common'>
                 <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>
                 {EditUnitPsychicPowersComponent}
-                <div className = 'UnitEditing__ModelsList'>
-                    <UnitModelsList/>
+                <div className = 'UnitEditing__ModelsContainer'>
+                    <div className = 'UnitEditing__ModelsList'>
+                        <UnitModelsList/>
+                    </div>
+                    <div className = 'UnitEditing__AddNewModel'>
+                        {AddNewModelComponent}
+                    </div >
                 </div>
                 <div className = 'UnitEditing__WargearSelection'>
                     {WargearSelectionComponent}
-                </div >
-                <div className = 'UnitEditing__AddNewModel'>
-                    {AddNewModelComponent}
                 </div >
             </div>
         )
