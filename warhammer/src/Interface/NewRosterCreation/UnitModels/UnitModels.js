@@ -38,7 +38,7 @@ class UnitModelsList extends Component {
             return true;
         
         } else if (this.models.filter(function (model){           
-            return model.BaseModel.id = currentModel.id}
+            return model.BaseModel.id == currentModel.id}
             ).length >= currentModel.MaxQuant) {
                 return false;
         } else {

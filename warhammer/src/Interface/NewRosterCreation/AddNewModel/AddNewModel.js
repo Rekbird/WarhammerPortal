@@ -31,10 +31,18 @@ class AddNewModel extends Component {
     }
 
     HandleButtonClick = () => {
+        if (!!this.ChosenModel) {
+
+        }
         let NewRosterModel = new RosterModel((this.props.Models.length + 1),this.ChosenModel,this.props.Unit.id,this.ChosenModel.Cost); 
         let NewUnitModels = this.props.Models.slice();
         NewUnitModels.splice((NewUnitModels.length),0,NewRosterModel);
         this.props.HandleAddButtonClick(NewUnitModels);
+    }
+
+    HandleOnchangeSelect = (event) => {
+        let ChosenModelId = event.target.value;
+        this.ChosenModel = this.props.BaseModels.filter((model) => model.id == ChosenModelId)[0];
     }
 
     render() {
@@ -47,7 +55,7 @@ class AddNewModel extends Component {
                 );
             return (
                 <div>
-                <select>{Options}</select>
+                <select onChange = {this.HandleOnchangeSelect}>{Options}</select>
                 <img src = {AddMenuButton} className = '' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )
