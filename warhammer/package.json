@@ -6,9 +6,9 @@
     "create-react-app": "^2.1.8",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-redux": "^7.0.3",
+    "react-redux": "^7.1.0",
     "react-scripts": "^2.1.8",
-    "redux": "^4.0.1",
+    "redux": "^1.0.1",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -25,5 +25,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "redux-devtools": "^3.5.0"
+  }
 }

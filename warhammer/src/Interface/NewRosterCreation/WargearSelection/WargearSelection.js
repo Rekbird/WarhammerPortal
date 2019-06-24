@@ -77,19 +77,18 @@ class WargearSelection extends Component {
         }
         return AllSelectedOptions;
     }
- //this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)
- //slot.BaseSlot.Options
+
     render() {
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement className = 'WargearElement__Component' key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
             );
         return (
-            <div>
-                <h3>{this.props.CurrentModel.BaseModel.Name}</h3>
-               <ul>{RosterWargearSlots}</ul>
+            <div className = 'WargearSelection__Component'>
+                <h3 className = 'WargearSelection__Title'>{this.props.CurrentModel.BaseModel.Name} - Wargear options</h3>
+                <ul>{RosterWargearSlots}</ul>
             </div>
         )
     }
