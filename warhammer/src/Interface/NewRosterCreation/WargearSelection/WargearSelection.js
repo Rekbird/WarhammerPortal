@@ -27,11 +27,11 @@ class WargearSelection extends Component {
     }
     
     GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
-        let AvailableOptions = [];
+        let AvailableOptions = [CurrentSlot.SelectedOption];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
-        let couldBeIncluded;
+        let couldBeIncluded = true;
 
         if (!!CurrentModel.RosterWargearSlots && CurrentModel.RosterWargearSlots.length > 0) {
             for (let i = 0; i < CurrentModel.RosterWargearSlots.length; i++) {
@@ -45,21 +45,16 @@ class WargearSelection extends Component {
                 let AlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
                 let CanCarry = this.props.RosterModels.length / BaseOptions[i].PerXmodels;
                 
-                if (CanCarry > AlreadyHave) {
-                    couldBeIncluded = true;
-                }
+                couldBeIncluded = (CanCarry > AlreadyHave);
             }
 
             if (!!BaseOptions[i].CountPerModel) {
                 let alreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
-                if (couldBeIncluded != undefined) {
-                    couldBeIncluded = couldBeIncluded && (alreadyHave < BaseOptions[i].CountPerModel);
-                } else {
-                    couldBeIncluded = (alreadyHave < BaseOptions[i].CountPerModel);
-                }
+                
+                couldBeIncluded = (alreadyHave < BaseOptions[i].CountPerModel);
             }
 
-            if (couldBeIncluded) {
+            if (couldBeIncluded && BaseOptions[i] != CurrentSlot.SelectedOption) {
                 AvailableOptions.push(BaseOptions[i]);
             }
         }
@@ -82,18 +77,18 @@ class WargearSelection extends Component {
         }
         return AllSelectedOptions;
     }
- //this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)
+
     render() {
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement key = {slot.id} CurrentSlot = {slot} AvailableOptions = {slot.BaseSlot.Options} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement className = 'WargearElement__Component' key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
             );
         return (
-            <div>
-                <h3>{this.props.CurrentModel.BaseModel.Name}</h3>
-               <ul>{RosterWargearSlots}</ul>
+            <div className = 'WargearSelection__Component'>
+                <h3 className = 'WargearSelection__Title'>{this.props.CurrentModel.BaseModel.Name} - Wargear options</h3>
+                <ul>{RosterWargearSlots}</ul>
             </div>
         )
     }

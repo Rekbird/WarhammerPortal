@@ -1,0 +1,18 @@
+.UnitEditing__Common {
+    width: auto;
+}
+
+.UnitEditing__ModelsList {
+    vertical-align: top;
+    display: inline-block;
+    width: 35%;
+}
+
+.UnitEditing__WargearSelection {
+    display: inline-block;
+    width: 65%;
+}
+
+.UnitEditing__AddNewModel {
+    display: block;
+}

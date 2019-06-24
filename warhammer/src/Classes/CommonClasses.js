@@ -3,7 +3,7 @@ import * as utils from "../Scripts/CommonFunctions.js";
 
 //<Dictionary Unit Elements>------------------------------------
 export class Unit {
-    constructor(id,Name,Description,MaxModelQuant,KnowsSmite,Named,UnitRoleId,IndexUnit,ExternalURL,FactionId) {
+    constructor(id,Name,Description,MaxModelQuant,KnowsSmite,Named,UnitRoleId,IndexUnit,ExternalURL,FactionId,Image) {
         this.id = id;
         this.Name = Name;
         this.Description = Description;
@@ -17,8 +17,9 @@ export class Unit {
         this.IndexUnit = IndexUnit;
         this.ExternalURL = ExternalURL;
         this.PowerLevel = utils.GetUnitPowerLevel(id);
-        this.Faction = FactionId;
+        this.Faction = utils.GetFaction(FactionId);
         this.Models = utils.GetUnitModels(id);
+        this.Image = Image;
     }
 
     get DefaultUnitmodels() {
@@ -182,6 +183,15 @@ export class RosterModel {
             }
         }
         return ModelCopy;
+    }
+
+    recalculationRosterModel = () => {
+        this.TotalCost = 0;
+        this.RosterWargearSlots.forEach((slot) =>
+            slot.SelectedOption.WargearIncluded.forEach((wargear) =>
+                this.TotalCost += wargear.Cost
+            )
+        );
     }
 }
 

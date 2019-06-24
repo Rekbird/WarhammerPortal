@@ -1,9 +1,8 @@
 .unitModels__list {
-    border: 2px solid;
-    border-color: rgba(21, 156, 122, 0.650);
-    border-radius: 10px;
-    background-color: rgba(21, 156, 122, 0.150);
-    width: 350px;
-    padding-left: 10px;
-    padding-right:10px;
+    padding: 10px;
+    margin: 3px;
+    clear: both;
+    border: 1px solid rgb(6, 41, 34);
+    border-radius:5px;
+    overflow: hidden;
 }

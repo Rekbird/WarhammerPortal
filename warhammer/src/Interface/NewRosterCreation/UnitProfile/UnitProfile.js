@@ -26,12 +26,12 @@ class UnitProfile extends Component {
                     <img className="UnitProfile__Image" src={this.props.Unit.Image} alt = {this.props.Unit.Name} />
                     <div className = "UnitProfile__Button_block">
                         {AddButton}
-                        <div><a href={this.props.Unit.ForeignLink} target="_blank"><button  className = "UnitProfile__Button">VIEW</button></a></div>
+                        <div><a href={this.props.Unit.ExternalURL} target="_blank"><button  className = "UnitProfile__Button">VIEW</button></a></div>
                     </div>
                 </div>
                 <div className = "UnitProfile__Header_block">
                     <img className = "UnitProfile__Header_image" src= {this.props.Unit.UnitRole.Image} alt={this.props.Unit.UnitRole.Name} />
-                    <img className = "UnitProfile__Header_image" src= {this.props.Unit.Faction.Image} alt={this.props.Unit.Faction.Name} />
+                    <img className = "UnitProfile__Header_image" src= {this.props.Unit.Faction.FactionLogo} alt={this.props.Unit.Faction.Name} />
                     <div className = "UnitProfile__Header_div"><h3 className = "UnitProfile__Header">{this.props.Unit.Name}</h3></div>
                 </div>
                 <p style={{color: "black", margin: "10px"}}>{this.props.Unit.Description}</p>

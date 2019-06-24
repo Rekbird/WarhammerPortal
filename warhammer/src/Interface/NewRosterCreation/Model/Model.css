@@ -1,6 +1,6 @@
 
 .model__element {
-    width: auto;
+    width: 300px;
 }
 
 .model__title {
@@ -23,8 +23,10 @@
 }
 
 .model__element:hover .model__titleText {
-    border-color: rgba(21, 156, 122, 0.363);
-    background-color: rgba(21, 156, 122, 0.363);
+    background-color: rgba(6, 86, 87, 0.877);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
     border-radius:3px;
     transition: 0.3s;
     padding-left: 4px;
@@ -32,12 +34,12 @@
 }
 
 .model__titleText {
-  font-weight: bold;
-  text-align: left;
-  vertical-align: middle;
-  margin-right: 15px;
-  font-size: 18px;
-  font-family: 'Times New Roman', Times, serif;
+    color: rgba(6, 86, 87, 1);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+    margin-right: 15px;
 }
 
 .model__buttons {
@@ -54,7 +56,7 @@
         background: linear-gradient(rgb(255,255,255), rgb(240,240,240));
         box-shadow:
          0 0 3px rgba(0,0,0,0) inset,
-         0 1px 1px 1px rgba(255,255,255,.2),
+         0 1px 1px 1px rgba(6, 86, 87,.2),
          0 -1px 1px 1px rgba(0,0,0,0);
         transition: .2s ease-in-out;
 }
@@ -63,13 +65,13 @@
 .model__buttons:hover:not(:active) {
     box-shadow:
     0 0 3px rgba(0,0,0,0) inset,
-    0 1px 1px 1px rgba(21, 156, 123, 0.582),
-    0 -1px 1px 1px rgba(21, 156, 123, 0.582);
+    0 1px 1px 1px rgba(6, 86, 87, 0.582),
+    0 -1px 1px 1px rgba(6, 86, 87, 0.582);
 }
 .model__buttons:active {
     background: linear-gradient(rgb(250,250,250), rgb(235,235,235));
     box-shadow:
     0 0 3px rgba(0,0,0,.5) inset,
-    0 1px 1px 1px rgba(255,255,255,.4),
+    0 1px 1px 1px rgba(6, 86, 87,.4),
     0 -1px 1px 1px rgba(0,0,0,.1);
 }

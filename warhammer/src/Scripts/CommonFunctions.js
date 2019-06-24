@@ -8,6 +8,7 @@ import {Detachment} from "../Classes/CommonClasses.js";
 import {Faction} from "../Classes/CommonClasses.js";
 import {ChapterTactic} from "../Classes/CommonClasses.js";
 import {Model} from "../Classes/CommonClasses.js";
+import {Unit} from "../Classes/CommonClasses.js";
 import {NumberOfSpells} from "../Classes/CommonClasses.js";
 import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 import {RosterModel} from "../Classes/CommonClasses.js";
@@ -20,6 +21,9 @@ import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 import GetFactionUnitsByRole from "./GetFactionUnitsByRole";
 import ReturnUnits from "../Data/Units/Units.js";
 import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
+import GetFactionUnits from "./GetFactionUnits.js";
+import ReturnFactions from "../Data/FactionImages/FactionImages.js";
+//import GetAvailableRoles from "./GetAvailableRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     /*
@@ -133,11 +137,77 @@ export function GetAvailableSpells(UnitId) {
     return Spells;
 }
 
+export const GetUnits = (FactionId, RoleId) => {
+    let DictionaryUnits = GetFactionUnitsByRole(FactionId, RoleId);
+    let ReturnedUnits = [];
+
+    DictionaryUnits.forEach((element) =>
+        ReturnedUnits.push(
+            new Unit(
+                element.id,
+                element.Name,
+                element.Description,
+                element.MaxModelQuantity,
+                element.KnowsSmite,
+                element.Named,
+                element.UnitRole.id,
+                false,
+                element.ForeignLink,
+                element.Faction.id,
+                element.Image
+            )
+        )
+    );
+    return ReturnedUnits;
+}
+
+export const GetUnitRoles = () => {
+    const DictionaryRoles = ReturnUnitRoles();
+    let ReturnedRoles = [];
+
+    DictionaryRoles.forEach((element) =>
+        ReturnedRoles.push(
+            new UnitRole(
+                element.id,
+                element.Name,
+                element.Image
+            )
+        )
+    )
+    console.log("GetUnitRoles : Unit Roles "+ReturnedRoles);
+    return ReturnedRoles;
+}
+
+export const GetAvailableRoles = (FactionId) => {
+    const Units = GetFactionUnits(FactionId);
+    //console.log("GetFactionUnits" + Units.length);
+    let Roles =[];
+    for(let j=0;j<Units.length;j++) {
+        let Unit = Units[j];
+         Roles.push(Unit.UnitRole);
+    }
+    //var Roles = Units.UnitRole;
+    //console.log("Units roles " + Roles.length);
+    let ReturnedRoles = [];
+    if(Roles && (Roles.length > 0)) {
+        for(let i=0;i<Roles.length;i++) {
+            let Role = Roles[i];
+            if(ReturnedRoles.indexOf(Role) == -1) {
+                ReturnedRoles.push(Role);
+            }
+        }
+    }
+    //console.log("ReturnedRoles" + ReturnedRoles.length);
+    return ReturnedRoles;
+}
 
 export function GetUnitRole(RoleId) {
    
-    let UnitRoles = [];
-    let ReturnedUnitRoles =[];
+    let UnitRoles = GetUnitRoles();
+    let ReturnedUnitRole = UnitRoles.filter((role) => role.id == RoleId)[0];
+    console.log("GetUnitRole : Returned Role " + ReturnedUnitRole);
+    return ReturnedUnitRole;
+    /*
     let Role1 = {
         id:1,
         Name: "Troops",
@@ -158,7 +228,7 @@ export function GetUnitRole(RoleId) {
     }
    return ReturnedUnitRoles.filter((role) => role.id == RoleId)[0];
    //return ReturnedUnitRoles[RoleId];
-   
+   */
 }
 
 // export default GetUnitRole;
@@ -251,7 +321,7 @@ export function GetWargearOptions(SlotId) {
     let WargearOption1 = {
         id: 1,
         Name: "Option1",
-        CountPerModel: 1,
+        CountPerModel: 3,
         PerXmodels: null,
         Default: true,
         LinkedOptionsId: []
@@ -271,7 +341,7 @@ export function GetWargearOptions(SlotId) {
         id: 3,
         Name: "Option3",
         CountPerModel: 1,
-        PerXmodels: null,
+        PerXmodels: 10,
         Default: false,
         LinkedOptionsId: []
     };
@@ -335,8 +405,9 @@ export function GetRosterWargearSlots(BaseWargearSlots) {
 
 
 export function GetFactions() {
-    let Factions = [];
+    let Factions = ReturnFactions();
     let ReturnedFactions = [];
+    /*
     let Faction1 = {
         id: 28,
         Name: "Craftworlds",
@@ -353,10 +424,24 @@ export function GetFactions() {
 		FactionLogo: ""
     };
     Factions.push(Faction2);
-
+    
     for(let i=0;i<Factions.length;i++) {
         ReturnedFactions.push(new Faction(Factions[i].id,Factions[i].Name,Factions[i].CodexImage,Factions[i].IndexImage,Factions[i].FactionLogo));
     }
+    */
+   Factions.forEach((element) => (
+        ReturnedFactions.push(
+                    new Faction(
+                    element.id,
+                    element.Name,
+                    element.Image,
+                    null,
+                    element.Logo
+                    )
+        )
+    )
+   )
+
     return ReturnedFactions;
 }
 // export default GetFactions;
@@ -476,6 +561,8 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
 export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
     let Answer;
     let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
+    console.log(Role.id);
+    console.log(Detachment.DetachOptions);
     let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
     Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
     return Answer;
