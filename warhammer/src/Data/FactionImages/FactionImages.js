@@ -35,6 +35,7 @@ import OrksImage from "./OrksImage.jpg";
 import TauEmpireImage from "./TauEmpireImage.png";
 import TyranidsImage from "./TyranidsImage.jpg";
 import FortificationsImage from "./FortificationsImage.jpg";
+import CraftworldLogo from "../Factions/CraftworldsLogo.png";
 
 function ReturnFactionImages() {
     var Faction1 = {
@@ -42,7 +43,8 @@ function ReturnFactionImages() {
         Name: "Adepta Sororitas",
         FlavorText: "",
         Description: "",
-        Image: AdeptaSororitasImage
+        Image: AdeptaSororitasImage,
+        Logo: ""
     };
     
     var Faction2 = {
@@ -50,35 +52,40 @@ function ReturnFactionImages() {
         Name: "Adeptus Custodes",
         FlavorText: "",
         Description: "",
-        Image: AdeptusCustodesImage
+        Image: AdeptusCustodesImage,
+        Logo: ""
     };
     var Faction3 = {
         id: 3,
         Name: "Adeptus Mechanicus",
         FlavorText: "",
         Description: "",
-        Image: AdeptusMechanicusImage
+        Image: AdeptusMechanicusImage,
+        Logo: ""
     };
     var Faction4 = {
         id: 4,
         Name: "Astra Militarum",
         FlavorText: "",
         Description: "",
-        Image: AstraMilitarumImage
+        Image: AstraMilitarumImage,
+        Logo: ""
     };
     var Faction5 = {
         id: 5,
         Name: "Blood Angels",
         FlavorText: "",
         Description: "",
-        Image: BloodAngelsImage
+        Image: BloodAngelsImage,
+        Logo: ""
     };
     var Faction6 = {
         id: 6,
         Name: "Dark Angels",
         FlavorText: "",
         Description: "",
-        Image: DarkAngelsImage
+        Image: DarkAngelsImage,
+        Logo: ""
     };
     
     var Faction7 = {
@@ -86,35 +93,40 @@ function ReturnFactionImages() {
         Name: "Death Corps of Krieg",
         FlavorText: "",
         Description: "",
-        Image: DeathCorpsofKriegImage
+        Image: DeathCorpsofKriegImage,
+        Logo: ""
     };
     var Faction8 = {
         id: 8,
         Name: "Deathwatch",
         FlavorText: "",
         Description: "",
-        Image: DeathwatchImage
+        Image: DeathwatchImage,
+        Logo: ""
     };
     var Faction9 = {
         id: 9,
         Name: "Elisyan Drop Troops",
         FlavorText: "",
         Description: "",
-        Image: ElisyanDropTroopsImage
+        Image: ElisyanDropTroopsImage,
+        Logo: ""
     };
     var Faction10 = {
         id: 10,
         Name: "Grey Knights",
         FlavorText: "",
         Description: "",
-        Image: GreyKnightsImage
+        Image: GreyKnightsImage,
+        Logo: ""
     };
     var Faction11 = {
         id: 11,
         Name: "Imperial Knights",
         FlavorText: "",
         Description: "",
-        Image: ImperialKnightsImage
+        Image: ImperialKnightsImage,
+        Logo: ""
     };
     
     var Faction12 = {
@@ -122,35 +134,40 @@ function ReturnFactionImages() {
         Name: "Inquisition",
         FlavorText: "",
         Description: "",
-        Image: InquisitionImage
+        Image: InquisitionImage,
+        Logo: ""
     };
     var Faction13 = {
         id: 13,
         Name: "Officio Assasinorum",
         FlavorText: "",
         Description: "",
-        Image: OfficioAssasinorumImage
+        Image: OfficioAssasinorumImage,
+        Logo: ""
     };
     var Faction14 = {
         id: 14,
         Name: "Sisters of Silence",
         FlavorText: "",
         Description: "",
-        Image: SistersofSilenceImage
+        Image: SistersofSilenceImage,
+        Logo: ""
     };
     var Faction15 = {
         id: 15,
         Name: "Space Marines",
         FlavorText: "",
         Description: "",
-        Image: SpaceMarinesImage
+        Image: SpaceMarinesImage,
+        Logo: ""
     };
     var Faction16 = {
         id: 16,
         Name: "Space Wolves",
         FlavorText: "",
         Description: "",
-        Image: SpaceWolvesImage
+        Image: SpaceWolvesImage,
+        Logo: ""
     };
     
     var Faction17 = {
@@ -158,35 +175,40 @@ function ReturnFactionImages() {
         Name: "Titan Legions",
         FlavorText: "",
         Description: "",
-        Image: TitanLegionsImage
+        Image: TitanLegionsImage,
+        Logo: ""
     };
     var Faction18 = {
         id: 18,
         Name: "Chaos Bastions",
         FlavorText: "",
         Description: "",
-        Image: ChaosBastionsImage
+        Image: ChaosBastionsImage,
+        Logo: ""
     };
     var Faction19 = {
         id: 19,
         Name: "Chaos Daemons",
         FlavorText: "",
         Description: "",
-        Image: ChaosDaemonsImage
+        Image: ChaosDaemonsImage,
+        Logo: ""
     };
     var Faction20 = {
         id: 20,
         Name: "Chaos Space Marines",
         FlavorText: "",
         Description: "",
-        Image: ChaosSpaceMarinesImage
+        Image: ChaosSpaceMarinesImage,
+        Logo: ""
     };
     var Faction21 = {
         id: 21,
         Name: "Death Guard",
         FlavorText: "",
         Description: "",
-        Image: DeathGuardImage
+        Image: DeathGuardImage,
+        Logo: ""
     };
     
     var Faction22 = {
@@ -194,35 +216,40 @@ function ReturnFactionImages() {
         Name: "Emperor's Children",
         FlavorText: "",
         Description: "",
-        Image: EmperorsChildrenImage
+        Image: EmperorsChildrenImage,
+        Logo: ""
     };
     var Faction23 = {
         id: 23,
         Name: "Heretic Titan Legions",
         FlavorText: "",
         Description: "",
-        Image: HereticTitanLegionsImage
+        Image: HereticTitanLegionsImage,
+        Logo: ""
     };
     var Faction24 = {
         id: 24,
         Name: "Questor Traitoris",
         FlavorText: "",
         Description: "",
-        Image: QuestorTraitorisImage
+        Image: QuestorTraitorisImage,
+        Logo: ""
     };
     var Faction25 = {
         id: 25,
         Name: "Renegades and Heretics",
         FlavorText: "",
         Description: "",
-        Image: RenegadesandHereticsImage
+        Image: RenegadesandHereticsImage,
+        Logo: ""
     };
     var Faction26 = {
         id: 26,
         Name: "Thousand Sons",
         FlavorText: "",
         Description: "",
-        Image: ThousandSonsImage
+        Image: ThousandSonsImage,
+        Logo: ""
     };
     
     var Faction27 = {
@@ -230,35 +257,40 @@ function ReturnFactionImages() {
         Name: "World Eaters",
         FlavorText: "",
         Description: "",
-        Image: WorldEatersImage
+        Image: WorldEatersImage,
+        Logo: ""
     };
     var Faction28 = {
         id: 28,
         Name: "Craftworlds",
         FlavorText: "",
         Description: "",
-        Image: CraftworldsImage
+        Image: CraftworldsImage,
+        Logo: CraftworldLogo
     };
     var Faction29 = {
         id: 29,
         Name: "Drukhari",
         FlavorText: "",
         Description: "",
-        Image: DrukhariImage
+        Image: DrukhariImage,
+        Logo: ""
     };
     var Faction30 = {
         id: 30,
         Name: "Harlequins",
         FlavorText: "",
         Description: "",
-        Image: HarlequinsImage
+        Image: HarlequinsImage,
+        Logo: ""
     };
     var Faction31 = {
         id: 31,
         Name: "Ynnari",
         FlavorText: "",
         Description: "",
-        Image: YnnariImage
+        Image: YnnariImage,
+        Logo: ""
     };
     
     var Faction32 = {
@@ -266,42 +298,48 @@ function ReturnFactionImages() {
         Name: "Genestealer Cults",
         FlavorText: "",
         Description: "",
-        Image: GenestealerCultsImage
+        Image: GenestealerCultsImage,
+        Logo: ""
     };
     var Faction33 = {
         id: 33,
         Name: "Necrons",
         FlavorText: "",
         Description: "",
-        Image: NecronsImage
+        Image: NecronsImage,
+        Logo: ""
     };
     var Faction34 = {
         id: 34,
         Name: "Orks",
         FlavorText: "",
         Description: "",
-        Image: OrksImage
+        Image: OrksImage,
+        Logo: ""
     };
     var Faction35 = {
         id: 35,
         Name: "T'au Empire",
         FlavorText: "",
         Description: "",
-        Image: TauEmpireImage
+        Image: TauEmpireImage,
+        Logo: ""
     };
     var Faction36 = {
         id: 36,
         Name: "Tyranids",
         FlavorText: "",
         Description: "",
-        Image: TyranidsImage
+        Image: TyranidsImage,
+        Logo: ""
     };
     var Faction37 = {
         id: 37,
         Name: "Fortifications",
         FlavorText: "",
         Description: "",
-        Image: FortificationsImage
+        Image: FortificationsImage,
+        Logo: ""
     };
     
      

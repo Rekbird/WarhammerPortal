@@ -39,18 +39,6 @@ class UnitSelection extends Component {
                 NewId = NewId+element.RosterUnits.length;
            }
        });
-       const ReturnedBaseUnit = new Unit(
-           BaseUnit.id,
-           BaseUnit.Name,
-           BaseUnit.Description,
-           BaseUnit.MaxModelQuantity,
-           BaseUnit.KnowsSmite,
-           BaseUnit.Named,
-           BaseUnit.UnitRole.id,
-           false,
-           BaseUnit.ForeignLink,
-           BaseUnit.Faction.id
-           );
        this.props.AddNewUnit(this.props.Detachment.id, NewId, BaseUnit);
        this.props.RosterAction("Unit Editing");
         //this.props.AddNewUnit(this.props.Detachment, BaseUnit)
