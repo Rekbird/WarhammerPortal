@@ -577,6 +577,7 @@ export function GetRosterUnitModels(RosterUnit) {
         let NewRosterModel = new RosterModel(count+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
         count++;
         RosterUnitModels.push(NewRosterModel);
+        NewRosterModel = NewRosterModel.recalculateRosterModel();
         console.log(NewRosterModel);
         }
     }

@@ -111,7 +111,7 @@ export class Wargear {
     constructor(id,Name,Cost,Type,Relic,Image,ChapterTacticId) {
         this.id = id;
         this.Name = Name;
-        this.Cost = Cost;
+        this.Cost = (Cost) ? Cost : 0;
         this.Type = Type;
         this.Relic = Relic;
         this.Image = Image;
@@ -168,8 +168,9 @@ export class RosterModel {
         this.id = id;
         this.BaseModel = BaseModel;
         this.RosterUnitId = RosterUnitId;
-        this.TotalCost = TotalCost;
+        this.TotalCost = (TotalCost) ? TotalCost : 0;
         this.RosterWargearSlots = utils.GetRosterWargearSlots(BaseModel.WargearSlots);
+        this.recalculateRosterModel = this.recalculateRosterModel.bind(this);
     }
 
     copyRosterModel = () => {
@@ -185,13 +186,14 @@ export class RosterModel {
         return ModelCopy;
     }
 
-    recalculationRosterModel = () => {
-        this.TotalCost = 0;
+    recalculateRosterModel = () => {
+        this.TotalCost = this.BaseModel.Cost;
         this.RosterWargearSlots.forEach((slot) =>
             slot.SelectedOption.WargearIncluded.forEach((wargear) =>
                 this.TotalCost += wargear.Cost
             )
         );
+        return this;
     }
 }
 
@@ -215,8 +217,9 @@ export class RosterUnit {
         this.Models = Models;
         this.BaseUnit = BaseUnit;
         this.SpellsSelected = SpellsSelected;
-        this.TotalCost = TotalCost;
+        this.TotalCost = (TotalCost) ? TotalCost : 0;
         this.RosterDetachmentId = RosterDetachmentId;
+        this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
     }
 
     copyRosterUnit = (NewId = null) => {
@@ -231,22 +234,36 @@ export class RosterUnit {
         }
         return UnitCopy;
     }
+
+    recalculateRosterUnit = () => {
+        this.TotalCost = 0;
+        this.Models.forEach((model) => 
+            this.TotalCost += model.TotalCost
+        );
+        return this;
+    }
 }
 
 export class RosterDetachment {
-    constructor(id,RosterUnits,ChapterTactic,Detachment,Faction,RosterId,TotalDetachCost,TotalDetachPL) {
+    constructor(id,RosterUnits,ChapterTactic,Detachment,Faction,RosterId,TotalDetachCost,TotalDetachPL,TotalDetachCP) {
         this.id = id;
         this.RosterUnits = RosterUnits;
         this.ChapterTactic = ChapterTactic;
         this.Detachment = Detachment;
         this.Faction = Faction;
         this.RosterId = RosterId;
-        this.TotalDetachCost = TotalDetachCost;
-        this.TotalDetachPL = TotalDetachPL;
+        this.TotalDetachCost = (TotalDetachCost) ? TotalDetachCost : 0;
+        this.TotalDetachPL = (TotalDetachPL) ? TotalDetachPL : 0;
+        this.TotalDetachCP = (TotalDetachCP) ? TotalDetachCP : 0;
+        this.copyRosterDetachment = this.copyRosterDetachment.bind(this);
     }
 
-    copyRosterDetachment = (NewId = null) => {
-        let DetachmentCopy = new RosterDetachment(NewId,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
+    copyRosterDetachment = () => {
+        let DetachmentCopy = new RosterDetachment(null,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
+        console.log("Количество юнитов "+this.RosterUnits.length);
+        console.log("Чаптер тактика "+this.ChapterTactic);
+        console.log("детачмент "+this.Detachment);
+        console.log("фракция "+this.Faction);
         if(!!this.RosterUnits && this.RosterUnits.length > 0) {
             for(let i=0;i<this.RosterUnits.length;i++) {
                 let Unit = this.RosterUnits[i];
@@ -256,6 +273,19 @@ export class RosterDetachment {
             }
         }
         return DetachmentCopy;
+    }
+
+    recalculateRosterDetachment = (Detach) => {
+        let TotalDetachCost = 0;
+        console.log("Количество юнитов до пересчета "+Detach.RosterUnits.length);
+        Detach.RosterUnits.forEach(function(unit) {
+                TotalDetachCost +=unit.TotalCost;
+                //this.TotalDetachPL =
+            }
+        );
+        Detach.TotalDetachCost = TotalDetachCost;
+        console.log("Количество юнитов после пересчета "+Detach.RosterUnits.length);
+        return Detach;
     }
 }
 
@@ -270,5 +300,38 @@ export class Roster {
         this.MaxPL = MaxPL;
         this.MaxPTS = MaxPTS;
         this.UserId = UserId;
+        //this.recalculateRosterCost = this.recalculateRosterCost.bind(this);
+    }
+
+    recalculateRosterCost = (Roster = this) => {
+        console.log("Вызвали recalculateRosterCost");
+       
+        console.log("Имя ростера "+Roster.Name);
+        console.log("Количество детачментов в методе до перебора"+Roster.RosterDetachments.length);
+        let TotalPTS = 0;
+        let TotalPL = 0;
+        let TotalCP = 0;
+       
+        
+        Roster.RosterDetachments.forEach(function(detach) {
+            TotalPTS += detach.TotalDetachCost;
+            TotalPL += detach.TotalDetachPL;
+            TotalCP += detach.TotalDetachCP;
+            }
+        );
+        /*
+       for(let i=0;i<this.RosterDetachments.length;i++) {
+            let detach = this.RosterDetachments[i];
+            TotalPTS += detach.TotalDetachCost;
+            TotalPL += detach.TotalDetachPL;
+            TotalCP += detach.TotalDetachCP;
+       }
+       */
+        console.log("Количество детачментов в методе после перебора"+Roster.RosterDetachments.length);
+        Roster.TotalPTS = TotalPTS;
+        Roster.TotalPL = TotalPL;
+        Roster.TotalCP = TotalCP;
+        return Roster;
+        
     }
 }
