@@ -44,12 +44,12 @@ export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
     //Эмуляция получения объектов из базы
     if (!!TraitIds && TraitIds.length > 0) {
         for (let i = 0; i < TraitIds.length; i++) {
-            let WarlordTrait = {
+            let NewWarlordTrait = {
                     id : TraitIds[i],
                     Name : "TraitName" + TraitIds[i],
                     Description : "TratiDescr" + TraitIds[i]
             };
-            WarlordTraits.push(WarlordTrait);
+            WarlordTraits.push(NewWarlordTrait);
         }
     }
     //Обработка объектов из базы, преобразование их в экземпляры классов

@@ -47,7 +47,7 @@ class AddNewModel extends Component {
                 );
             return (
                 <div>
-                <select value = {this.ChosenModel}>{Options}</select>
+                <select>{Options}</select>
                 <img src = {AddMenuButton} className = '' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )
