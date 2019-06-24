@@ -53,8 +53,9 @@ class UnitModelsList extends Component {
                 <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
          return (
-             <div>
-                <ul className = 'unitModels__list'>{modelsList}</ul>
+             <div className = 'unitModels__Container'>
+                <h3 className = 'unitModels__Title'>Models of the unit</h3>
+                <ul className = 'unitModels__List'>{modelsList}</ul>
              </div>
          )
     }

@@ -48,19 +48,19 @@ class AddNewModel extends Component {
             this.ChosenModel = AvailableOptions[0];
                 let Options = AvailableOptions.map(
                     (option) =>
-                    <option className = "" key = {option.id} value = {option.id}>{option.Name}</option>
+                    <option className = "AddNewModel__Option" key = {option.id} value = {option.id}>{option.Name}</option>
                 );
             return (
                 <div>
-                <select onChange = {this.HandleOnchangeSelect}>{Options}</select>
-                <img src = {AddMenuButton} className = '' alt = 'Add' onClick = {this.HandleButtonClick}/>
+                <select className = 'AddNewModel__SelectModel' onChange = {this.HandleOnchangeSelect}>{Options}</select>
+                <img src = {AddMenuButton} className = 'AddNewModel__AddButton' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )
         } else {
             this.ChosenModel = this.props.BaseModels[0];
             return (
                 <div>
-                 <img src = {AddMenuButton} className = '' alt = 'Add' onClick = {this.HandleButtonClick}/>
+                 <img src = {AddMenuButton} className = 'AddNewModel__AddButton' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )
         } 
