@@ -184,6 +184,15 @@ export class RosterModel {
         }
         return ModelCopy;
     }
+
+    recalculationRosterModel = () => {
+        this.TotalCost = 0;
+        this.RosterWargearSlots.forEach((slot) =>
+            slot.SelectedOption.WargearIncluded.forEach((wargear) =>
+                this.TotalCost += wargear.Cost
+            )
+        );
+    }
 }
 
 export class RosterWargearSlot {
