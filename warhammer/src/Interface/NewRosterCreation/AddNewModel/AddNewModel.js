@@ -37,6 +37,11 @@ class AddNewModel extends Component {
         this.props.HandleAddButtonClick(NewUnitModels);
     }
 
+    HandleOnchangeSelect = (event) => {
+        let ChosenModelId = event.target.value;
+        this.ChosenModel = this.props.BaseModels.filter((model) => model.id == ChosenModelId)[0];
+    }
+
     render() {
         if (this.props.BaseModels.length > 1) {
             let AvailableOptions = this.GetAvailableModels(this.props.Models, this.props.BaseModels);
@@ -47,7 +52,7 @@ class AddNewModel extends Component {
                 );
             return (
                 <div>
-                <select>{Options}</select>
+                <select onChange = {this.HandleOnchangeSelect}>{Options}</select>
                 <img src = {AddMenuButton} className = '' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )

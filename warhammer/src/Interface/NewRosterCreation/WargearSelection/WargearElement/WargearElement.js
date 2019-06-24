@@ -26,7 +26,7 @@ class WargearElement extends Component {
         let AvailableOptions = this.props.AvailableOptions;
             var Options = AvailableOptions.map(
                 (option) =>
-                <option className = "" key = {option.id} value = {option.id}>{option.Name}</option>
+                <option className = "" key = {option.id} value = {option.id} disabled = {option.id == this.props.SelectedOption.id}>{option.Name}</option>
             )
 
             return <select value = {this.props.SelectedOption.id} onChange = {this.SelectedWargearOption}>{Options}</select>

@@ -321,7 +321,7 @@ export function GetWargearOptions(SlotId) {
     let WargearOption1 = {
         id: 1,
         Name: "Option1",
-        CountPerModel: 1,
+        CountPerModel: 3,
         PerXmodels: null,
         Default: true,
         LinkedOptionsId: []
@@ -341,7 +341,7 @@ export function GetWargearOptions(SlotId) {
         id: 3,
         Name: "Option3",
         CountPerModel: 1,
-        PerXmodels: null,
+        PerXmodels: 10,
         Default: false,
         LinkedOptionsId: []
     };
