@@ -31,9 +31,6 @@ class AddNewModel extends Component {
     }
 
     HandleButtonClick = () => {
-        if (!!this.ChosenModel) {
-
-        }
         let NewRosterModel = new RosterModel((this.props.Models.length + 1),this.ChosenModel,this.props.Unit.id,this.ChosenModel.Cost); 
         let NewUnitModels = this.props.Models.slice();
         NewUnitModels.splice((NewUnitModels.length),0,NewRosterModel);
