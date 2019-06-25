@@ -175,6 +175,7 @@ export class RosterModel {
 
     copyRosterModel = () => {
         let ModelCopy = new RosterModel(null,this.BaseModel,this.RosterUnitId,this.TotalCost);
+        //let ModelCopy = Object.assign({}, this);
         if(!!this.RosterWargearSlots && this.RosterWargearSlots.length > 0) {
             for(let i=0;i<this.RosterWargearSlots.length;i++) {
                 let Slot = this.RosterWargearSlots[i];
@@ -224,11 +225,13 @@ export class RosterUnit {
 
     copyRosterUnit = (NewId = null) => {
         let UnitCopy = new RosterUnit(NewId,[],this.BaseUnit,this.SpellsSelected,this.TotalCost,this.RosterDetachmentId);
+        //let UnitCopy = Object.assign({}, this, {id: NewId, Models: []});
         if(!!this.Models && this.Models.length > 0) {
             for(let i=0;i<this.Models.length;i++) {
                 let Model = this.Models[i];
                 let ModelCopy = Model.copyRosterModel();
                 ModelCopy.id = i+1;
+                ModelCopy.RosterUnitId = UnitCopy.id;
                 UnitCopy.Models.push(ModelCopy);
             }
         }
@@ -271,6 +274,7 @@ export class RosterDetachment {
                 let Unit = OldDetachment.RosterUnits[i];
                 let UnitCopy = Unit.copyRosterUnit();
                 UnitCopy.id = i+1;
+                UnitCopy.RosterDetachmentId = DetachmentCopy.id;
                 DetachmentCopy.RosterUnits.push(UnitCopy);
             }
         }
