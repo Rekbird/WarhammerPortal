@@ -258,15 +258,17 @@ export class RosterDetachment {
         this.copyRosterDetachment = this.copyRosterDetachment.bind(this);
     }
 
-    copyRosterDetachment = () => {
-        let DetachmentCopy = new RosterDetachment(null,[],this.ChapterTactic,this.Detachment,this.Faction,this.RosterId,this.TotalDetachCost,this.TotalDetachPL);
-        console.log("Количество юнитов "+this.RosterUnits.length);
-        console.log("Чаптер тактика "+this.ChapterTactic);
-        console.log("детачмент "+this.Detachment);
-        console.log("фракция "+this.Faction);
-        if(!!this.RosterUnits && this.RosterUnits.length > 0) {
-            for(let i=0;i<this.RosterUnits.length;i++) {
-                let Unit = this.RosterUnits[i];
+    copyRosterDetachment = (NewId = null, OldDetachment) => {
+        //let OldDetachment = this;
+        //let DetachmentCopy = new RosterDetachment(NewId,[],OldDetachment.ChapterTactic,OldDetachment.Detachment,OldDetachment.Faction,OldDetachment.RosterId,OldDetachment.TotalDetachCost,OldDetachment.TotalDetachPL);
+        let DetachmentCopy = Object.assign({}, OldDetachment, {id: NewId, RosterUnits: []});
+        console.log("Количество юнитов "+OldDetachment.RosterUnits.length);
+        console.log("Чаптер тактика "+OldDetachment.ChapterTactic);
+        console.log("детачмент "+OldDetachment.Detachment);
+        console.log("фракция "+OldDetachment.Faction);
+        if(!!OldDetachment.RosterUnits && OldDetachment.RosterUnits.length > 0) {
+            for(let i=0;i<OldDetachment.RosterUnits.length;i++) {
+                let Unit = OldDetachment.RosterUnits[i];
                 let UnitCopy = Unit.copyRosterUnit();
                 UnitCopy.id = i+1;
                 DetachmentCopy.RosterUnits.push(UnitCopy);

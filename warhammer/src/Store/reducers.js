@@ -243,8 +243,8 @@ const AddCopyDetachment = (roster, action) => {
     console.log("Чаптер тактика в редусере "+Detach.ChapterTactic);
     console.log("детачмент в редусере "+Detach.Detachment);
     console.log("фракция в редусере "+Detach.Faction);
-    let NewDetachment = Detach.copyRosterDetachment();
-    NewDetachment.id = action.NewId;
+    let NewDetachment = Detach.copyRosterDetachment(action.NewId, Detach);
+    //NewDetachment.id = action.NewId;
     Detachments.push(NewDetachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     NewRoster = NewRoster.recalculateRosterCost(NewRoster);
