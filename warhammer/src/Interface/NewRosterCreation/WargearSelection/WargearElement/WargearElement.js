@@ -30,7 +30,7 @@ class WargearElement extends Component {
             )
 
             return (
-                <div>
+                <div className = 'WargearElement__Block'>
                     <h3 className = 'WargearElement__Title'>{this.props.CurrentSlot.Name}</h3>
                     <select className = 'WargearElement__Select' value = {this.props.SelectedOption.id} onChange = {this.SelectedWargearOption}>{Options}</select>
                 </div>
