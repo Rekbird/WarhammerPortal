@@ -588,3 +588,7 @@ export function GetRosterUnitModels(RosterUnit) {
 export function GetRosterUnitsByRole(RosterUnits, RoleId) {
     return RosterUnits.filter((unit) => unit.BaseUnit.UnitRole.id == RoleId);
 }
+
+export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount) => {
+
+}
