@@ -19,7 +19,6 @@ class ModelListElement extends Component {
     }
 
     render() {
-        console.log("Модель отрендерилась");
         const Name = this.props.singleModel.BaseModel.Name;
         let modelCost = this.props.singleModel.TotalCost;
         var CopyButton = null;

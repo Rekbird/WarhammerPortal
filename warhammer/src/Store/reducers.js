@@ -112,7 +112,8 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "EditModelWargear":
             return Object.assign({}, state, {ActiveModel: EditModelWargear(action)});
         case "UpdateModelWargear":
-            return Object.assign({}, state, {ActiveModel: UpdateModelWargear(state.ActiveModel, state.ActiveUnit, action)});
+            Result = UpdateModelWargear(state.ActiveModel, state.ActiveUnit, state.Roster, action);
+            return Object.assign({}, state, {ActiveModel: Result.NewModel, Roster: Result.NewRoster});
         case "NewRoster":
             return Object.assign({}, state, {Roster: NewRoster(action)});
         default:
