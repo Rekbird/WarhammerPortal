@@ -29,7 +29,9 @@ class RosterMenu extends Component{
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
                 <RosterDetachmentItem 
                     key = {detachment.id} 
-                    RosterDetachment = {detachment} 
+                    RosterDetachment = {detachment}
+                    Active = {detachment.id == this.props.ActiveDetachmentId} 
+                    ActiveUnitId = {this.props.ActiveUnitId}
                     EditClick = {this.props.EditClick} 
                     CopyClick = {this.props.CopyClick} 
                     DeleteClick = {this.props.DeleteClick} 

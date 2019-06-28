@@ -29,8 +29,9 @@ class RosterUnitItem extends Component {
         let CopyButton = (!this.props.AllowedCopy) ? (
             <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>
          ): null; 
+        let ElementClass = (this.props.Active) ? "RosterMenu__UnitItem ActiveBrightning" : "RosterMenu__UnitItem"; 
         return(
-            <li className = "RosterMenu__UnitItem">
+            <li className = {ElementClass}>
                 {this.props.RosterUnit.BaseUnit.Name}
                 <div className = "RosterMenu__ButtonBlock">
                     <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
