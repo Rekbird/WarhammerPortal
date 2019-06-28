@@ -52,8 +52,8 @@ class AddNewModel extends Component {
                 );
             return (
                 <div>
-                <select className = 'AddNewModel__SelectModel' onChange = {this.HandleOnchangeSelect}>{Options}</select>
-                <img src = {AddMenuButton} className = 'AddNewModel__AddButton' alt = 'Add' onClick = {this.HandleButtonClick}/>
+                    <select className = 'AddNewModel__SelectModel' onChange = {this.HandleOnchangeSelect}>{Options}</select>
+                    <img src = {AddMenuButton} className = 'AddNewModel__AddButton' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
             )
         } else {

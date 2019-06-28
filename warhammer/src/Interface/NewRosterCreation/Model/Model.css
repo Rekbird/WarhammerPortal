@@ -1,9 +1,13 @@
 
 .model__element {
-    width: 300px;
+    width: 93%;
     border: 1px solid rgb(6, 41, 34);
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
     border-radius:5px;
     margin:5px;
+}
+.model__element:hover {
+    background-color: rgba(6, 86, 87, 0.877);
 }
 
 .model__title {
@@ -25,8 +29,21 @@
     opacity: 1;
 }
 
-.model__activeModelEditing {
+.model__activeModelElement {
     background-color: rgba(6, 86, 87, 0.877);
+    width: 93%;
+    border: 1px solid rgb(6, 41, 34);
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    border-radius:5px;
+    margin:5px;
+}
+
+.model__activeModelElement:hover .model__buttonsSet {
+    visibility: visible;
+    opacity: 1;
+}
+
+.model__activeModelTitleText {
     color: white;
     font-size: 20px;
     font-weight: 600;
@@ -34,10 +51,12 @@
     transition: 0.3s;
     padding-left: 4px;
     padding-right: 4px;
+    margin-right: 15px;
+    margin-left: 5px;
+    text-align: left;
 }
 
 .model__element:hover .model__titleText {
-    background-color: rgba(6, 86, 87, 0.877);
     color: white;
     font-size: 20px;
     font-weight: 600;
@@ -52,13 +71,14 @@
     font-size: 20px;
     font-weight: 600;
     text-align: left;
-    vertical-align: middle;
     margin-right: 15px;
+    margin-left: 5px;
 }
 
 .model__buttons {
         width: 17px;
         height: 17px;
+        padding-bottom: 1px;
         line-height: 1px;
         vertical-align: bottom;
         user-select: none;

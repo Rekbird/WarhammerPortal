@@ -21,12 +21,20 @@ class WargearElement extends Component {
     SelectedWargearOption  = (event) => {
         this.props.SelectedWargearOption(event.target.value,this.props.CurrentSlot);
     }
+
+    CalculateCost = (option) => {
+        let totalCost = 0;
+        option.WargearIncluded.forEach(element => {
+            totalCost += element.Cost;
+        });
+        return totalCost;
+    }
     
     render() {
         let AvailableOptions = this.props.AvailableOptions;
             var Options = AvailableOptions.map(
                 (option) =>
-                <option className = "WargearElement__Option" key = {option.id} value = {option.id} disabled = {option.id == this.props.SelectedOption.id}>{option.Name}</option>
+                <option className = "WargearElement__Option" key = {option.id} value = {option.id} disabled = {option.id == this.props.SelectedOption.id}>{option.Name} [{this.CalculateCost(option)} pts]</option>
             )
 
             return (
