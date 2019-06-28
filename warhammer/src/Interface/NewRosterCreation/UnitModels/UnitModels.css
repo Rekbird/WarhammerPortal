@@ -1,5 +1,6 @@
 .unitModels__Container {
     border: 1px solid rgb(6, 41, 34);
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
     border-radius:5px;
 }
 
@@ -9,6 +10,7 @@
     margin:5px;
     padding:5px;
     background-color: rgba(6, 86, 87, 1);
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
     border-radius:5px;
 }
 
