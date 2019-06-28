@@ -170,7 +170,7 @@ export class RosterModel {
         this.RosterUnitId = RosterUnitId;
         this.TotalCost = (TotalCost) ? TotalCost : 0;
         this.RosterWargearSlots = utils.GetRosterWargearSlots(BaseModel.WargearSlots);
-        this.recalculateRosterModel = this.recalculateRosterModel.bind(this);
+        //this.recalculateRosterModel = this.recalculateRosterModel.bind(this);
     }
 
     copyRosterModel = () => {
@@ -186,7 +186,7 @@ export class RosterModel {
         }
         return ModelCopy;
     }
-
+    /*
     recalculateRosterModel = () => {
         this.TotalCost = this.BaseModel.Cost;
         this.RosterWargearSlots.forEach((slot) =>
@@ -196,6 +196,7 @@ export class RosterModel {
         );
         return this;
     }
+    */
 }
 
 export class RosterWargearSlot {
@@ -220,7 +221,7 @@ export class RosterUnit {
         this.SpellsSelected = SpellsSelected;
         this.TotalCost = (TotalCost) ? TotalCost : 0;
         this.RosterDetachmentId = RosterDetachmentId;
-        this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
+        //this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
     }
 
     copyRosterUnit = (NewId = null) => {
@@ -238,6 +239,7 @@ export class RosterUnit {
         return UnitCopy;
     }
 
+    /*
     recalculateRosterUnit = () => {
         this.TotalCost = 0;
         this.Models.forEach((model) => 
@@ -245,6 +247,7 @@ export class RosterUnit {
         );
         return this;
     }
+    */
 }
 
 export class RosterDetachment {
@@ -258,17 +261,18 @@ export class RosterDetachment {
         this.TotalDetachCost = (TotalDetachCost) ? TotalDetachCost : 0;
         this.TotalDetachPL = (TotalDetachPL) ? TotalDetachPL : 0;
         this.TotalDetachCP = (TotalDetachCP) ? TotalDetachCP : 0;
-        this.copyRosterDetachment = this.copyRosterDetachment.bind(this);
+        //this.copyRosterDetachment = this.copyRosterDetachment.bind(this);
     }
 
+    
     copyRosterDetachment = (NewId = null, OldDetachment) => {
         //let OldDetachment = this;
         //let DetachmentCopy = new RosterDetachment(NewId,[],OldDetachment.ChapterTactic,OldDetachment.Detachment,OldDetachment.Faction,OldDetachment.RosterId,OldDetachment.TotalDetachCost,OldDetachment.TotalDetachPL);
         let DetachmentCopy = Object.assign({}, OldDetachment, {id: NewId, RosterUnits: []});
-        console.log("Количество юнитов "+OldDetachment.RosterUnits.length);
-        console.log("Чаптер тактика "+OldDetachment.ChapterTactic);
-        console.log("детачмент "+OldDetachment.Detachment);
-        console.log("фракция "+OldDetachment.Faction);
+        //console.log("Количество юнитов "+OldDetachment.RosterUnits.length);
+        //console.log("Чаптер тактика "+OldDetachment.ChapterTactic);
+        //console.log("детачмент "+OldDetachment.Detachment);
+        //console.log("фракция "+OldDetachment.Faction);
         if(!!OldDetachment.RosterUnits && OldDetachment.RosterUnits.length > 0) {
             for(let i=0;i<OldDetachment.RosterUnits.length;i++) {
                 let Unit = OldDetachment.RosterUnits[i];
@@ -281,18 +285,22 @@ export class RosterDetachment {
         return DetachmentCopy;
     }
 
+    /*
     recalculateRosterDetachment = (Detach) => {
         let TotalDetachCost = 0;
+        let TotalDetachPL = 0;
         console.log("Количество юнитов до пересчета "+Detach.RosterUnits.length);
         Detach.RosterUnits.forEach(function(unit) {
                 TotalDetachCost +=unit.TotalCost;
-                //this.TotalDetachPL =
+                TotalDetachPL += utils.GetUnitCurrentPowerLevel(unit.BaseUnit.PowerLevel, unit.Models.length);
             }
         );
         Detach.TotalDetachCost = TotalDetachCost;
+        Detach.TotalDetachPL = TotalDetachPL
         console.log("Количество юнитов после пересчета "+Detach.RosterUnits.length);
         return Detach;
     }
+    */
 }
 
 export class Roster {
@@ -308,7 +316,7 @@ export class Roster {
         this.UserId = UserId;
         //this.recalculateRosterCost = this.recalculateRosterCost.bind(this);
     }
-
+    /*
     recalculateRosterCost = (Roster = this) => {
         console.log("Вызвали recalculateRosterCost");
        
@@ -325,14 +333,14 @@ export class Roster {
             TotalCP += detach.TotalDetachCP;
             }
         );
-        /*
+        
        for(let i=0;i<this.RosterDetachments.length;i++) {
             let detach = this.RosterDetachments[i];
             TotalPTS += detach.TotalDetachCost;
             TotalPL += detach.TotalDetachPL;
             TotalCP += detach.TotalDetachCP;
        }
-       */
+       
         console.log("Количество детачментов в методе после перебора"+Roster.RosterDetachments.length);
         Roster.TotalPTS = TotalPTS;
         Roster.TotalPL = TotalPL;
@@ -340,4 +348,5 @@ export class Roster {
         return Roster;
         
     }
+    */
 }

@@ -46,17 +46,25 @@ class RosterDetachmentItem extends Component{
 
         if(UnitRoles.length > 0) {
             UnitRoles = UnitRoles.map((role) => 
-                <RosterUnitRoleItem key = {role.id} AllowedCopy = {utils.CheckDetachmentOptionFull(this.props.RosterDetachment.RosterUnits, role, this.props.RosterDetachment.Detachment)} EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} RoleName = {role.Name} Detachment = {this.props.RosterDetachment} Units = {utils.GetRosterUnitsByRole(this.props.RosterDetachment.RosterUnits, role.id)}/>
+                <RosterUnitRoleItem 
+                    key = {role.id} 
+                    ActiveDetach = {this.props.Active}
+                    ActiveUnitId = {this.props.ActiveUnitId}
+                    AllowedCopy = {utils.CheckDetachmentOptionFull(this.props.RosterDetachment.RosterUnits, role, this.props.RosterDetachment.Detachment)} 
+                    EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} RoleName = {role.Name} 
+                    Detachment = {this.props.RosterDetachment} Units = {utils.GetRosterUnitsByRole(this.props.RosterDetachment.RosterUnits, role.id)}
+                />
             );
         }
         UnitList = 
         <ul className = "RosterMenu__DetachmentRolesList">
             {UnitRoles}
             {NewButton}
-        </ul>
+        </ul>;
+        const ElementClass = (this.props.Active) ? "RosterMenu__DetachmentListItem ActiveBrightning" : "RosterMenu__DetachmentListItem"; 
         return(
             <li>
-                <div className = "RosterMenu__DetachmentListItem">
+                <div className = {ElementClass}>
                     {(!!this.props.RosterDetachment.Detachment) ? this.props.RosterDetachment.Detachment.Name : "New Detachment"}
                     <div className = "RosterMenu__ButtonBlock">
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>

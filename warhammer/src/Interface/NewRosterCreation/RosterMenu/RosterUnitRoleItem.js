@@ -9,7 +9,16 @@ class RosterUnitRoleItem extends Component{
 
     render = () => {
         let Units = this.props.Units.map((unit,idx) =>
-            <RosterUnitItem key = {idx} RosterUnit = {unit} AllowedCopy = {this.props.AllowedCopy} EditClick = {this.props.EditClick} CopyClick = {this.props.CopyClick} DeleteClick = {this.props.DeleteClick} Detachment = {this.props.Detachment}/>
+            <RosterUnitItem 
+                key = {idx} 
+                RosterUnit = {unit}
+                Active = {this.props.ActiveDetach && unit.id == this.props.ActiveUnitId} 
+                AllowedCopy = {this.props.AllowedCopy} 
+                EditClick = {this.props.EditClick} 
+                CopyClick = {this.props.CopyClick} 
+                DeleteClick = {this.props.DeleteClick} 
+                Detachment = {this.props.Detachment}
+            />
         );
         let DetachmentUnitsListByRole = <ul className = "RosterMenu__DetachmentUnitsList">{Units}</ul>
         return(
