@@ -46,7 +46,6 @@ class UnitModelsList extends Component {
         }
     }
      render() {
-         console.log("Модели отререндерились");
         this.models =  this.props.Models.slice();
         this.recordCounter = this.models.length;
          const modelsList = this.models.map(
