@@ -118,7 +118,7 @@ class RosterCreation extends Component{
         */
        let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
        this.props.CopyDetachment(Detachment.id, NewId);
-       this.props.RosterAction("Detachment Editing");
+       //this.props.RosterAction("Detachment Editing");
     }
 
     DeleteDetachment = (Detachment) => {
