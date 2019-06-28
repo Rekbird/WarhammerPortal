@@ -65,7 +65,7 @@ class RosterDetachmentItem extends Component{
         return(
             <li>
                 <div className = {ElementClass}>
-                    {"["+this.props.RosterDetachment.TotalDetachCost+"] "+((!!this.props.RosterDetachment.Detachment) ? this.props.RosterDetachment.Detachment.Name : "New Detachment")}
+                    {"["+this.props.RosterDetachment.TotalDetachCost+" pts] "+((!!this.props.RosterDetachment.Detachment) ? this.props.RosterDetachment.Detachment.Name : "New Detachment")}
                     <div className = "RosterMenu__ButtonBlock">
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleCopyClick} src = {CopyButtonImage} alt = "Copy"/>

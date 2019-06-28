@@ -87,6 +87,7 @@
 }
 
 .RosterMenu__DetachmentListNewButton {
+    
     transition: 0.3s;
     margin:2px;
     padding:5px;
@@ -106,6 +107,7 @@
 }
 
 .RosterMenu__UnitListNewButton {
+    
     transition: 0.3s;
     margin:2px;
     padding:2px;
@@ -171,12 +173,14 @@
     text-align: left;
     vertical-align: middle;
     transition:0.3s;
-    font-size: 12px;
+    font-size: 14px;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    
 }
 
 .ActiveBrightning {
     border: 3px solid rgb(28, 196, 199);
     border-radius: 8px;
     box-shadow: 0px 0px 4px rgb(33, 184, 187), 0px 0px 7px rgb(14, 203, 206), 0px 0px 10px rgb(165, 247, 248);
+    text-shadow: 0px 0px 1px white;
 }
