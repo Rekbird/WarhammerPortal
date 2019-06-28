@@ -577,7 +577,7 @@ export function GetRosterUnitModels(RosterUnit) {
         let NewRosterModel = new RosterModel(count+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
         count++;
         RosterUnitModels.push(NewRosterModel);
-        NewRosterModel = NewRosterModel.recalculateRosterModel();
+        NewRosterModel = recalculateRosterModel(NewRosterModel);
         console.log(NewRosterModel);
         }
     }
@@ -589,6 +589,84 @@ export function GetRosterUnitsByRole(RosterUnits, RoleId) {
     return RosterUnits.filter((unit) => unit.BaseUnit.UnitRole.id == RoleId);
 }
 
-export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount) => {
+export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount = 0) => {
+    let UnitPowerLevel = 0;
+    if(ModelsCount) {
+        PowerLevelList.sort(function(a,b) {
+            if(a.NumberOfModels < b.NumberOfModels) {
+                return -1;
+            } else if(a.NumberOfModels > b.NumberOfModels) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        for(let i=0;i<PowerLevelList.length;i++) {
+            let item = PowerLevelList[i];
+            if(PowerLevelList[i+1]) {
+                if(ModelsCount >= item.NumberOfModels && ModelsCount < PowerLevelList[i+1].NumberOfModels) {
+                    UnitPowerLevel = item.PowerLevel;
+                    break;
+                }
+            } else {
+                UnitPowerLevel = item.PowerLevel;
+            }
+        }
+    }
+    return UnitPowerLevel;
+}
 
+export const recalculateRosterModel = (RosterModel) => {
+    RosterModel.TotalCost = RosterModel.BaseModel.Cost;
+    RosterModel.RosterWargearSlots.forEach((slot) =>
+        slot.SelectedOption.WargearIncluded.forEach((wargear) =>
+            RosterModel.TotalCost += wargear.Cost
+        )
+    );
+    return RosterModel;
+}
+
+export const recalculateRosterUnit = (RosterUnit) => {
+    RosterUnit.TotalCost = 0;
+    RosterUnit.Models.forEach((model) => 
+        RosterUnit.TotalCost += model.TotalCost
+    );
+    return RosterUnit;
+}
+
+export const recalculateRosterDetachment = (Detach) => {
+    let TotalDetachCost = 0;
+    let TotalDetachPL = 0;
+    //console.log("Количество юнитов до пересчета "+Detach.RosterUnits.length);
+    Detach.RosterUnits.forEach(function(unit) {
+            TotalDetachCost +=unit.TotalCost;
+            TotalDetachPL += GetUnitCurrentPowerLevel(unit.BaseUnit.PowerLevel, unit.Models.length);
+        }
+    );
+    Detach.TotalDetachCost = TotalDetachCost;
+    Detach.TotalDetachPL = TotalDetachPL
+    //console.log("Количество юнитов после пересчета "+Detach.RosterUnits.length);
+    return Detach;
+}
+
+export const recalculateRosterCost = (Roster = this) => {
+    //console.log("Вызвали recalculateRosterCost");
+    //console.log("Имя ростера "+Roster.Name);
+    //console.log("Количество детачментов в методе до перебора"+Roster.RosterDetachments.length);
+    let TotalPTS = 0;
+    let TotalPL = 0;
+    let TotalCP = 0;
+   
+    Roster.RosterDetachments.forEach(function(detach) {
+        TotalPTS += detach.TotalDetachCost;
+        TotalPL += detach.TotalDetachPL;
+        TotalCP += detach.TotalDetachCP;
+        }
+    );
+   
+    //console.log("Количество детачментов в методе после перебора"+Roster.RosterDetachments.length);
+    Roster.TotalPTS = TotalPTS;
+    Roster.TotalPL = TotalPL;
+    Roster.TotalCP = TotalCP;
+    return Roster;
 }

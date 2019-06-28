@@ -98,6 +98,7 @@ class RosterCreation extends Component{
         console.log("Ростер из стейта "+this.state.Roster.id);
         */
        this.props.SetActiveDetachment(Detachment);
+       this.props.SetActiveUnit(null);
        this.props.RosterAction("Detachment Editing");
     }
 
@@ -168,8 +169,11 @@ class RosterCreation extends Component{
             RosterChanged: !this.state.RosterChanged
         });
         */
+       const Detach = this.props.Roster.RosterDetachments.filter((detach) => detach.id == Unit.RosterDetachmentId)[0];
        this.props.SetActiveUnit(Unit);
+       this.props.SetActiveDetachment(Detach);
        this.props.RosterAction("Unit Editing");
+       
     }
 
     CopyUnit = (Detachment, Unit) => {
@@ -278,6 +282,8 @@ class RosterCreation extends Component{
             <div>
                 <RosterMenu 
                     Roster = {this.props.Roster}
+                    ActiveDetachmentId = {(this.props.ActiveDetachment) ? this.props.ActiveDetachment.id : null}
+                    ActiveUnitId = {(this.props.ActiveUnit) ? this.props.ActiveUnit.id : null}
                     NewDetachmentClick = {this.AddNewDetachment}
                     EditDetachmentClick = {this.EditDetachment}
                     CopyDetachmentClick = {this.CopyDetachment}
