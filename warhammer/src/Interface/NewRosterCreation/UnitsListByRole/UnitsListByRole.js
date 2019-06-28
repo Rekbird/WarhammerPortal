@@ -23,7 +23,7 @@ class UnitsListByRole extends Component {
         }
         return (
             <div id = {"UnitListByRole"+this.props.UnitRole.Name}>
-                <h2 style = {{textAlign: "left", color: "rgb(6, 41, 34)", paddingLeft: "20px"}}>{this.props.UnitRole.Name}</h2>
+                <h2 className = "UnitsListByRole__Header">{this.props.UnitRole.Name}</h2>
                 {Units}
             </div>
 

@@ -276,6 +276,15 @@ const AddNewUnit = (roster, action) => {
     NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
     //console.log("Количество детачментов "+Detachments.length);
     Detachment.RosterUnits.push(NewUnit);
+    Detachment.RosterUnits.sort(function(a,b) {
+        if(a.BaseUnit.Name < b.BaseUnit.Name) {
+            return -1;
+        } else if(a.BaseUnit.Name > b.BaseUnit.Name) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     //console.log("Количество детачментов после копирования ростера"+roster.RosterDetachments.length);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
@@ -306,6 +315,15 @@ const AddUnitCopy = (roster, action) => {
     NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
     Detachment.RosterUnits.push(NewUnit);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
+    Detachment.RosterUnits.sort(function(a,b) {
+        if(a.BaseUnit.Name < b.BaseUnit.Name) {
+            return -1;
+        } else if(a.BaseUnit.Name > b.BaseUnit.Name) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
     Detachment = utils.recalculateRosterDetachment(Detachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     NewRoster = utils.recalculateRosterCost(NewRoster);
