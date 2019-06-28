@@ -324,7 +324,8 @@ export function GetWargearOptions(SlotId) {
         CountPerModel: 3,
         PerXmodels: null,
         Default: true,
-        LinkedOptionsId: []
+        LinkedOptionsId: [],
+        WargearSlotId: 1
     };
     WargearOptions.push(WargearOption1);
     let WargearOption2 = {
@@ -333,7 +334,8 @@ export function GetWargearOptions(SlotId) {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: []
+        LinkedOptionsId: [],
+        WargearSlotId: 1
     };
     WargearOptions.push(WargearOption2);
 
@@ -342,13 +344,27 @@ export function GetWargearOptions(SlotId) {
         Name: "Option3",
         CountPerModel: 1,
         PerXmodels: 10,
-        Default: false,
-        LinkedOptionsId: []
+        Default: true,
+        LinkedOptionsId: [],
+        WargearSlotId: 2
     };
     WargearOptions.push(WargearOption3);
 
+    let WargearOption4 = {
+        id: 4,
+        Name: "Option4",
+        CountPerModel: 1,
+        PerXmodels: 10,
+        Default: false,
+        LinkedOptionsId: [],
+        WargearSlotId: 2
+    };
+    WargearOptions.push(WargearOption4);
+
     for(let i=0;i<WargearOptions.length;i++) {
-        ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].Default,WargearOptions[i].LinkedOptionsId));
+        if (SlotId == WargearOptions[i].WargearSlotId) {
+            ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].Default,WargearOptions[i].LinkedOptionsId));
+        }
     }
     return ReturnedWargearOptions;
 }
@@ -365,7 +381,8 @@ export function GetWargear(OptionId) {
         Type: "",
         Relic: false,
         Image: "",
-        ChapterTacticId: ""
+        ChapterTacticId: "",
+        OptionId: 1
     };
     Wargears.push(Wargear1);
     let Wargear2 = {
@@ -375,12 +392,51 @@ export function GetWargear(OptionId) {
         Type: "",
         Relic: false,
         Image: "",
-        ChapterTacticId: ""
+        ChapterTacticId: "",
+        OptionId: 1
     };
     Wargears.push(Wargear2);
 
+    let Wargear3 = {
+        id: 3,
+        Name: "Wargear3",
+        Cost: 20,
+        Type: "",
+        Relic: false,
+        Image: "",
+        ChapterTacticId: "",
+        OptionId: 2
+    };
+    Wargears.push(Wargear3);
+
+    let Wargear4 = {
+        id: 4,
+        Name: "Wargear4",
+        Cost: 5,
+        Type: "",
+        Relic: false,
+        Image: "",
+        ChapterTacticId: "",
+        OptionId: 3
+    };
+    Wargears.push(Wargear4);
+
+    let Wargear5 = {
+        id: 5,
+        Name: "Wargear5",
+        Cost: 32,
+        Type: "",
+        Relic: false,
+        Image: "",
+        ChapterTacticId: "",
+        OptionId: 4
+    };
+    Wargears.push(Wargear5);
+
     for(let i=0;i<Wargears.length;i++) {
-        ReturnedWargears.push(new Wargear(Wargears[i].id,Wargears[i].Name,Wargears[i].Cost,Wargears[i].Type,Wargears[i].Relic,Wargears[i].Image,Wargears[i].ChapterTacticId));
+        if (Wargears[i].OptionId == OptionId) {
+            ReturnedWargears.push(new Wargear(Wargears[i].id,Wargears[i].Name,Wargears[i].Cost,Wargears[i].Type,Wargears[i].Relic,Wargears[i].Image,Wargears[i].ChapterTacticId));
+        }
     }
     return ReturnedWargears;
 }
