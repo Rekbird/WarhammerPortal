@@ -46,11 +46,12 @@ class UnitModelsList extends Component {
         }
     }
      render() {
+         console.log("Модели отререндерились");
         this.models =  this.props.Models.slice();
         this.recordCounter = this.models.length;
          const modelsList = this.models.map(
              (model) => 
-                <ModelListElement key = {model.id} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
+                <ModelListElement key = {model.id} ActiveModelExist = {(!!this.props.ActiveModel && this.props.ActiveModel.id == model.id)} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>
           );
          return (
              <div className = 'unitModels__Container'>
@@ -64,7 +65,8 @@ class UnitModelsList extends Component {
 const mapStateToProps = (state) => {
     return {
         Models: state.RosterEditing.ActiveUnit.Models,
-        Unit: state.RosterEditing.ActiveUnit
+        Unit: state.RosterEditing.ActiveUnit,
+        ActiveModel: state.RosterEditing.ActiveModel
     }
 }
 

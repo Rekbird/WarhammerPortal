@@ -1,11 +1,12 @@
 .UnitEditing__Common {
     width: auto;
-    margin: 3px;
+
 }
 
 .UnitEditing__ModelsContainer {
     vertical-align: top;
     display: inline-block;
+    margin-right: 5px;
     width: 35%;
 }
 
@@ -13,16 +14,17 @@
     vertical-align: top;
     display: block;
     width: auto;
+    margin-bottom: 5px;
 }
 
 .UnitEditing__AddNewModel {
     display: block;
     width: auto;
-    margin-top:3px;
+
 }
 
 .UnitEditing__WargearSelection {
     display: inline-block;
-    width: 64%;
-    margin-left: 5px;
+    width: 64.3%;
+
 }
