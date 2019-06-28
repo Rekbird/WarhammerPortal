@@ -51,13 +51,13 @@ class RosterMenu extends Component{
             <div className = "RosterMenu">
                 <div className = "RosterMenu__HeaderDiv">
                     <div className = "RosterMenu__HeaderNameDiv">
-                        <text className = "RosterMenu__HeaderName">{this.props.Roster.Name}</text>
+                        <span className = "RosterMenu__HeaderName">{this.props.Roster.Name}</span>
                         <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                     </div>
-                    <p>
-                        <text>Total PTS&nbsp;: {this.props.Roster.TotalPTS}</text>{MaxPTS}<br/>
-                        <text>Total PL&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalPL}</text>{MaxPL}<br/>
-                        <text>Total CP&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalCP}</text><br/>
+                    <p className = "RosterMenu__RosterParameters">
+                        <span>Total PTS&nbsp;: {this.props.Roster.TotalPTS}</span>{MaxPTS}<br/>
+                        <span>Total PL&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalPL}</span>{MaxPL}<br/>
+                        <span>Total CP&nbsp;&nbsp;&nbsp;: {this.props.Roster.TotalCP}</span><br/>
                     </p>
                 </div>
                 {DetachmentsList}

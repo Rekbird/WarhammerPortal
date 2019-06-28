@@ -655,7 +655,7 @@ export const recalculateRosterCost = (Roster = this) => {
     //console.log("Количество детачментов в методе до перебора"+Roster.RosterDetachments.length);
     let TotalPTS = 0;
     let TotalPL = 0;
-    let TotalCP = 0;
+    let TotalCP = 3;
    
     Roster.RosterDetachments.forEach(function(detach) {
         TotalPTS += detach.TotalDetachCost;

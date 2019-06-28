@@ -9,12 +9,12 @@
     border: 1px solid rgb(6, 41, 34);
     border-radius:5px;
     overflow: hidden;
-    
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 
 .UnitProfile__Button,
 .UnitProfile__Button:focus {
-    background-color: rgb(6, 41, 34);
+    background-color: rgb(6, 86, 87);
     color: white;
     border: 0px;
     border-radius:5px;
@@ -29,20 +29,20 @@
     vertical-align: middle;
     padding:3px;
     margin-right: -4px;
+    transition: 0.2s;
 }
 
 .UnitProfile__Button:hover {
-    background-color: rgb(6, 86, 87);
-    border-color: rgb(6, 86, 87);
+    background-color: rgb(7, 109, 110);
+    border-color: rgb(8, 119, 121);
     outline: none;
-    background: rgb(6, 86, 87);
     box-shadow: none;
     transition: 0.2s;
 }
 
 .UnitProfile__Button:active {
     border-color: rgb(39, 193, 196);
-    background-color: rgb(7, 119, 121);
+    background-color: rgb(9, 144, 146);
     transition: 0.2s;
 }
 
@@ -69,7 +69,7 @@
 .UnitProfile__Header_block {
     height: 40px;
     padding: 10px;
-    
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
     background-color: rgb(6, 86, 87);
     margin: auto;
     
