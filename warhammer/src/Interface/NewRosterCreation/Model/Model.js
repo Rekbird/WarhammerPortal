@@ -21,6 +21,7 @@ class ModelListElement extends Component {
     render() {
         console.log("Модель отрендерилась");
         const Name = this.props.singleModel.BaseModel.Name;
+        let modelCost = this.props.singleModel.TotalCost;
         var CopyButton = null;
         var DeleteButton = null;
         if (this.props.showCopyButton) {
@@ -30,11 +31,12 @@ class ModelListElement extends Component {
             DeleteButton = <img src = {DeleteMenuButton} className = 'model__buttons' alt = 'Delete' onClick = {this.DeleteButton}/>
         }
 
-        let classType = (this.props.ActiveModelExist) ? 'model__activeModelEditing' : 'model__titleText';
+        let classTypeTitle = (this.props.ActiveModelExist) ? 'model__activeModelTitleText' : 'model__titleText';
+        let classTypeElement = (this.props.ActiveModelExist) ? 'model__activeModelElement' : 'model__element';
         return (
-            <div className = 'model__element'>
+            <div className = {classTypeElement}>
                 <div className = 'model__title'>
-                    <span className = {classType} >{Name}</span>
+                    <span className = {classTypeTitle} >{Name} [{modelCost} pts]</span>
                 </div>
                 <div className = 'model__buttonsSet'>
                     <img src = {EditMenuButton} className = 'model__buttons' alt = 'Edit' onClick = {this.EditButton}/>
