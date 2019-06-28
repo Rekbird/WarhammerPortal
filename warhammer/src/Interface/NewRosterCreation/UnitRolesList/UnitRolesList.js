@@ -22,7 +22,7 @@ class UnitRolesList extends Component {
         }
         return(
             <div className = "UnitRolesList__Block">
-                <h2 style={{color: "rgb(6, 41, 34)"}}>Available roles</h2>
+                <h2>Available roles</h2>
                 {Roles}
             </div>
         )

@@ -1,7 +1,13 @@
 .DetachmentEditing {
-    padding:5px;
+    margin: 5px;
+    margin-left: 0px;
+    padding:2px;
     text-align: center;
     z-index:0;
+    border: 1px solid;
+    border-color: rgb(6, 86, 87);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .DetachmentEditing__Header {
@@ -14,7 +20,8 @@
     text-align: center;
     margin:0px;
     padding:5px;
-    
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    text-shadow: 0px 0px 2px white;
 }
 
 .DetachmentEditing__Button {
@@ -53,7 +60,7 @@
     color: rgb(6, 86, 87);
     padding-left:2px;
     padding-right:2px;
-    
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
     font-size: 20px solid;
     border-radius: 5px;
     border: 1px solid;
@@ -106,13 +113,13 @@
     border: 1px solid;
     border-color: rgb(6, 86, 87);
     border-radius: 5px;
-    scrollbar-width: 2px; 
-    box-shadow: none;
+    scrollbar-width: 2px;
     padding:5px;
     font-size: 16px;
     text-align: center;
     font-weight: 700;
     color:rgb(6, 86, 87);
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .DetachmentEditing__Option {
@@ -135,6 +142,7 @@
     height: 100px;
     width: auto;
     margin: 10px;
+    
 }
 
 .DetachmentEditing__CurrentFaction {
@@ -145,6 +153,7 @@
     text-align: center;
     vertical-align: middle;
     overflow: auto;
+    
 }
 
 .DetachmentEditing__CurrentFaction p{
