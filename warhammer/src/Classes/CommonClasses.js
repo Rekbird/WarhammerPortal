@@ -173,12 +173,12 @@ export class RosterModel {
         //this.recalculateRosterModel = this.recalculateRosterModel.bind(this);
     }
 
-    copyRosterModel = () => {
-        let ModelCopy = new RosterModel(null,this.BaseModel,this.RosterUnitId,this.TotalCost);
+    copyRosterModel = (Model) => {
+        let ModelCopy = new RosterModel(null,Model.BaseModel,Model.RosterUnitId,Model.TotalCost);
         //let ModelCopy = Object.assign({}, this);
-        if(!!this.RosterWargearSlots && this.RosterWargearSlots.length > 0) {
-            for(let i=0;i<this.RosterWargearSlots.length;i++) {
-                let Slot = this.RosterWargearSlots[i];
+        if(!!Model.RosterWargearSlots && Model.RosterWargearSlots.length > 0) {
+            for(let i=0;i<Model.RosterWargearSlots.length;i++) {
+                let Slot = Model.RosterWargearSlots[i];
                 let SlotCopy = Slot.copyRosterWargearSlot();
                 SlotCopy.id = i+1;
                 ModelCopy.RosterWargearSlots.push(SlotCopy);
@@ -224,13 +224,13 @@ export class RosterUnit {
         //this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
     }
 
-    copyRosterUnit = (NewId = null) => {
-        let UnitCopy = new RosterUnit(NewId,[],this.BaseUnit,this.SpellsSelected,this.TotalCost,this.RosterDetachmentId);
+    copyRosterUnit = (NewId = null, Unit) => {
+        let UnitCopy = new RosterUnit(NewId,[],Unit.BaseUnit,Unit.SpellsSelected,Unit.TotalCost,Unit.RosterDetachmentId);
         //let UnitCopy = Object.assign({}, this, {id: NewId, Models: []});
-        if(!!this.Models && this.Models.length > 0) {
-            for(let i=0;i<this.Models.length;i++) {
-                let Model = this.Models[i];
-                let ModelCopy = Model.copyRosterModel();
+        if(!!Unit.Models && Unit.Models.length > 0) {
+            for(let i=0;i<Unit.Models.length;i++) {
+                let Model = Unit.Models[i];
+                let ModelCopy = Model.copyRosterModel(Model);
                 ModelCopy.id = i+1;
                 ModelCopy.RosterUnitId = UnitCopy.id;
                 UnitCopy.Models.push(ModelCopy);
@@ -276,8 +276,8 @@ export class RosterDetachment {
         if(!!OldDetachment.RosterUnits && OldDetachment.RosterUnits.length > 0) {
             for(let i=0;i<OldDetachment.RosterUnits.length;i++) {
                 let Unit = OldDetachment.RosterUnits[i];
-                let UnitCopy = Unit.copyRosterUnit();
-                UnitCopy.id = i+1;
+                let UnitCopy = Unit.copyRosterUnit(i+1, Unit);
+                //UnitCopy.id = i+1;
                 UnitCopy.RosterDetachmentId = DetachmentCopy.id;
                 DetachmentCopy.RosterUnits.push(UnitCopy);
             }

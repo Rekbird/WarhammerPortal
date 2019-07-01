@@ -4,6 +4,7 @@ import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import { connect } from 'react-redux';
 import AddMenuButton from '../../../Data/ModelMenuButtons/AddMenuButton.png';
 import {RosterModel} from "../../../Classes/CommonClasses.js";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 /*
 in:
@@ -31,7 +32,8 @@ class AddNewModel extends Component {
     }
 
     HandleButtonClick = () => {
-        let NewRosterModel = new RosterModel((this.props.Models.length + 1),this.ChosenModel,this.props.Unit.id,this.ChosenModel.Cost); 
+        let NewRosterModel = new RosterModel((this.props.Models.length + 1),this.ChosenModel,this.props.Unit.id,this.ChosenModel.Cost);
+        NewRosterModel = utils.recalculateRosterModel(NewRosterModel); 
         let NewUnitModels = this.props.Models.slice();
         NewUnitModels.splice((NewUnitModels.length),0,NewRosterModel);
         this.props.HandleAddButtonClick(NewUnitModels);
