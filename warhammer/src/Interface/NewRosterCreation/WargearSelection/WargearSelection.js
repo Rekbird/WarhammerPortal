@@ -78,7 +78,28 @@ class WargearSelection extends Component {
         return AllSelectedOptions;
     }
 
+    HandleEvent = (e) => {
+        let name = e.target.value;
+        console.log(name);
+        switch (name) {
+            case "WarlordCheckBox":
+            
+            this.props.SetUnitAsWarlord(e.target.value);
+            break;
+        }
+    }
+
     render() {
+        let WarlordOptions = null;
+        //if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
+            WarlordOptions = 
+            <div>
+                <h3 className = 'WargearSelection__Title'>Additional options</h3>
+                <p><input type = 'checkbox' name = 'WarlordCheckBox' value = {this.props.ActiveUnit.Warlord} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
+
+            </div>
+        //}
+        
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
@@ -89,6 +110,7 @@ class WargearSelection extends Component {
             <div className = 'WargearSelection__Component'>
                 <h3 className = 'WargearSelection__Title'>{this.props.CurrentModel.BaseModel.Name} - Wargear options</h3>
                 <ul className = 'WargearSelection__List'>{RosterWargearSlots}</ul>
+                {WarlordOptions}
             </div>
         )
     }
@@ -97,13 +119,15 @@ class WargearSelection extends Component {
 const mapStateToProps = (state) => {
     return {
         CurrentModel: state.RosterEditing.ActiveModel,
-        RosterModels: state.RosterEditing.ActiveUnit.Models
+        RosterModels: state.RosterEditing.ActiveUnit.Models,
+        ActiveUnit : state.RosterEditing.ActiveUnit
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        UpdateSelectedWargearOptions: (WargearSlots) => dispatch(ActionCreators.UpdateModelWargear(WargearSlots))
+        UpdateSelectedWargearOptions: (WargearSlots) => dispatch(ActionCreators.UpdateModelWargear(WargearSlots)),
+        SetUnitAsWarlord: (WarlordCheckBox) => dispatch(ActionCreators.SetUnitAsWarlord(WarlordCheckBox))
     }
 }
 
