@@ -221,6 +221,8 @@ export class RosterUnit {
         this.SpellsSelected = SpellsSelected;
         this.TotalCost = (TotalCost) ? TotalCost : 0;
         this.RosterDetachmentId = RosterDetachmentId;
+        this.Warlord = false;
+        this.ChosenWarlordTrait = null;
         //this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
     }
 
@@ -314,6 +316,8 @@ export class Roster {
         this.MaxPL = MaxPL;
         this.MaxPTS = MaxPTS;
         this.UserId = UserId;
+        this.Warlord = null;
+        this.UnitsWithRelics = [];
         //this.recalculateRosterCost = this.recalculateRosterCost.bind(this);
     }
     /*

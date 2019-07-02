@@ -116,6 +116,9 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             return Object.assign({}, state, {ActiveModel: Result.NewModel, Roster: Result.NewRoster});
         case "NewRoster":
             return Object.assign({}, state, {Roster: NewRoster(action)});
+        case "SetUnitAsWarlord":
+            Result = SetUnitAsWarlord(state.ActiveModel, state.ActiveUnit, state.Roster, action);
+            return Object.assign({}, state, {ActiveModel: Result.NewModel, ActiveUnit: Result.NewUnit, Roster: Result.NewRoster});
         default:
             
             return (!!state) ? state : {
@@ -126,6 +129,18 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             };
     }
 }
+
+const SetUnitAsWarlord = (ActiveModel, ActiveUnit, roster, action) => {
+    let NewModel = Object.assign({}, ActiveModel, {Warlord: action.WarlordCheckbox});
+    let NewUnit = Object.assign({}, ActiveUnit);
+    NewUnit.Models.splice(ActiveUnit.Models.indexOf(ActiveUnit.Models.filter((model) => model.id == NewModel.id)[0]), 1, NewModel);
+    let NewRoster = Object.assign({}, roster, {Warlord : NewUnit});
+    return  {
+        NewModel,
+        NewUnit,
+        NewRoster
+    }
+} 
 
 const UpdateModelWargear = (ActiveModel, ActiveUnit, roster, action) => {
     let NewModel = Object.assign({}, ActiveModel, {RosterWargearSlots: action.WargearSlots});
@@ -157,7 +172,7 @@ const SetUnitModels = (roster, ActiveUnit, action) => {
             NeededDetachment = detachment;
         }
     });
-    NeededDetachment.RosterUnits.splice((NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0])),1,NewUnit);
+    NeededDetachment.RosterUnits.splice(NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0]),1,NewUnit);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
     NeededDetachment = utils.recalculateRosterDetachment(NeededDetachment);
     ReturningRoster = utils.recalculateRosterCost(ReturningRoster);

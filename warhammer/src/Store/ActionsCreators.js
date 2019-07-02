@@ -198,3 +198,10 @@ export function NewRoster(Roster) {
     }
 }
 
+export function SetUnitAsWarlord(WarlordCheckbox) {
+    return {
+        type: "SetUnitAsWarlord",
+        WarlordCheckbox
+    }
+}
+
