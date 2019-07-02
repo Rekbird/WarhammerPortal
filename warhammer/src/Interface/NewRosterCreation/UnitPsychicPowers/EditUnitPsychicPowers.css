@@ -3,10 +3,14 @@
     vertical-align: middle;
     text-align: center;
     border: 1px solid;
-    margin:10px;
+    margin:5px;
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:3px;
     border-color: rgb(6, 86, 87);
     border-radius: 5px;
     padding:0px;
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .EditUnitPsychicPowers__Header {
@@ -14,10 +18,11 @@
     border-radius: 5px;
     vertical-align: middle;
     text-align: center;
-    border: 1px solid;
-    margin:0px;
+    border: 1px solid rgb(6, 86, 87);
+    margin:2px;
     padding:3px;
     color:white;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 
 .EditUnitPsychicPowers__ChoiceDiv {
@@ -27,6 +32,7 @@
     padding:10px;
     margin:10px;
     display: inline-block;
+    
 }
 
 .EditUnitPsychicPowers__ButtonsDiv {
@@ -45,6 +51,7 @@
     background-color: rgb(6, 86, 87);
     color: white;
     margin:2px;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 .EditUnitPsychicPowers__Button:hover {
     border-color: rgb(39, 193, 196);
@@ -79,7 +86,7 @@
     scrollbar-width: 2px; 
     box-shadow: none;
     height:190px;
-   
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .EditUnitPsychicPowers__Option {
@@ -88,7 +95,8 @@
     width: 150px;
     text-align: center;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
     border: 1px solid;
     border-color: rgb(6, 86, 87);
     border-radius: 5px;
@@ -96,20 +104,30 @@
     margin-bottom: 2px;
     margin-top:2px;
     margin-right: 5px;
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .EditUnitPsychicPowers__Option:hover {
-    background-color: rgb(215, 251, 252);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    text-shadow: 0px 0px 1px white;
 }
 
 .EditUnitPsychicPowers__Option:active {
-    background-color: rgb(215, 251, 252);
+    color: white;
+    background-color: rgb(6, 86, 87);
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    text-shadow: 0px 0px 1px white;
 }
 
 .EditUnitPsychicPowers__Option:checked,
+.EditUnitPsychicPowers__Option:selected,
 .EditUnitPsychicPowers__Option:focus {
-    background-color: rgb(215, 251, 252);
-    box-shadow: none;
+    color: white;
+    background-color: rgb(6, 86, 87);
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    text-shadow: 0px 0px 1px white;
 }
 
 
@@ -126,4 +144,5 @@
     background-color: rgb(6, 86, 87);
     width: 175px;
     color: white;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }

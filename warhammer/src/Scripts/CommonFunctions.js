@@ -23,6 +23,7 @@ import ReturnUnits from "../Data/Units/Units.js";
 import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
 import GetFactionUnits from "./GetFactionUnits.js";
 import ReturnFactions from "../Data/FactionImages/FactionImages.js";
+import ReturnUnitPsuchicPowers from "../Data/PsychicPowers/UnitPsychicPowers.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
@@ -112,10 +113,38 @@ export function GetNumberOfSpells(UnitId) {
     return ReturnedNumberOfSpells;
 }
 
+export const GetCurrentNumberOfSpells = (NumberOfSpellsList, ModelsCount) => {
+    let UnitNumberOfSpells = 0;
+    if(ModelsCount) {
+        NumberOfSpellsList.sort(function(a,b) {
+            if(a.NumberOfModels < b.NumberOfModels) {
+                return -1;
+            } else if(a.NumberOfModels > b.NumberOfModels) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        for(let i=0;i<NumberOfSpellsList.length;i++) {
+            let item = NumberOfSpellsList[i];
+            if(NumberOfSpellsList[i+1]) {
+                if(ModelsCount >= item.NumberOfModels && ModelsCount < NumberOfSpellsList[i+1].NumberOfModels) {
+                    UnitNumberOfSpells = item.NumberOfSpells;
+                    break;
+                }
+            } else {
+                UnitNumberOfSpells = item.NumberOfSpells;
+            }
+        }
+    }
+    return UnitNumberOfSpells;
+}
+
 
 export function GetAvailableSpells(UnitId) {
     let ReturnedPsychicPowers = [];
     //Эмуляция вызова
+    /*
     let Spells = [];
     let Spell1 = {
         id: 1,
@@ -130,11 +159,20 @@ export function GetAvailableSpells(UnitId) {
 		DisciplineName: ""
     };
     Spells.push(Spell2);
+    */
+   console.log("GetAvailableSpells UnitID "+UnitId);
+    const Spells = ReturnUnitPsuchicPowers(UnitId);
     //Эмуляция вызова
+    /*
     for(let i=0;i<Spells.length;i++) {
         ReturnedPsychicPowers.push(new PsychicPower(Spells[i].id,Spells[i].Name,Spells[i].DisciplineName));
     }
-    return Spells;
+    */
+    Spells.forEach(function(spell) {
+            ReturnedPsychicPowers.push(new PsychicPower(spell.id,spell.Name,spell.DisciplineName));
+        }
+    );
+    return ReturnedPsychicPowers;
 }
 
 export const GetUnits = (FactionId, RoleId) => {
@@ -577,7 +615,7 @@ export function GetDetachmentOptions(DetachmentId) {
 
     let Option1 = {
         id: 1,
-		//UnitRole: GetUnitRole("1"),
+		UnitRole: 1,
 		MaxQuant: 6,
 		MinQuant: 3
     };
@@ -585,14 +623,22 @@ export function GetDetachmentOptions(DetachmentId) {
 
     let Option2 = {
         id: 2,
-		//UnitRole: GetUnitRole("2"),
+		UnitRole: 2,
 		MaxQuant: 6,
 		MinQuant: 3
     };
     Options.push(Option2);
 
+    let Option3 = {
+        id: 3,
+		UnitRole: 3,
+		MaxQuant: 6,
+		MinQuant: 3
+    };
+    Options.push(Option3);
+
     for(let i=0;i<Options.length;i++) {
-        ReturnedOptions.push(new DetachmentOption(Options[i].id,i+1,Options[i].MaxQuant,Options[i].MinQuant));
+        ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
     }
     return ReturnedOptions;
 }
