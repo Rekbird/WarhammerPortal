@@ -52,13 +52,12 @@ function PsychicPowerMenuButtons(state = {
                                 }, action) {
     switch(action.type) {
         case "PsychicPowerMenuButtons":
-            return Object.assign({}, state,     
-            {
+            return {
                 AvailableSpells: action.AvailableSpells,
                 SelectedSpells: action.SelectedSpells,
                 RemoveButtonLocked: action.RemoveButtonLocked,
                 AddButtonLocked: action.AddButtonLocked
-            });
+            };
         default:
             return state;
     }
@@ -69,7 +68,8 @@ function RosterEditing(state = RosterEditingInitialState, action) {
     let Result = null;
     switch(action.type) {
         case "UnitPsychicPowers":
-            return Object.assign({}, state, {Roster: SetUnitPsychicPowers(state.Roster, action)});
+            Result = SetUnitPsychicPowers(state.Roster, action);
+            return Object.assign({}, state, {Roster: Result.NewRoster, ActiveUnit: Result.NewUnit});
         case "DetachmentFaction":
             Result = SetDetachmentFaction(state.Roster, action);
             return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
@@ -183,17 +183,15 @@ const SetUnitModels = (roster, ActiveUnit, action) => {
 }
 
 const SetUnitPsychicPowers = (roster, action) => {
-    let NewUnit = Object.assign({}, action.Unit, {SpellsSelected: action.SelectedSpells});
-    let NeededDetachment;
+    let NewUnit = Object.assign({}, action.CurrentUnit, {SpellsSelected: action.SelectedSpells});
     let NewRoster = Object.assign({}, roster);
-    NewRoster.Detachments.forEach(function(element) {
-        if (element.RosterUnits.indexOf(action.CurrentUnit) != -1) {
-            NeededDetachment = element;
-        }
-    });
-    NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0] = NewUnit;
+    let NeededDetachment = NewRoster.RosterDetachments.find((detach) => detach.id == action.CurrentUnit.id);
+    NeededDetachment.RosterUnits.splice((NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.find((unit) => unit.id === NewUnit.id))),1,NewUnit);
 
-    return  NewRoster;
+    return {
+        NewRoster,
+        NewUnit
+    };
 }
 
 const SetDetachmentFaction = (roster, action) => {

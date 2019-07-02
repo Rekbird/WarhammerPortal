@@ -17,8 +17,8 @@ class UnitEditing extends Component {
 
     render() {
         let EditUnitPsychicPowersComponent = (this.props.Unit.BaseUnit.KnowsSmite || this.props.Unit.BaseUnit.AvailableSpells > 0) ? (
-            <EditUnitPsychicPowers AvailableSpells = {this.props.Unit.BaseUnit.AvailableSpells} SelectedSpells = {this.props.Unit.SelectedSpells} MaxSpells = {this.props.Unit.BaseUnit.NumberOfSpells} KnowsSmite = {this.props.Unit.BaseUnit.KnowsSmite}/>
-        ) : null;
+            <EditUnitPsychicPowers />
+            ) : null;
         let WargearSelectionComponent = (this.props.ActiveModel) ? <WargearSelection/> : null;
         let AddNewModelComponent = (this.props.Unit.BaseUnit.MaxModelQuant > this.props.Unit.Models.length || !this.props.Unit.BaseUnit.MaxModelQuant) ? <AddNewModel/> : null;
         return (

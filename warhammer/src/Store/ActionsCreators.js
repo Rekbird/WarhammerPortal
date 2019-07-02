@@ -22,10 +22,11 @@ export function PsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveB
     }
 }
 
-export function UnitPsychicPowers(SelectedSpells) {
+export function UnitPsychicPowers(SelectedSpells, CurrentUnit) {
     return {
         type: "UnitPsychicPowers",
-        SelectedSpells: SelectedSpells
+        SelectedSpells: SelectedSpells,
+        CurrentUnit: CurrentUnit
     }
 }
 
