@@ -185,7 +185,7 @@ const SetUnitModels = (roster, ActiveUnit, action) => {
 const SetUnitPsychicPowers = (roster, action) => {
     let NewUnit = Object.assign({}, action.CurrentUnit, {SpellsSelected: action.SelectedSpells});
     let NewRoster = Object.assign({}, roster);
-    let NeededDetachment = NewRoster.RosterDetachments.find((detach) => detach.id == action.CurrentUnit.id);
+    let NeededDetachment = NewRoster.RosterDetachments.find((detach) => detach.id == action.CurrentUnit.RosterDetachmentId);
     NeededDetachment.RosterUnits.splice((NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.find((unit) => unit.id === NewUnit.id))),1,NewUnit);
 
     return {

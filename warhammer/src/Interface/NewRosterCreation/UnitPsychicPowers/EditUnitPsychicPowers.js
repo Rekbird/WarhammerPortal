@@ -29,13 +29,13 @@ class EditUnitPsychicPowers extends Component {
     componentWillMount() {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let AvailableSpells = this.props.Unit.BaseUnit.AvailableSpells.slice();
-        let SelectedSpells = this.props.Unit.SpellsSelected.slice();
+        let AvailableSpells = (!!this.props.AvailableSpells & this.props.AvailableSpells.length >0) ? this.props.AvailableSpells.slice() : this.props.Unit.BaseUnit.AvailableSpells.slice();
+        let SelectedSpells = (!!this.props.SelectedSpells & this.props.SelectedSpells.length >0) ? this.props.SelectedSpells.slice() : this.props.Unit.SpellsSelected.slice();
         if(!this.props.Unit.SpellsSelected || this.props.Unit.SpellsSelected.length == 0) {
             AddButtonLocked = false;
             RemoveButtonLocked = true;
             if(this.props.KnowsSmite) {
-                const Spell = this.props.Unit.BaseUnit.AvailableSpells.find((spell) => parseInt(spell.id) == parseInt(1));
+                const Spell = AvailableSpells.find((spell) => parseInt(spell.id) == parseInt(1));
                 console.log("Edit unit psychic powers component");
                 console.log(Spell);
                 if(!!Spell) { 
@@ -57,6 +57,7 @@ class EditUnitPsychicPowers extends Component {
             AddButtonLocked: AddButtonLocked
         });
         */
+       console.log(this.props.Unit);
        this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
        this.props.SetUnitPsychicPowers(SelectedSpells, this.props.Unit);
     }

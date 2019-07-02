@@ -30,6 +30,7 @@
     padding:3px;
     margin-right: -4px;
     transition: 0.2s;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 
 .UnitProfile__Button:hover {
@@ -99,4 +100,8 @@
     display: inline-block;
     vertical-align: middle;
     position: relative;
+}
+
+.UnitProfile__UnitDescription {
+    color: rgb(6, 86, 87);
 }
