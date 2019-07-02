@@ -12,7 +12,7 @@ class ChoiceUnitPsychicPower extends Component {
 
     render() {
         let AvailablePowers = this.props.AvailablePowers;
-        if(AvailablePowers && AvailablePowers.length > 0) {
+        if(!!AvailablePowers && AvailablePowers.length > 0) {
             console.log(this.props.SelectLabel+" "+AvailablePowers.length);
             var PsychicPowers = AvailablePowers.map(
                 (power) =>

@@ -8,13 +8,14 @@ import RangersImage from "./RangersImage.jpg";
 import FireDragonsImage from "./FireDragonsImage.jpg";
 import HowlingBansheesImage from "./HowlingBansheesImage.jpg";
 import StrikingScorpionsImage from "./StrikingScorpionsImage.jpg";
+import FarseerImage from "./FarseerImage.jpg";
 
 function ReturnUnits() {
-    var Factions = ReturnFactions();
-    var UnitsRoles = ReturnUnitRoles();
-    var Units = [];
+    const Factions = ReturnFactions();
+    const UnitsRoles = ReturnUnitRoles();
+    let Units = [];
 
-    var DireAvengers = {
+    const DireAvengers = {
         id: 1,
         Name: "Dire Avengers",
         Codex: "",
@@ -34,7 +35,7 @@ function ReturnUnits() {
     };
     Units.push(DireAvengers);
 
-    var GuardiansDefenders = {
+    const GuardiansDefenders = {
         id: 2,
         Name: "Guardians Defenders",
         Codex: "",
@@ -54,7 +55,7 @@ function ReturnUnits() {
     };
     Units.push(GuardiansDefenders);
 
-    var StormGuardians = {
+    const StormGuardians = {
         id: 3,
         Name: "Storm Guardians",
         Codex: "",
@@ -74,7 +75,7 @@ function ReturnUnits() {
     };
     Units.push(StormGuardians);
 
-    var Rangers = {
+    const Rangers = {
         id: 4,
         Name: "Rangers",
         Codex: "",
@@ -94,7 +95,7 @@ function ReturnUnits() {
     };
     Units.push(Rangers);
 
-    var FireDragons = {
+    const FireDragons = {
         id: 5,
         Name: "Fire Dragons",
         Codex: "",
@@ -114,7 +115,7 @@ function ReturnUnits() {
     };
     Units.push(FireDragons);
 
-    var HowlingBanshees = {
+    const HowlingBanshees = {
         id: 6,
         Name: "Howling Banshees",
         Codex: "",
@@ -134,7 +135,7 @@ function ReturnUnits() {
     };
     Units.push(HowlingBanshees);
 
-    var StrikingScorpions = {
+    const StrikingScorpions = {
         id: 7,
         Name: "Striking Scorpions",
         Codex: "",
@@ -154,7 +155,27 @@ function ReturnUnits() {
     };
     Units.push(StrikingScorpions);
 
-    console.log("Units" + Units.length);
+    const Farseer = {
+        id: 8,
+        Name: "Farseer",
+        Codex: "",
+        Description: "A Farseer is a single model armed with a shuriken pistol and a witchblade.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: true,
+        Image: FarseerImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[0],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Farseer"
+    };
+    Units.push(Farseer);
+
+    //console.log("Units" + Units.length);
     return Units;
 }
 
