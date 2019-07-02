@@ -131,10 +131,16 @@ function RosterEditing(state = RosterEditingInitialState, action) {
 }
 
 const SetUnitAsWarlord = (ActiveModel, ActiveUnit, roster, action) => {
-    let NewModel = Object.assign({}, ActiveModel, {Warlord: action.WarlordCheckbox});
-    let NewUnit = Object.assign({}, ActiveUnit);
-    NewUnit.Models.splice(ActiveUnit.Models.indexOf(ActiveUnit.Models.filter((model) => model.id == NewModel.id)[0]), 1, NewModel);
+    let NewModel = Object.assign({}, ActiveModel);
+    let NewUnit = Object.assign({}, ActiveUnit, {Warlord: action.WarlordCheckbox});
     let NewRoster = Object.assign({}, roster, {Warlord : NewUnit});
+    let NeededDetachment;
+    NewRoster.RosterDetachments.forEach(function(detachment) {
+        if (detachment.RosterUnits.indexOf(ActiveUnit) != -1) {
+            NeededDetachment = detachment;
+        }
+    });
+    NeededDetachment.RosterUnits.splice(NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0]),1,NewUnit);
     return  {
         NewModel,
         NewUnit,
