@@ -24,32 +24,42 @@ class EditUnitPsychicPowers extends Component {
         this.ChooseSelectedPsychicPowers = this.ChooseSelectedPsychicPowers.bind(this);
         this.AddPsychicPowers = this.AddPsychicPowers.bind(this);
         this.RemovePsychicPowers = this.RemovePsychicPowers.bind(this);
+        this.initializeComponentState = this.initializeComponentState.bind(this);
     }
 
-    componentWillMount() {
+    initializeComponentState = () => {
         let AddButtonLocked;
         let RemoveButtonLocked;
-        let AvailableSpells = (!!this.props.AvailableSpells & this.props.AvailableSpells.length >0) ? this.props.AvailableSpells.slice() : this.props.Unit.BaseUnit.AvailableSpells.slice();
-        let SelectedSpells = (!!this.props.SelectedSpells & this.props.SelectedSpells.length >0) ? this.props.SelectedSpells.slice() : this.props.Unit.SpellsSelected.slice();
+        let AvailableSpells = this.props.Unit.BaseUnit.AvailableSpells.slice();
+        let SelectedSpells = this.props.Unit.SpellsSelected.slice();
+        console.log("Edit unit psychic powers component");
         if(!this.props.Unit.SpellsSelected || this.props.Unit.SpellsSelected.length == 0) {
             AddButtonLocked = false;
             RemoveButtonLocked = true;
             if(this.props.KnowsSmite) {
                 const Spell = AvailableSpells.find((spell) => parseInt(spell.id) == parseInt(1));
-                console.log("Edit unit psychic powers component");
-                console.log(Spell);
+                
+                console.log("Empty Selected spells");
                 if(!!Spell) { 
                     SelectedSpells.push(Spell);
                     AvailableSpells.splice(AvailableSpells.indexOf(Spell), 1);
                 }
             }
-        } else if(this.props.Unit.SpellsSelected.length < this.props.MaxSpells) {
-            AddButtonLocked = false;
-            RemoveButtonLocked = false;
-        } else {
-            AddButtonLocked = true;
-            RemoveButtonLocked = false;
-        }/*
+        } else  {
+            console.log("Not Empty Selected spells");
+            SelectedSpells.forEach(function(spell) {
+                AvailableSpells.splice(AvailableSpells.indexOf(AvailableSpells.find((CurrentSpell) => CurrentSpell.id == spell.id)), 1);
+            });
+            if(SelectedSpells.length < this.props.MaxSpells) {
+                AddButtonLocked = false;
+                RemoveButtonLocked = false;
+            } else {
+                console.log("More Selected spells");
+                AddButtonLocked = true;
+                RemoveButtonLocked = false;
+            }
+        }
+        /*
         this.setState({
             AvailableSpells: AvailableSpells,
             SelectedSpells: SelectedSpells,
@@ -60,6 +70,16 @@ class EditUnitPsychicPowers extends Component {
        console.log(this.props.Unit);
        this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
        this.props.SetUnitPsychicPowers(SelectedSpells, this.props.Unit);
+    }
+
+    componentWillMount() {
+        this.initializeComponentState();
+    }
+
+    componentDidUpdate(prevProps) {
+        if((this.props.Unit.id != prevProps.Unit.id) || (this.props.Unit.RosterDetachmentId != prevProps.Unit.RosterDetachmentId)) {
+            this.initializeComponentState();
+        }
     }
 
     ChooseAvailablePsychicPowers(event) {
