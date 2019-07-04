@@ -175,6 +175,66 @@ function ReturnUnits() {
     };
     Units.push(Farseer);
 
+    const Warlock = {
+        id: 9,
+        Name: "Warlock",
+        Codex: "",
+        Description: "A Warlock is a single model armed with a shuriken pistol and a witchblade.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: true,
+        Image: FarseerImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[0],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Warlock"
+    };
+    Units.push(Warlock);
+
+    const Spiritseer = {
+        id: 10,
+        Name: "Spiritseer",
+        Codex: "",
+        Description: "A Spiritseer is a single model armed with a shuriken pistol and a witch staff.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: true,
+        Image: FarseerImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[0],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Spiritseer"
+    };
+    Units.push(Spiritseer);
+
+    const Warlock_Conclave = {
+        id: 11,
+        Name: "Warlock Conclave",
+        Codex: "",
+        Description: "This unit contains 2 Warlocks. It can include up to 8 additional Warlocks (Power Rating +2 per model). Each model is armed with a shuriken pistol and a witchblade.",
+        WargearOptions: "",
+        MaxModelQuantity: "",
+        FactionKeywords: "",
+        Keywords: "",
+        PowerRating: "",
+        KnowsSmite: true,
+        Image: FarseerImage,
+        Faction: Factions[27],
+        Named: "",
+        WarlordTraits: "",
+        UnitRole: UnitsRoles[0],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Warlock-Conclave"
+    };
+    Units.push(Warlock_Conclave);
+
     //console.log("Units" + Units.length);
     return Units;
 }
