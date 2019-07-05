@@ -29,7 +29,7 @@ function ReturnUnits() {
         Image: DireAvengersImage,
         Faction: Factions[27],
         Named: false,
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[1],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Dire-Avengers"
     };
@@ -49,7 +49,7 @@ function ReturnUnits() {
         Image: GuardiansDefendersImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[1],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Guardian-Defenders"
     };
@@ -69,7 +69,7 @@ function ReturnUnits() {
         Image: StormGuardiansImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[1],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Storm-Guardians"
     };
@@ -89,7 +89,7 @@ function ReturnUnits() {
         Image: RangersImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[1],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Rangers"
     };
@@ -109,7 +109,7 @@ function ReturnUnits() {
         Image: FireDragonsImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[2],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Fire-Dragons"
     };
@@ -129,7 +129,7 @@ function ReturnUnits() {
         Image: HowlingBansheesImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[2],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Howling-Banshees"
     };
@@ -149,7 +149,7 @@ function ReturnUnits() {
         Image: StrikingScorpionsImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[2],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Striking-Scorpions"
     };
@@ -169,7 +169,7 @@ function ReturnUnits() {
         Image: FarseerImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[0],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Farseer"
     };
@@ -189,7 +189,7 @@ function ReturnUnits() {
         Image: FarseerImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[0],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Warlock"
     };
@@ -209,7 +209,7 @@ function ReturnUnits() {
         Image: FarseerImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[0],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Spiritseer"
     };
@@ -229,7 +229,7 @@ function ReturnUnits() {
         Image: FarseerImage,
         Faction: Factions[27],
         Named: "",
-        WarlordTraits: "",
+        WarlordTraitId: "",
         UnitRole: UnitsRoles[0],
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Warlock-Conclave"
     };

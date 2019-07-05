@@ -32,10 +32,10 @@ class WargearElement extends Component {
     
     render() {
         let AvailableOptions = this.props.AvailableOptions;
-            var Options = AvailableOptions.map(
+        let Options = AvailableOptions.map(
                 (option) =>
                 <option className = "WargearElement__Option" key = {option.id} value = {option.id} disabled = {option.id == this.props.SelectedOption.id}>{option.Name} [{this.CalculateCost(option)} pts]</option>
-            )
+            );
 
             return (
                 <div className = 'WargearElement__Block'>

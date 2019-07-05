@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./WargearSelection.css";
 import WargearElement from "./WargearElement/WargearElement.js"
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 import { connect } from 'react-redux';
 /*
 in:
@@ -40,18 +41,21 @@ class WargearSelection extends Component {
         }
         
         for (let i = 0; i < BaseOptions.length; i++) {
-        let HasLinkedOptions = !!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0;
+            let HasLinkedOptions = !!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0;
+            let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
+
             if (!!BaseOptions[i].PerXmodels) {
-                let AlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
                 let CanCarry = this.props.RosterModels.length / BaseOptions[i].PerXmodels;
-                
-                couldBeIncluded = (CanCarry > AlreadyHave);
+                couldBeIncluded = couldBeIncluded && (CanCarry > UnitAlreadyHave);
+            }
+
+            if (!!BaseOptions[i].UpToXModels) {
+                couldBeIncluded = couldBeIncluded && (BaseOptions[i].UpToXModels > UnitAlreadyHave);
             }
 
             if (!!BaseOptions[i].CountPerModel) {
-                let alreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
-                
-                couldBeIncluded = (alreadyHave < BaseOptions[i].CountPerModel);
+                let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
+                couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
             }
 
             if (couldBeIncluded && BaseOptions[i] != CurrentSlot.SelectedOption) {
@@ -82,18 +86,27 @@ class WargearSelection extends Component {
         this.props.SetUnitAsWarlord(!this.UnitIsWarlord);
     }
 
+    SelectedWarlordTrait = () => {
+        
+    }
+
     render() {
-        console.log(this.props.ActiveUnit.Warlord);
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions = null;
-        //if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
+
+        if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
+            let AvailableWarlordTraits = utils.GetWarlordTraits(28, null).map(
+                (option) =>
+                <option className = "" key = {option.id} value = {option.id} disabled = {option.id == this.props.ActiveUnit.ChosenWarlordTrait.id}>{option.Name}</option>
+            );
+
             WarlordOptions = 
             <div>
                 <h3 className = 'WargearSelection__Title'>Additional options</h3>
                 <p className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
-
+                <select className = "" value = {this.props.ActiveUnit.ChosenWarlordTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
             </div>
-        //}
+        }
         
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
