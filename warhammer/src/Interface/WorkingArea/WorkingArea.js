@@ -55,11 +55,6 @@ function WorkingArea(props) {
             </div>;
         break;
         case 6 :
-            var Factions = GetFactions();
-            var Units = GetFactionUnits(Factions[27].id)
-            let RosterDetachment = {Detachment:null, Faction:null, ChapterTactic:null, Name:null};
-            //let NewRoster = new Roster(1,"New Roster",[],null,null,null,null,null,null);
-            //props.NewRoster(NewRoster);
             NeededArea = 
             <div>
                 <RosterCreation Roster = {props.Roster}/>

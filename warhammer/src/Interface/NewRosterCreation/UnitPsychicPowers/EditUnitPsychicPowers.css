@@ -90,6 +90,7 @@
 }
 
 .EditUnitPsychicPowers__Option {
+    transition:0.2s;
     padding: 5px;
     color: rgb(6, 86, 87);
     width: 150px;
@@ -111,14 +112,14 @@
     color: white;
     background-color: rgb(6, 86, 87);
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
-    text-shadow: 0px 0px 1px white;
+    text-shadow: 0px 0px 2px white;
 }
 
 .EditUnitPsychicPowers__Option:active {
     color: white;
     background-color: rgb(6, 86, 87);
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
-    text-shadow: 0px 0px 1px white;
+    text-shadow: 0px 0px 2px white;
 }
 
 .EditUnitPsychicPowers__Option:checked,
@@ -127,7 +128,7 @@
     color: white;
     background-color: rgb(6, 86, 87);
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
-    text-shadow: 0px 0px 1px white;
+    text-shadow: 0px 0px 2px white;
 }
 
 

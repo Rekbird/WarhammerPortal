@@ -24,6 +24,8 @@ import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
 import GetFactionUnits from "./GetFactionUnits.js";
 import ReturnFactions from "../Data/FactionImages/FactionImages.js";
 import ReturnUnitPsuchicPowers from "../Data/PsychicPowers/UnitPsychicPowers.js";
+import ReturnNumbersOfSpells from "../Data/PsychicPowers/NumbersOfSpells.js";
+import ReturnUnitModels from "../Data/ModelObjects/UnitModels.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
@@ -78,28 +80,7 @@ export function GetNumberOfSpells(UnitId) {
     let NumberOfSpellsFromBase = [];
     //Селект из базы по юнит айди
     if (!!UnitId) {
-        NumberOfSpellsFromBase = [
-            {
-                id : 1,
-                NumberOfModels : 3,
-                NumberOfSpells : 1
-            },
-            {
-                id : 2,
-                NumberOfModels : 4,
-                NumberOfSpells : 2
-            },
-            {
-                id : 3,
-                NumberOfModels : 5,
-                NumberOfSpells : 2
-            },
-            {
-                id : 4,
-                NumberOfModels : 6,
-                NumberOfSpells : 3
-            }
-        ];
+        NumberOfSpellsFromBase = ReturnNumbersOfSpells(UnitId);
     }
 
     //Эмуляция вызова
@@ -144,30 +125,10 @@ export const GetCurrentNumberOfSpells = (NumberOfSpellsList, ModelsCount) => {
 export function GetAvailableSpells(UnitId) {
     let ReturnedPsychicPowers = [];
     //Эмуляция вызова
-    /*
-    let Spells = [];
-    let Spell1 = {
-        id: 1,
-		Name: "Smite",
-		DisciplineName: ""
-    };
-    Spells.push(Spell1);
-
-    let Spell2 = {
-        id: 2,
-		Name: "Conceal/Reveal",
-		DisciplineName: ""
-    };
-    Spells.push(Spell2);
-    */
-   console.log("GetAvailableSpells UnitID "+UnitId);
+    
     const Spells = ReturnUnitPsuchicPowers(UnitId);
     //Эмуляция вызова
-    /*
-    for(let i=0;i<Spells.length;i++) {
-        ReturnedPsychicPowers.push(new PsychicPower(Spells[i].id,Spells[i].Name,Spells[i].DisciplineName));
-    }
-    */
+    
     Spells.forEach(function(spell) {
             ReturnedPsychicPowers.push(new PsychicPower(spell.id,spell.Name,spell.DisciplineName));
         }
@@ -243,33 +204,8 @@ export function GetUnitRole(RoleId) {
    
     let UnitRoles = GetUnitRoles();
     let ReturnedUnitRole = UnitRoles.filter((role) => role.id == RoleId)[0];
-    console.log("GetUnitRole : Returned Role " + ReturnedUnitRole);
     return ReturnedUnitRole;
-    /*
-    let Role1 = {
-        id:1,
-        Name: "Troops",
-        Image: ""
-    };
-    UnitRoles.push(Role1);
-    //console.log(RoleId+" "+Role1.id == RoleId);
-    let Role2 = {
-        id:2,
-        Name: "Elites",
-        Image: ""
-    };
-    UnitRoles.push(Role2);
-    
-    //console.log(RoleId+" "+Role2.id == RoleId);
-    for(let i=0;i<UnitRoles.length;i++) {
-        ReturnedUnitRoles.push(new UnitRole(UnitRoles[i].id,UnitRoles[i].Name,UnitRoles[i].Image));
-    }
-   return ReturnedUnitRoles.filter((role) => role.id == RoleId)[0];
-   //return ReturnedUnitRoles[RoleId];
-   */
 }
-
-// export default GetUnitRole;
 
 export function GetUnitPowerLevel(UnitId) {
     let UnitPowerLevels =[];
@@ -299,28 +235,7 @@ export function GetUnitPowerLevel(UnitId) {
 
 export function GetUnitModels(UnitId) {
     let ReturnedModels = [];
-    let UnitModels = [];
-    let Model1 = {
-        id: 1,
-        Name: "Dire Avenger",
-        Cost: 11,
-        MaxQuant: 10,
-        MinQuant: 5,
-        ModelsIncluding: 1,
-        UnitId: ""
-    };
-    UnitModels.push(Model1);
-
-    let Model2 = {
-        id: 2,
-        Name: "Dire Avenger Exarch",
-        Cost: 11,
-        MaxQuant: 1,
-        MinQuant: 0,
-        ModelsIncluding: 1,
-        UnitId: ""
-    };
-    UnitModels.push(Model2);
+    let UnitModels = ReturnUnitModels(UnitId);
 
     for(let i=0;i<UnitModels.length;i++) {
         ReturnedModels.push(new Model(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].UnitId));

@@ -22,7 +22,8 @@ const RosterEditingInitialState = {
     Action: "Roster Editing",
     Roster: null,		
 	ActiveDetachment: null,
-    ActiveUnit: null			
+    ActiveUnit: null,
+    ActiveModel: null			
 }
 
 function MainMenuCategoryKey(state = 1, action) {
@@ -90,7 +91,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             Result = AddNewUnit(state.Roster, action);
             return Object.assign({}, state, {Roster:Result.Roster, ActiveUnit: Result.Unit});
         case "ActiveUnit":
-            return Object.assign({}, state, {ActiveUnit: SetActiveUnit(action)});
+            return Object.assign({}, state, {ActiveUnit: SetActiveUnit(action), ActiveModel: null});
         case "CopyUnit":
             return Object.assign({}, state, {Roster: AddUnitCopy(state.Roster, action)});
         case "DeleteUnit":
@@ -115,7 +116,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             Result = UpdateModelWargear(state.ActiveModel, state.ActiveUnit, state.Roster, action);
             return Object.assign({}, state, {ActiveModel: Result.NewModel, Roster: Result.NewRoster});
         case "NewRoster":
-            return Object.assign({}, state, {Roster: NewRoster(action)});
+            return Object.assign({}, state, {Roster: NewRoster(action), ActiveUnit: null, ActiveModel: null, ActiveDetachment: null, Action: "Roster Editing"});
         case "SetUnitAsWarlord":
             Result = SetUnitAsWarlord(state.ActiveModel, state.ActiveUnit, state.Roster, action);
             return Object.assign({}, state, {ActiveModel: Result.NewModel, ActiveUnit: Result.NewUnit, Roster: Result.NewRoster});
@@ -145,7 +146,6 @@ const SetUnitAsWarlord = (ActiveModel, ActiveUnit, roster, action) => {
 const UpdateModelWargear = (ActiveModel, ActiveUnit, roster, action) => {
     let NewModel = Object.assign({}, ActiveModel, {RosterWargearSlots: action.WargearSlots});
     NewModel = utils.recalculateRosterModel(NewModel);
-    //let NewActiveUnit = Object.assign({}, ActiveUnit);
     ActiveUnit.Models.splice(ActiveUnit.Models.indexOf(ActiveUnit.Models.filter((model) => model.id == NewModel.id)[0]), 1, NewModel);
     ActiveUnit = utils.recalculateRosterUnit(ActiveUnit);
     let NewRoster = Object.assign({}, roster);
@@ -185,7 +185,7 @@ const SetUnitModels = (roster, ActiveUnit, action) => {
 const SetUnitPsychicPowers = (roster, action) => {
     let NewUnit = Object.assign({}, action.CurrentUnit, {SpellsSelected: action.SelectedSpells});
     let NewRoster = Object.assign({}, roster);
-    let NeededDetachment = NewRoster.RosterDetachments.find((detach) => detach.id == action.CurrentUnit.id);
+    let NeededDetachment = NewRoster.RosterDetachments.find((detach) => detach.id == action.CurrentUnit.RosterDetachmentId);
     NeededDetachment.RosterUnits.splice((NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.find((unit) => unit.id === NewUnit.id))),1,NewUnit);
 
     return {
@@ -201,7 +201,6 @@ const SetDetachmentFaction = (roster, action) => {
     NeededDetachment = Object.assign({}, NeededDetachment);
     NeededDetachment.Faction = action.Faction;
     Detachments.splice(DetachIndex, 1, NeededDetachment);
-    //Detachments.push(NeededDetachment);
     return {
         Roster: Object.assign({}, roster, {RosterDetachments: Detachments}),
         Detachment: NeededDetachment
@@ -231,7 +230,6 @@ const SetChapterTactic = (roster, action) => {
     NeededDetachment = Object.assign({}, NeededDetachment);
     NeededDetachment.ChapterTactic = action.ChapterTactic;
     Detachments.splice(DetachIndex, 1, NeededDetachment);
-    //Detachments.push(NeededDetachment);
     return {
         Roster: Object.assign({}, roster, {RosterDetachments: Detachments}),
         Detachment: NeededDetachment
@@ -243,7 +241,6 @@ const AddNewDetachment = (roster, action) => {
     let NewDetachment = new RosterDetachment(action.NewId,[],null,null,null,roster.id,null,null);
     Detachments.push(NewDetachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
-    //NewRoster = utils.recalculateRosterCost(NewRoster);
     return {
         Roster: NewRoster,
         ActiveDetachment: NewDetachment,
@@ -254,12 +251,7 @@ const AddNewDetachment = (roster, action) => {
 const AddCopyDetachment = (roster, action) => {
     let Detachments = roster.RosterDetachments.slice();
     let Detach = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
-    //console.log("Количество юнитов в редусере "+Detach.RosterUnits.length);
-    //console.log("Чаптер тактика в редусере "+Detach.ChapterTactic);
-    //console.log("детачмент в редусере "+Detach.Detachment);
-    //console.log("фракция в редусере "+Detach.Faction);
     let NewDetachment = Detach.copyRosterDetachment(action.NewId, Detach);
-    //NewDetachment.id = action.NewId;
     Detachments.push(NewDetachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     NewRoster = utils.recalculateRosterCost(NewRoster);
@@ -277,7 +269,6 @@ const RemoveDetachment = (roster, action) => {
 
 const AddNewUnit = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
-    console.log("Количество детачментов "+Detachments.length);
     let Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
     let NewUnit = new RosterUnit(
         action.NewId,
@@ -287,9 +278,7 @@ const AddNewUnit = (roster, action) => {
         null,
         action.DetachmentId
     );
-    //console.log("Количество детачментов "+Detachments.length);
     NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
-    //console.log("Количество детачментов "+Detachments.length);
     Detachment.RosterUnits.push(NewUnit);
     Detachment.RosterUnits.sort(function(a,b) {
         if(a.BaseUnit.Name < b.BaseUnit.Name) {
@@ -301,17 +290,9 @@ const AddNewUnit = (roster, action) => {
         }
     });
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
-    //console.log("Количество детачментов после копирования ростера"+roster.RosterDetachments.length);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
-    //console.log("Количество детачментов после пересчета юнита"+roster.RosterDetachments.length);
     Detachment = utils.recalculateRosterDetachment(Detachment);
-    //console.log("Количество детачментов после пересчета детача"+roster.RosterDetachments.length);
-    //roster.recalculateRosterCost(roster);
-    //console.log("Количество детачментов после пересчета ростера"+roster.RosterDetachments.length);
-    //console.log(Detachment.TotalDetachCost);
-    //let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     NewRoster = utils.recalculateRosterCost(NewRoster);
-    //console.log("Количество детачментов после копирования ростера"+NewRoster.RosterDetachments.length);
     return {
         Roster: NewRoster,
         Unit: NewUnit
@@ -327,7 +308,6 @@ const AddUnitCopy = (roster, action) => {
     let Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
     let OriginalUnit = Detachment.RosterUnits.filter((unit) => unit.id == action.UnitId)[0];
     let NewUnit = OriginalUnit.copyRosterUnit(action.NewId,OriginalUnit);
-    //NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
     Detachment.RosterUnits.push(NewUnit);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
     Detachment.RosterUnits.sort(function(a,b) {

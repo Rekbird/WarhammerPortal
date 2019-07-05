@@ -34,6 +34,7 @@
     margin-left: 15px;
     font-size: 16px;
     padding: 5px;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 
 .DetachmentEditing__Button:hover {
@@ -178,6 +179,7 @@
     position: fixed;
     z-index: 9999;
     overflow: hidden;
+    box-shadow: 2px 2px 8px rgb(108, 159, 160);
 }
 
 .DetachmentEditing__FactionSelectionWindow_Header {
@@ -189,7 +191,8 @@
     text-align: center;
     margin:0px;
     padding:5px;
-    
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    text-shadow:0px 0px 2px white;
 }
 
 .DetachmentEditing__FactionSelectionWindow_CloseButton {
@@ -213,6 +216,7 @@
     border-color: rgb(7, 119, 121);
     background-color: rgb(7, 119, 121);
     transition: 0.2s;
+    box-shadow: 1px 1px 2px rgb(6, 86, 87);
 }
 
 .DetachmentEditing__FactionSelectionWindow_CloseButton:active {
