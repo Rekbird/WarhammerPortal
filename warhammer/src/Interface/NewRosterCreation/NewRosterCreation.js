@@ -17,158 +17,40 @@ import * as ActionCreators from "../../Store/ActionsCreators.js";
 class RosterCreation extends Component{
     constructor(props) {
         super(props)
-        /*
-        this.state = {
-            Action: "Roster Editing",
-            Roster: this.props.Roster,
-            ActiveDetachment: null,
-            ActiveUnit: null,
-            RosterChanged: false
-        };
-        */
         this.ActiveDetachment = null;
         this.ActiveUnit = null;
         this.AddNewDetachment = this.AddNewDetachment.bind(this);
         this.EditDetachment = this.EditDetachment.bind(this);
         this.CopyDetachment = this.CopyDetachment.bind(this);
         this.DeleteDetachment = this.DeleteDetachment.bind(this);
-        //this.AddNewUnit = this.AddNewUnit.bind(this);
         this.EditUnit = this.EditUnit.bind(this);
         this.CopyUnit = this.CopyUnit.bind(this);
         this.DeleteUnit = this.DeleteUnit.bind(this);
         this.EditRoster = this.EditRoster.bind(this);
         this.showUnitSelectionList = this.showUnitSelectionList.bind(this);
-        //this.handleRosterDetachmentChange = this.handleRosterDetachmentChange.bind(this);
-        //this.handleRosterChange = this.handleRosterChange.bind(this);
     }
 
-    /*
-    handleRosterDetachmentChange = (RosterDetachment, Faction, DetachmentType, ChapterTactic) => {
-        if(RosterDetachment) {
-            if(Faction) {
-                console.log("ид детачмента в родителе "+RosterDetachment.id)
-                this.props.DetachmentFaction(RosterDetachment.id, Faction);
-            }
-            if(DetachmentType) {
-                this.props.DetachmentType(RosterDetachment.id, DetachmentType);
-            }
-            if(ChapterTactic) {
-                this.props.ChapterTactic(RosterDetachment.id, ChapterTactic);
-            }
-            /*
-            this.setState({
-                //Roster: this.state.Roster,
-                RosterChanged: !this.state.RosterChanged
-            });
-            
-        }
-    }
-*/
     AddNewDetachment = () => {
-        /*
-        let Roster = this.state.Roster;
-        this.state.Action = null;
-        let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
-        let NewDetachment = new RosterDetachment(NewId,[],null,null,null,Roster.id,null,null);
-        Roster.RosterDetachments.push(NewDetachment);
-        this.setState({
-            Action: "Detachment Editing",
-            ActiveDetachment: NewDetachment,
-            RosterChanged: !this.state.RosterChanged
-        })
-        */
-       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
+        let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
        this.props.NewDetachment(NewId);
-       //this.props.RosterAction("Detachment Editing");
     }
 
     EditDetachment = (Detachment) => {
-        /*
-        //let Roster = this.state.Roster;
-        this.state.Action = null;
-        console.log("Детач из параметров "+Detachment.id);
-        this.ActiveDetachment = Detachment;
-        this.setState({
-            Action: "Detachment Editing",
-            ActiveDetachment: Detachment,
-            RosterChanged: !this.state.RosterChanged
-        });
-        console.log("Детач из стейта "+this.state.ActiveDetachment.id);
-        console.log("Детач из конструктора "+this.ActiveDetachment.id);
-        console.log("Ростер из стейта "+this.state.Roster.id);
-        */
        this.props.SetActiveDetachment(Detachment);
        this.props.SetActiveUnit(null);
        this.props.RosterAction("Detachment Editing");
     }
 
     CopyDetachment = (Detachment) => {
-        /*
-        let Roster = this.state.Roster;
-        let NewId = (!!Roster.RosterDetachments && Roster.RosterDetachments.length > 0) ? (Roster.RosterDetachments.length+1) : 1;
-        let NewDetachment = [Detachment.copyRosterDetachment()].slice()[0];
-        NewDetachment.id = NewId;
-        Roster.RosterDetachments.push(NewDetachment);
-        this.setState({
-            Action: "Detachment Editing",
-            Roster: Roster,
-            ActiveDetachment: NewDetachment,
-            RosterChanged: !this.state.RosterChanged
-        });
-        */
        let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
        this.props.CopyDetachment(Detachment.id, NewId);
-       //this.props.RosterAction("Detachment Editing");
     }
 
     DeleteDetachment = (Detachment) => {
-        /*
-        let Roster = this.state.Roster;
-        Roster.RosterDetachments.splice(Roster.RosterDetachments.indexOf(Detachment), 1);
-        let CurrentAction = this.state.Action;
-        if(Roster.RosterDetachments.length === 0) {
-            CurrentAction = "Roster Editing";
-        }
-        
-        this.setState({
-            Action: CurrentAction,
-            RosterChanged: !this.state.RosterChanged
-        });
-        */
         this.props.DeleteDetachment(Detachment.id);
     }
-    /*
-    AddNewUnit = (Detachment, Unit) => {
-        /*
-        Detachment.RosterUnits.push(Unit);
-        Unit.id = Detachment.RosterUnits.length;
-        this.setState({
-            //Roster: this.state.Roster,
-            Action: "Unit Editing",
-            //ActiveDetachment: Detachment,
-            ActiveUnit: Unit,
-            RosterChanged: !this.state.RosterChanged
-        });
-        
-       let NewId = 1;
-       this.props.Roster.RosterDetachments.forEach((element) => {
-           if(!!element.RosterUnits) {
-                NewId = NewId+element.RosterUnits.length;
-           }
-       });
-       this.props.AddNewUnit(Detachment.id, NewId, Unit);
-       this.props.RosterAction("Unit Editing");
-    }
-    */
+    
     EditUnit = (Unit) => {
-        /*
-        this.setState({
-            //Roster: this.state.Roster,
-            Action: "Unit Editing",
-            ActiveUnit: Unit,
-            RosterChanged: !this.state.RosterChanged
-        });
-        */
        const Detach = this.props.Roster.RosterDetachments.filter((detach) => detach.id == Unit.RosterDetachmentId)[0];
        this.props.SetActiveUnit(Unit);
        this.props.SetActiveDetachment(Detach);
@@ -177,15 +59,6 @@ class RosterCreation extends Component{
     }
 
     CopyUnit = (Detachment, Unit) => {
-        /*
-        let UnitCopy = Unit.copyRosterUnit();
-        Detachment.RosterUnits.push(UnitCopy);
-        UnitCopy.id = Detachment.RosterUnits.length;
-        this.setState({
-            //Roster: this.state.Roster,
-            RosterChanged: !this.state.RosterChanged
-        });
-        */
        let NewId = 1;
        this.props.Roster.RosterDetachments.forEach((element) => {
            if(!!element.RosterUnits) {
@@ -196,64 +69,17 @@ class RosterCreation extends Component{
     }
 
     DeleteUnit = (Detachment, Unit) => {
-        /*
-        Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
-        let CurrentAction = this.state.Action;
-        if(Detachment.RosterUnits.length === 0) {
-            CurrentAction = "Detachment Editing";
-        }
-        this.setState({
-            Action: CurrentAction,
-            ActiveDetachment: Detachment,
-            RosterChanged: !this.state.RosterChanged
-        });
-        */
+        
        this.props.DeleteUnit(Detachment.id, Unit.id);
     }
 
     EditRoster = () => {
-        /*
-        this.setState({
-            //Roster: this.state.Roster,
-            Action: "Roster Editing"
-        });
-        */
+       
        this.props.RosterAction("Roster Editing");
     }
 
-    /*
-    handleRosterChange = (Name,MaxPL,MaxPTS) => {
-        //let Roster = this.state.Roster;
-        if(Name != "--none--") {
-            //Roster.Name = Name;
-            this.props.RosterName(Name);
-        }
-        if(MaxPL != "--none--") {
-            //Roster.MaxPL = MaxPL;
-            this.props.RosterMaxPL(MaxPL);
-        }
-        if(MaxPTS != "--none--") {
-            //Roster.MaxPTS = MaxPTS;
-            this.props.RosterMaxPTS(MaxPTS);
-        }
-        
-        this.setState({
-            Roster: Roster
-        });
-        
-    }
-    */
-
     showUnitSelectionList = (Detachment) => {
-        /*
-        console.log("объект детачмента "+Detachment);
-        console.log("фракция детачмента "+Detachment.Faction);
-        console.log("равенство детачей "+Detachment.id);
-        this.setState({
-            Action: "Unit Selection",
-            ActiveDetachment: Detachment
-        });
-        */
+        
        this.props.SetActiveDetachment(Detachment);
        this.props.RosterAction("Unit Selection");
     }

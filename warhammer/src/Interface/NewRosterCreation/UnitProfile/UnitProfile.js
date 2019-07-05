@@ -12,7 +12,7 @@ class UnitProfile extends Component {
     }
 
     render() {
-        console.log("UnitProfile "+this.props.Unit);
+        //console.log("UnitProfile "+this.props.Unit);
         var AddButton = (this.props.UnitSelection && (
         (this.props.AllowedAdding) ? (
                 <button className = "UnitProfile__Button" style = {{float: "left"}} onClick = {this.handleUnitSelection}>ADD</button>
@@ -34,7 +34,7 @@ class UnitProfile extends Component {
                     <img className = "UnitProfile__Header_image" src= {this.props.Unit.Faction.FactionLogo} alt={this.props.Unit.Faction.Name} />
                     <div className = "UnitProfile__Header_div"><h3 className = "UnitProfile__Header">{this.props.Unit.Name}</h3></div>
                 </div>
-                <p style={{color: "black", margin: "10px"}}>{this.props.Unit.Description}</p>
+                <p className = "UnitProfile__UnitDescription">{this.props.Unit.Description}</p>
             </div>
         );
     }
