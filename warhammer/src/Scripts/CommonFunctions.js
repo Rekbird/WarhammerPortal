@@ -27,6 +27,8 @@ import ReturnUnitPsuchicPowers from "../Data/PsychicPowers/UnitPsychicPowers.js"
 import ReturnNumbersOfSpells from "../Data/PsychicPowers/NumbersOfSpells.js";
 import ReturnUnitModels from "../Data/ModelObjects/UnitModels.js";
 import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
+import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
+import ReturnWargear from "../Data/WargearSlots/Wargear.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
@@ -174,20 +176,16 @@ export const GetUnitRoles = () => {
             )
         )
     )
-    console.log("GetUnitRoles : Unit Roles "+ReturnedRoles);
     return ReturnedRoles;
 }
 
 export const GetAvailableRoles = (FactionId) => {
     const Units = GetFactionUnits(FactionId);
-    //console.log("GetFactionUnits" + Units.length);
     let Roles =[];
     for(let j=0;j<Units.length;j++) {
         let Unit = Units[j];
          Roles.push(Unit.UnitRole);
     }
-    //var Roles = Units.UnitRole;
-    //console.log("Units roles " + Roles.length);
     let ReturnedRoles = [];
     if(Roles && (Roles.length > 0)) {
         for(let i=0;i<Roles.length;i++) {
@@ -197,7 +195,6 @@ export const GetAvailableRoles = (FactionId) => {
             }
         }
     }
-    //console.log("ReturnedRoles" + ReturnedRoles.length);
     return ReturnedRoles;
 }
 
@@ -232,8 +229,6 @@ export function GetUnitPowerLevel(UnitId) {
     return ReturnedUnitPowerLevels;
 }
 
-// export default GetUnitPowerLevel;
-
 export function GetUnitModels(UnitId) {
     let ReturnedModels = [];
     let UnitModels = ReturnUnitModels(UnitId);
@@ -256,131 +251,46 @@ export function GetWargearSlots(ModelId) {
     return ReturnedWargearSlots;
 }
 
-// export default GetWargearSlot;
-
 export function GetWargearOptions(SlotId) {
     let ReturnedWargearOptions = [];
-    let WargearOptions = [];
-    let WargearOption1 = {
-        id: 1,
-        Name: "Option1",
-        CountPerModel: 3,
-        PerXmodels: null,
-        Default: true,
-        LinkedOptionsId: [],
-        WargearSlotId: 1
-    };
-    WargearOptions.push(WargearOption1);
-    let WargearOption2 = {
-        id: 2,
-        Name: "Option2",
-        CountPerModel: 1,
-        PerXmodels: null,
-        Default: false,
-        LinkedOptionsId: [],
-        WargearSlotId: 1
-    };
-    WargearOptions.push(WargearOption2);
+    let WargearOptions = ReturnWargearOptions(SlotId);
 
-    let WargearOption3 = {
-        id: 3,
-        Name: "Option3",
-        CountPerModel: 1,
-        PerXmodels: 10,
-        Default: true,
-        LinkedOptionsId: [],
-        WargearSlotId: 2
-    };
-    WargearOptions.push(WargearOption3);
-
-    let WargearOption4 = {
-        id: 4,
-        Name: "Option4",
-        CountPerModel: 1,
-        PerXmodels: 10,
-        Default: false,
-        LinkedOptionsId: [],
-        WargearSlotId: 2
-    };
-    WargearOptions.push(WargearOption4);
-
-    for(let i=0;i<WargearOptions.length;i++) {
-        if (SlotId == WargearOptions[i].WargearSlotId) {
-            ReturnedWargearOptions.push(new WargearOption(WargearOptions[i].id,WargearOptions[i].Name,WargearOptions[i].CountPerModel,WargearOptions[i].PerXmodels,WargearOptions[i].Default,WargearOptions[i].LinkedOptionsId));
+    WargearOptions.forEach(function(option) {
+            ReturnedWargearOptions.push(new WargearOption(
+                option.id,
+                option.Name,
+                option.CountPerModel,
+                option.PerXmodels,
+                option.Default,
+                option.LinkedOptionsId,
+                option.UpToXModels,
+                option.WargearIds
+                )
+            );
         }
-    }
+    );
     return ReturnedWargearOptions;
 }
 
 // export default GetWargearOption;
 
-export function GetWargear(OptionId) {
+export function GetWargear(WargearIds) {
     let ReturnedWargears = [];
-    let Wargears = [];
-    let Wargear1 = {
-        id: 1,
-        Name: "Wargear1",
-        Cost: 10,
-        Type: "",
-        Relic: false,
-        Image: "",
-        ChapterTacticId: "",
-        OptionId: 1
-    };
-    Wargears.push(Wargear1);
-    let Wargear2 = {
-        id: 2,
-        Name: "Wargear2",
-        Cost: 10,
-        Type: "",
-        Relic: false,
-        Image: "",
-        ChapterTacticId: "",
-        OptionId: 1
-    };
-    Wargears.push(Wargear2);
+    let Wargears = ReturnWargear(WargearIds);
 
-    let Wargear3 = {
-        id: 3,
-        Name: "Wargear3",
-        Cost: 20,
-        Type: "",
-        Relic: false,
-        Image: "",
-        ChapterTacticId: "",
-        OptionId: 2
-    };
-    Wargears.push(Wargear3);
-
-    let Wargear4 = {
-        id: 4,
-        Name: "Wargear4",
-        Cost: 5,
-        Type: "",
-        Relic: false,
-        Image: "",
-        ChapterTacticId: "",
-        OptionId: 3
-    };
-    Wargears.push(Wargear4);
-
-    let Wargear5 = {
-        id: 5,
-        Name: "Wargear5",
-        Cost: 32,
-        Type: "",
-        Relic: false,
-        Image: "",
-        ChapterTacticId: "",
-        OptionId: 4
-    };
-    Wargears.push(Wargear5);
-
-    for(let i=0;i<Wargears.length;i++) {
-        if (Wargears[i].OptionId == OptionId) {
-            ReturnedWargears.push(new Wargear(Wargears[i].id,Wargears[i].Name,Wargears[i].Cost,Wargears[i].Type,Wargears[i].Relic,Wargears[i].Image,Wargears[i].ChapterTacticId));
-        }
-    }
+    Wargears.forEach(function(wargear) {
+            ReturnedWargears.push(
+                new Wargear(
+                    wargear.id,
+                    wargear.Name,
+                    wargear.Cost,
+                    wargear.Type,
+                    wargear.Relic,
+                    wargear.Image,
+                    wargear.ChapterTacticId
+                )
+            );
+    });
     return ReturnedWargears;
 }
 

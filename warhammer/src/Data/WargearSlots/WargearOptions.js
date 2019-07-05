@@ -11,7 +11,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [1,3]
+        WargearSlotId: [1,3],
+        WargearIds: [1]
     };
     WargearOptions.push(AvengerShurikenCatapult);
 
@@ -23,7 +24,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [2,4,6,9,18,20]
+        WargearSlotId: [2,4,6,9,18,20],
+        WargearIds: [2]
     };
     WargearOptions.push(PlasmaGrenade);
 
@@ -35,7 +37,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [3]
+        WargearSlotId: [3],
+        WargearIds: [1,1]
     };
     WargearOptions.push(TwoAvengerShurikenCatapults);
 
@@ -47,7 +50,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [3]
+        WargearSlotId: [3],
+        WargearIds: [3,4]
     };
     WargearOptions.push(ShurikenPistolAndPowerGlaive);
 
@@ -59,7 +63,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [3]
+        WargearSlotId: [3],
+        WargearIds: [3,5]
     };
     WargearOptions.push(ShurikenPistolAndDiresword);
 
@@ -71,7 +76,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [3]
+        WargearSlotId: [3],
+        WargearIds: [4,6]
     };
     WargearOptions.push(ShimmershieldAndPowerGlaive);
 
@@ -83,7 +89,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [5]
+        WargearSlotId: [5],
+        WargearIds: [7]
     };
     WargearOptions.push(ShurikenCatapult);
 
@@ -95,7 +102,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [7]
+        WargearSlotId: [7],
+        WargearIds: [8]
     };
     WargearOptions.push(ShurikenCannon);
 
@@ -107,7 +115,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [7]
+        WargearSlotId: [7],
+        WargearIds: [9]
     };
     WargearOptions.push(AeldariMissileLauncher);
 
@@ -119,7 +128,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [7]
+        WargearSlotId: [7],
+        WargearIds: [10]
     };
     WargearOptions.push(BrightLance);
 
@@ -131,7 +141,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [7]
+        WargearSlotId: [7],
+        WargearIds: [11]
     };
     WargearOptions.push(ScatterLaser);
 
@@ -143,7 +154,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [7]
+        WargearSlotId: [7],
+        WargearIds: [12]
     };
     WargearOptions.push(Starcannon);
 
@@ -155,7 +167,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [8]
+        WargearSlotId: [8],
+        WargearIds: [13,3]
     };
     WargearOptions.push(AeldariBladeAndShurikenPistol);
 
@@ -167,7 +180,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [8]
+        WargearSlotId: [8],
+        WargearIds: [14,3]
     };
     WargearOptions.push(ChainswordAndShurikenPistol);
 
@@ -179,7 +193,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [16],
         UpToXModels: 2,
-        WargearSlotId: [8]
+        WargearSlotId: [8],
+        WargearIds: [15]
     };
     WargearOptions.push(GuardianFlamer);
 
@@ -191,7 +206,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [15],
         UpToXModels: 2,
-        WargearSlotId: [8]
+        WargearSlotId: [8],
+        WargearIds: [16]
     };
     WargearOptions.push(GuardianFusionGun);
 
@@ -203,7 +219,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [10]
+        WargearSlotId: [10],
+        WargearIds: [17,3]
     };
     WargearOptions.push(ShurikenPistolAndRangerLongRifle);
 
@@ -215,7 +232,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [11,13]
+        WargearSlotId: [11,13],
+        WargearIds: [16]
     };
     WargearOptions.push(DragonFusinGun);
 
@@ -227,19 +245,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [12,14]
-    };
-    WargearOptions.push(MeltaBomb);
-
-    const MeltaBomb = {
-        id: 20,
-        Name: "Melta bomb",
-        CountPerModel: null,
-        PerXmodels: null,
-        Default: true,
-        LinkedOptionsId: [],
-        UpToXModels: null,
-        WargearSlotId: [13]
+        WargearSlotId: [12,14],
+        WargearIds: [18]
     };
     WargearOptions.push(MeltaBomb);
 
@@ -251,7 +258,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [13]
+        WargearSlotId: [13],
+        WargearIds: [19]
     };
     WargearOptions.push(Firepike);
 
@@ -263,7 +271,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [13]
+        WargearSlotId: [13],
+        WargearIds: [20]
     };
     WargearOptions.push(DragonsBreathFlamer);
 
@@ -275,7 +284,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [15,16]
+        WargearSlotId: [15,16],
+        WargearIds: [21,3]
     };
     WargearOptions.push(ShurikenPistolAndPowerSword);
 
@@ -287,7 +297,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [16]
+        WargearSlotId: [16],
+        WargearIds: [22]
     };
     WargearOptions.push(Executioner);
 
@@ -299,7 +310,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [16]
+        WargearSlotId: [16],
+        WargearIds: [23]
     };
     WargearOptions.push(Mirrorswords);
 
@@ -311,19 +323,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [17]
-    };
-    WargearOptions.push(ShurikenPistolAndChainsword);
-
-    const ShurikenPistolAndChainsword  = {
-        id: 27,
-        Name: "Shuriken pistol and a Chainsword",
-        CountPerModel: null,
-        PerXmodels: null,
-        Default: true,
-        LinkedOptionsId: [],
-        UpToXModels: null,
-        WargearSlotId: [17]
+        WargearSlotId: [17],
+        WargearIds: [24,3]
     };
     WargearOptions.push(ShurikenPistolAndChainsword);
 
@@ -335,7 +336,8 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [25]
+        WargearSlotId: [22,24,26,28,29],
+        WargearIds: [3]
     };
     WargearOptions.push(ShurikenPistol);
 
@@ -347,19 +349,21 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [22,24,26,28,29]
+        WargearSlotId: [29],
+        WargearIds: [25]
     };
     WargearOptions.push(ScorpionsClaw);
 
     const ScorpionChainsword  = {
         id: 30,
-        Name: "Shuriken pistol",
+        Name: "Scorpion chainsword",
         CountPerModel: null,
         PerXmodels: null,
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [19]
+        WargearSlotId: [19],
+        WargearIds: [24]
     };
     WargearOptions.push(ScorpionChainsword);
 
@@ -371,13 +375,66 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [19]
+        WargearSlotId: [19],
+        WargearIds: [26]
     };
     WargearOptions.push(BitingBlade);
 
+    const WitchBlade = {
+        id: 32,
+        Name: "Witchblade",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [21,23,27],
+        WargearIds: [27]
+    };
+    WargearOptions.push(WitchBlade);
+
+    const SingingSpear = {
+        id: 33,
+        Name: "Singing spear",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [21,23,27],
+        WargearIds: [28]
+    };
+    WargearOptions.push(SingingSpear);
+
+    const WitchStaff = {
+        id: 34,
+        Name: "Witch staff",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [25],
+        WargearIds: [29]
+    };
+    WargearOptions.push(WitchStaff);
+
+    const NullOption = {
+        id: 35,
+        Name: "--none--",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [],
+        WargearIds: []
+    };
+    WargearOptions.push(NullOption);
+
     //=============
 
-    return WargearOptions.filter((option) => !!(option.WargearSlotId.filter((id) => id == SlotId)));
+    return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
 }
 
 export default ReturnWargearOptions;
