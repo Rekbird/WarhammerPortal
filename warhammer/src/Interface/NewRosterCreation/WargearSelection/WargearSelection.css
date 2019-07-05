@@ -18,3 +18,7 @@
     border-radius:5px;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
+
+.WargearSelection__CheckBox {
+    color: black; 
+}
