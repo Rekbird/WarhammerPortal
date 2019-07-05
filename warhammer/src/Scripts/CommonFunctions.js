@@ -26,6 +26,7 @@ import ReturnFactions from "../Data/FactionImages/FactionImages.js";
 import ReturnUnitPsuchicPowers from "../Data/PsychicPowers/UnitPsychicPowers.js";
 import ReturnNumbersOfSpells from "../Data/PsychicPowers/NumbersOfSpells.js";
 import ReturnUnitModels from "../Data/ModelObjects/UnitModels.js";
+import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
 
 export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
@@ -247,22 +248,11 @@ export function GetUnitModels(UnitId) {
 
 export function GetWargearSlots(ModelId) {
     let ReturnedWargearSlots = [];
-    let WargearSlots = [];
-    let WargearSlot1 = {
-        id: 1,
-        Name: "Slot1"
-    };
-    WargearSlots.push(WargearSlot1);
+    let WargearSlots = ReturnWargearSlots(ModelId);
 
-    let WargearSlot2 = {
-        id: 2,
-        Name: "Slot2"
-    };
-    WargearSlots.push(WargearSlot2);
-
-    for(let i=0;i<WargearSlots.length;i++) {
-        ReturnedWargearSlots.push(new WargearSlot(WargearSlots[i].id,WargearSlots[i].Name));
-    }
+    WargearSlots.forEach(function(element) {
+        ReturnedWargearSlots.push(new WargearSlot(element.id,element.Name));
+    });
     return ReturnedWargearSlots;
 }
 
