@@ -18,7 +18,7 @@ class WargearSelection extends Component {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
         this.WargearSlots = [];
-        
+        this.UnitIsWarlord = false;
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
@@ -78,24 +78,19 @@ class WargearSelection extends Component {
         return AllSelectedOptions;
     }
 
-    HandleEvent = (e) => {
-        let name = e.target.value;
-        console.log(name);
-        switch (name) {
-            case "WarlordCheckBox":
-            
-            this.props.SetUnitAsWarlord(e.target.value);
-            break;
-        }
+    HandleEvent = () => {
+        this.props.SetUnitAsWarlord(!this.UnitIsWarlord);
     }
 
     render() {
+        console.log(this.props.ActiveUnit.Warlord);
+        this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions = null;
         //if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
             WarlordOptions = 
             <div>
                 <h3 className = 'WargearSelection__Title'>Additional options</h3>
-                <p><input type = 'checkbox' name = 'WarlordCheckBox' value = {this.props.ActiveUnit.Warlord} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
+                <p className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
 
             </div>
         //}
