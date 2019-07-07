@@ -32,7 +32,7 @@ class RosterUnitItem extends Component {
         let ElementClass = (this.props.Active) ? "RosterMenu__UnitItem ActiveBrightning" : "RosterMenu__UnitItem"; 
         return(
             <li className = {ElementClass}>
-                {"["+this.props.RosterUnit.TotalCost+" pts] "+this.props.RosterUnit.BaseUnit.Name}
+                <span className = "RosterMenu__UnitItemName">{"["+this.props.RosterUnit.TotalCost+" pts] "+this.props.RosterUnit.BaseUnit.Name}</span>
                 <div className = "RosterMenu__ButtonBlock">
                     <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
                     {CopyButton}

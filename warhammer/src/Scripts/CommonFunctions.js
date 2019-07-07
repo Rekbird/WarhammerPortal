@@ -316,36 +316,15 @@ export function GetRosterWargearSlots(BaseWargearSlots) {
 export function GetFactions() {
     let Factions = ReturnFactions();
     let ReturnedFactions = [];
-    /*
-    let Faction1 = {
-        id: 28,
-        Name: "Craftworlds",
-        CodexImage: CraftworldsImage,
-		IndexImage:"",
-		FactionLogo: ""
-    };
-    Factions.push(Faction1);
-    let Faction2 = {
-        id: 36,
-        Name: "Tyranids",
-        CodexImage: TyranidsImage,
-		IndexImage:"",
-		FactionLogo: ""
-    };
-    Factions.push(Faction2);
-    
-    for(let i=0;i<Factions.length;i++) {
-        ReturnedFactions.push(new Faction(Factions[i].id,Factions[i].Name,Factions[i].CodexImage,Factions[i].IndexImage,Factions[i].FactionLogo));
-    }
-    */
-   Factions.forEach((element) => (
+
+    Factions.forEach((element) => (
         ReturnedFactions.push(
                     new Faction(
-                    element.id,
-                    element.Name,
-                    element.Image,
-                    null,
-                    element.Logo
+                        element.id,
+                        element.Name,
+                        element.Image,
+                        null,
+                        element.Logo
                     )
         )
     )
@@ -465,21 +444,28 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
     for(let i = 0;i<DetachmentUnits.length;i++) {
         let Role = DetachmentUnits[i].BaseUnit.UnitRole;
         if(Roles.length > 0) {
-            if(Roles.filter((role) => role.id == Role.id).length === 0) {
+            if(!Roles.find((role) => role.id == Role.id)) {
                 Roles.push(Role);
             }
         } else {
             Roles.push(Role);
         }
     }
-    return Roles;
+    return Roles.sort(function(a,b) {
+        if(a.id < b.id) {
+            return -1;
+        } else if(a.id > b.id) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
 }
+
 
 export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
     let Answer;
     let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
-    console.log(Role.id);
-    console.log(Detachment.DetachOptions);
     let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
     Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
     return Answer;
@@ -495,10 +481,8 @@ export function GetRosterUnitModels(RosterUnit) {
         count++;
         RosterUnitModels.push(NewRosterModel);
         NewRosterModel = recalculateRosterModel(NewRosterModel);
-        console.log(NewRosterModel);
         }
     }
-    console.log(RosterUnitModels.length);
     return RosterUnitModels;
 }
 
@@ -554,7 +538,6 @@ export const recalculateRosterUnit = (RosterUnit) => {
 export const recalculateRosterDetachment = (Detach) => {
     let TotalDetachCost = 0;
     let TotalDetachPL = 0;
-    //console.log("Количество юнитов до пересчета "+Detach.RosterUnits.length);
     Detach.RosterUnits.forEach(function(unit) {
             TotalDetachCost +=unit.TotalCost;
             TotalDetachPL += GetUnitCurrentPowerLevel(unit.BaseUnit.PowerLevel, unit.Models.length);
@@ -562,14 +545,10 @@ export const recalculateRosterDetachment = (Detach) => {
     );
     Detach.TotalDetachCost = TotalDetachCost;
     Detach.TotalDetachPL = TotalDetachPL
-    //console.log("Количество юнитов после пересчета "+Detach.RosterUnits.length);
     return Detach;
 }
 
 export const recalculateRosterCost = (Roster = this) => {
-    //console.log("Вызвали recalculateRosterCost");
-    //console.log("Имя ростера "+Roster.Name);
-    //console.log("Количество детачментов в методе до перебора"+Roster.RosterDetachments.length);
     let TotalPTS = 0;
     let TotalPL = 0;
     let TotalCP = 3;
@@ -580,10 +559,23 @@ export const recalculateRosterCost = (Roster = this) => {
         TotalCP += detach.TotalDetachCP;
         }
     );
-   
-    //console.log("Количество детачментов в методе после перебора"+Roster.RosterDetachments.length);
     Roster.TotalPTS = TotalPTS;
     Roster.TotalPL = TotalPL;
     Roster.TotalCP = TotalCP;
     return Roster;
+}
+
+export const calculateNewId = (ElementsList) => {
+    let elements = ElementsList.slice();
+    elements.sort(function(a,b) {
+            if(a.id < b.id) {
+                return 1;
+            } else if(a.id > b.id) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    );
+    return elements[0].id+1;
 }

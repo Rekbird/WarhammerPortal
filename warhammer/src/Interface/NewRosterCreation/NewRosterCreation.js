@@ -42,7 +42,7 @@ class RosterCreation extends Component{
     }
 
     CopyDetachment = (Detachment) => {
-       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
+       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (utils.calculateNewId(this.props.Roster.RosterDetachments)) : 1;
        this.props.CopyDetachment(Detachment.id, NewId);
     }
 
@@ -51,7 +51,7 @@ class RosterCreation extends Component{
     }
     
     EditUnit = (Unit) => {
-       const Detach = this.props.Roster.RosterDetachments.filter((detach) => detach.id == Unit.RosterDetachmentId)[0];
+       const Detach = this.props.Roster.RosterDetachments.find((detach) => detach.id == Unit.RosterDetachmentId);
        this.props.SetActiveUnit(Unit);
        this.props.SetActiveDetachment(Detach);
        this.props.RosterAction("Unit Editing");
@@ -59,17 +59,11 @@ class RosterCreation extends Component{
     }
 
     CopyUnit = (Detachment, Unit) => {
-       let NewId = 1;
-       this.props.Roster.RosterDetachments.forEach((element) => {
-           if(!!element.RosterUnits) {
-                NewId = NewId+element.RosterUnits.length;
-           }
-       });
+       let NewId = utils.calculateNewId(Detachment.RosterUnits);
        this.props.CopyUnit(Detachment.id, Unit.id, NewId);
     }
 
     DeleteUnit = (Detachment, Unit) => {
-        
        this.props.DeleteUnit(Detachment.id, Unit.id);
     }
 

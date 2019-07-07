@@ -256,7 +256,7 @@ const AddNewDetachment = (roster, action) => {
 
 const AddCopyDetachment = (roster, action) => {
     let Detachments = roster.RosterDetachments.slice();
-    let Detach = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    let Detach = Detachments.find((detach) => detach.id == action.DetachmentId);
     let NewDetachment = Detach.copyRosterDetachment(action.NewId, Detach);
     Detachments.push(NewDetachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
@@ -266,7 +266,7 @@ const AddCopyDetachment = (roster, action) => {
 
 const RemoveDetachment = (roster, action) => {
     let Detachments = roster.RosterDetachments.slice();
-    const Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    const Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
     Detachments.splice(Detachments.indexOf(Detachment), 1);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
     NewRoster = utils.recalculateRosterCost(NewRoster);
@@ -311,8 +311,8 @@ const SetActiveUnit = (action) => {
 
 const AddUnitCopy = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
-    let Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
-    let OriginalUnit = Detachment.RosterUnits.filter((unit) => unit.id == action.UnitId)[0];
+    let Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
+    let OriginalUnit = Detachment.RosterUnits.find((unit) => unit.id == action.UnitId);
     let NewUnit = OriginalUnit.copyRosterUnit(action.NewId,OriginalUnit);
     Detachment.RosterUnits.push(NewUnit);
     NewUnit = utils.recalculateRosterUnit(NewUnit);
@@ -333,8 +333,8 @@ const AddUnitCopy = (roster, action) => {
 
 const RemoveUnit = (roster, ActiveUnit, RosterAction, action) => {
     const Detachments = roster.RosterDetachments.slice();
-    let Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
-    let Unit = Detachment.RosterUnits.filter((unit) => unit.id == action.UnitId)[0];
+    let Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
+    let Unit = Detachment.RosterUnits.find((unit) => unit.id == action.UnitId);
     Detachment.RosterUnits.splice(Detachment.RosterUnits.indexOf(Unit), 1);
     Detachment = utils.recalculateRosterDetachment(Detachment);
     let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
