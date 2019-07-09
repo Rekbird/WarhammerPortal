@@ -24,7 +24,15 @@ class AddNewModel extends Component {
         let AvailableModels = [];
 
         BaseModels.forEach((model) => {
-            if ((RosterModels.filter((rosterModel) => rosterModel.BaseModel.id == model.id).length < model.MaxQuant) || !model.MaxQuant) {
+            let PerXmodelsCheck = true;
+            let MaxQuantCheck = (!model.MaxQuant || (RosterModels.filter((rosterModel) => rosterModel.BaseModel.id == model.id).length < model.MaxQuant));
+            if (!!model.PerXmodels) {
+                let AlreadyHave = RosterModels.filter((rosterModel) => rosterModel.BaseModel.id == model.id).length;
+                let Available = RosterModels.length / model.PerXmodels;
+                PerXmodelsCheck = PerXmodelsCheck && (Available > AlreadyHave);
+            }
+
+            if (PerXmodelsCheck && MaxQuantCheck) {
                 AvailableModels.push(model);
             }
         });

@@ -3,14 +3,14 @@ import * as utils from "../Scripts/CommonFunctions.js";
 
 //<Dictionary Unit Elements>------------------------------------
 export class Unit {
-    constructor(id,Name,Description,MaxModelQuant,KnowsSmite,Named,UnitRoleId,IndexUnit,ExternalURL,FactionId,Image) {
+    constructor(id,Name,Description,MaxModelQuant,KnowsSmite,Named,WarlordTraitId,UnitRoleId,IndexUnit,ExternalURL,FactionId,Image) {
         this.id = id;
         this.Name = Name;
         this.Description = Description;
         this.MaxModelQuant = MaxModelQuant;
         this.KnowsSmite = KnowsSmite;
         this.Named = Named;
-        this.WarlordTrait = utils.GetWarlordTrait(id);
+        this.WarlordTraitId = WarlordTraitId;
         this.NumberOfSpells = utils.GetNumberOfSpells(id);
         this.AvailableSpells = utils.GetAvailableSpells(id);
         this.UnitRole = utils.GetUnitRole(UnitRoleId);//this function can be used for Unit and for DetachmentOption
@@ -70,13 +70,14 @@ export class UnitRole {
 
 //<Dictionary Model Elements>------------------------------------
 export class Model {
-    constructor(id,Name,Cost,MaxQuant,MinQuant,ModelsIncluding,UnitId) {
+    constructor(id,Name,Cost,MaxQuant,MinQuant,ModelsIncluding,PerXmodels,UnitId) {
         this.id = id;
         this.Name = Name;
         this.Cost = Cost;
         this.MaxQuant = MaxQuant;
         this.MinQuant = MinQuant;
         this.ModelsIncluding = ModelsIncluding;
+        this.PerXmodels = PerXmodels;
         this.UnitId = UnitId;
         this.WargearSlots = utils.GetWargearSlots(id);
     }
