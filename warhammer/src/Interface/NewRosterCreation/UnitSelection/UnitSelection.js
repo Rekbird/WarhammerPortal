@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
 
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import "./UnitSelection.css";
@@ -8,12 +9,18 @@ import UnitRolesList from "../UnitRolesList/UnitRolesList.js";
 import {RosterUnit} from "../../../Classes/CommonClasses.js";
 import {Unit} from "../../../Classes/CommonClasses.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
+import ToTopButton from "../../../Data/UnitSelection/ToTopIcon.png";
 
 class UnitSelection extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            TopButtonVisible: false
+        }
         this.ScrollToUnitsByRole = this.ScrollToUnitsByRole.bind(this);
         this.handleUnitSelection = this.handleUnitSelection.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
+        this.scrollToTop = this.scrollToTop.bind(this);
     }
 
     ScrollToUnitsByRole = (name) => {
@@ -27,15 +34,38 @@ class UnitSelection extends Component {
        //this.props.RosterAction("Unit Editing");
     }
 
+    scrollToTop = () => {
+        const UnitsSelectionHeader = document.getElementById("UnitsSelectionHeader");
+        UnitsSelectionHeader.scrollIntoView({behavior: "smooth"});
+    }
+
+
     render() {
+       
+        let ToTop = (this.state.TopButtonVisible) ? <div className = "UnitSelection__ToTopButton">
+                            <img className = "UnitSelection__ToTop" src = {ToTopButton}/>
+                         </div> 
+                         : null
+        
         return (
-            <div>
+            <div onScroll = {this.handleScroll} id = "UnitsSelection">
                 <div className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList">
-                        <h1 className = "UnitSelection__Header">Select a unit</h1>
-                        <UnitsList Faction = {this.props.Faction} handleUnitSelection = {this.handleUnitSelection} Detachment = {this.props.Detachment}/>
+                        <h1  id = "UnitsSelectionHeader" className = "UnitSelection__Header">Select a unit</h1>
+                        <UnitsList 
+                            Faction = {this.props.Faction} 
+                            handleUnitSelection = {this.handleUnitSelection} 
+                            Detachment = {this.props.Detachment}
+                            handleScroll = {this.handleScroll}
+                        />
                     </div>
-                    <div className = "UnitSelection__RolesList"><UnitRolesList FactionId = {this.props.Faction.id} ScrollToUnitsByRole = {this.ScrollToUnitsByRole}/></div>
+                    <div className = "UnitSelection__RolesList">
+                        <UnitRolesList 
+                            FactionId = {this.props.Faction.id} 
+                            ScrollToUnitsByRole = {this.ScrollToUnitsByRole}
+                        />
+                        {ToTop}
+                    </div>
                 </div>
             </div>
         )

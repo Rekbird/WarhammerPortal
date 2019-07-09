@@ -54,7 +54,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 3,
 		MaxQuant: 3,
 		MinQuant: 2,
-        DetachmentIds: [3]
+        DetachmentIds: [1]
     };
     Options.push(Option6);
 
@@ -121,7 +121,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 4,
 		MaxQuant: 2,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [3,5,2]
     };
     Options.push(Option14);
 
@@ -130,7 +130,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 4,
 		MaxQuant: 3,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [1]
     };
     Options.push(Option15);
 
@@ -139,7 +139,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 4,
 		MaxQuant: 5,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [4]
     };
     Options.push(Option16);
 
@@ -148,7 +148,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 4,
 		MaxQuant: 6,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [6]
     };
     Options.push(Option17);
     //=============
@@ -159,7 +159,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 5,
 		MaxQuant: 2,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [3,5,6]
     };
     Options.push(Option18);
 
@@ -168,7 +168,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 5,
 		MaxQuant: 3,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [1]
     };
     Options.push(Option19);
 
@@ -177,7 +177,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 5,
 		MaxQuant: 5,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [4]
     };
     Options.push(Option20);
 
@@ -186,7 +186,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 5,
 		MaxQuant: 6,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [2]
     };
     Options.push(Option21);
     //=============
@@ -197,7 +197,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 7,
 		MaxQuant: 2,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [1,2,3,4,5,6]
     };
     Options.push(Option22);
 
@@ -206,7 +206,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 7,
 		MaxQuant: 5,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [10]
     };
     Options.push(Option23);
     //=============
@@ -217,7 +217,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 6,
 		MaxQuant: null,
 		MinQuant: null,
-        DetachmentIds: []
+        DetachmentIds: [1,2,3,4,5,6,7,12]
     };
     Options.push(Option24);
     //=============
@@ -228,7 +228,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 9,
 		MaxQuant: 1,
 		MinQuant: 0,
-        DetachmentIds: []
+        DetachmentIds: [7]
     };
     Options.push(Option25);
 
@@ -237,7 +237,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 9,
 		MaxQuant: 1,
 		MinQuant: 1,
-        DetachmentIds: []
+        DetachmentIds: [9]
     };
     Options.push(Option26);
 
@@ -246,7 +246,7 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 9,
 		MaxQuant: 5,
 		MinQuant: 3,
-        DetachmentIds: []
+        DetachmentIds: [8]
     };
     Options.push(Option27);
     //=============
@@ -257,10 +257,12 @@ const ReturnDetachmentOptions = (DetachmentId) => {
 		UnitRole: 8,
 		MaxQuant: 3,
 		MinQuant: 1,
-        DetachmentIds: []
+        DetachmentIds: [11]
     };
     Options.push(Option28);
     //=============
+
+    return Options.filter((option) => !!option.DetachmentIds.find((id) => parseInt(id) == parseInt(DetachmentId)));
 }
 
 export default ReturnDetachmentOptions;

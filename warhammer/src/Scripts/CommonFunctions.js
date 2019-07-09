@@ -26,7 +26,10 @@ import ReturnWarlordTraits from "../Data/WarlordTraits/WarlordTraits.js"
 import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
 import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
 import ReturnWargear from "../Data/WargearSlots/Wargear.js";
-import ReturnDetachments from "../Data/Detachments/Detachments.js"
+import ReturnDetachments from "../Data/Detachments/Detachments.js";
+import ReturnDetachmentOptions from "../Data/Detachments/DetachmentOptions.js";
+
+const _ = require('lodash');
 
 export function GetWarlordTraits(FactionId, ChapterTacticId) {
 
@@ -362,14 +365,21 @@ export function GetDetachment(DetachmentId) {
 // export default GetDetachment;
 
 export function GetDetachmentOptions(DetachmentId) {
-    let Options = [];
+    const Options = ReturnDetachmentOptions(DetachmentId);
     let ReturnedOptions = [];
 
+    Options.forEach(function(option) {
+        ReturnedOptions.push(
+            new DetachmentOption(
+                option.id,
+                option.UnitRole,
+                option.MaxQuant,
+                option.MinQuant
+            )
+        );
+        }
+    );
     
-
-    for(let i=0;i<Options.length;i++) {
-        ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
-    }
     return ReturnedOptions;
 }
 
@@ -400,10 +410,24 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
 
 
 export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
-    let Answer;
-    let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
-    let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
-    Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
+    let Answer = false;
+    if(!_.isEmpty(DetachmentUnits)) {
+        // Проверяем что Detachment не Auxillary Support
+        if(Detachment.id != 12) {
+            //Проверяем если роль Dedicated Transport
+            if(Role.id == 6) {
+                const UnitsByRoleDedicated = GetRosterUnitsByRole(DetachmentUnits, Role.id);
+                if(!_.isEmpty(UnitsByRoleDedicated)) {
+                    const OtherUnits = _.difference(DetachmentUnits, UnitsByRoleDedicated);
+                    Answer = UnitsByRoleDedicated.length >= OtherUnits.length;
+                }
+            } else {
+                const UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
+                const DetachmentOption = Detachment.DetachOptions.find((option) => parseInt(option.UnitRole.id) == parseInt(Role.id));
+                Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
+            }  
+        }     
+    }
     return Answer;
 }
 
@@ -423,7 +447,7 @@ export function GetRosterUnitModels(RosterUnit) {
 }
 
 export function GetRosterUnitsByRole(RosterUnits, RoleId) {
-    return RosterUnits.filter((unit) => unit.BaseUnit.UnitRole.id == RoleId);
+    return RosterUnits.filter((unit) => parseInt(unit.BaseUnit.UnitRole.id) == parseInt(RoleId));
 }
 
 export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount = 0) => {

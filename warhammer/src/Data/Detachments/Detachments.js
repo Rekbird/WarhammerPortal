@@ -94,7 +94,7 @@ const ReturnDetachments = () => {
 
     const Detach11 = {
         id: 11,
-        Name: "Fortification",
+        Name: "Fortification Network",
 		CommandBenefit: 0,
 		Restrictions: "",
 		Image: SpearheadImage

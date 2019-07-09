@@ -36,6 +36,26 @@
     text-shadow: 0px 0px 2px white;
 }
 
-.UnitSelection__SelectionArea {
-    
+.UnitSelection__ToTopButton {
+    bottom: 6%;
+    background-color: rgb(6, 86, 87);
+    position: fixed;
+    right: 6.5%;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    border-color: gb(6, 86, 87);
+    transition:0.3s;
+    user-select: none;
+}
+
+.UnitSelection__ToTopButton:active {
+    right: 6.47%;
+    bottom: 5.8%;
+}
+
+.UnitSelection__ToTop {
+    margin: auto;
+    width: 50px;
+    height: auto;
 }
