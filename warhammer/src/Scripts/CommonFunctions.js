@@ -26,54 +26,23 @@ import ReturnFactions from "../Data/FactionImages/FactionImages.js";
 import ReturnUnitPsuchicPowers from "../Data/PsychicPowers/UnitPsychicPowers.js";
 import ReturnNumbersOfSpells from "../Data/PsychicPowers/NumbersOfSpells.js";
 import ReturnUnitModels from "../Data/ModelObjects/UnitModels.js";
+import ReturnWarlordTraits from "../Data/WarlordTraits/WarlordTraits.js"
 import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
 import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
 import ReturnWargear from "../Data/WargearSlots/Wargear.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
 
-export function GetWarlordTrait(UnitId, FactionId, ChapterTacticId) {
-    /*
-    Первый шаг - проверка того что юнит не именной. Если именной то в нем есть атрибут с айди трейта и по этому айди мы возвращаем объект трейта. Конец функции
-    Второй шаг - Если юнит не именной мы возвращаем массив трейтов которые мы селектим по айди фракции и айди чаптер тактики.
-    */
-    //Эмуляционный вызов 
-    let WarlordTraits = [];
-    let Unit;
-    let TraitIds = [];
-    if (!!UnitId) {
-    //Cелектим айдишники трейтов SELECT WarlordTrait FROM Unit_table WHERE Id = UnitId AND Named = true
-        TraitIds = [23];
-    } else if (!!FactionId && !!ChapterTacticId) {
-    //Селектим айдишники SELECT Id FROM WarlordTraits_table WHERE id_Faction =  FactionId AND id_ChapterTactic = ChapterTacticId
-        TraitIds = [24,25,26];
+export function GetWarlordTraits(FactionId, ChapterTacticId) {
+
+    let WarlordTraits = ReturnWarlordTraits(FactionId, ChapterTacticId);
+    let ReturnedTraits = [];
+    if (!!WarlordTraits && WarlordTraits.length > 0) {
+        WarlordTraits.forEach(trait => {
+            let NewWarlordTrait = new WarlordTrait(trait.id, trait.Name, trait.Description);
+            ReturnedTraits.push(NewWarlordTrait);
+        });
     }
-    //Эмуляция получения объектов из базы
-    if (!!TraitIds && TraitIds.length > 0) {
-        for (let i = 0; i < TraitIds.length; i++) {
-            let NewWarlordTrait = {
-                    id : TraitIds[i],
-                    Name : "TraitName" + TraitIds[i],
-                    Description : "TratiDescr" + TraitIds[i]
-            };
-            WarlordTraits.push(NewWarlordTrait);
-        }
-    }
-    //Обработка объектов из базы, преобразование их в экземпляры классов
-    if(!!WarlordTraits && WarlordTraits.length > 0) {
-        if(WarlordTraits.length == 1) {
-            let NewWarlordTrait = new WarlordTrait(WarlordTraits[0].id,WarlordTraits[0].Name,WarlordTraits[0].Description);
-            return NewWarlordTrait;
-        } else {
-            let ReturnedTraits = [];
-            for(let i=0;i<WarlordTraits.length;i++) {
-                let NewWarlordTrait = new WarlordTrait(WarlordTraits[i].id,WarlordTraits[i].Name,WarlordTraits[i].Description);
-                ReturnedTraits.push(NewWarlordTrait);
-            }
-            return ReturnedTraits;
-        }
-    } else {
-        return null;
-    }    
+    return ReturnedTraits;
 }
 
 
@@ -152,6 +121,7 @@ export const GetUnits = (FactionId, RoleId) => {
                 element.MaxModelQuantity,
                 element.KnowsSmite,
                 element.Named,
+                element.WarlordTraitId,
                 element.UnitRole.id,
                 false,
                 element.ForeignLink,
@@ -234,7 +204,7 @@ export function GetUnitModels(UnitId) {
     let UnitModels = ReturnUnitModels(UnitId);
 
     for(let i=0;i<UnitModels.length;i++) {
-        ReturnedModels.push(new Model(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].UnitId));
+        ReturnedModels.push(new Model(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].PerXmodels,UnitModels[i].UnitId));
     }
     return ReturnedModels;
 }

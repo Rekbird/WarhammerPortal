@@ -30,20 +30,23 @@ class UnitModelsList extends Component {
         
     }
 
-    showCopyButton = (currentModel) =>{
-        if (this.models.length >= currentModel.MaxQuant || this.props.Unit.BaseUnit.MaxModelQuant < this.models.length) {
-            return false;
-
-        } else if (!currentModel.MaxQuant && !this.props.Unit.BaseUnit.MaxModelQuant) {
-            return true;
-        
-        } else if (this.models.filter(function (model){           
-            return model.BaseModel.id == currentModel.id}
-            ).length >= currentModel.MaxQuant) {
-                return false;
-        } else {
-                return true;
+    showCopyButton = (currentBaseModel) => {
+        let ShowButton = true;
+        if (!!currentBaseModel.PerXmodels) {
+            let AlreadyHave = this.models.filter(model => (model.id == currentBaseModel.id)).length;
+            let Available = this.models.length / currentBaseModel.PerXmodels;
+            
+            ShowButton = ShowButton && (Available > AlreadyHave);
         }
+
+        if (!!this.props.Unit.BaseUnit.MaxModelQuant) {
+            ShowButton = ShowButton && (this.props.Unit.BaseUnit.MaxModelQuant > this.models.length);
+        }
+
+        if (!!currentBaseModel.MaxQuant) {
+            ShowButton = ShowButton && (this.models.filter((model) => model.BaseModel.id == currentBaseModel.id).length < currentBaseModel.MaxQuant);
+        }
+        return ShowButton;
     }
      render() {
         this.models =  this.props.Models.slice();

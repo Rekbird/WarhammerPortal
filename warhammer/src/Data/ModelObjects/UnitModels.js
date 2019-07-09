@@ -8,7 +8,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 5,
         ModelsIncluding: 1,
         UnitId: 1,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model1);
 
@@ -20,7 +20,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 0,
         ModelsIncluding: 1,
         UnitId: 1,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model2);
 
@@ -32,7 +32,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 10,
         ModelsIncluding: 1,
         UnitId: 2,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model3);
 
@@ -56,7 +56,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 8,
         ModelsIncluding: 1,
         UnitId: 3,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model5);
 
@@ -68,7 +68,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 5,
         ModelsIncluding: 1,
         UnitId: 4,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model6);
 
@@ -80,7 +80,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 5,
         ModelsIncluding: 1,
         UnitId: 5,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model7);
 
@@ -92,7 +92,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 0,
         ModelsIncluding: 1,
         UnitId: 5,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model8);
 
@@ -104,7 +104,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 5,
         ModelsIncluding: 1,
         UnitId: 6,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model9);
 
@@ -116,7 +116,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 0,
         ModelsIncluding: 1,
         UnitId: 6,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model10);
 
@@ -128,7 +128,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 5,
         ModelsIncluding: 1,
         UnitId: 7,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model11);
 
@@ -140,7 +140,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 0,
         ModelsIncluding: 1,
         UnitId: 7,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model12);
 
@@ -152,7 +152,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 1,
         ModelsIncluding: 1,
         UnitId: 8,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model13);
 
@@ -164,7 +164,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 1,
         ModelsIncluding: 1,
         UnitId: 9,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model14);
 
@@ -176,7 +176,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 1,
         ModelsIncluding: 1,
         UnitId: 10,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model15);
 
@@ -188,7 +188,7 @@ const ReturnUnitModels = (UnitId) => {
         MinQuant: 2,
         ModelsIncluding: 1,
         UnitId: 11,
-        PerXmodels: ""
+        PerXmodels: null
     };
     UnitModels.push(Model16);
 
