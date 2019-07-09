@@ -22,12 +22,7 @@ class UnitSelection extends Component {
     }
 
     handleUnitSelection = (BaseUnit) => {
-       let NewId = 1;
-       this.props.Roster.RosterDetachments.forEach((element) => {
-           if(!!element.RosterUnits) {
-                NewId = NewId+element.RosterUnits.length;
-           }
-       });
+       let NewId = utils.calculateNewId(this.props.Detachment.RosterUnits);
        this.props.AddNewUnit(this.props.Detachment.id, NewId, BaseUnit);
        //this.props.RosterAction("Unit Editing");
     }

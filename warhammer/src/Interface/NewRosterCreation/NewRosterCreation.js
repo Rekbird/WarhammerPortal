@@ -31,8 +31,8 @@ class RosterCreation extends Component{
     }
 
     AddNewDetachment = () => {
-        let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (this.props.Roster.RosterDetachments.length+1) : 1;
-       this.props.NewDetachment(NewId);
+        let NewId = utils.calculateNewId(this.props.Roster.RosterDetachments);
+        this.props.NewDetachment(NewId);
     }
 
     EditDetachment = (Detachment) => {
@@ -42,7 +42,7 @@ class RosterCreation extends Component{
     }
 
     CopyDetachment = (Detachment) => {
-       let NewId = (!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) ? (utils.calculateNewId(this.props.Roster.RosterDetachments)) : 1;
+       let NewId = utils.calculateNewId(this.props.Roster.RosterDetachments);
        this.props.CopyDetachment(Detachment.id, NewId);
     }
 
