@@ -22,17 +22,6 @@ class UnitSelection extends Component {
     }
 
     handleUnitSelection = (BaseUnit) => {
-        /*
-        let NewUnit = new RosterUnit(
-            null,
-            [],
-            BaseUnit,
-            [],
-            null,
-            this.props.Detachment.id
-        );
-        NewUnit.Models = utils.GetRosterUnitModels(NewUnit);
-        */
        let NewId = 1;
        this.props.Roster.RosterDetachments.forEach((element) => {
            if(!!element.RosterUnits) {
@@ -40,8 +29,7 @@ class UnitSelection extends Component {
            }
        });
        this.props.AddNewUnit(this.props.Detachment.id, NewId, BaseUnit);
-       this.props.RosterAction("Unit Editing");
-        //this.props.AddNewUnit(this.props.Detachment, BaseUnit)
+       //this.props.RosterAction("Unit Editing");
     }
 
     render() {

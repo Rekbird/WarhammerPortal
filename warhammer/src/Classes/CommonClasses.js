@@ -96,14 +96,15 @@ export class WargearSlot {
 }
 
 export class WargearOption {
-    constructor(id,Name,CountPerModel,PerXmodels,Default,LinkedOptionsId) {
+    constructor(id,Name,CountPerModel,PerXmodels,Default,LinkedOptionsId,UpToXModels,WargearIds) {
         this.id = id;
         this.Name = Name;
         this.CountPerModel = CountPerModel;
         this.PerXmodels = PerXmodels;
         this.Default = Default;
         this.LinkedOptionsId = LinkedOptionsId;
-        this.WargearIncluded = utils.GetWargear(id);
+        this.WargearIncluded = utils.GetWargear(WargearIds);
+        this.UpToXModels = UpToXModels;
     }
 }
 

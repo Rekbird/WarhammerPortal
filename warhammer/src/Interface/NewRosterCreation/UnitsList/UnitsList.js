@@ -10,7 +10,6 @@ class UnitsList extends Component {
     }
     render() {
         var Roles = utils.GetAvailableRoles(this.props.Faction.id);
-        console.log("GetAvailableRoles" + Roles.length);
        if(Roles && (Roles.length > 0)) {
             var Roles = Roles.map(
                 (role) =>
