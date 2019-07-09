@@ -120,6 +120,9 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "SetUnitAsWarlord":
             Result = SetUnitAsWarlord(state.ActiveModel, state.ActiveUnit, state.Roster, action);
             return Object.assign({}, state, {ActiveModel: Result.NewModel, ActiveUnit: Result.NewUnit, Roster: Result.NewRoster});
+        case "SetUnitWarlordTrait":
+            Result = SetUnitWarlordTrait(state.ActiveModel, state.ActiveUnit, state.Roster, action);
+            return Object.assign({}, state, {ActiveModel: Result.NewModel, ActiveUnit: Result.NewUnit, Roster: Result.NewRoster});
         default:
             
             return (!!state) ? state : {
@@ -131,11 +134,40 @@ function RosterEditing(state = RosterEditingInitialState, action) {
     }
 }
 
-const SetUnitAsWarlord = (ActiveModel, ActiveUnit, roster, action) => {
+const SetUnitWarlordTrait = (ActiveModel, ActiveUnit, roster, action) => {
     let NewModel = Object.assign({}, ActiveModel);
-    let NewUnit = Object.assign({}, ActiveUnit, {Warlord: action.WarlordCheckbox});
+    let NewUnit = Object.assign({}, ActiveUnit, {ChosenWarlordTrait: action.ChosenTrait});
     let NewRoster = Object.assign({}, roster, {Warlord : NewUnit});
     let NeededDetachment;
+    NewRoster.RosterDetachments.forEach(function(detachment) {
+        if (detachment.RosterUnits.indexOf(ActiveUnit) != -1) {
+            NeededDetachment = detachment;
+        }
+    });
+    NeededDetachment.RosterUnits.splice(NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === NewUnit.id)[0]),1,NewUnit);
+    return  {
+        NewModel,
+        NewUnit,
+        NewRoster
+    }
+} 
+
+const SetUnitAsWarlord = (ActiveModel, ActiveUnit, roster, action) => {
+    let NeededDetachment;
+    let NewModel = Object.assign({}, ActiveModel);
+    let NewUnit = Object.assign({}, ActiveUnit, {Warlord: action.WarlordCheckbox});
+    let NewRoster = Object.assign({}, roster, {Warlord : (action.WarlordCheckbox ? NewUnit : null)});
+
+    if (!!roster.Warlord && roster.Warlord != ActiveUnit) {
+        let PrevWarlord = Object.assign({}, roster.Warlord, {Warlord: false, ChosenWarlordTrait: null});
+        NewRoster.RosterDetachments.forEach(function(detachment) {
+            if (detachment.RosterUnits.indexOf(roster.Warlord) != -1) {
+                NeededDetachment = detachment;
+            }
+        });
+        NeededDetachment.RosterUnits.splice(NeededDetachment.RosterUnits.indexOf(NeededDetachment.RosterUnits.filter((unit) => unit.id === PrevWarlord.id)[0]),1,PrevWarlord);
+    }
+
     NewRoster.RosterDetachments.forEach(function(detachment) {
         if (detachment.RosterUnits.indexOf(ActiveUnit) != -1) {
             NeededDetachment = detachment;

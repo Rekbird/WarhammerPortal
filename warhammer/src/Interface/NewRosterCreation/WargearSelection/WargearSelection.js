@@ -19,7 +19,9 @@ class WargearSelection extends Component {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
         this.WargearSlots = [];
+        this.ReturnedTraits = [];
         this.UnitIsWarlord = false;
+        this.ChosenTrait = null;
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
@@ -86,26 +88,39 @@ class WargearSelection extends Component {
         this.props.SetUnitAsWarlord(!this.UnitIsWarlord);
     }
 
-    SelectedWarlordTrait = () => {
-        
+    SelectedWarlordTrait = (event) => {
+        this.ChosenTrait = this.ReturnedTraits.find(elem => elem.id == event.target.value);
+        this.props.SetUnitWarlordTrait(this.ChosenTrait);
     }
 
     render() {
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
-        let WarlordOptions = null;
+        let WarlordOptions;
+        let WarlordTraitAndRelic;
 
         if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
-            let AvailableWarlordTraits = utils.GetWarlordTraits(28, null).map(
-                (option) =>
-                <option className = "" key = {option.id} value = {option.id} disabled = {option.id == this.props.ActiveUnit.ChosenWarlordTrait.id}>{option.Name}</option>
-            );
+
+            if (this.UnitIsWarlord) {
+                this.ReturnedTraits = utils.GetWarlordTraits(this.props.ActiveDetachment.Faction.id, this.props.ActiveDetachment.ChapterTactic.id);
+                let AvailableWarlordTraits = this.ReturnedTraits.map((option) =>
+                    <option className = "" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenWarlordTrait && (option.id == this.props.ActiveUnit.ChosenWarlordTrait.id)}>{option.Name}</option>
+                );
+                this.ChosenTrait = !!this.props.ActiveUnit.ChosenWarlordTrait ? this.props.ActiveUnit.ChosenWarlordTrait : this.ReturnedTraits[0];
+
+                WarlordTraitAndRelic = 
+                    <div>
+                        <select className = "" value = {this.ChosenTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
+                    </div>
+            } else {
+                this.ChosenTrait = null;
+            }
 
             WarlordOptions = 
-            <div>
-                <h3 className = 'WargearSelection__Title'>Additional options</h3>
-                <p className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
-                <select className = "" value = {this.props.ActiveUnit.ChosenWarlordTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
-            </div>
+                <div>
+                    <h3 className = 'WargearSelection__Title'>Additional options</h3>
+                    <p className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
+                    {WarlordTraitAndRelic}
+                </div>
         }
         
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
@@ -128,14 +143,16 @@ const mapStateToProps = (state) => {
     return {
         CurrentModel: state.RosterEditing.ActiveModel,
         RosterModels: state.RosterEditing.ActiveUnit.Models,
-        ActiveUnit : state.RosterEditing.ActiveUnit
+        ActiveUnit : state.RosterEditing.ActiveUnit,
+        ActiveDetachment: state.RosterEditing.ActiveDetachment
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         UpdateSelectedWargearOptions: (WargearSlots) => dispatch(ActionCreators.UpdateModelWargear(WargearSlots)),
-        SetUnitAsWarlord: (WarlordCheckBox) => dispatch(ActionCreators.SetUnitAsWarlord(WarlordCheckBox))
+        SetUnitAsWarlord: (WarlordCheckBox) => dispatch(ActionCreators.SetUnitAsWarlord(WarlordCheckBox)),
+        SetUnitWarlordTrait: (ChosenTrait) => dispatch(ActionCreators.SetUnitWarlordTrait(ChosenTrait))
     }
 }
 
