@@ -47,6 +47,10 @@
     transition: 0.2s;
 }
 
+.UnitProfile__Button:disabled {
+    opacity: 0.8;
+}
+
 .UnitProfile__Image_block {
     float: left;
     padding: 0px;

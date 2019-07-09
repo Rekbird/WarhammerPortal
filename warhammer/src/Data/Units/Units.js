@@ -9,6 +9,9 @@ import FireDragonsImage from "./FireDragonsImage.jpg";
 import HowlingBansheesImage from "./HowlingBansheesImage.jpg";
 import StrikingScorpionsImage from "./StrikingScorpionsImage.jpg";
 import FarseerImage from "./FarseerImage.jpg";
+import SpiritSeerImage from "./SpiritSeerImage.jpg";
+import WarlockImage from "./WarlockImage.jpg";
+import WarlockConclaveImage from "./WarlockConclaveImage.jpg";
 
 function ReturnUnits() {
     const Factions = ReturnFactions();
@@ -41,7 +44,7 @@ function ReturnUnits() {
         Codex: "",
         Description: "This unit contains 10 Guardians. It can include up to 10 additional Guardians (Power Rating +4). For every 10 Guardians in the unit, you may include one Heavy Weapon Platform. Each Guardian is armed with a shuriken catapult and plasma grenades. Each Heavy Weapon Platform is armed with a shuriken cannon.",
         WargearOptions: "",
-        MaxModelQuantity: 20,
+        MaxModelQuantity: 22,
         FactionKeywords: "",
         Keywords: "",
         PowerRating: "",
@@ -186,7 +189,7 @@ function ReturnUnits() {
         Keywords: "",
         PowerRating: "",
         KnowsSmite: true,
-        Image: FarseerImage,
+        Image: WarlockImage,
         Faction: Factions[27],
         Named: "",
         WarlordTraitId: "",
@@ -206,7 +209,7 @@ function ReturnUnits() {
         Keywords: "",
         PowerRating: "",
         KnowsSmite: true,
-        Image: FarseerImage,
+        Image: SpiritSeerImage,
         Faction: Factions[27],
         Named: "",
         WarlordTraitId: "",
@@ -226,7 +229,7 @@ function ReturnUnits() {
         Keywords: "",
         PowerRating: "",
         KnowsSmite: true,
-        Image: FarseerImage,
+        Image: WarlockConclaveImage,
         Faction: Factions[27],
         Named: "",
         WarlordTraitId: "",
