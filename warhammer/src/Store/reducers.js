@@ -86,7 +86,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "CopyDetachment":
             return Object.assign({}, state, {Roster: AddCopyDetachment(state.Roster, action)});
         case "DeleteDetachment":
-            return Object.assign({}, state, {Roster: RemoveDetachment(state.Roster, action)});
+            return Object.assign({}, state, {Roster: RemoveDetachment(state.Roster, state.ActiveUnit, state.ActiveModel, action)});
         case "AddNewUnit":
             Result = AddNewUnit(state.Roster, action);
             return Object.assign({}, state, {Roster:Result.Roster, ActiveUnit: Result.Unit});

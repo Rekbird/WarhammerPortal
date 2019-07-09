@@ -12,7 +12,6 @@ class UnitsListByRole extends Component {
     render() {
         let AllowedAdding = !utils.CheckDetachmentOptionFull(this.props.Detachment.RosterUnits, this.props.UnitRole, this.props.Detachment.Detachment)
         let Units = utils.GetUnits(this.props.Faction.id, this.props.UnitRole.id);
-        //console.log("Units in UnitListByRole "+Units.length);
         if(Units && (Units.length > 0)) {
             Units = Units.map(
                 (unit) => 
