@@ -14,10 +14,6 @@ import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 import {RosterModel} from "../Classes/CommonClasses.js";
 import {UnitRole} from "../Classes/CommonClasses.js";
 import {WarlordTrait} from "../Classes/CommonClasses.js";
-import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
-import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
-import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
-import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 import GetFactionUnitsByRole from "./GetFactionUnitsByRole";
 import ReturnUnits from "../Data/Units/Units.js";
 import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
@@ -30,7 +26,7 @@ import ReturnWarlordTraits from "../Data/WarlordTraits/WarlordTraits.js"
 import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
 import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
 import ReturnWargear from "../Data/WargearSlots/Wargear.js";
-//import GetAvailableRoles from "./GetAvailableRoles.js";
+import ReturnDetachments from "../Data/Detachments/Detachments.js"
 
 export function GetWarlordTraits(FactionId, ChapterTacticId) {
 
@@ -340,35 +336,27 @@ export function GetChapterTactic(TacticId) {
 // export default GetChapterTactic;
 
 export function GetDetachments() {
-    let Detachments = [];
+    let Detachments = ReturnDetachments();
     let ReturnedDetachments = [];
-    let Detach1 = {
-        id: 1,
-        Name: "Batallion",
-		CommandBenefit: 5,
-		Restrictions: "",
-		Image: BattalionImage
-    };
-    Detachments.push(Detach1);
-    let Detach2 = {
-        id: 2,
-        Name: "Spearhead",
-		CommandBenefit: 1,
-		Restrictions: "",
-		Image: SpearheadImage
-    };
-    Detachments.push(Detach2);
 
-    for(let i=0;i<Detachments.length;i++) {
-        ReturnedDetachments.push(new Detachment(Detachments[i].id,Detachments[i].Name,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
-    }
+    Detachments.forEach(function(detach) {
+        ReturnedDetachments.push(
+            new Detachment(
+                detach.id,
+                detach.Name,
+                detach.CommandBenefit,
+                detach.Restrictions,
+                detach.Image
+            )
+        )
+    });
     return ReturnedDetachments;
 }
 
 // export default GetDetachments;
 
 export function GetDetachment(DetachmentId) {
-    return GetDetachments().filter((Detachment) => Detachment.id == DetachmentId)[0];
+    return GetDetachments().find((Detachment) => Detachment.id == DetachmentId);
 }
 
 // export default GetDetachment;
@@ -377,29 +365,7 @@ export function GetDetachmentOptions(DetachmentId) {
     let Options = [];
     let ReturnedOptions = [];
 
-    let Option1 = {
-        id: 1,
-		UnitRole: 1,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option1);
-
-    let Option2 = {
-        id: 2,
-		UnitRole: 2,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option2);
-
-    let Option3 = {
-        id: 3,
-		UnitRole: 3,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option3);
+    
 
     for(let i=0;i<Options.length;i++) {
         ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
@@ -536,16 +502,20 @@ export const recalculateRosterCost = (Roster = this) => {
 }
 
 export const calculateNewId = (ElementsList) => {
-    let elements = ElementsList.slice();
-    elements.sort(function(a,b) {
-            if(a.id < b.id) {
-                return 1;
-            } else if(a.id > b.id) {
-                return -1;
-            } else {
-                return 0;
+    if(!!ElementsList && ElementsList.length > 0) {
+        let elements = ElementsList.slice();
+        elements.sort(function(a,b) {
+                if(a.id < b.id) {
+                    return 1;
+                } else if(a.id > b.id) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
-        }
-    );
-    return elements[0].id+1;
+        );
+        return elements[0].id+1;
+    } else {
+        return 1;
+    }
 }

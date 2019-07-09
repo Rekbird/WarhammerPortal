@@ -127,7 +127,8 @@
     transition: 0.1s;
     text-shadow: 0px 0px 1px rgb(223, 105, 101);
     border: 1.5px solid rgb(236, 52, 46);
-    margin:1.2px;
+    margin:2px;
+    padding:5px;
 }
 
 .RosterMenu__DetachmentListNewButton:active {
@@ -236,7 +237,7 @@
     text-align: left;
     margin: 0px;
     padding: 0px;
-    padding-top: 2px;
+    padding-bottom: 3px;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
