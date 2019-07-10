@@ -30,7 +30,7 @@
 }
 
 .model__activeModelElement {
-    background-color: rgba(6, 86, 87, 0.877);
+    background-color: rgba(6, 86, 87, 1);
     width: 93%;
     border: 1px solid rgb(6, 41, 34);
     box-shadow: 1px 1px 2px rgb(108, 159, 160);

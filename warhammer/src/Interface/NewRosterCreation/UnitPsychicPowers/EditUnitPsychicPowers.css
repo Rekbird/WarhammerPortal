@@ -3,10 +3,8 @@
     vertical-align: middle;
     text-align: center;
     border: 1px solid;
-    margin:5px;
-    margin-top:0px;
-    margin-left:0px;
-    margin-right:3px;
+    margin:0px;
+    margin-bottom: 5px;
     border-color: rgb(6, 86, 87);
     border-radius: 5px;
     padding:0px;
@@ -14,14 +12,14 @@
 }
 
 .EditUnitPsychicPowers__Header {
-    background-color: rgb(6, 86, 87);
-    border-radius: 5px;
-    vertical-align: middle;
-    text-align: center;
-    border: 1px solid rgb(6, 86, 87);
-    margin:2px;
-    padding:3px;
-    color:white;
+    color: white;
+    font-size: 20px;
+    text-align: left;
+    margin:5px;
+    padding:5px;
+    padding-left: 20px;
+    background-color: rgba(6, 86, 87, 1);
+    border-radius:5px;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
 }
 

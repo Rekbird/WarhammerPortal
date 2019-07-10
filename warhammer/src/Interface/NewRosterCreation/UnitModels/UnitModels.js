@@ -3,13 +3,13 @@ import './UnitModels.css';
 import ModelListElement from '../Model/Model.js';
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import { connect } from 'react-redux';
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class UnitModelsList extends Component {
      constructor(props) {
         super(props);
         this.handleModelButtonClick = this.handleModelButtonClick.bind(this);
         this.models = [];
-        this.recordCounter = 0;
      }
      
     handleModelButtonClick = (model,ButtonName) => {
@@ -18,9 +18,8 @@ class UnitModelsList extends Component {
             this.props.handleModelButtonClick(this.models);
             
         } else if (ButtonName == "Copy") {
-            this.recordCounter = this.recordCounter + 1;
             const newModel = Object.assign({}, model);
-            newModel.id = this.recordCounter;
+            newModel.id = utils.calculateNewId(this.models);
             this.models.splice((this.models.length),0,newModel);
             this.props.handleModelButtonClick(this.models);
 
@@ -50,7 +49,6 @@ class UnitModelsList extends Component {
     }
      render() {
         this.models =  this.props.Models.slice();
-        this.recordCounter = this.models.length;
          const modelsList = this.models.map(
              (model) => 
                 <ModelListElement key = {model.id} ActiveModelExist = {(!!this.props.ActiveModel && this.props.ActiveModel.id == model.id)} singleModel = {model} showCopyButton = {this.showCopyButton(model.BaseModel)} showDeleteButton = {(this.models.length > model.BaseModel.MinQuant)} handleModelButtonClick = {this.handleModelButtonClick}/>

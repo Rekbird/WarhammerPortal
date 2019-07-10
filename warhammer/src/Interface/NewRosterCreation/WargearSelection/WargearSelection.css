@@ -12,8 +12,10 @@
 .WargearSelection__Title {
     color: white;
     font-size: 20px;
+    text-align: left;
     margin:5px;
     padding:5px;
+    padding-left: 20px;
     background-color: rgba(6, 86, 87, 1);
     border-radius:5px;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
@@ -21,4 +23,40 @@
 
 .WargearSelection__CheckBox {
     color: black; 
+}
+
+.WargearSelection__Select {
+    display: block;
+    width: 100%;
+    border: 1px solid;
+    border-color: rgb(6, 86, 87);
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
+    border-radius: 5px;
+    scrollbar-width: 2px; 
+    padding:5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    color:rgb(6, 86, 87);
+}
+
+.WargearSelection__Select:hover {
+    box-shadow: 1px 1px 4px rgb(30, 44, 44);
+}
+
+.WargearSelection__Option {
+    margin:5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    background-color:white;
+}
+
+
+.WargearSelection__Option:hover,
+.WargearSelection__Option:focus,
+.WargearSelection__Option:active{
+    background-color:rgb(6, 86, 87);
+    color:white;
 }

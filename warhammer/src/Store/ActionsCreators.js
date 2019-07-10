@@ -205,3 +205,16 @@ export function SetUnitAsWarlord(WarlordCheckbox) {
     }
 }
 
+export function SetUnitWarlordTrait(ChosenTrait) {
+    return {
+        type: "SetUnitWarlordTrait",
+        ChosenTrait
+    }
+}
+
+export function SetUnitRelic(ChosenRelic) {
+    return {
+        type: "SetUnitRelic",
+        ChosenRelic
+    }
+}
