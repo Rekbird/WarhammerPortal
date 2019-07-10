@@ -20,11 +20,11 @@
 }
 
 .RosterMenu__ButtonImage:active{
-    box-shadow: 0px 0px 3px white;
-    width:11px;
+    box-shadow: inset 0.2px 0.2px 0px 1px white,0px 0px 3px white;
+    /*width:11px;*/
     margin:0px;
     padding:2px;
-    border: 1px solid white;
+    /*border: 1px solid white;*/
 }
 
 .RosterMenu__HeaderDiv {
@@ -120,21 +120,19 @@
     text-align: center;
     vertical-align: middle;
     font-weight: 700;
+    text-shadow: none;
     box-shadow: 0px 0px 3px rgb(223, 105, 101), 0px 0px 5px rgb(233, 153, 150), 0px 0px 7px rgb(245, 196, 195);
 }
 
 .RosterMenu__DetachmentListNewButton:hover {
     transition: 0.1s;
-    text-shadow: 0px 0px 1px rgb(223, 105, 101);
-    border: 1.5px solid rgb(236, 52, 46);
-    margin:2px;
-    padding:5px;
+    box-shadow: 0px 0px 3px 2px rgb(223, 105, 101);  
+    text-shadow: 0px 0px 3px 2px rgb(223, 105, 101);   
 }
 
 .RosterMenu__DetachmentListNewButton:active {
-    border: 2px solid rgb(236, 52, 46);
-    box-shadow: 0px 0px 5px rgb(223, 105, 101), 0px 0px 7px rgb(233, 153, 150), 0px 0px 9px rgb(245, 196, 195);
-    margin: 0.5px;
+    box-shadow: inset 1px 1px 3px 1px rgb(224, 71, 66), 0px 0px 5px rgb(223, 105, 101), 0px 0px 7px rgb(233, 153, 150), 0px 0px 9px rgb(245, 196, 195);
+    
 }
 
 .RosterMenu__UnitListNewButton {
@@ -156,14 +154,12 @@
 .RosterMenu__UnitListNewButton:hover {
     transition: 0.1s;
     text-shadow: 0px 0px 1px rgb(223, 105, 101);
-    border: 1.5px solid rgb(236, 52, 46);
-    margin:1.2px;
+    box-shadow: 0px 0px 4px 2px rgb(223, 105, 101);
 }
 
 .RosterMenu__UnitListNewButton:active {
-    margin:0.5px;
-    border: 2px solid rgb(236, 52, 46);
-    box-shadow: 0px 0px 5px rgb(223, 105, 101), 0px 0px 7px rgb(233, 153, 150), 0px 0px 9px rgb(245, 196, 195);
+    
+    box-shadow: inset 0.5px 0.3px 1px 1px rgb(224, 71, 66), 0px 0px 5px rgb(223, 105, 101), 0px 0px 7px rgb(233, 153, 150), 0px 0px 9px rgb(245, 196, 195);
     text-shadow: 0px 0px 1px rgb(223, 105, 101);
 }
 
@@ -219,14 +215,15 @@
 
 .RosterMenu__UnitItem:hover {
     text-shadow: 0px 0px 1px white;
-    box-shadow: 0px 0px 4px rgb(36, 190, 196), 0px 0px 8px rgb(99, 233, 238);
+    border: 1px solid rgb(28, 196, 199);
+    box-shadow: inset 0px 0px 1px 1px rgb(33, 184, 187), 0px 0px 4px rgb(36, 190, 196), 0px 0px 8px rgb(99, 233, 238);
     
 }
 
 .ActiveBrightning {
-    border: 3px solid rgb(28, 196, 199);
+    border: 1px solid rgb(28, 196, 199);
     border-radius: 8px;
-    box-shadow: 0px 0px 4px rgb(33, 184, 187), 0px 0px 7px rgb(14, 203, 206), 0px 0px 10px rgb(165, 247, 248);
+    box-shadow: inset 0px 0px 2px 1px rgb(33, 184, 187), 0px 0px 4px rgb(33, 184, 187), 0px 0px 7px rgb(14, 203, 206), 0px 0px 10px rgb(165, 247, 248);
     text-shadow: 0px 0px 2px white;
 }
 
