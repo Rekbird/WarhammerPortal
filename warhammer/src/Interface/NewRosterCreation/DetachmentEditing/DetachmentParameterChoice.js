@@ -6,41 +6,13 @@ class DetachmentParameterChoice extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        /*
-        this.state = {
-            NeedEmptyOption: !(this.props.ObjectId && this.props.ObjectId.length > 0)
-        };
-        */
     }
 
-    /*
-    componentDidUpdate() {
-        let NeedEmptyOption = !(!!this.props.ObjectId && this.props.ObjectId.length > 0);
-        if(NeedEmptyOption != this.state.NeedEmptyOption) {
-            this.setState({
-                NeedEmptyOption: NeedEmptyOption
-            });
-        }
-    }
-    */
     handleChange(e) {
-        /*
-        if(!!e.target.value && e.target.value.length > 0) {
-            this.setState({
-                NeedEmptyOption: !(!!e.target.value && e.target.value.length > 0)
-            });
-        }
-        */
         this.props.handleChange(e.target.value);
     }
 
     render() {
-        /*
-                1- Detachments
-                2- Factions
-                3 - ChapterTactics
-            */
-           console.log("Вызвали рендер в компоненте DetachmentParameterChoice")
             let ObjectsArray = [];
             let SelectLabel = "";
             if(this.props.ListTypeNumber == 1) {

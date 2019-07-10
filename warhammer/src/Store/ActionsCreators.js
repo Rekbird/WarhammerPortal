@@ -211,3 +211,10 @@ export function SetUnitWarlordTrait(ChosenTrait) {
         ChosenTrait
     }
 }
+
+export function SetUnitRelic(ChosenRelic) {
+    return {
+        type: "SetUnitRelic",
+        ChosenRelic
+    }
+}

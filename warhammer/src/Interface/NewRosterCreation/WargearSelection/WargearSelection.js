@@ -20,8 +20,10 @@ class WargearSelection extends Component {
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
         this.WargearSlots = [];
         this.ReturnedTraits = [];
+        this.ReturnedRelics = [];
         this.UnitIsWarlord = false;
         this.ChosenTrait = null;
+        this.ChosenRelic = null;
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
@@ -51,11 +53,11 @@ class WargearSelection extends Component {
                 couldBeIncluded = couldBeIncluded && (CanCarry > UnitAlreadyHave);
             }
 
-            if (!!BaseOptions[i].UpToXModels) {
+            if (couldBeIncluded && !!BaseOptions[i].UpToXModels) {
                 couldBeIncluded = couldBeIncluded && (BaseOptions[i].UpToXModels > UnitAlreadyHave);
             }
 
-            if (!!BaseOptions[i].CountPerModel) {
+            if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
                 let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
                 couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
             }
@@ -93,26 +95,46 @@ class WargearSelection extends Component {
         this.props.SetUnitWarlordTrait(this.ChosenTrait);
     }
 
+    SelectedRelic = (event) => {
+        this.ChosenRelic = this.ReturnedRelics.find(elem => elem.id == event.target.value);
+        this.props.SetUnitRelic(this.ChosenRelic);
+    }
+
     render() {
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions;
         let WarlordTraitAndRelic;
 
-        if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3) {
-
+        if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3 && this.props.ActiveUnit.BaseUnit.MaxModelQuant < 2) {
             if (this.UnitIsWarlord) {
                 this.ReturnedTraits = utils.GetWarlordTraits(this.props.ActiveDetachment.Faction.id, this.props.ActiveDetachment.ChapterTactic.id);
+                if (this.props.ActiveUnit.BaseUnit.Named) this.ReturnedTraits = this.ReturnedTraits.filter(trait => trait.id == this.props.ActiveUnit.BaseUnit.WarlordTraitId); 
                 let AvailableWarlordTraits = this.ReturnedTraits.map((option) =>
-                    <option className = "" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenWarlordTrait && (option.id == this.props.ActiveUnit.ChosenWarlordTrait.id)}>{option.Name}</option>
+                    <option className = "WargearSelection__Option" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenWarlordTrait && (option.id == this.props.ActiveUnit.ChosenWarlordTrait.id)}>{option.Name}</option>
                 );
                 this.ChosenTrait = !!this.props.ActiveUnit.ChosenWarlordTrait ? this.props.ActiveUnit.ChosenWarlordTrait : this.ReturnedTraits[0];
-
+                let RelicSelection = null;
+                if (!this.props.ActiveUnit.BaseUnit.Named) {
+                    this.ReturnedRelics = utils.GetFactionRelics(this.props.ActiveDetachment.Faction.id, this.props.ActiveDetachment.ChapterTactic.id, this.props.ActiveUnit);
+                    let AvailableRelics = this.ReturnedRelics.map((option) =>
+                        <option className = "WargearSelection__Option" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenRelic && (option.id == this.props.ActiveUnit.ChosenRelic.id)}>{option.Name}</option>
+                    );
+                    this.ChosenRelic = !!this.props.ActiveUnit.ChosenRelic ? this.props.ActiveUnit.ChosenRelic : this.ReturnedRelics[0];
+                    RelicSelection = 
+                        <div>
+                            <select className = "WargearSelection__Select" value = {this.ChosenRelic.id} onChange = {this.SelectedRelic}>{AvailableRelics}</select>
+                        </div>
+                }
                 WarlordTraitAndRelic = 
                     <div>
-                        <select className = "" value = {this.ChosenTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
+                        <div>
+                            <select className = "WargearSelection__Select" value = {this.ChosenTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
+                        </div>
+                        {RelicSelection}
                     </div>
             } else {
                 this.ChosenTrait = null;
+                this.ChosenRelic = null;
             }
 
             WarlordOptions = 
@@ -152,7 +174,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         UpdateSelectedWargearOptions: (WargearSlots) => dispatch(ActionCreators.UpdateModelWargear(WargearSlots)),
         SetUnitAsWarlord: (WarlordCheckBox) => dispatch(ActionCreators.SetUnitAsWarlord(WarlordCheckBox)),
-        SetUnitWarlordTrait: (ChosenTrait) => dispatch(ActionCreators.SetUnitWarlordTrait(ChosenTrait))
+        SetUnitWarlordTrait: (ChosenTrait) => dispatch(ActionCreators.SetUnitWarlordTrait(ChosenTrait)),
+        SetUnitRelic: (ChosenRelic) => dispatch(ActionCreators.SetUnitRelic(ChosenRelic))
     }
 }
 
