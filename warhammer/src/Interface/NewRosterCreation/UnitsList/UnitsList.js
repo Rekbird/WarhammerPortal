@@ -8,6 +8,11 @@ class UnitsList extends Component {
     constructor(props) {
         super(props)
     }
+    /*
+    handleScroll = (e) => {
+        this.props.handleScroll(e);
+    }
+    */
     render() {
         var Roles = utils.GetAvailableRoles(this.props.Faction.id);
        if(Roles && (Roles.length > 0)) {
