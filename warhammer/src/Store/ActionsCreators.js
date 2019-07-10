@@ -205,6 +205,14 @@ export function SetUnitAsWarlord(WarlordCheckbox) {
     }
 }
 
+
+export function CurrentScrollCount(CurrentScrollCount) {
+    return {
+        type: "CurrentScrollCount",
+        CurrentScrollCount
+    }
+}
+
 export function SetUnitWarlordTrait(ChosenTrait) {
     return {
         type: "SetUnitWarlordTrait",

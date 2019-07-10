@@ -11,7 +11,7 @@ class FactionGraphicList extends Component {
 
     
     render() {
-        var Factions = utils.GetFactions();
+        let Factions = utils.GetFactions();
         let TableRows = [];
         let RowsCount = 0;
         while(Factions && Factions.length > 0) {

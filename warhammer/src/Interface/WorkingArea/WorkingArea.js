@@ -19,9 +19,15 @@ import * as ActionCreators from "../../Store/ActionsCreators.js";
 
 
 
-function WorkingArea(props) {
-    var NeededArea;
-    switch(props.SelectedMenuId) {
+class WorkingArea extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+
+    render() {
+    let NeededArea;
+    switch(this.props.SelectedMenuId) {
         case 1 :
             NeededArea = 
             <Paragraph section = "Общие правила" />;
@@ -57,7 +63,7 @@ function WorkingArea(props) {
         case 6 :
             NeededArea = 
             <div>
-                <RosterCreation Roster = {props.Roster}/>
+                <RosterCreation Roster = {this.props.Roster}/>
             </div>;
         break;
         case 7 :
@@ -74,7 +80,7 @@ function WorkingArea(props) {
             </div>;
         break;
         default:
-            if(!props.SelectedMenuId) {
+            if(!this.props.SelectedMenuId) {
                 NeededArea = <h3>Отсутствует id кнопки</h3>;
             } else {
                 NeededArea = <h3>id кнопки есть, но элемент Отсутствует</h3>;
@@ -83,8 +89,11 @@ function WorkingArea(props) {
     }
     
     return (
-        <div className = "WorkingArea_Body">{NeededArea}</div>     
+        <div className = "WorkingArea_Body" id = "WorkingArea">
+            {NeededArea}
+        </div>     
     );
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -93,8 +102,13 @@ const mapStateToProps = (state) => {
         Roster: state.RosterEditing.Roster
     }
 }
-
-
+/*
+const mapDispatchToProps = (dispatch) => {
+    return {
+        CurrentScrollCount: (CurrentScrollCount) => dispatch(ActionCreators.CurrentScrollCount(CurrentScrollCount))
+    }
+}
+*/
 
 
 const containerWorkingArea = connect(
