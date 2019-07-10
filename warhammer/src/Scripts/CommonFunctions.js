@@ -29,6 +29,10 @@ import ReturnWargear from "../Data/WargearSlots/Wargear.js";
 import ReturnDetachments from "../Data/Detachments/Detachments.js";
 import ReturnDetachmentOptions from "../Data/Detachments/DetachmentOptions.js";
 import ReturnUnitPowerLevel from "../Data/UnitPowerLevels/UnitPowerLevels.js";
+import ReturnSubFactions from "../Data/SubFactions/SubFactions.js";
+import ReturnRelics from "../Data/Relics/Relics.js";
+//import GetAvailableRoles from "./GetAvailableRoles.js";
+
 
 const _ = require('lodash');
 
@@ -45,6 +49,18 @@ export function GetWarlordTraits(FactionId, ChapterTacticId) {
     return ReturnedTraits;
 }
 
+export function GetFactionRelics(FactionId, ChapterTacticId, Unit) {
+
+    let Relics = ReturnRelics(FactionId, ChapterTacticId, Unit);
+    let ReturnedRelics = [];
+    if (!!Relics && Relics.length > 0) {
+        Relics.forEach(relic => {
+            let NewRelic = new WarlordTrait(relic.id, relic.Name, relic.Description, relic.keyWordRetriction, relic.UnitRestriction, relic.ReplacingWargear, relic.ChapterTacticId, relic.FactionId);
+            ReturnedRelics.push(NewRelic);
+        });
+    }
+    return ReturnedRelics;
+}
 
 export function GetNumberOfSpells(UnitId) {
     
@@ -298,36 +314,25 @@ export function GetFactions() {
 // export default GetFactions;
 
 export function GetFaction(FactionId) {
-    return GetFactions().filter((Faction) => Faction.id == FactionId)[0];
+    return GetFactions().find((Faction) => Faction.id == FactionId);
 }
 
 // export default GetFaction;
 
 export function GetChapterTactics(FactionId) {
     let ChapterTactics = [];
-    let ReturnedChapterTactics = [];
-    let ChapterTactic1 = {
-        id: 1,
-		Name: "Alaitoc"
-    };
-    ChapterTactics.push(ChapterTactic1);
+    let ReturnedChapterTactics = ReturnSubFactions(FactionId);
+    ReturnedChapterTactics.forEach(tactic => 
+        ChapterTactics.push(new ChapterTactic(tactic.id, tactic.Name, tactic.FactionId))
+    );
 
-    let ChapterTactic2 = {
-        id: 2,
-		Name: "Kronos"
-    };
-    ChapterTactics.push(ChapterTactic2);
-
-    for(let i=0;i<ChapterTactics.length;i++) {
-        ReturnedChapterTactics.push(new ChapterTactic(ChapterTactics[i].id,ChapterTactics[i].Name));
-    }
-    return ReturnedChapterTactics;
+    return ChapterTactics;
 }
 
 // export default GetChapterTactics;
 
-export function GetChapterTactic(TacticId) {
-    return GetChapterTactics().filter((Tactic) => Tactic.id == TacticId)[0];
+export function GetChapterTactic(TacticId, FactionId) {
+    return GetChapterTactics(FactionId).find((Tactic) => parseInt(Tactic.id) == parseInt(TacticId));
 }
 
 // export default GetChapterTactic;

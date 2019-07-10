@@ -10,7 +10,6 @@
 }
 
 .UnitEditing__ModelsList {
-    vertical-align: top;
     display: block;
     width: auto;
     margin-bottom: 5px;
@@ -21,7 +20,12 @@
     width: auto;
 }
 
-.UnitEditing__WargearSelection {
+.UnitEditing__WargearAndPsychicPowers {
     display: inline-block;
     width: 60.3%;
+}
+
+.UnitEditing__WargearAndPsychicPowersAlone {
+    display: inline-block;
+    width: 99.8%;
 }

@@ -21,11 +21,6 @@ export class Unit {
         this.Models = utils.GetUnitModels(id);
         this.Image = Image;
     }
-
-    get DefaultUnitmodels() {
-    //this function returns default set of models from database for the current unit.
-    //
-    }
 }
 
 export class NumberOfSpells {
@@ -89,11 +84,6 @@ export class WargearSlot {
         this.Name = Name;
         this.Options = utils.GetWargearOptions(id);
     }
-
-    get DefaultWargearOption() {
-        //function returns default wargear option for the current wargear slot.
-        //
-    }
 }
 
 export class WargearOption {
@@ -135,9 +125,24 @@ export class Faction {
 }
 
 export class ChapterTactic {
-    constructor(id,Name) {
+    constructor(id,Name,FactionId) {
         this.id = id;
         this.Name = Name;
+        this.FactionId = FactionId;
+    }
+}
+
+export class FactionRelic {
+    constructor(id,Name,Description,keyWordRetriction,UnitRestriction,ReplacingWargear,ChapterTacticId,FactionId) {
+        this.id = id;
+        this.Name = Name;
+        this.Description = Description;
+        this.keyWordRetriction = keyWordRetriction; //Keywords that unit needs*
+        this.UnitRestriction = UnitRestriction; // Units that can carry this relic*
+        this.ReplacingWargear = ReplacingWargear; // id of the wargear that is replaced by this relic*
+        this.ChapterTacticId = ChapterTacticId; // Subfaction required*
+        this.FactionId = FactionId; // Faction of the relic
+        // * - can be null
     }
 }
 
@@ -225,6 +230,7 @@ export class RosterUnit {
         this.RosterDetachmentId = RosterDetachmentId;
         this.Warlord = false;
         this.ChosenWarlordTrait = null;
+        this.ChosenRelic = null;
         //this.recalculateRosterUnit = this.recalculateRosterUnit.bind(this);
     }
 

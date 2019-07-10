@@ -1,6 +1,6 @@
 const ReturnWargearOptions = (SlotId) => {
     let WargearOptions = [];
- 
+    
     //Aeldari Options
 
     const AvengerShurikenCatapult = {
