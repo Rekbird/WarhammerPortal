@@ -28,6 +28,7 @@ import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
 import ReturnWargear from "../Data/WargearSlots/Wargear.js";
 import ReturnDetachments from "../Data/Detachments/Detachments.js";
 import ReturnDetachmentOptions from "../Data/Detachments/DetachmentOptions.js";
+import ReturnUnitPowerLevel from "../Data/UnitPowerLevels/UnitPowerLevels.js";
 
 const _ = require('lodash');
 
@@ -175,26 +176,19 @@ export function GetUnitRole(RoleId) {
 }
 
 export function GetUnitPowerLevel(UnitId) {
-    let UnitPowerLevels =[];
+    let UnitPowerLevels =ReturnUnitPowerLevel(UnitId);
     let ReturnedUnitPowerLevels = [];
 
-    let PowerLevel1 = {
-        id:1,
-        PowerLevel:5,
-        NumberOfModels: 5
-    };
-    UnitPowerLevels.push(PowerLevel1);
-
-    let PowerLevel2 = {
-        id:1,
-        PowerLevel:10,
-        NumberOfModels: 10
-    };
-    UnitPowerLevels.push(PowerLevel2);
-
-    for(let i=0;i<UnitPowerLevels.length;i++) {
-        ReturnedUnitPowerLevels.push(new UnitPowerLevel(UnitPowerLevels[i].id,UnitPowerLevels[i].PowerLevel,UnitPowerLevels[i].NumberOfModels));
-    }
+    UnitPowerLevels.forEach(function(level) {
+        ReturnedUnitPowerLevels.push(
+                new UnitPowerLevel(
+                    level.id,
+                    level.PowerLevel,
+                    level.NumberOfModels
+                )
+            )
+        }
+    );
     return ReturnedUnitPowerLevels;
 }
 
@@ -463,10 +457,17 @@ export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount = 0) => {
             }
         });
         for(let i=0;i<PowerLevelList.length;i++) {
-            let item = PowerLevelList[i];
-            if(PowerLevelList[i+1]) {
-                if(ModelsCount >= item.NumberOfModels && ModelsCount < PowerLevelList[i+1].NumberOfModels) {
+            const item = PowerLevelList[i];
+            const nextItem = PowerLevelList[i+1];
+            if(!_.isEmpty(nextItem)) {
+                if(ModelsCount > item.NumberOfModels && ModelsCount < nextItem.NumberOfModels) {
+                    UnitPowerLevel = nextItem.PowerLevel;
+                    break;
+                } else if(ModelsCount == item.NumberOfModels) {
                     UnitPowerLevel = item.PowerLevel;
+                    break;
+                } else {
+                    UnitPowerLevel = nextItem.PowerLevel;
                     break;
                 }
             } else {
