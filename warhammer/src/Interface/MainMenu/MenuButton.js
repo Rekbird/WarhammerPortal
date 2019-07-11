@@ -16,7 +16,7 @@ class MenuButton extends Component {
     render() {
         const button = this.props.button.name;
         return (
-            <li className = "MainMenu__Button" onClick = {this.selectMenuButton}>{button}</li>
+            <div className = "MainMenu__Button" onClick = {this.selectMenuButton}>{button}</div>
         )
     }
 }

@@ -59,8 +59,9 @@
 
 .EditUnitPsychicPowers__Button:active {
     border-color: rgb(39, 193, 196);
-    background-color: rgb(7, 166, 168);
+    background-color: rgb(7, 119, 121);
     transition: 0.2s;
+    box-shadow: inset 1px 1px 3px 1px rgb(6, 86, 87);
 }
 
 .EditUnitPsychicPowers__Button_Locked {
