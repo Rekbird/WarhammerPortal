@@ -3,6 +3,7 @@ import * as utils from "../../../Scripts/CommonFunctions.js";
 import RosterDetachmentItem from "./RosterDetachmentItem.js";
 import EditButtonImage from "../../../Data/RosterMenuIcons/EditIcon.png";
 import "./RosterMenu.css";
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class RosterMenu extends Component{
     constructor(props) {
@@ -19,12 +20,13 @@ class RosterMenu extends Component{
         this.props.NewDetachmentClick();
     }
 
+    
     render = () => {
         let DetachmentsList;
         let Detachments = [];
         let MaxPTS = (this.props.Roster.MaxPTS) ? (<text>/{this.props.Roster.MaxPTS}</text>) : null;
         let MaxPL = (this.props.Roster.MaxPL) ? (<text>/{this.props.Roster.MaxPL}</text>) : null;
-        let NewButton = <li className = "RosterMenu__DetachmentListNewButton" onClick = {this.handleNewClick}>+ New Detachment</li>
+        let NewButton = <li key = {0} className = "RosterMenu__DetachmentListNewButton" onClick = {this.handleNewClick}>+ New Detachment</li>
         if(!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) {
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
                 <RosterDetachmentItem 
@@ -44,8 +46,15 @@ class RosterMenu extends Component{
         }
         DetachmentsList = 
             <ul className = "RosterMenu__DetachmentList">
-                {Detachments}
-                {NewButton}
+                <CSSTransitionGroup 
+                    transitionName="RosterMenu__Transition" 
+                    transitionAppear={false} 
+                    transitionEnterTimeout={300} 
+                    transitionLeaveTimeout = {300}
+                >
+                    {Detachments}
+                    {NewButton}
+                </CSSTransitionGroup>
             </ul>
         return (
             <div className = "RosterMenu">

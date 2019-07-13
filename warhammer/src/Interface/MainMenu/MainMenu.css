@@ -48,13 +48,11 @@
 
 .MainMenu__ButtonsBlock-appear {
     opacity: 0.1;
-    max-height: 0px;
     overflow: hidden;
 }
 
 .MainMenu__ButtonsBlock-appear .MainMenu__ButtonsBlock-appear-active{
     opacity: 1;
-    max-height: 9999px;
     overflow: auto;
     transition: 500ms linear;
     background-color: rgb(6, 41, 34);
@@ -68,33 +66,28 @@
     overflow: hidden;
 }
 
-.MainMenu__ButtonsBlock-enter .MainMenu__ButtonsBlock-enter-active{
+.MainMenu__ButtonsBlock-enter-active{
     opacity: 1;
-    max-height: 9999;
-    overflow: auto;
-    transition: 0.5s linear;
-    background-color: rgb(6, 41, 34);
-    margin: auto;
-    padding-left: 10px;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: 0.7s linear;
 }
 
 .MainMenu__ButtonsBlock-leave {
     opacity: 1;
-    max-height: 9999;
-    overflow: auto;
-    transition: 0.5s linear;
-    background-color: rgb(6, 41, 34);
-    margin: auto;
-    padding-left: 10px;
+    max-height: 1000px;
+    overflow: hidden;
+    
 }
 
-.MainMenu__ButtonsBlock-leave .MainMenu__ButtonsBlock-leave-active{
+.MainMenu__ButtonsBlock-leave-active{
+    transition: 0.7s linear;
     opacity: 0.1;
     max-height: 0px;
     overflow: hidden;
 }
 /*
-.MainMenu__Buttons {
+.MainMenu__ButtonsActive {
     height: auto;
     list-style-type: none;
     background-color: rgb(6, 41, 34);

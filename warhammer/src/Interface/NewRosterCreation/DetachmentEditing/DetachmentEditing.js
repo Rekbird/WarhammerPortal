@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import "./DetachmentEditing.css";
 import DetachmentParameterChoice from "./DetachmentParameterChoice.js";
@@ -58,7 +59,7 @@ class DetachmentEditing extends Component {
         let DetachmentImage;
         if(this.props.RosterDetachment.Detachment) {
             DetachmentImage = 
-            <figure className = "DetachmentEditing__DetachmentImageFigure">
+            <figure key = {this.props.RosterDetachment.Detachment.Name} className = "DetachmentEditing__DetachmentImageFigure">
                 <img className = "DetachmentEditing__DetachmentImage" src = {this.props.RosterDetachment.Detachment.Image} alt = {this.props.RosterDetachment.Detachment.Name}/>
             </figure>
         }
@@ -66,7 +67,15 @@ class DetachmentEditing extends Component {
         return (
             <div className = "DetachmentEditing">
                 <h1 className = "DetachmentEditing__Header">Edit {DetachmentName}</h1>
-                {FactionSelectionWindow}
+                <CSSTransitionGroup 
+                    transitionName="DetachmentEditing__Transition" 
+                    transitionAppear={true}
+                    transitionAppearTimeout={300}
+                    transitionEnterTimeout={300} 
+                    transitionLeaveTimeout = {300}
+                >
+                    {FactionSelectionWindow}
+                </CSSTransitionGroup>
                 <div className = "DetachmentEditing__FactionDiv">
                     <div className="DetachmentEditing__CurrentFaction">
                         <button className = "DetachmentEditing__Button" onClick = {this.showFactionSelectionWindow}>Faction's list</button>
@@ -78,7 +87,15 @@ class DetachmentEditing extends Component {
                     <DetachmentParameterChoice ListTypeNumber = {1} ObjectId = {this.props.RosterDetachment.Detachment ? this.props.RosterDetachment.Detachment.id : ""} handleChange = {this.handleDetachmentNameChange} />
                     <DetachmentParameterChoice ListTypeNumber = {3} FactionId = {this.props.RosterDetachment.Faction && this.props.RosterDetachment.Faction.id ? this.props.RosterDetachment.Faction.id : ""} ObjectId = {this.props.RosterDetachment.ChapterTactic && this.props.RosterDetachment.ChapterTactic.id ? this.props.RosterDetachment.ChapterTactic.id : ""} handleChange = {this.handleDetachmentChapterTacticChange} />
                 </div>
-                {DetachmentImage}
+                <CSSTransitionGroup 
+                    transitionName="DetachmentEditing__Transition" 
+                    transitionAppear={true}
+                    transitionAppearTimeout={300}
+                    transitionEnterTimeout={300} 
+                    transitionLeaveTimeout = {300}
+                >
+                    {DetachmentImage}
+                </CSSTransitionGroup>
             </div>
         )
     }

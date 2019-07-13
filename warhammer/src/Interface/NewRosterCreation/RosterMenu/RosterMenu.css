@@ -1,3 +1,30 @@
+.RosterMenu__Transition-appear {
+    opacity: 0.01;
+}
+
+.RosterMenu__Transition-appear-active {
+    opacity: 1;
+    transition: 0.3s linear;
+}
+
+.RosterMenu__Transition-enter {
+    opacity: 0.01;
+}
+
+.RosterMenu__Transition-enter-active {
+    opacity: 1;
+    transition: 0.3s linear;
+}
+
+.RosterMenu__Transition-leave {
+    opacity: 1;
+}
+
+.RosterMenu__Transition-leave-active {
+    opacity: 0.01;
+    transition: 0.3s linear;
+}
+
 .RosterMenu {
     
     width: 20%;
