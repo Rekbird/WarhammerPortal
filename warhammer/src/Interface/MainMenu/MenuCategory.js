@@ -30,9 +30,14 @@ import { CSSTransitionGroup } from 'react-transition-group';
     return ( 
         <div>
             <li onClick = {this.handleClick} className = "MainMenu__Categories">{this.props.category.CategoryName}</li>
-            <TransitionGroup>
+            <CSSTransitionGroup 
+                transitionName="MainMenu__ButtonsBlock" 
+                transitionAppear={true} 
+                transitionEnterTimeout={400} 
+                transitionLeaveTimeout = {400}
+            >
                 {ButtonBlock}
-            </TransitionGroup>
+            </CSSTransitionGroup>
         </div>
     )
     }

@@ -35,7 +35,7 @@ class MenuButtons extends Component {
                 <MenuButton key = {button.id} button = {button}  selectMenuButton = {this.props.selectMenuButton}/>           
         );
         return (
-            <div>
+            <div style = {{margin: "0px",padding: "0px"}}>
                 {buttons}
             </div>
         )
