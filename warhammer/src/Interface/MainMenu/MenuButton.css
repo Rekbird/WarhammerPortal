@@ -2,21 +2,26 @@
     padding: 10px;
     padding-left: 20px;
     font-size: 16px;
+    margin:2px;
     border: 1px solid rgb(6,86,87);
     background-color: rgb(11, 77, 63);
     border-radius: 5px;
     user-select: none;
+    list-style-type: none;
+    box-shadow: 1px 1px 1px rgb(47, 85, 85);
+    text-align: center;
 }
 
 .MainMenu__Button:hover {
     list-style-type: none;
     background-color: rgb(14, 97, 80);
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .MainMenu__Button:active {
     list-style-type: none;
     background-color: rgb(18, 136, 112);
-    transition: 0.3s;
+    transition: 0.2s;
     border-color: rgb(20, 148, 122);
+    box-shadow: inset 3px 2px 5px 2px rgb(6, 86, 87);
 }

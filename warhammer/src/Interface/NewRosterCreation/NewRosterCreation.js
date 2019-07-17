@@ -11,6 +11,8 @@ import {RosterUnit} from "../../Classes/CommonClasses.js";
 import {Roster} from "../../Classes/CommonClasses.js";
 import "./NewRosterCreation.css";
 import RosterEditing from "./RosterEditing/RosterEditing.js";
+import {TransitionGroup} from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import * as ActionCreators from "../../Store/ActionsCreators.js";
 
@@ -79,42 +81,59 @@ class RosterCreation extends Component{
     }
 
     render = () => {
-        let WorkingArea;
+        let WorkingArea = "";
         switch(this.props.Action) {
             case "Roster Editing": 
-                WorkingArea = <RosterEditing/>;
+                WorkingArea = <div key = {1} className = "RosterEditing_WorkingArea"><RosterEditing/></div>;
             break;
 
             case "Detachment Editing": 
-                console.log("Детач из конструктора в рендере "+this.props.ActiveDetachment.id);
-                WorkingArea = <DetachmentEditing/>;
+                WorkingArea = <div key = {2} className = "RosterEditing_WorkingArea"><DetachmentEditing/></div>;
             break;
 
             case "Unit Selection": 
-                WorkingArea = <UnitSelection/>;
+                WorkingArea = <div key = {3} className = "RosterEditing_WorkingArea"><UnitSelection/></div>;
             break;
 
             case "Unit Editing": 
-                WorkingArea = <UnitEditing/>;
+                WorkingArea = <div key = {4} className = "RosterEditing_WorkingArea"><UnitEditing/></div>;
             break;
         }
         return(
             <div>
-                <RosterMenu 
-                    Roster = {this.props.Roster}
-                    ActiveDetachmentId = {(this.props.ActiveDetachment) ? this.props.ActiveDetachment.id : null}
-                    ActiveUnitId = {(this.props.ActiveUnit) ? this.props.ActiveUnit.id : null}
-                    NewDetachmentClick = {this.AddNewDetachment}
-                    EditDetachmentClick = {this.EditDetachment}
-                    CopyDetachmentClick = {this.CopyDetachment}
-                    DeleteDetachmentClick  = {this.DeleteDetachment}
-                    EditClick = {this.EditUnit} 
-                    CopyClick = {this.CopyUnit} 
-                    DeleteClick = {this.DeleteUnit} 
-                    NewUnitClick = {this.showUnitSelectionList}
-                    EditRosterClick = {this.EditRoster}
-                />
-                <div className = "RosterEditing_WorkingArea">{WorkingArea}</div>
+                <CSSTransitionGroup 
+                    transitionName="RosterEditing_WorkingArea_Content" 
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={false}
+                    transitionLeave={false}
+                >
+                    <RosterMenu 
+                        Roster = {this.props.Roster}
+                        ActiveDetachmentId = {(this.props.ActiveDetachment) ? this.props.ActiveDetachment.id : null}
+                        ActiveUnitId = {(this.props.ActiveUnit) ? this.props.ActiveUnit.id : null}
+                        NewDetachmentClick = {this.AddNewDetachment}
+                        EditDetachmentClick = {this.EditDetachment}
+                        CopyDetachmentClick = {this.CopyDetachment}
+                        DeleteDetachmentClick  = {this.DeleteDetachment}
+                        EditClick = {this.EditUnit} 
+                        CopyClick = {this.CopyUnit} 
+                        DeleteClick = {this.DeleteUnit} 
+                        NewUnitClick = {this.showUnitSelectionList}
+                        EditRosterClick = {this.EditRoster}
+                    />
+                </CSSTransitionGroup>
+                <CSSTransitionGroup 
+                    transitionName="RosterEditing_WorkingArea_Content" 
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={true} 
+                    transitionEnterTimeout={500}
+                    transitionLeave={false} 
+                    transitionLeaveTimeout = {500}
+                >
+                   {WorkingArea}
+                </CSSTransitionGroup>
             </div>
         )
     }

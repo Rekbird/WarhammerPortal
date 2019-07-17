@@ -4,6 +4,7 @@ import RosterUnitRoleItem from "./RosterUnitRoleItem.js";
 import EditButtonImage from "../../../Data/RosterMenuIcons/EditIcon.png";
 import CopyButtonImage from "../../../Data/RosterMenuIcons/CopyIcon.png";
 import DeleteButtonImage from "../../../Data/RosterMenuIcons/DeleteIcon.png";
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class RosterDetachmentItem extends Component{
     constructor(props) {
@@ -27,7 +28,6 @@ class RosterDetachmentItem extends Component{
     }
 
     NewUnitClick = () => {
-        console.log("Детач компонента "+this.props.RosterDetachment.id);
         this.props.NewUnitClick(this.props.RosterDetachment);
     }
 
@@ -37,11 +37,6 @@ class RosterDetachmentItem extends Component{
         let NewButton = (this.props.RosterDetachment.Faction && this.props.RosterDetachment.Detachment) ? (<li className = "RosterMenu__UnitListNewButton" onClick = {this.NewUnitClick}>+ New unit</li>) : null;
         if(this.props.RosterDetachment.RosterUnits && this.props.RosterDetachment.RosterUnits.length > 0) {
             UnitRoles = utils.GetDetachmentUnitsRoles(this.props.RosterDetachment.RosterUnits);
-            if(UnitRoles && UnitRoles.length > 0){
-                console.log("Количество ролей "+UnitRoles.length);
-            } else {
-                console.log("Роли пусты");
-            }
         }
 
         if(UnitRoles.length > 0) {
@@ -58,8 +53,16 @@ class RosterDetachmentItem extends Component{
         }
         UnitList = 
         <ul className = "RosterMenu__DetachmentRolesList">
-            {UnitRoles}
-            {NewButton}
+            <CSSTransitionGroup 
+                transitionName="RosterMenu__Transition" 
+                transitionAppear={true}
+                transitionAppearTimeout={300}
+                transitionEnterTimeout={300} 
+                transitionLeaveTimeout = {300}
+            >
+                {UnitRoles}
+                {NewButton}
+            </CSSTransitionGroup>
         </ul>;
         const ElementClass = (this.props.Active) ? "RosterMenu__DetachmentListItem ActiveBrightning" : "RosterMenu__DetachmentListItem"; 
         return(

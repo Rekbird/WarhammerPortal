@@ -102,7 +102,6 @@ class EditUnitPsychicPowers extends Component {
             RemoveButtonLocked = false;
         }
         this.props.SetPsychicPowerMenuButtons(this.props.AvailableSpells, this.props.SelectedSpells, RemoveButtonLocked, this.props.AddButtonLocked);
-        console.log(Spells);
     }
 
     AddPsychicPowers() {
