@@ -10,6 +10,33 @@
     box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
+.DetachmentEditing__Transition-appear {
+    opacity: 0.01;
+}
+
+.DetachmentEditing__Transition-appear-active {
+    opacity: 1;
+    transition: 0.3s linear;
+}
+
+.DetachmentEditing__Transition-enter {
+    opacity: 0.01;
+}
+
+.DetachmentEditing__Transition-enter-active {
+    opacity: 1;
+    transition: 0.3s linear;
+}
+
+.DetachmentEditing__Transition-leave {
+    opacity: 1;
+}
+
+.DetachmentEditing__Transition-leave-active {
+    opacity: 0.01;
+    transition: 0.3s linear;
+}
+
 .DetachmentEditing__Header {
     border: 2px solid;
     border-color: rgb(6, 86, 87);

@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import './MenuCategory.css';
 import MenuButton from './MenuButton.js';
+import MenuButtons from "./MainMenyButtons.js";
+import ReactDOM from 'react-dom';
 import GetMenuCategoryButtons from '../../Scripts/GetMenuCategoryButtons';
-
+import {TransitionGroup} from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 
  class MenuCategory extends Component {
     constructor(props) {
@@ -13,27 +16,29 @@ import GetMenuCategoryButtons from '../../Scripts/GetMenuCategoryButtons';
     handleClick() {
         this.props.handleCategoryClick(this.props.category.id);
     }
+
     
+
     render() {
-    const category = this.props.category.CategoryName;
+    let ButtonBlock;
     if(this.props.openCategoryKey == this.props.category.id) {
-        var buttons = GetMenuCategoryButtons(category);
-        buttons = buttons.map(
-            (button) => 
-            
-                <MenuButton key = {button.id} button = {button}  selectMenuButton = {this.props.selectMenuButton}/>
-            
-        );
-        buttons = <ul className="MainMenu__Buttons">{buttons}</ul>;
-        
+        ButtonBlock = <MenuButtons 
+            selectMenuButton = {this.props.selectMenuButton}
+            category = {this.props.category.CategoryName}
+        />
     }
-    return (
-        
+    return ( 
         <div>
-            <li onClick = {this.handleClick} className = "MainMenu__Categories">{category}</li>
-            {buttons}
+            <li onClick = {this.handleClick} className = "MainMenu__Categories">{this.props.category.CategoryName}</li>
+            <CSSTransitionGroup 
+                transitionName="MainMenu__ButtonsBlock" 
+                transitionAppear={true} 
+                transitionEnterTimeout={400} 
+                transitionLeaveTimeout = {400}
+            >
+                {ButtonBlock}
+            </CSSTransitionGroup>
         </div>
-        
     )
     }
 }

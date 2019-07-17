@@ -25,7 +25,11 @@
     position: relative;
     left: 0px;
     user-select: none;
-    
+    margin:1px;
+    margin-left: 2px;
+    margin-right:2px;
+    text-align: center;
+    box-shadow: 1px 1px 1px rgb(48, 71, 71);
 }
 
 .MainMenu__Categories:hover {
@@ -36,15 +40,65 @@
 
 .MainMenu__Categories:active {
     list-style-type: none;
-    background-color: rgb(21, 156, 129);
-    transition: 0.2s;
+    /*background-color: rgb(21, 156, 129);*/
+    transition: 0.5s;
     border-color: rgb(20, 148, 122);
+    box-shadow: inset 3px 2px 5px 2px rgb(6, 86, 87);
 }
 
-.MainMenu__Buttons {
+.MainMenu__ButtonsBlock-appear {
+    opacity: 0.1;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    max-height: 0px;
+}
+
+.MainMenu__ButtonsBlock-appear-active{
+    opacity: 1;
+    overflow: auto;
+    transition: 300ms linear;
+    background-color: rgb(6, 41, 34);
+    margin: auto;
+    padding-left: 10px;
+}
+
+.MainMenu__ButtonsBlock-enter {
+    opacity: 0.1;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+
+.MainMenu__ButtonsBlock-enter-active{
+    opacity: 1;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: 0.4s linear;
+}
+
+.MainMenu__ButtonsBlock-leave {
+    opacity: 1;
+    max-height: 1000px;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+}
+
+.MainMenu__ButtonsBlock-leave-active{
+    transition: 0.4s linear;
+    opacity: 0.1;
+    max-height: 0px;
+    overflow: hidden;
+}
+/*
+.MainMenu__ButtonsActive {
+    height: auto;
     list-style-type: none;
     background-color: rgb(6, 41, 34);
     margin: auto;
     padding-left: 10px;
 }
+*/
 

@@ -7,6 +7,20 @@
     border: 1px solid rgb(6, 86, 87);
     border-radius: 5px;
     box-shadow: 1px 1px 2px rgb(163, 173, 173);
+    opacity: 1;
+    transition: 0.5s linear;
+}
+
+.RosterEditing__Div-hidden {
+    opacity: 0.01;
+    margin:5px;
+    margin-top:5px;
+    margin-left:0px;
+    padding:5px;
+    padding-top: 1px;
+    border: 1px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgb(163, 173, 173);
 }
 
 .RosterEditing__Header {

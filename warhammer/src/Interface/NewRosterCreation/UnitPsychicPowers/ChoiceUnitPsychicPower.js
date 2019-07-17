@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import "./EditUnitPsychicPowers.css";
+import { CSSTransitionGroup } from 'react-transition-group';
+const _ = require('lodash');
 
 class ChoiceUnitPsychicPower extends Component {
     constructor(props) {
@@ -12,21 +14,30 @@ class ChoiceUnitPsychicPower extends Component {
 
     render() {
         let AvailablePowers = this.props.AvailablePowers;
+        let PsychicPowers = [];
         if(!!AvailablePowers && AvailablePowers.length > 0) {
-            console.log(this.props.SelectLabel+" "+AvailablePowers.length);
-            var PsychicPowers = AvailablePowers.map(
+            PsychicPowers = AvailablePowers.map(
                 (power) =>
-                <option className = "EditUnitPsychicPowers__Option" key = {power.id} value = {power.id}>{power.Name}</option>
+                    <option 
+                        className = "EditUnitPsychicPowers__Option" 
+                        key = {power.id} 
+                        value = {power.id}
+                    >
+                        {power.Name}
+                     </option>
             )
-        } else {
-            console.log(this.props.SelectLabel+" EMPTY LIST");
         }
         return (
             <div className = "EditUnitPsychicPowers__ChoiceDiv">
                 <h3 className = "EditUnitPsychicPowers__Label">{this.props.SelectLabel}</h3>
                     <div className = "EditUnitPsychicPowers__SelectDiv">
-                        <select className = "EditUnitPsychicPowers__Select" multiple = {true} onChange = {this.ChoosePsychicPowers.bind(this)} size = {6}>
-                            {PsychicPowers}
+                        <select
+                            key = {!_.isEmpty(PsychicPowers) ? PsychicPowers.length: 0} 
+                            className = "EditUnitPsychicPowers__Select" 
+                            multiple = {true} 
+                            onChange = {this.ChoosePsychicPowers.bind(this)} 
+                            size = {6}>
+                                {PsychicPowers}
                         </select>
                     </div>
             </div>
