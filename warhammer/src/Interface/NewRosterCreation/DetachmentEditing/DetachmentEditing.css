@@ -268,7 +268,9 @@
 }
 
 .DetachmentEditing__DetachmentImage {
-    height: auto;
-    width: 96%;
+    height: 96%;
+    width: auto;
     margin:0px;
+    max-height: 320px;
+    max-width: 720px;
 }

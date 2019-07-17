@@ -91,7 +91,9 @@ class DetachmentEditing extends Component {
                     transitionName="DetachmentEditing__Transition" 
                     transitionAppear={true}
                     transitionAppearTimeout={300}
+                    transitionEnter = {true}
                     transitionEnterTimeout={300} 
+                    transitionLeave = {false}
                     transitionLeaveTimeout = {300}
                 >
                     {DetachmentImage}

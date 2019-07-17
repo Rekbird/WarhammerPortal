@@ -1,5 +1,15 @@
 import BattalionImage from "./BatalionDetachment.png";
 import SpearheadImage from "./SpearheadDetachment.png";
+import PatrolImage from "./PatrolDetachment.png";
+import BrigadeImage from "./BrigadeDetachment.png";
+import VanguardImage from "./VanguardDetachment.png";
+import OtriderImage from "./OutriderDetachment.png";
+import SupremeCommandImage from "./SupremeCommandDetachment.png";
+import SuperHeavyImage from "./Super-heavyDetachment.png";
+import SuperHeavyAuxiliaryImage from "./Super-heavyAuxiliaryDetachment.png";
+import AirWingImage from "./AirWingDetachment.png";
+import FortificationNetworkImage from "./FortificationNetwork.png";
+import AuxiliarySupportImage from "./AuxiliarySupportDetachment.png";
 
 const ReturnDetachments = () => {
     let Detachments = [];
@@ -25,7 +35,7 @@ const ReturnDetachments = () => {
         Name: "Patrol",
 		CommandBenefit: 0,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: PatrolImage
     };
     Detachments.push(Detach3);
 
@@ -34,7 +44,7 @@ const ReturnDetachments = () => {
         Name: "Brigade",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: BrigadeImage
     };
     Detachments.push(Detach4);
 
@@ -43,7 +53,7 @@ const ReturnDetachments = () => {
         Name: "Vanguard",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: VanguardImage
     };
     Detachments.push(Detach5);
 
@@ -52,7 +62,7 @@ const ReturnDetachments = () => {
         Name: "Outrider",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: OtriderImage
     };
     Detachments.push(Detach6);
 
@@ -61,7 +71,7 @@ const ReturnDetachments = () => {
         Name: "Supreme Command",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: SupremeCommandImage
     };
     Detachments.push(Detach7);
 
@@ -70,7 +80,7 @@ const ReturnDetachments = () => {
         Name: "Super Heavy",
 		CommandBenefit: 3,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: SuperHeavyImage
     };
     Detachments.push(Detach8);
 
@@ -79,7 +89,7 @@ const ReturnDetachments = () => {
         Name: "Super Heavy Auxillary",
 		CommandBenefit: 0,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: SuperHeavyAuxiliaryImage
     };
     Detachments.push(Detach9);
 
@@ -88,7 +98,7 @@ const ReturnDetachments = () => {
         Name: "Air Wing",
 		CommandBenefit: 1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: AirWingImage
     };
     Detachments.push(Detach10);
 
@@ -97,7 +107,7 @@ const ReturnDetachments = () => {
         Name: "Fortification Network",
 		CommandBenefit: 0,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: FortificationNetworkImage
     };
     Detachments.push(Detach11);
 
@@ -106,7 +116,7 @@ const ReturnDetachments = () => {
         Name: "Auxillary Support",
 		CommandBenefit: -1,
 		Restrictions: "",
-		Image: SpearheadImage
+		Image: AuxiliarySupportImage
     };
     Detachments.push(Detach12);
 
