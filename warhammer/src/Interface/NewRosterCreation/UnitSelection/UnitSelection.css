@@ -36,6 +36,34 @@
     text-shadow: 0px 0px 2px white;
 }
 
-.UnitSelection__SelectionArea {
-    
+.UnitSelection__ToTopButton {
+    bottom: 6%;
+    background-color: rgb(6, 86, 87);
+    position: fixed;
+    right: 6.5%;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    border-color: rgb(6, 86, 87);
+    transition: 0.3s;
+    user-select: none;
+}
+/*
+.UnitSelection__ToTopButton:hover {
+    background-color: rgb(7, 109, 110); 
+    box-shadow: inset 1px 1px 3px 4px rgb(5, 64, 65);
+}
+*/
+.UnitSelection__ToTopButton:active {
+    box-shadow: inset 1px 1px 3px 4px rgb(5, 64, 65);
+}
+
+.UnitSelection__ToTop {
+    margin: auto;
+    width: 50px;
+    height: auto;
+}
+
+.UnitSelection__HideButton {
+    opacity: 0;
 }

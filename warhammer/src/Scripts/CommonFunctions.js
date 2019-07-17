@@ -14,10 +14,6 @@ import {RosterWargearSlot} from "../Classes/CommonClasses.js";
 import {RosterModel} from "../Classes/CommonClasses.js";
 import {UnitRole} from "../Classes/CommonClasses.js";
 import {WarlordTrait} from "../Classes/CommonClasses.js";
-import CraftworldsImage from "../Data/FactionImages/factionlogo/Craftworlds.png";
-import TyranidsImage from "../Data/FactionImages/factionlogo/tyranids.png";
-import BattalionImage from "../Data/Detachments/BatalionDetachment.png";
-import SpearheadImage from "../Data/Detachments/SpearheadDetachment.png";
 import GetFactionUnitsByRole from "./GetFactionUnitsByRole";
 import ReturnUnits from "../Data/Units/Units.js";
 import ReturnUnitRoles from "../Data/UnitRoles/UnitRoles.js";
@@ -30,9 +26,15 @@ import ReturnWarlordTraits from "../Data/WarlordTraits/WarlordTraits.js"
 import ReturnWargearSlots from "../Data/WargearSlots/WargearSlots.js";
 import ReturnWargearOptions from "../Data/WargearSlots/WargearOptions.js";
 import ReturnWargear from "../Data/WargearSlots/Wargear.js";
+import ReturnDetachments from "../Data/Detachments/Detachments.js";
+import ReturnDetachmentOptions from "../Data/Detachments/DetachmentOptions.js";
+import ReturnUnitPowerLevel from "../Data/UnitPowerLevels/UnitPowerLevels.js";
 import ReturnSubFactions from "../Data/SubFactions/SubFactions.js";
 import ReturnRelics from "../Data/Relics/Relics.js";
 //import GetAvailableRoles from "./GetAvailableRoles.js";
+
+
+const _ = require('lodash');
 
 export function GetWarlordTraits(FactionId, ChapterTacticId) {
 
@@ -190,26 +192,19 @@ export function GetUnitRole(RoleId) {
 }
 
 export function GetUnitPowerLevel(UnitId) {
-    let UnitPowerLevels =[];
+    let UnitPowerLevels =ReturnUnitPowerLevel(UnitId);
     let ReturnedUnitPowerLevels = [];
 
-    let PowerLevel1 = {
-        id:1,
-        PowerLevel:5,
-        NumberOfModels: 5
-    };
-    UnitPowerLevels.push(PowerLevel1);
-
-    let PowerLevel2 = {
-        id:1,
-        PowerLevel:10,
-        NumberOfModels: 10
-    };
-    UnitPowerLevels.push(PowerLevel2);
-
-    for(let i=0;i<UnitPowerLevels.length;i++) {
-        ReturnedUnitPowerLevels.push(new UnitPowerLevel(UnitPowerLevels[i].id,UnitPowerLevels[i].PowerLevel,UnitPowerLevels[i].NumberOfModels));
-    }
+    UnitPowerLevels.forEach(function(level) {
+        ReturnedUnitPowerLevels.push(
+                new UnitPowerLevel(
+                    level.id,
+                    level.PowerLevel,
+                    level.NumberOfModels
+                )
+            )
+        }
+    );
     return ReturnedUnitPowerLevels;
 }
 
@@ -343,70 +338,47 @@ export function GetChapterTactic(TacticId, FactionId) {
 // export default GetChapterTactic;
 
 export function GetDetachments() {
-    let Detachments = [];
+    let Detachments = ReturnDetachments();
     let ReturnedDetachments = [];
-    let Detach1 = {
-        id: 1,
-        Name: "Batallion",
-		CommandBenefit: 5,
-		Restrictions: "",
-		Image: BattalionImage
-    };
-    Detachments.push(Detach1);
-    let Detach2 = {
-        id: 2,
-        Name: "Spearhead",
-		CommandBenefit: 1,
-		Restrictions: "",
-		Image: SpearheadImage
-    };
-    Detachments.push(Detach2);
 
-    for(let i=0;i<Detachments.length;i++) {
-        ReturnedDetachments.push(new Detachment(Detachments[i].id,Detachments[i].Name,Detachments[i].CommandBenefit,Detachments[i].Restrictions,Detachments[i].Image));
-    }
+    Detachments.forEach(function(detach) {
+        ReturnedDetachments.push(
+            new Detachment(
+                detach.id,
+                detach.Name,
+                detach.CommandBenefit,
+                detach.Restrictions,
+                detach.Image
+            )
+        )
+    });
     return ReturnedDetachments;
 }
 
 // export default GetDetachments;
 
 export function GetDetachment(DetachmentId) {
-    return GetDetachments().filter((Detachment) => Detachment.id == DetachmentId)[0];
+    return GetDetachments().find((Detachment) => Detachment.id == DetachmentId);
 }
 
 // export default GetDetachment;
 
 export function GetDetachmentOptions(DetachmentId) {
-    let Options = [];
+    const Options = ReturnDetachmentOptions(DetachmentId);
     let ReturnedOptions = [];
 
-    let Option1 = {
-        id: 1,
-		UnitRole: 1,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option1);
-
-    let Option2 = {
-        id: 2,
-		UnitRole: 2,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option2);
-
-    let Option3 = {
-        id: 3,
-		UnitRole: 3,
-		MaxQuant: 6,
-		MinQuant: 3
-    };
-    Options.push(Option3);
-
-    for(let i=0;i<Options.length;i++) {
-        ReturnedOptions.push(new DetachmentOption(Options[i].id,Options[i].UnitRole,Options[i].MaxQuant,Options[i].MinQuant));
-    }
+    Options.forEach(function(option) {
+        ReturnedOptions.push(
+            new DetachmentOption(
+                option.id,
+                option.UnitRole,
+                option.MaxQuant,
+                option.MinQuant
+            )
+        );
+        }
+    );
+    
     return ReturnedOptions;
 }
 
@@ -437,10 +409,24 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
 
 
 export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
-    let Answer;
-    let UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
-    let DetachmentOption = Detachment.DetachOptions.filter((option) => option.UnitRole.id == Role.id)[0];
-    Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
+    let Answer = false;
+    if(!_.isEmpty(DetachmentUnits)) {
+        // Проверяем что Detachment не Auxillary Support
+        if(Detachment.id != 12) {
+            //Проверяем если роль Dedicated Transport
+            if(Role.id == 6) {
+                const UnitsByRoleDedicated = GetRosterUnitsByRole(DetachmentUnits, Role.id);
+                if(!_.isEmpty(UnitsByRoleDedicated)) {
+                    const OtherUnits = _.difference(DetachmentUnits, UnitsByRoleDedicated);
+                    Answer = UnitsByRoleDedicated.length >= OtherUnits.length;
+                }
+            } else {
+                const UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
+                const DetachmentOption = Detachment.DetachOptions.find((option) => parseInt(option.UnitRole.id) == parseInt(Role.id));
+                Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
+            }  
+        }     
+    }
     return Answer;
 }
 
@@ -460,7 +446,7 @@ export function GetRosterUnitModels(RosterUnit) {
 }
 
 export function GetRosterUnitsByRole(RosterUnits, RoleId) {
-    return RosterUnits.filter((unit) => unit.BaseUnit.UnitRole.id == RoleId);
+    return RosterUnits.filter((unit) => parseInt(unit.BaseUnit.UnitRole.id) == parseInt(RoleId));
 }
 
 export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount = 0) => {
@@ -476,10 +462,17 @@ export const GetUnitCurrentPowerLevel = (PowerLevelList, ModelsCount = 0) => {
             }
         });
         for(let i=0;i<PowerLevelList.length;i++) {
-            let item = PowerLevelList[i];
-            if(PowerLevelList[i+1]) {
-                if(ModelsCount >= item.NumberOfModels && ModelsCount < PowerLevelList[i+1].NumberOfModels) {
+            const item = PowerLevelList[i];
+            const nextItem = PowerLevelList[i+1];
+            if(!_.isEmpty(nextItem)) {
+                if(ModelsCount > item.NumberOfModels && ModelsCount < nextItem.NumberOfModels) {
+                    UnitPowerLevel = nextItem.PowerLevel;
+                    break;
+                } else if(ModelsCount == item.NumberOfModels) {
                     UnitPowerLevel = item.PowerLevel;
+                    break;
+                } else {
+                    UnitPowerLevel = nextItem.PowerLevel;
                     break;
                 }
             } else {
@@ -539,16 +532,20 @@ export const recalculateRosterCost = (Roster = this) => {
 }
 
 export const calculateNewId = (ElementsList) => {
-    let elements = ElementsList.slice();
-    elements.sort(function(a,b) {
-            if(a.id < b.id) {
-                return 1;
-            } else if(a.id > b.id) {
-                return -1;
-            } else {
-                return 0;
+    if(!!ElementsList && ElementsList.length > 0) {
+        let elements = ElementsList.slice();
+        elements.sort(function(a,b) {
+                if(a.id < b.id) {
+                    return 1;
+                } else if(a.id > b.id) {
+                    return -1;
+                } else {
+                    return 0;
+                }
             }
-        }
-    );
-    return elements[0].id+1;
+        );
+        return elements[0].id+1;
+    } else {
+        return 1;
+    }
 }

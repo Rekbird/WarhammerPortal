@@ -16,6 +16,7 @@ import {Roster} from "../src/Classes/CommonClasses.js";
 const InitialState = {
     MainMenuCategoryKey: 1,
     FactionSelection: false,
+    CurrentScrollCount: 0,
     PsychicPowerMenuButtons: {
         AvailableSpells: [],
         SelectedSpells: [],
