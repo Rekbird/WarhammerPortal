@@ -36,7 +36,7 @@ import ReturnRelics from "../Data/Relics/Relics.js";
 
 const _ = require('lodash');
 
-export function GetWarlordTraits(FactionId, ChapterTacticId) {
+export function GetWarlordTraits(FactionId, ChapterTacticId, ActiveUnit) {
 
     let WarlordTraits = ReturnWarlordTraits(FactionId, ChapterTacticId);
     let ReturnedTraits = [];
@@ -46,6 +46,7 @@ export function GetWarlordTraits(FactionId, ChapterTacticId) {
             ReturnedTraits.push(NewWarlordTrait);
         });
     }
+    ReturnedTraits = !!ActiveUnit ? ReturnedTraits.filter(elem => elem.id == ActiveUnit.WarlordTraitId) : ReturnedTraits;
     return ReturnedTraits;
 }
 

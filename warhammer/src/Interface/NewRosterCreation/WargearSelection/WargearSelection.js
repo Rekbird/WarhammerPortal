@@ -121,13 +121,15 @@ class WargearSelection extends Component {
                     );
                     this.ChosenRelic = !!this.props.ActiveUnit.ChosenRelic ? this.props.ActiveUnit.ChosenRelic : this.ReturnedRelics[0];
                     RelicSelection = 
-                        <div>
+                        <div className = 'WargearSelection__SelectDiv'>
+                            <h3 className = 'WargearSelection__Label'>Relic</h3>
                             <select className = "WargearSelection__Select" value = {this.ChosenRelic.id} onChange = {this.SelectedRelic}>{AvailableRelics}</select>
                         </div>
                 }
                 WarlordTraitAndRelic = 
-                    <div>
-                        <div>
+                    <div className = 'WargearSelection__WarlordTraitAndRelicDiv'>
+                        <div className = 'WargearSelection__SelectDiv'>
+                            <h3 className = 'WargearSelection__Label'>Warlord trait</h3>
                             <select className = "WargearSelection__Select" value = {this.ChosenTrait.id} onChange = {this.SelectedWarlordTrait}>{AvailableWarlordTraits}</select>
                         </div>
                         {RelicSelection}
@@ -140,7 +142,7 @@ class WargearSelection extends Component {
             WarlordOptions = 
                 <div>
                     <h3 className = 'WargearSelection__Title'>Additional options</h3>
-                    <p className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</p>
+                    <label className = 'WargearSelection__CheckBox'><input type = 'checkbox' name = 'WarlordCheckBox' checked = {this.UnitIsWarlord ? 'checked' : ''} onChange = {this.HandleEvent}></input>This unit is a Warlord</label>
                     {WarlordTraitAndRelic}
                 </div>
         }
