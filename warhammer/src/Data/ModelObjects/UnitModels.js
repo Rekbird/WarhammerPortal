@@ -192,6 +192,18 @@ const ReturnUnitModels = (UnitId) => {
     };
     UnitModels.push(Model16);
 
+    const Model17 = {
+        id: 17,
+        Name: "Autarch with Warp Jump Generator",
+        Cost: 73,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 12,
+        PerXmodels: null
+    };
+    UnitModels.push(Model17);
+
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }
 

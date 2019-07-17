@@ -24,7 +24,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [2,4,6,9,18,20],
+        WargearSlotId: [2,4,6,9,18,20,34],
         WargearIds: [2]
     };
     WargearOptions.push(PlasmaGrenade);
@@ -336,7 +336,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [22,24,26,28,29],
+        WargearSlotId: [22,24,26,28,29,31],
         WargearIds: [3]
     };
     WargearOptions.push(ShurikenPistol);
@@ -427,10 +427,75 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [],
+        WargearSlotId: [30,33,34],
         WargearIds: []
     };
     WargearOptions.push(NullOption);
+
+    const FusionPistol = {
+        id: 36,
+        Name: "Fusion pistol",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [31],
+        WargearIds: [30]
+    };
+    WargearOptions.push(FusionPistol);
+
+    const Mandiblasters = {
+        id: 37,
+        Name: "Mandiblasters",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [30],
+        WargearIds: [31]
+    };
+    WargearOptions.push(Mandiblasters);
+
+    const BansheeMask = {
+        id: 38,
+        Name: "Banshee Mask",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [30],
+        WargearIds: [32]
+    };
+    WargearOptions.push(BansheeMask);
+
+    const AutarchAvengerShurikenCatapult = {
+        id: 39,
+        Name: "Avenger shuriken catapult",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [1]
+    };
+    WargearOptions.push(AutarchAvengerShurikenCatapult);
+
+    const AutarchDeathSpinner = {
+        id: 40,
+        Name: "Death spinner",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [1]
+    };
+    WargearOptions.push(AutarchDeathSpinner);
 
     //=============
 

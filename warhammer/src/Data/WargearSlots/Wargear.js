@@ -323,6 +323,50 @@ const ReturnWargear = (WargearIds) => {
     };
     Wargears.push(WitchStaff);
 
+    const FusionPistol = {
+        id: 30,
+        Name: "Fusion pistol",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(FusionPistol);
+
+    const Mandiblasters = {
+        id: 31,
+        Name: "Mandiblasters",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Mandiblasters);
+
+    const BansheeMask = {
+        id: 32,
+        Name: "Banshee Mask",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(BansheeMask);
+
+    const DeathSpinner = {
+        id: 33,
+        Name: "Death spinner",
+        Cost: 6,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(DeathSpinner);
+
     //=========
 
     WargearIds.forEach(function(WargearId) {
