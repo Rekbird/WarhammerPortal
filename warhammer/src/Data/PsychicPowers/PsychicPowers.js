@@ -91,6 +91,48 @@ function ReturnPsychicPowers() {
     };
     Spells.push(Spell13);
 
+    const Spell14 = {
+        id: 361,
+		Name: "Dominion",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell14);
+
+    const Spell15 = {
+        id: 362,
+		Name: "Catalyst",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell15);
+
+    const Spell16 = {
+        id: 363,
+		Name: "The Horror",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell16);
+
+    const Spell17 = {
+        id: 364,
+		Name: "Onslaught",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell17);
+
+    const Spell18 = {
+        id: 365,
+		Name: "Paroxysm",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell18);
+
+    const Spell19 = {
+        id: 366,
+		Name: "Psychic Scream",
+		DisciplineName: "Hive Mind Discipline"
+    };
+    Spells.push(Spell19);
+
     return Spells;
 }
 

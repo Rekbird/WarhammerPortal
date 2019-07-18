@@ -19,6 +19,13 @@ const ReturnUnitPsychicPowers = (UnitId) => {
         Units: [8]
     };
     UnitPsychicPowers.push(PsychicPowersSet2);
+
+    const TyranidPsychicPowersSet = {
+        id: 3,
+        Spells: [361,362,363,364,365,366],
+        Units: [361,362]
+    };
+    UnitPsychicPowers.push(TyranidPsychicPowersSet);
     
     const SetOfSpells = UnitPsychicPowers.find((element) => !!element.Units.find((unit) => parseInt(unit) == parseInt(UnitId)));
     if(!!SetOfSpells) {
