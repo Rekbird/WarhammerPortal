@@ -23,7 +23,7 @@ const ReturnUnitPsychicPowers = (UnitId) => {
     const TyranidPsychicPowersSet = {
         id: 3,
         Spells: [361,362,363,364,365,366],
-        Units: [361,362]
+        Units: [361,362,363]
     };
     UnitPsychicPowers.push(TyranidPsychicPowersSet);
     

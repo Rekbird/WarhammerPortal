@@ -432,7 +432,72 @@ const ReturnWargearOptions = (SlotId) => {
     };
     WargearOptions.push(NullOption);
 
-    //=============
+    //Tyranid options =============
+
+    const MonstrousRendingClaws = {
+        id: 361,
+        Name: "Monstrous rending claws",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [361],
+        WargearIds: [361]
+    };
+    WargearOptions.push(MonstrousRendingClaws);
+
+    const ClawsAndTeeth = {
+        id: 362,
+        Name: "Claws and teeth",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [362],
+        WargearIds: [362]
+    };
+    WargearOptions.push(ClawsAndTeeth);
+
+    const PincerTail = {
+        id: 363,
+        Name: "Prehensile pincer tail",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [363],
+        WargearIds: [363]
+    };
+    WargearOptions.push(PincerTail);
+
+    const TyrantWings = {
+        id: 364,
+        Name: "Wings",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [364],
+        WargearIds: [364]
+    };
+    WargearOptions.push(TyrantWings);
+
+    const MonstrousBoneswords = {
+        id: 365,
+        Name: "Monstrous boneswords",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [364],
+        WargearIds: [364]
+    };
+    WargearOptions.push(MonstrousBoneswords);
 
     return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
 }

@@ -280,11 +280,11 @@ const Neurothrope = {
 };
 Units.push(Neurothrope);
 
-const UnitName = {
-    id: 36 + length,
-    Name: "NAME",
+const HiveTyrant = {
+    id: 363,
+    Name: "Hive Tyrant",
     Codex: null,
-    Description: "DESCRIPTION",
+    Description: "A Hive Tyrant is a single model armed with two pairs of monstrous scything talons and a prehensile pincer tail.",
     MaxModelQuantity: 1,
     FactionKeywords: "",
     Keywords: "",
@@ -294,9 +294,9 @@ const UnitName = {
     Named: null,
     WarlordTraitId: null,
     UnitRole: UnitsRoles[0],
-    ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/tyranids/Broodlord"
+    ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/tyranids/Hive-Tyrant"
 };
-Units.push(UnitName);
+Units.push(HiveTyrant);
 
     return Units;
 }
