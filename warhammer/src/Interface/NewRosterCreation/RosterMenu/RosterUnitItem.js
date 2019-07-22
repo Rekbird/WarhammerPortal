@@ -11,17 +11,22 @@ class RosterUnitItem extends Component {
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleCopyClick = this.handleCopyClick.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleEditClick() {
+    handleClick = (event) => {
+        (event.target.className != "RosterMenu__ButtonImage") && (this.props.EditClick(this.props.RosterUnit));
+    }
+
+    handleEditClick = () => {
         this.props.EditClick(this.props.RosterUnit);
     }
 
-    handleCopyClick() {
+    handleCopyClick = () => {
         this.props.CopyClick(this.props.Detachment, this.props.RosterUnit);
     }
 
-    handleDeleteClick() {
+    handleDeleteClick = () => {
         this.props.DeleteClick(this.props.Detachment, this.props.RosterUnit);
     }
 
@@ -31,7 +36,7 @@ class RosterUnitItem extends Component {
          ): null; 
         let ElementClass = (this.props.Active) ? "RosterMenu__UnitItem ActiveBrightning" : "RosterMenu__UnitItem"; 
         return(
-            <li className = {ElementClass}>
+            <li className = {ElementClass} onClick = {this.handleClick}>
                 <span className = "RosterMenu__UnitItemName">{"["+this.props.RosterUnit.TotalCost+" pts] "+this.props.RosterUnit.BaseUnit.Name}</span>
                 <div className = "RosterMenu__ButtonBlock">
                     <img className = "RosterMenu__ButtonImage" onClick = {this.handleEditClick} src = {EditButtonImage} alt = "Edit"/>
