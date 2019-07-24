@@ -218,26 +218,33 @@ const ReturnWargearSlots = (ModelId) => {
     };
     WargearSlots.push(AutarchJumpGenPistol);
 
-    const AutarchJumpGenAutrahWeaponFirst = {
+    const AutarchJumpGenhWeaponFirst = {
         id: 32,
         Name: "First Autarch Weapon",
         ModelId: 17
     };
-    WargearSlots.push(AutarchJumpGenAutrahWeaponFirst);
+    WargearSlots.push(AutarchJumpGenhWeaponFirst);
 
-    const AutarchJumpGenAutrahWeaponSecond = {
+    const AutarchJumpGenWeaponSecond = {
         id: 33,
         Name: "Second Autarch Weapon",
         ModelId: 17
     };
-    WargearSlots.push(AutarchJumpGenAutrahWeaponSecond);
+    WargearSlots.push(AutarchJumpGenWeaponSecond);
 
-    const AutarchJumpGenAutrahWeaponGrenades = {
+    const AutarchJumpGenWeaponGrenades = {
         id: 34,
         Name: "Grenades",
         ModelId: 17
     };
-    WargearSlots.push(AutarchJumpGenAutrahWeaponGrenades);
+    WargearSlots.push(AutarchJumpGenWeaponGrenades);
+
+    const AutarchJumpGenForceShield = {
+        id: 35,
+        Name: "Forceshield",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenForceShield);
 
 
     //===============

@@ -13,6 +13,7 @@ import SpiritSeerImage from "./SpiritSeerImage.jpg";
 import WarlockImage from "./WarlockImage.jpg";
 import WarlockConclaveImage from "./WarlockConclaveImage.jpg";
 import AutarchWithWarpJumpGeneratorImage from "./AutarchWithWarpJumpGenerator.jpg";
+import AutarchWithSwoopingHawkWingsImage  from "./AutarchWithSwoopingHawkWingsImage.jpg";
 
 function ReturnUnits() {
     const Factions = ReturnFactions();
@@ -234,7 +235,7 @@ function ReturnUnits() {
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Autarch-with-Warp-Jump-Generator"
     };
     Units.push(AutarchWithWarpJumpGenerator);
-
+    /*
     const Asurmen = {
         id: 13,
         Name: "Asurmen",
@@ -252,24 +253,24 @@ function ReturnUnits() {
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Asurmen"
     };
     Units.push(Asurmen);
-
-    const Autarch = {
+    */
+    const AutarchWithSwoopingHawkWings = {
         id: 14,
-        Name: "Autarch",
+        Name: "Autarch with Swooping Hawk Wings",
         Codex: "",
-        Description: "An Autarch is a single model armed with a star glaive and plasma grenades. They are equipped with a Forceshield.",
+        Description: "An Autarch with Swooping Hawk wings is a single model armed with a power sword, fusion pistol and plasma grenades. They are equipped with a Forceshield.",
         MaxModelQuantity: 1,
         FactionKeywords: "",
         Keywords: "",
         KnowsSmite: false,
-        Image: WarlockConclaveImage,
+        Image: AutarchWithSwoopingHawkWingsImage,
         Faction: Factions[27],
         Named: false,
         WarlordTraitId: null,
         UnitRole: UnitsRoles[0],
-        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Autarch"
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Autarch-with-Swooping-Hawk-Wings"
     };
-    Units.push(Autarch);
+    Units.push(AutarchWithSwoopingHawkWings);
 
     //console.log("Units" + Units.length);
     return Units;

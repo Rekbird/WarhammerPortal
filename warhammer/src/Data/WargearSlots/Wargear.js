@@ -367,6 +367,28 @@ const ReturnWargear = (WargearIds) => {
     };
     Wargears.push(DeathSpinner);
 
+    const Lasblaster = {
+        id: 34,
+        Name: "Lasblaster",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Lasblaster);
+
+    const ReaperLauncher = {
+        id: 35,
+        Name: "Reaper launcher",
+        Cost: 22,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(ReaperLauncher);
+
     //=========
 
     WargearIds.forEach(function(WargearId) {

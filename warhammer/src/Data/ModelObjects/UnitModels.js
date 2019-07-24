@@ -204,6 +204,18 @@ const ReturnUnitModels = (UnitId) => {
     };
     UnitModels.push(Model17);
 
+    const Model18 = {
+        id: 18,
+        Name: "Autarch with Swooping Hawk Wings",
+        Cost: 85,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 14,
+        PerXmodels: null
+    };
+    UnitModels.push(Model18);
+
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }
 

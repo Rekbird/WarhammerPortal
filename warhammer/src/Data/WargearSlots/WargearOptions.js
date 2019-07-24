@@ -490,12 +490,77 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: null,
         PerXmodels: null,
         Default: false,
+        LinkedOptionsId: [41],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [33]
+    };
+    WargearOptions.push(AutarchDeathSpinner);
+
+    const AutarchFusionGun = {
+        id: 41,
+        Name: "Fusion gun",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [40,42,44],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [16]
+    };
+    WargearOptions.push(AutarchFusionGun);
+
+    const AutarchLasblaster = {
+        id: 42,
+        Name: "Lasblaster",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [40,42,44],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [34]
+    };
+    WargearOptions.push(AutarchLasblaster);
+
+    const AutarchPowerSword = {
+        id: 43,
+        Name: "Power sword",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [33,34],
-        WargearIds: [1]
+        WargearIds: [21]
     };
-    WargearOptions.push(AutarchDeathSpinner);
+    WargearOptions.push(AutarchPowerSword);
+
+    const AutarchReaperLauncher = {
+        id: 44,
+        Name: "Reaper launcher",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [40,42,44],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [35]
+    };
+    WargearOptions.push(AutarchReaperLauncher);
+
+    const AutarchScorpionChainsword = {
+        id: 45,
+        Name: "Scorpion chainsword",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [33,34],
+        WargearIds: [24]
+    };
+    WargearOptions.push(AutarchScorpionChainsword);
 
     //=============
 

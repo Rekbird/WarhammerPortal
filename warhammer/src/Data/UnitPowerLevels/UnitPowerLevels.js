@@ -189,9 +189,11 @@ const ReturnUnitPowerLevel = (UnitId) => {
         id:24,
         PowerLevel:5,
         NumberOfModels: 1,
-        UnitIds:[12]
+        UnitIds:[12,14]
     };
     UnitPowerLevels.push(PowerLevel24);
+
+    
 
     return UnitPowerLevels.filter((level) => !!level.UnitIds.find((id) => id == UnitId));
 
