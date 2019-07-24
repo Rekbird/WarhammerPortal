@@ -250,14 +250,14 @@ const ReturnWargearSlots = (ModelId) => {
     WargearSlots.push(HiveTyrantLowerLimbs);
 
     const HiveTyrantAdditional1 = {
-        id: 366,
+        id: 367,
         Name: "Weapon enhancement",
         ModelId: 363
     };
     WargearSlots.push(HiveTyrantAdditional1);
 
     const HiveTyrantAdditional2 = {
-        id: 367,
+        id: 368,
         Name: "Body enhancement",
         ModelId: 363
     };

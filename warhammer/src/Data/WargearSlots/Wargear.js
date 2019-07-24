@@ -2,6 +2,17 @@ const ReturnWargear = (WargearIds) => {
     let Wargears = [];
     let ReturnedWargears = [];
 
+    const None = {
+        id: 99,
+        Name: "--none--",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(None);
+
     //Aeldary Wargear
 
     const AvengerShurikenCatapult = {
