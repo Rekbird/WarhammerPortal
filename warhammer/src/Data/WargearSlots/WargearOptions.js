@@ -24,7 +24,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [2,4,6,9,18,20,34],
+        WargearSlotId: [2,4,6,9,18,20,34,39],
         WargearIds: [2]
     };
     WargearOptions.push(PlasmaGrenade);
@@ -450,10 +450,10 @@ const ReturnWargearOptions = (SlotId) => {
         Name: "Mandiblasters",
         CountPerModel: null,
         PerXmodels: null,
-        Default: false,
+        Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [30],
+        WargearSlotId: [30,36],
         WargearIds: [31]
     };
     WargearOptions.push(Mandiblasters);
@@ -561,6 +561,136 @@ const ReturnWargearOptions = (SlotId) => {
         WargearIds: [24]
     };
     WargearOptions.push(AutarchScorpionChainsword);
+
+    const AutarchForceshield = {
+        id: 46,
+        Name: "Forceshield",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [35,40],
+        WargearIds: [36]
+    };
+    WargearOptions.push(AutarchForceshield);
+
+    const DefaultFusionPistol = {
+        id: 47,
+        Name: "Fusion pistol",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [37],
+        WargearIds: [30]
+    };
+    WargearOptions.push(DefaultFusionPistol);
+
+    const DefaultAutarchPowerSword = {
+        id: 48,
+        Name: "Power sword",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [38],
+        WargearIds: [21]
+    };
+    WargearOptions.push(DefaultAutarchPowerSword);
+
+    const TwinShurikenCannon = {
+        id: 49,
+        Name: "Twin shuriken cannon",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [41],
+        WargearIds: [37]
+    };
+    WargearOptions.push(TwinShurikenCannon);
+
+    const TwinBrightLance = {
+        id: 50,
+        Name: "Twin bright lance",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [41],
+        WargearIds: [38]
+    };
+    WargearOptions.push(TwinBrightLance);
+
+    const TwinScatterLaser = {
+        id: 51,
+        Name: "Twin scatter laser",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [41],
+        WargearIds: [39]
+    };
+    WargearOptions.push(TwinScatterLaser);
+
+    const TwinStarcannon = {
+        id: 52,
+        Name: "Twin starcannon",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [41],
+        WargearIds: [40]
+    };
+    WargearOptions.push(TwinStarcannon);
+
+    const TwinAeldariMissileLauncher = {
+        id: 53,
+        Name: "Twin Aeldari missile launcher",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [41],
+        WargearIds: [41]
+    };
+    WargearOptions.push(TwinAeldariMissileLauncher);
+
+    const WaveSerpentShurikenCannon = {
+        id: 54,
+        Name: "Shuriken cannon",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [42],
+        WargearIds: [8]
+    };
+    WargearOptions.push(WaveSerpentShurikenCannon);
+
+    const TwinShurikenCatapult = {
+        id: 55,
+        Name: "Twin shuriken catapult",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: true,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [42],
+        WargearIds: [42]
+    };
+    WargearOptions.push(TwinShurikenCatapult);
 
     //=============
 

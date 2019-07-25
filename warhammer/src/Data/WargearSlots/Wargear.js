@@ -389,6 +389,83 @@ const ReturnWargear = (WargearIds) => {
     };
     Wargears.push(ReaperLauncher);
 
+    const Forceshield = {
+        id: 36,
+        Name: "Forceshield",
+        Cost: 6,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Forceshield);
+
+    const TwinShurikenCannon = {
+        id: 37,
+        Name: "Twin shuriken cannon",
+        Cost: 17,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinShurikenCannon);
+
+    const TwinBrightLance = {
+        id: 38,
+        Name: "Twin bright lance",
+        Cost: 40,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinBrightLance);
+
+    const TwinScatterLaser = {
+        id: 39,
+        Name: "Twin scatter laser",
+        Cost: 12,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinScatterLaser);
+
+    const TwinStarcannon = {
+        id: 40,
+        Name: "Twin starcannon",
+        Cost: 24,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinStarcannon);
+
+    const TwinAeldariMissileLauncher = {
+        id: 41,
+        Name: "Twin Aeldari missile launcher",
+        Cost: 40,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinAeldariMissileLauncher);
+
+    const TwinShurikenCatapult = {
+        id: 42,
+        Name: "Twin shuriken catapult",
+        Cost: 2,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinShurikenCatapult);
+
     //=========
 
     WargearIds.forEach(function(WargearId) {

@@ -71,7 +71,7 @@ function ReturnUnitRoles() {
         Name: "Lord of War",
         Image: RoleLordsOfWarImage
     };
-    UnitRoles.push(DedicatedTransport);
+    UnitRoles.push(LordOfWar);
 
     return UnitRoles;
 }

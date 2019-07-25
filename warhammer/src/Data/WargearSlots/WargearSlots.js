@@ -246,6 +246,55 @@ const ReturnWargearSlots = (ModelId) => {
     };
     WargearSlots.push(AutarchJumpGenForceShield);
 
+    const AutarchWingsHelm = {
+        id: 36,
+        Name: "Helm",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsHelm);
+
+    const AutarchWingsPistol = {
+        id: 37,
+        Name: "Pistol",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsPistol);
+
+    const AutarchWingsSword = {
+        id: 38,
+        Name: "Sword",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsSword);
+
+    const AutarchWingsGrenades = {
+        id: 39,
+        Name: "Grenades",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsGrenades);
+
+    const AutarchWingsForceShield = {
+        id: 40,
+        Name: "Forceshield",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsForceShield);
+
+    const WaveSerpentMainWeapon = {
+        id: 41,
+        Name: "Main weapon",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentMainWeapon);
+
+    const WaveSerpentOffWeapon = {
+        id: 42,
+        Name: "Off weapon",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentOffWeapon);
+
 
     //===============
 

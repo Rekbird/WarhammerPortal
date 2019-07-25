@@ -14,6 +14,7 @@ import WarlockImage from "./WarlockImage.jpg";
 import WarlockConclaveImage from "./WarlockConclaveImage.jpg";
 import AutarchWithWarpJumpGeneratorImage from "./AutarchWithWarpJumpGenerator.jpg";
 import AutarchWithSwoopingHawkWingsImage  from "./AutarchWithSwoopingHawkWingsImage.jpg";
+import WaveSerpentImage from "./WaveSerpentImage.jpg";
 
 function ReturnUnits() {
     const Factions = ReturnFactions();
@@ -271,6 +272,24 @@ function ReturnUnits() {
         ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Autarch-with-Swooping-Hawk-Wings"
     };
     Units.push(AutarchWithSwoopingHawkWings);
+
+    const WaveSerpent = {
+        id: 15,
+        Name: "Wave Serpent",
+        Codex: "",
+        Description: "A Wave Serpent is a single model equipped with a twin shuriken cannon and a twin shuriken catapult.",
+        MaxModelQuantity: 1,
+        FactionKeywords: "",
+        Keywords: "",
+        KnowsSmite: false,
+        Image: WaveSerpentImage,
+        Faction: Factions[27],
+        Named: false,
+        WarlordTraitId: null,
+        UnitRole: UnitsRoles[5],
+        ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/craftworlds/Wave-Serpent"
+    };
+    Units.push(WaveSerpent);
 
     //console.log("Units" + Units.length);
     return Units;

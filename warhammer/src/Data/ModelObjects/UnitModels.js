@@ -216,6 +216,18 @@ const ReturnUnitModels = (UnitId) => {
     };
     UnitModels.push(Model18);
 
+    const Model19 = {
+        id: 19,
+        Name: "Wave Serpent",
+        Cost: 120,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 15,
+        PerXmodels: null
+    };
+    UnitModels.push(Model19);
+
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }
 
