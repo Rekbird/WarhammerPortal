@@ -36,7 +36,6 @@ class WargearSelection extends Component {
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
-        let couldBeIncluded = true;
 
         if (!!CurrentModel.RosterWargearSlots && CurrentModel.RosterWargearSlots.length > 0) {
             for (let i = 0; i < CurrentModel.RosterWargearSlots.length; i++) {
@@ -45,16 +44,19 @@ class WargearSelection extends Component {
         }
         
         for (let i = 0; i < BaseOptions.length; i++) {
+            let couldBeIncluded = true;
             let HasLinkedOptions = !!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0;
             let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
 
             if (!!BaseOptions[i].PerXmodels) {
                 let CanCarry = this.props.RosterModels.length / BaseOptions[i].PerXmodels;
                 couldBeIncluded = couldBeIncluded && (CanCarry > UnitAlreadyHave);
+
             }
 
             if (couldBeIncluded && !!BaseOptions[i].UpToXModels) {
                 couldBeIncluded = couldBeIncluded && (BaseOptions[i].UpToXModels > UnitAlreadyHave);
+
             }
 
             if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {

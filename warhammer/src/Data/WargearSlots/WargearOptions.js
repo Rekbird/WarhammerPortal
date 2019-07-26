@@ -520,7 +520,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [368,365,366,369,3610,3611,3612],
         UpToXModels: null,
-        WargearSlotId: [365,366],
+        WargearSlotId: [365],
         WargearIds: [367]
     };
     WargearOptions.push(TyrantScythes2Pairs);
@@ -624,7 +624,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [364,367,368],
+        WargearSlotId: [364,366,367,368],
         WargearIds: [99]
     };
     WargearOptions.push(NullOptionTyranidsDefault);
@@ -637,12 +637,13 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [365,366],
+        WargearSlotId: [365],
         WargearIds: [99]
     };
     WargearOptions.push(NullOptionTyranids);
 
-    return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
+    //return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
+    return WargearOptions.filter((option) => option.WargearSlotId.indexOf(SlotId) != -1);
 }
 
 export default ReturnWargearOptions;
