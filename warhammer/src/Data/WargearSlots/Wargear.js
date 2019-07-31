@@ -334,6 +334,204 @@ const ReturnWargear = (WargearIds) => {
     };
     Wargears.push(WitchStaff);
 
+    const FusionPistol = {
+        id: 30,
+        Name: "Fusion pistol",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(FusionPistol);
+
+    const Mandiblasters = {
+        id: 31,
+        Name: "Mandiblasters",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Mandiblasters);
+
+    const BansheeMask = {
+        id: 32,
+        Name: "Banshee Mask",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(BansheeMask);
+
+    const DeathSpinner = {
+        id: 33,
+        Name: "Death spinner",
+        Cost: 6,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(DeathSpinner);
+
+    const Lasblaster = {
+        id: 34,
+        Name: "Lasblaster",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Lasblaster);
+
+    const ReaperLauncher = {
+        id: 35,
+        Name: "Reaper launcher",
+        Cost: 22,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(ReaperLauncher);
+
+    const Forceshield = {
+        id: 36,
+        Name: "Forceshield",
+        Cost: 6,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Forceshield);
+
+    const TwinShurikenCannon = {
+        id: 37,
+        Name: "Twin shuriken cannon",
+        Cost: 17,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinShurikenCannon);
+
+    const TwinBrightLance = {
+        id: 38,
+        Name: "Twin bright lance",
+        Cost: 40,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinBrightLance);
+
+    const TwinScatterLaser = {
+        id: 39,
+        Name: "Twin scatter laser",
+        Cost: 12,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinScatterLaser);
+
+    const TwinStarcannon = {
+        id: 40,
+        Name: "Twin starcannon",
+        Cost: 24,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinStarcannon);
+
+    const TwinAeldariMissileLauncher = {
+        id: 41,
+        Name: "Twin Aeldari missile launcher",
+        Cost: 40,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinAeldariMissileLauncher);
+
+    const TwinShurikenCatapult = {
+        id: 42,
+        Name: "Twin shuriken catapult",
+        Cost: 2,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TwinShurikenCatapult);
+
+    const CrystalTargetingMatrix = {
+        id: 43,
+        Name: "Crystal targeting matrix",
+        Cost: 5,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(CrystalTargetingMatrix);
+
+    const SpiritStones = {
+        id: 44,
+        Name: "Spirit stones",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(SpiritStones);
+
+    const StarEngines = {
+        id: 45,
+        Name: "Star engines",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(StarEngines);
+
+    const VectoredEngines = {
+        id: 46,
+        Name: "Vectored engines",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(VectoredEngines);
+
+    const NullWargear = {
+        id: 47,
+        Name: "--none--",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(NullWargear);
+
     //Tyranid wargear========
     const MonstrousRendingClaws = {
         id: 361,

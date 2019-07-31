@@ -185,6 +185,23 @@ const ReturnUnitPowerLevel = (UnitId) => {
     };
     UnitPowerLevels.push(PowerLevel23);
 
+
+    const PowerLevel24 = {
+        id:24,
+        PowerLevel:5,
+        NumberOfModels: 1,
+        UnitIds:[12,14]
+    };
+    UnitPowerLevels.push(PowerLevel24);
+
+    const PowerLevel25 = {
+        id:25,
+        PowerLevel:9,
+        NumberOfModels: 1,
+        UnitIds:[15]
+    };
+    UnitPowerLevels.push(PowerLevel25);
+
     const PowerLevel27 = {
         id:24,
         PowerLevel:4,
