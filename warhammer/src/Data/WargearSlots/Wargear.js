@@ -2,6 +2,17 @@ const ReturnWargear = (WargearIds) => {
     let Wargears = [];
     let ReturnedWargears = [];
 
+    const None = {
+        id: 99,
+        Name: "--none--",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(None);
+
     //Aeldary Wargear
 
     const AvengerShurikenCatapult = {
@@ -322,6 +333,162 @@ const ReturnWargear = (WargearIds) => {
         ChapterTacticId: null
     };
     Wargears.push(WitchStaff);
+
+    //Tyranid wargear========
+    const MonstrousRendingClaws = {
+        id: 361,
+        Name: "Monstrous rending claws",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(MonstrousRendingClaws);
+
+    const ClawsAndTeeth = {
+        id: 362,
+        Name: "Claws and teeth",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(ClawsAndTeeth);
+
+    const PincerTail = {
+        id: 363,
+        Name: "Prehensile pincer tail",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(PincerTail);
+
+    const TyrantWings = {
+        id: 364,
+        Name: "Wings",
+        Cost: 43,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TyrantWings);
+
+    const MonstrousBoneswords= {
+        id: 365,
+        Name: "Monstrous boneswords",
+        Cost: 20,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(MonstrousBoneswords);
+
+    const WhipAndMonstrousSword= {
+        id: 366,
+        Name: "Lash whip and monstrous bonesword",
+        Cost: 15,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(WhipAndMonstrousSword);
+
+    const TyrantScythes2Pairs= {
+        id: 367,
+        Name: "Monstrous scything talons (2 pairs)",
+        Cost: 20,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TyrantScythes2Pairs);
+
+    const TyrantScythes1Pair= {
+        id: 368,
+        Name: "Monstrous scything talons (1 pair)",
+        Cost: 15,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(TyrantScythes1Pair);    
+
+    const  MonstrousDeathspitter= {
+        id: 369,
+        Name: "Deathspitter with slimer maggots",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(MonstrousDeathspitter); 
+
+    const  MonstrousDevourer= {
+        id: 3610,
+        Name: "Devourer with brainleech worms",
+        Cost: 7,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(MonstrousDevourer); 
+
+    const  Stranglethorn = {
+        id: 3611,
+        Name: "Stranglethorn cannon",
+        Cost: 15,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(Stranglethorn); 
+    
+    const  HvVenomCannon = {
+        id: 3612,
+        Name: "Heavy venom cannon",
+        Cost: 18,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(HvVenomCannon); 
+
+    const  AdrenalGlandsMonstrous = {
+        id: 3613,
+        Name: "Adrenal glands",
+        Cost: 5,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(AdrenalGlandsMonstrous); 
+
+    const  ToxinSacs1 = {
+        //Carnifex, Genestealer, Hive Tyrant, Tyranid Prime and Tyranid Warrior
+        id: 3614,
+        Name: "Toxin sacs",
+        Cost: 4,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(ToxinSacs1); 
 
     //=========
 

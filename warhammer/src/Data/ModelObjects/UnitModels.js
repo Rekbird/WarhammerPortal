@@ -192,6 +192,44 @@ const ReturnUnitModels = (UnitId) => {
     };
     UnitModels.push(Model16);
 
+    //Tyranid models ===================
+
+    let Model17 = {
+        id: 361,
+        Name: "Broodlord",
+        Cost: 115,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 361,
+        PerXmodels: null
+    };
+    UnitModels.push(Model17);
+
+    let Model18 = {
+        id: 362,
+        Name: "Neurothrope",
+        Cost: 115,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 362,
+        PerXmodels: null
+    };
+    UnitModels.push(Model18);
+
+    let Model19 = {
+        id: 363,
+        Name: "Hive Tyrant",
+        Cost: 143,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 363,
+        PerXmodels: null
+    };
+    UnitModels.push(Model19);
+
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }
 

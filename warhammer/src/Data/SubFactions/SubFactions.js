@@ -2,6 +2,57 @@ const ReturnSubFactions = (FactionId) => {
     let SubFactions = [];
     let ReturnedSubFactions = [];
 
+    //Tyranid SubFactions ===============
+
+    const Behemoth = {
+        id: 361,
+        Name: "Behemoth: Hyper-aggression",
+        FactionId: 36
+    };
+    SubFactions.push(Behemoth);
+
+    const Gorgon = {
+        id: 362,
+        Name: "Gorgon: Adaptive Toxins",
+        FactionId: 36
+    };
+    SubFactions.push(Gorgon);
+
+    const Hydra = {
+        id: 363,
+        Name: "Hydra: Swarming Instincts",
+        FactionId: 36
+    };
+    SubFactions.push(Hydra);
+
+    const Jormungandr = {
+        id: 364,
+        Name: "Jormungandr: Tunnel Networks",
+        FactionId: 36
+    };
+    SubFactions.push(Jormungandr);
+
+    const Kraken = {
+        id: 365,
+        Name: "Kraken: Questing Tendrils",
+        FactionId: 36
+    };
+    SubFactions.push(Kraken);
+
+    const Kronos = {
+        id: 366,
+        Name: "Kronos: Bio-barrage",
+        FactionId: 36
+    };
+    SubFactions.push(Kronos);
+
+    const Leviathan = {
+        id: 367,
+        Name: "Leviathan: Synaptic Imperative",
+        FactionId: 36
+    };
+    SubFactions.push(Leviathan);
+
     //Aeldary SubFactions ===============
 
     const Alaitoc = {

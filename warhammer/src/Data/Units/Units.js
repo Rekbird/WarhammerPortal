@@ -1,6 +1,6 @@
 import ReturnFactions from "../Factions/Factions.js";
 import ReturnUnitRoles from "../UnitRoles/UnitRoles.js";
-
+//---Aeldari images
 import DireAvengersImage from "./DireAvengersImage.jpg";
 import GuardiansDefendersImage from "./GuardiansDefendersImage.jpg";
 import StormGuardiansImage from "./StormGuardiansImage.jpg";
@@ -13,10 +13,14 @@ import SpiritSeerImage from "./SpiritSeerImage.jpg";
 import WarlockImage from "./WarlockImage.jpg";
 import WarlockConclaveImage from "./WarlockConclaveImage.jpg";
 
+//---Tyranid images
+
 function ReturnUnits() {
     const Factions = ReturnFactions();
     const UnitsRoles = ReturnUnitRoles();
     let Units = [];
+
+//Aeldari units =================
 
     const DireAvengers = {
         id: 1,
@@ -238,7 +242,62 @@ function ReturnUnits() {
     };
     Units.push(Warlock_Conclave);
 
-    //console.log("Units" + Units.length);
+//Aeldari units =================
+
+const Broodlord = {
+    id: 361,
+    Name: "Broodlord",
+    Codex: null,
+    Description: "A Broodlord is a single model armed with monstrous rending claws.",
+    MaxModelQuantity: 1,
+    FactionKeywords: "",
+    Keywords: "",
+    KnowsSmite: true,
+    Image: WarlockConclaveImage,
+    Faction: Factions[35],
+    Named: null,
+    WarlordTraitId: null,
+    UnitRole: UnitsRoles[0],
+    ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/tyranids/Broodlord"
+};
+Units.push(Broodlord);
+
+const Neurothrope = {
+    id: 362,
+    Name: "Neurothrope",
+    Codex: null,
+    Description: "A Neurothrope is a single model armed with claws and teeth.",
+    MaxModelQuantity: 1,
+    FactionKeywords: "",
+    Keywords: "",
+    KnowsSmite: true,
+    Image: WarlockConclaveImage,
+    Faction: Factions[35],
+    Named: null,
+    WarlordTraitId: null,
+    UnitRole: UnitsRoles[0],
+    ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/tyranids/Neurothrope"
+};
+Units.push(Neurothrope);
+
+const HiveTyrant = {
+    id: 363,
+    Name: "Hive Tyrant",
+    Codex: null,
+    Description: "A Hive Tyrant is a single model armed with two pairs of monstrous scything talons and a prehensile pincer tail.",
+    MaxModelQuantity: 1,
+    FactionKeywords: "",
+    Keywords: "",
+    KnowsSmite: true,
+    Image: WarlockConclaveImage,
+    Faction: Factions[35],
+    Named: null,
+    WarlordTraitId: null,
+    UnitRole: UnitsRoles[0],
+    ForeignLink: "http://wahapedia.ru/wh40k8ed/factions/tyranids/Hive-Tyrant"
+};
+Units.push(HiveTyrant);
+
     return Units;
 }
 
