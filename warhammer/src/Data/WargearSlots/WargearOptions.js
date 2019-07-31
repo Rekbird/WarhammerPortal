@@ -427,7 +427,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: true,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [30,33,34],
+        WargearSlotId: [30,32,33,34,43,44,45,46],
         WargearIds: []
     };
     WargearOptions.push(NullOption);
@@ -691,6 +691,59 @@ const ReturnWargearOptions = (SlotId) => {
         WargearIds: [42]
     };
     WargearOptions.push(TwinShurikenCatapult);
+
+    const CrystalTargetingMatrix = {
+        id: 56,
+        Name: "Crystal targeting matrix",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [43],
+        WargearIds: [43]
+    };
+    WargearOptions.push(CrystalTargetingMatrix);
+
+    const SpiritStones = {
+        id: 57,
+        Name: "Spirit stones",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [44],
+        WargearIds: [44]
+    };
+    WargearOptions.push(SpiritStones);
+
+    const StarEngines = {
+        id: 58,
+        Name: "Star engines",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [45],
+        WargearIds: [45]
+    };
+    WargearOptions.push(StarEngines);
+    
+    const VectoredEngines = {
+        id: 59,
+        Name: "Vectored engines",
+        CountPerModel: null,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [46],
+        WargearIds: [46]
+    };
+    WargearOptions.push(VectoredEngines);
+
 
     //=============
 

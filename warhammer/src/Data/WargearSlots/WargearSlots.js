@@ -295,6 +295,34 @@ const ReturnWargearSlots = (ModelId) => {
     };
     WargearSlots.push(WaveSerpentOffWeapon);
 
+    const WaveSerpentCrystalTargetingMatrix = {
+        id: 43,
+        Name: "Crystal targeting matrix",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentCrystalTargetingMatrix);
+
+    const WaveSerpentSpiritStones = {
+        id: 44,
+        Name: "Spirit stones",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentSpiritStones);
+
+    const WaveSerpentStarEngines = {
+        id: 45,
+        Name: "Star engines",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentStarEngines);
+
+    const WaveSerpentVectoredEngines = {
+        id: 46,
+        Name: "Vectored engines",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentVectoredEngines);
+
 
     //===============
 

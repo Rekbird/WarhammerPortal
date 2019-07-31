@@ -466,6 +466,61 @@ const ReturnWargear = (WargearIds) => {
     };
     Wargears.push(TwinShurikenCatapult);
 
+    const CrystalTargetingMatrix = {
+        id: 43,
+        Name: "Crystal targeting matrix",
+        Cost: 5,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(CrystalTargetingMatrix);
+
+    const SpiritStones = {
+        id: 44,
+        Name: "Spirit stones",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(SpiritStones);
+
+    const StarEngines = {
+        id: 45,
+        Name: "Star engines",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(StarEngines);
+
+    const VectoredEngines = {
+        id: 46,
+        Name: "Vectored engines",
+        Cost: 10,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(VectoredEngines);
+
+    const NullWargear = {
+        id: 47,
+        Name: "--none--",
+        Cost: 0,
+        Type: null,
+        Relic: false,
+        Image: null,
+        ChapterTacticId: null
+    };
+    Wargears.push(NullWargear);
+
     //=========
 
     WargearIds.forEach(function(WargearId) {
