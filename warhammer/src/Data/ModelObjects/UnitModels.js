@@ -194,8 +194,8 @@ const ReturnUnitModels = (UnitId) => {
 
     //Tyranid models ===================
 
-    let Model17 = {
-        id: 361,
+    let Model3601 = {
+        id: 3601,
         Name: "Broodlord",
         Cost: 115,
         MaxQuant: 1,
@@ -204,10 +204,10 @@ const ReturnUnitModels = (UnitId) => {
         UnitId: 361,
         PerXmodels: null
     };
-    UnitModels.push(Model17);
+    UnitModels.push(Model3601);
 
-    let Model18 = {
-        id: 362,
+    let Model13602 = {
+        id: 3602,
         Name: "Neurothrope",
         Cost: 115,
         MaxQuant: 1,
@@ -216,10 +216,10 @@ const ReturnUnitModels = (UnitId) => {
         UnitId: 362,
         PerXmodels: null
     };
-    UnitModels.push(Model18);
+    UnitModels.push(Model13602);
 
-    let Model19 = {
-        id: 363,
+    let Model3603 = {
+        id: 3603,
         Name: "Hive Tyrant",
         Cost: 143,
         MaxQuant: 1,
@@ -228,7 +228,7 @@ const ReturnUnitModels = (UnitId) => {
         UnitId: 363,
         PerXmodels: null
     };
-    UnitModels.push(Model19);
+    UnitModels.push(Model3603);
 
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }

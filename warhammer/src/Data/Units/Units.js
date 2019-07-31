@@ -242,7 +242,7 @@ function ReturnUnits() {
     };
     Units.push(Warlock_Conclave);
 
-//Aeldari units =================
+//Tyranid units =================
 
 const Broodlord = {
     id: 361,
