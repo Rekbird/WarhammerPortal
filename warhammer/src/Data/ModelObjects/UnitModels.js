@@ -192,6 +192,42 @@ const ReturnUnitModels = (UnitId) => {
     };
     UnitModels.push(Model16);
 
+    const Model17 = {
+        id: 17,
+        Name: "Autarch with Warp Jump Generator",
+        Cost: 73,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 12,
+        PerXmodels: null
+    };
+    UnitModels.push(Model17);
+
+    const Model18 = {
+        id: 18,
+        Name: "Autarch with Swooping Hawk Wings",
+        Cost: 85,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 14,
+        PerXmodels: null
+    };
+    UnitModels.push(Model18);
+
+    const Model19 = {
+        id: 19,
+        Name: "Wave Serpent",
+        Cost: 120,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 15,
+        PerXmodels: null
+    };
+    UnitModels.push(Model19);
+  
     //Tyranid models ===================
 
     let Model3601 = {

@@ -204,6 +204,125 @@ const ReturnWargearSlots = (ModelId) => {
     };
     WargearSlots.push(StrikingScorpionExarchOffHand);
 
+    const AutarchJumpGenHelm = {
+        id: 30,
+        Name: "Helm",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenHelm);
+
+    const AutarchJumpGenPistol = {
+        id: 31,
+        Name: "Pistol",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenPistol);
+
+    const AutarchJumpGenhWeaponFirst = {
+        id: 32,
+        Name: "First Autarch Weapon",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenhWeaponFirst);
+
+    const AutarchJumpGenWeaponSecond = {
+        id: 33,
+        Name: "Second Autarch Weapon",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenWeaponSecond);
+
+    const AutarchJumpGenWeaponGrenades = {
+        id: 34,
+        Name: "Grenades",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenWeaponGrenades);
+
+    const AutarchJumpGenForceShield = {
+        id: 35,
+        Name: "Forceshield",
+        ModelId: 17
+    };
+    WargearSlots.push(AutarchJumpGenForceShield);
+
+    const AutarchWingsHelm = {
+        id: 36,
+        Name: "Helm",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsHelm);
+
+    const AutarchWingsPistol = {
+        id: 37,
+        Name: "Pistol",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsPistol);
+
+    const AutarchWingsSword = {
+        id: 38,
+        Name: "Sword",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsSword);
+
+    const AutarchWingsGrenades = {
+        id: 39,
+        Name: "Grenades",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsGrenades);
+
+    const AutarchWingsForceShield = {
+        id: 40,
+        Name: "Forceshield",
+        ModelId: 18
+    };
+    WargearSlots.push(AutarchWingsForceShield);
+
+    const WaveSerpentMainWeapon = {
+        id: 41,
+        Name: "Main weapon",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentMainWeapon);
+
+    const WaveSerpentOffWeapon = {
+        id: 42,
+        Name: "Off weapon",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentOffWeapon);
+
+    const WaveSerpentCrystalTargetingMatrix = {
+        id: 43,
+        Name: "Crystal targeting matrix",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentCrystalTargetingMatrix);
+
+    const WaveSerpentSpiritStones = {
+        id: 44,
+        Name: "Spirit stones",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentSpiritStones);
+
+    const WaveSerpentStarEngines = {
+        id: 45,
+        Name: "Star engines",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentStarEngines);
+
+    const WaveSerpentVectoredEngines = {
+        id: 46,
+        Name: "Vectored engines",
+        ModelId: 19
+    };
+    WargearSlots.push(WaveSerpentVectoredEngines);
+
 
     //Tyranid slots ===============
 
