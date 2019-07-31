@@ -414,9 +414,10 @@ const AddNewUnit = (roster, action) => {
 
 const SetActiveUnit = (action) => {
 
+
     return {
        Unit: action.ActiveUnit,
-       Model: (!!action.ActiveUnit && action.ActiveUnit.BaseUnit.MaxModelQuant > 1) ? null : action.ActiveUnit.Models[0]
+       Model: (!action.ActiveUnit) ? null : ((action.ActiveUnit.BaseUnit.MaxModelQuant > 1) ? null : action.ActiveUnit.Models[0])
     }
 }
 

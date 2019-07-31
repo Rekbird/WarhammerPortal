@@ -37,6 +37,25 @@ const ReturnNumbersOfSpells = (UnitId) => {
                 NumberOfSpells : 2,
                 UnitId: 10
             },
+            {
+                id : 7,
+                NumberOfModels : 1,
+                NumberOfSpells : 2,
+                UnitId: 361
+            },
+            {
+                id :8,
+                NumberOfModels : 1,
+                NumberOfSpells : 2,
+                UnitId: 362
+            },
+            {
+                id :8,
+                NumberOfModels : 1,
+                NumberOfSpells : 3,
+                UnitId: 363
+            },
+
         ];
     return NumberOfSpellsFromBase.filter((spell) => spell.UnitId == UnitId);
 }

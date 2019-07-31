@@ -324,8 +324,63 @@ const ReturnWargearSlots = (ModelId) => {
     WargearSlots.push(WaveSerpentVectoredEngines);
 
 
-    //===============
+    //Tyranid slots ===============
 
+    const BroodlordHands = {
+        id: 361,
+        Name: "Upper arms",
+        ModelId: 3601
+    };
+    WargearSlots.push(BroodlordHands);
+
+    const NeurothropeMain = {
+        id: 362,
+        Name: "Limbs",
+        ModelId: 3602
+    };
+    WargearSlots.push(NeurothropeMain);
+
+    const HiveTyrantTail = {
+        id: 363,
+        Name: "Tail",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantTail);
+
+    const HiveTyrantWings = {
+        id: 364,
+        Name: "Wings",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantWings);
+
+    const HiveTyrantUpperLimbs = {
+        id: 365,
+        Name: "Upper arms",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantUpperLimbs);
+
+    const HiveTyrantLowerLimbs = {
+        id: 366,
+        Name: "Lower arms",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantLowerLimbs);
+
+    const HiveTyrantAdditional1 = {
+        id: 367,
+        Name: "Weapon enhancement",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantAdditional1);
+
+    const HiveTyrantAdditional2 = {
+        id: 368,
+        Name: "Body enhancement",
+        ModelId: 3603
+    };
+    WargearSlots.push(HiveTyrantAdditional2);
 
     return WargearSlots.filter((slot) => slot.ModelId == ModelId);
 }

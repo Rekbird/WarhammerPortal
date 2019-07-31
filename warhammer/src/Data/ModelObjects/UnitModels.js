@@ -227,6 +227,44 @@ const ReturnUnitModels = (UnitId) => {
         PerXmodels: null
     };
     UnitModels.push(Model19);
+  
+    //Tyranid models ===================
+
+    let Model3601 = {
+        id: 3601,
+        Name: "Broodlord",
+        Cost: 115,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 361,
+        PerXmodels: null
+    };
+    UnitModels.push(Model3601);
+
+    let Model13602 = {
+        id: 3602,
+        Name: "Neurothrope",
+        Cost: 115,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 362,
+        PerXmodels: null
+    };
+    UnitModels.push(Model13602);
+
+    let Model3603 = {
+        id: 3603,
+        Name: "Hive Tyrant",
+        Cost: 143,
+        MaxQuant: 1,
+        MinQuant: 1,
+        ModelsIncluding: 1,
+        UnitId: 363,
+        PerXmodels: null
+    };
+    UnitModels.push(Model3603);
 
     return UnitModels.filter((model) => model.UnitId == UnitId);
 }

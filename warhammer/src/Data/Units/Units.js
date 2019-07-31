@@ -1,6 +1,6 @@
 import ReturnFactions from "../Factions/Factions.js";
 import ReturnUnitRoles from "../UnitRoles/UnitRoles.js";
-
+//---Aeldari images
 import DireAvengersImage from "./DireAvengersImage.jpg";
 import GuardiansDefendersImage from "./GuardiansDefendersImage.jpg";
 import StormGuardiansImage from "./StormGuardiansImage.jpg";
@@ -16,10 +16,14 @@ import AutarchWithWarpJumpGeneratorImage from "./AutarchWithWarpJumpGenerator.jp
 import AutarchWithSwoopingHawkWingsImage  from "./AutarchWithSwoopingHawkWingsImage.jpg";
 import WaveSerpentImage from "./WaveSerpentImage.jpg";
 
+//---Tyranid images
+
 function ReturnUnits() {
     const Factions = ReturnFactions();
     const UnitsRoles = ReturnUnitRoles();
     let Units = [];
+
+//Aeldari units =================
 
     const DireAvengers = {
         id: 1,
@@ -291,7 +295,7 @@ function ReturnUnits() {
     };
     Units.push(WaveSerpent);
 
-    //Tyranid units =================
+//Tyranid units =================
 
 const Broodlord = {
     id: 361,
