@@ -18,19 +18,44 @@ class WargearSelection extends Component {
     constructor(props) {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
-        this.WargearSlots = [];
+        this.AggregateOptions = this.AggregateOptions.bind(this);
         this.ReturnedTraits = [];
         this.ReturnedRelics = [];
         this.UnitIsWarlord = false;
         this.ChosenTrait = null;
         this.ChosenRelic = null;
+        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
+        this.UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
+        this.AggregatedOptions = AggregateOptions();
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
-        CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.filter(option => option.id == SelectedOptionId)[0];
+        CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.find(option => option.id == SelectedOptionId);
+        AggregateOptions();
+        ValidateOptions();
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
     
+    ValidateOptions = () => {
+        this.WargearSlots.forEach(slot => {
+            let AvailableOptions = this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions;
+            if (!AvailableOptions.includes(slot.SelectedOption)) slot.SelectedOption = AvailableOptions[0];
+        });
+    }
+
+    AggregateOptions = () => {
+        let SlotConnections = [];
+        let SlotAvailableOptions;
+        this.WargearSlots.forEach(slot => {
+            SlotAvailableOptions = {
+                AvailableOptions: GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel),
+                SlotId: slot.id
+            }
+            SlotConnections.push(SlotAvailableOptions)
+        });
+    return SlotConnections;
+    }
+
     GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
         let AvailableOptions = [];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
@@ -61,7 +86,6 @@ class WargearSelection extends Component {
 
             if (couldBeIncluded && !!BaseOptions[i].CountPerModel && !(BaseOptions[i].LinkedOptionsId.includes(CurrentSlot.SelectedOption.id))) {
                 let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
-                //console.log("Selected option equals with current option " + (BaseOptions[i].id == CurrentSlot.SelectedOption.id));
                 couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
             }
 
@@ -70,11 +94,6 @@ class WargearSelection extends Component {
             }
 
         }
-
-        if (!AvailableOptions.includes(CurrentSlot.SelectedOption)) {
-            this.SelectedWargearOption(AvailableOptions[0].id, CurrentSlot);
-        }
-
         return AvailableOptions;
     }
 
@@ -156,11 +175,9 @@ class WargearSelection extends Component {
                 </div>
         }
         
-        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
-        const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
             );
         return (
             <div className = 'WargearSelection__Component'>
