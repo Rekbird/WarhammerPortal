@@ -32,7 +32,7 @@ class WargearSelection extends Component {
     }
     
     GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
-        let AvailableOptions = [CurrentSlot.SelectedOption];
+        let AvailableOptions = [];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
@@ -45,7 +45,7 @@ class WargearSelection extends Component {
         
         for (let i = 0; i < BaseOptions.length; i++) {
             let couldBeIncluded = true;
-            let HasLinkedOptions = !!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0;
+            let HasLinkedOptions = (!!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0);
             let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
 
             if (!!BaseOptions[i].PerXmodels) {
@@ -59,15 +59,22 @@ class WargearSelection extends Component {
 
             }
 
-            if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
+            if (couldBeIncluded && !!BaseOptions[i].CountPerModel && !(BaseOptions[i].LinkedOptionsId.includes(CurrentSlot.SelectedOption.id))) {
                 let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
+                //console.log("Selected option equals with current option " + (BaseOptions[i].id == CurrentSlot.SelectedOption.id));
                 couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
             }
 
-            if (couldBeIncluded && BaseOptions[i] != CurrentSlot.SelectedOption) {
+            if (couldBeIncluded) {
                 AvailableOptions.push(BaseOptions[i]);
             }
+
         }
+
+        if (!AvailableOptions.includes(CurrentSlot.SelectedOption)) {
+            this.SelectedWargearOption(AvailableOptions[0].id, CurrentSlot);
+        }
+
         return AvailableOptions;
     }
 
