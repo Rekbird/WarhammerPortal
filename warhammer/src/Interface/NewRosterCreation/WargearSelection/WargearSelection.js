@@ -26,33 +26,39 @@ class WargearSelection extends Component {
         this.ChosenRelic = null;
         this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
         this.UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
-        this.AggregatedOptions = AggregateOptions();
+        this.AggregatedOptions = this.AggregateOptions();
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
         CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.find(option => option.id == SelectedOptionId);
-        AggregateOptions();
-        ValidateOptions();
+        this.AggregatedOptions = this.AggregateOptions();
+        this.ValidateOptions();
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
     
     ValidateOptions = () => {
+        console.log("Validated!!!");
         this.WargearSlots.forEach(slot => {
             let AvailableOptions = this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions;
             if (!AvailableOptions.includes(slot.SelectedOption)) slot.SelectedOption = AvailableOptions[0];
         });
+        console.log(this.WargearSlots);
+        console.log("--------------");
     }
 
     AggregateOptions = () => {
+        console.log("Aggregated!!!=========");
         let SlotConnections = [];
         let SlotAvailableOptions;
         this.WargearSlots.forEach(slot => {
             SlotAvailableOptions = {
-                AvailableOptions: GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel),
+                AvailableOptions: this.GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel),
                 SlotId: slot.id
             }
             SlotConnections.push(SlotAvailableOptions)
         });
+        console.log(SlotConnections);
+        console.log("--------------");
     return SlotConnections;
     }
 
@@ -84,9 +90,15 @@ class WargearSelection extends Component {
 
             }
 
-            if (couldBeIncluded && !!BaseOptions[i].CountPerModel && !(BaseOptions[i].LinkedOptionsId.includes(CurrentSlot.SelectedOption.id))) {
+            if (couldBeIncluded && !!BaseOptions[i].CountPerModel && (BaseOptions[i].id != CurrentSlot.SelectedOption.id) && !(BaseOptions[i].LinkedOptionsId.includes(CurrentSlot.SelectedOption.id))) {
                 let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
                 couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
+                if (BaseOptions[i].id == 3611 || BaseOptions[i].id == 3612) {
+                    console.log("=========================");
+                    console.log(!(BaseOptions[i].LinkedOptionsId.includes(CurrentSlot.SelectedOption.id)));
+                    console.log("Item " + BaseOptions[i].Name);
+                    console.log("=========================");
+                }
             }
 
             if (couldBeIncluded) {
@@ -129,6 +141,9 @@ class WargearSelection extends Component {
     }
 
     render() {
+        console.log("----------------RENDERED--------------");
+        console.log(this.AggregatedOptions);
+        console.log("--------------------------------------");
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions;
         let WarlordTraitAndRelic;

@@ -882,7 +882,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [3612,367],
+        LinkedOptionsId: [3612],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3611]
@@ -895,25 +895,12 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [3611,367],
+        LinkedOptionsId: [3611],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3612]
     };
     WargearOptions.push(HvVenomCannon);
-
-    const AdrenalGlandsMonstrous = {
-        id: 3612,
-        Name: "Adrenal glands",
-        CountPerModel: 1,
-        PerXmodels: null,
-        Default: false,
-        LinkedOptionsId: [],
-        UpToXModels: null,
-        WargearSlotId: [367],
-        WargearIds: [3613]
-    };
-    WargearOptions.push(AdrenalGlandsMonstrous);
 
     const ToxinSacs1 = {
         id: 3613,
@@ -953,6 +940,19 @@ const ReturnWargearOptions = (SlotId) => {
         WargearIds: [99]
     };
     WargearOptions.push(NullOptionTyranids);
+
+    const AdrenalGlandsMonstrous = {
+        id: 3616,
+        Name: "Adrenal glands",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [367],
+        WargearIds: [3613]
+    };
+    WargearOptions.push(AdrenalGlandsMonstrous);
 
     //=============
 
