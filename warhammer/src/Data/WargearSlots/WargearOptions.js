@@ -804,7 +804,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [365]
@@ -817,7 +817,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [366]
@@ -843,7 +843,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [368]
@@ -856,7 +856,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [369,369]
@@ -869,7 +869,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3610,3610]
@@ -936,7 +936,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [365],
+        WargearSlotId: [],
         WargearIds: [99]
     };
     WargearOptions.push(NullOptionTyranids);
