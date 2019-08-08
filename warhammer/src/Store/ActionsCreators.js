@@ -226,3 +226,11 @@ export function SetUnitRelic(ChosenRelic) {
         ChosenRelic
     }
 }
+
+export function SetRosterParameters(NewRoster,NeededDetachment) {
+    return {
+        type: "SetRosterParameters",
+        NewRoster,
+        NeededDetachment
+    }
+}

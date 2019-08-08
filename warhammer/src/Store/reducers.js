@@ -81,15 +81,8 @@ function RosterEditing(state = RosterEditingInitialState, action) {
         case "UnitPsychicPowers":
             Result = SetUnitPsychicPowers(state.Roster, action);
             return Object.assign({}, state, {Roster: Result.NewRoster, ActiveUnit: Result.NewUnit});
-        case "DetachmentFaction":
-            Result = SetDetachmentFaction(state.Roster, action);
-            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
-        case "DetachmentType":
-            Result = SetDetachmentType(state.Roster, action);
-            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
-        case "ChapterTactic":
-            Result = SetChapterTactic(state.Roster, action);
-            return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.Detachment});
+        case "SetRosterParameters":
+            return Object.assign({}, state, {Roster: action.NewRoster, ActiveDetachment: action.NeededDetachment});
         case "NewDetachment":
             Result = AddNewDetachment(state.Roster, action);
             return Object.assign({}, state, {Roster: Result.Roster, ActiveDetachment: Result.ActiveDetachment, Action: Result.Action});
@@ -270,7 +263,7 @@ const SetUnitPsychicPowers = (roster, action) => {
         NewUnit
     };
 }
-
+/*
 const SetDetachmentFaction = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
     let NeededDetachment = Detachments.find((detach) => detach.id == action.DetachmentId);
@@ -313,6 +306,13 @@ const SetChapterTactic = (roster, action) => {
     }
 }
 
+const SetChapterTactic = (action) => {
+    return {
+        Roster: action.NewRoster,
+        Detachment: action.NeededDetachment
+    }
+}
+*/
 const AddNewDetachment = (roster, action) => {
     let Detachments = roster.RosterDetachments.slice();
     let NewDetachment = new RosterDetachment(action.NewId,[],null,null,null,roster.id,null,null);
