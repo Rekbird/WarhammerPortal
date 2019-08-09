@@ -13,17 +13,23 @@ class RosterEditing extends Component {
     }
 
     handleNameChange = (event) => {
-        this.props.RosterName(event.target.value);
+        const Roster = Object.assign({}, this.props.Roster, {Name: event.target.value});
+        //this.props.RosterName(event.target.value);
+        this.props.UpdateRoster(Roster);
     }
 
     handleMaxPLChange = (event) => {
-        let MaxPL = event.target.value.replace(/[^0-9]/gim,'');
-        this.props.RosterMaxPL(MaxPL);
+        const MaxPL = event.target.value.replace(/[^0-9]/gim,'');
+        const Roster = Object.assign({}, this.props.Roster, {MaxPL: MaxPL});
+        this.props.UpdateRoster(Roster);
+        //this.props.RosterMaxPL(MaxPL);
     }
 
     handleMaxPTSChange = (event) => {
-        let MaxPTS = event.target.value.replace(/[^0-9]/gim,'');
-        this.props.RosterMaxPTS(MaxPTS);
+        const MaxPTS = event.target.value.replace(/[^0-9]/gim,'');
+        const Roster = Object.assign({}, this.props.Roster, {MaxPTS: MaxPTS});
+        this.props.UpdateRoster(Roster);
+        //this.props.RosterMaxPTS(MaxPTS);
     }
 
     render = () => {
@@ -53,15 +59,19 @@ const mapStateToProps = (state) => {
     return {
         Name: state.RosterEditing.Roster.Name,
         MaxPL: state.RosterEditing.Roster.MaxPL,
-        MaxPTS: state.RosterEditing.Roster.MaxPTS
+        MaxPTS: state.RosterEditing.Roster.MaxPTS,
+        Roster: state.RosterEditing.Roster
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        /*
         RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
         RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
         RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS))
+        */
+       UpdateRoster: (Roster) => dispatch(ActionCreators.UpdateRoster(Roster))
     }
 }
 

@@ -34,7 +34,11 @@ class RosterCreation extends Component{
 
     AddNewDetachment = () => {
         let NewId = utils.calculateNewId(this.props.Roster.RosterDetachments);
-        this.props.NewDetachment(NewId);
+        let Detachments = this.props.Roster.RosterDetachments.slice();
+        let NewDetachment = new RosterDetachment(NewId,[],null,null,null,this.props.Roster.id,null,null);
+        Detachments.push(NewDetachment);
+        const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
+        this.props.NewDetachment(NewRoster,NewDetachment);
     }
 
     EditDetachment = (Detachment) => {
@@ -150,10 +154,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        DetachmentFaction: (DetachmentId, Faction) => dispatch(ActionCreators.DetachmentFaction(DetachmentId, Faction)),
-        DetachmentType: (DetachmentId, DetachmentType) => dispatch(ActionCreators.DetachmentType(DetachmentId, DetachmentType)),
-        ChapterTactic: (DetachmentId, ChapterTactic) => dispatch(ActionCreators.ChapterTactic(DetachmentId, ChapterTactic)),
-        NewDetachment: (NewId) => dispatch(ActionCreators.NewDetachment(NewId)),
+        //DetachmentFaction: (DetachmentId, Faction) => dispatch(ActionCreators.DetachmentFaction(DetachmentId, Faction)),
+        //DetachmentType: (DetachmentId, DetachmentType) => dispatch(ActionCreators.DetachmentType(DetachmentId, DetachmentType)),
+        //ChapterTactic: (DetachmentId, ChapterTactic) => dispatch(ActionCreators.ChapterTactic(DetachmentId, ChapterTactic)),
+        NewDetachment: (Roster, ActiveDetachment) => dispatch(ActionCreators.NewDetachment(Roster, ActiveDetachment)),
         SetActiveDetachment: (ActiveDetachment) => dispatch(ActionCreators.ActiveDetachment(ActiveDetachment)),
         CopyDetachment: (DetachmentId, NewId) => dispatch(ActionCreators.CopyDetachment(DetachmentId, NewId)),
         DeleteDetachment: (DetachmentId) => dispatch(ActionCreators.DeleteDetachment(DetachmentId)),
@@ -162,9 +166,9 @@ const mapDispatchToProps = (dispatch) => {
         CopyUnit: (DetachmentId, UnitId, NewId) => dispatch(ActionCreators.CopyUnit(DetachmentId, UnitId, NewId)),
         DeleteUnit: (DetachmentId, UnitId) => dispatch(ActionCreators.DeleteUnit(DetachmentId, UnitId)),
         RosterAction: (ActionNAme) => dispatch(ActionCreators.RosterAction(ActionNAme)),
-        RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
-        RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
-        RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS)),
+        //RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
+        //RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
+        //RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS)),
         
     }
 }

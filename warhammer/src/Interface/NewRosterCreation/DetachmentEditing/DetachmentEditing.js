@@ -29,7 +29,7 @@ class DetachmentEditing extends Component {
         Detachments.splice(DetachIndex, 1, NeededDetachment);
         let NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
         NewRoster = utils.recalculateRosterCost(NewRoster);
-       this.props.SetRosterParameters(NewRoster,NeededDetachment);
+       this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
     }
 
     handleDetachmentFactionChange(FactionId) {
@@ -41,7 +41,7 @@ class DetachmentEditing extends Component {
         NeededDetachment.Faction = Faction;
         Detachments.splice(DetachIndex, 1, NeededDetachment);
         const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
-        this.props.SetRosterParameters(NewRoster,NeededDetachment);
+        this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
         this.props.FactionSelectionWindow(false);
     }
 
@@ -54,7 +54,7 @@ class DetachmentEditing extends Component {
         NeededDetachment.ChapterTactic = ChapterTactic;
         Detachments.splice(DetachIndex, 1, NeededDetachment);
         const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
-        this.props.SetRosterParameters(NewRoster,NeededDetachment);
+        this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
     }
 
     showFactionSelectionWindow() {
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         FactionSelectionWindow: (FlagValue) => dispatch(ActionCreators.FactionSelectionWindow(FlagValue)),
-        SetRosterParameters: (NewRoster,NeededDetachment) => dispatch(ActionCreators.SetRosterParameters(NewRoster,NeededDetachment))
+        SetDetachmentParameters: (NewRoster,NeededDetachment) => dispatch(ActionCreators.SetDetachmentParameters(NewRoster,NeededDetachment))
     }
 }
 
