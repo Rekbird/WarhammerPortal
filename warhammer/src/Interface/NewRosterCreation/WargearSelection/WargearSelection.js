@@ -31,7 +31,7 @@ class WargearSelection extends Component {
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
         CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.find(option => option.id == SelectedOptionId);
-        this.AggregatedOptions = this.AggregateOptions(true);
+        this.AggregatedOptions = this.AggregateOptions(true, CurrentSlot);
         this.ValidateOptions();
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
@@ -46,13 +46,13 @@ class WargearSelection extends Component {
         console.log("--------------");
     }
 
-    AggregateOptions = (Validating) => {
+    AggregateOptions = (Validating, lastChangedSlot) => {
         console.log("Aggregated!!!=========");
         let SlotConnections = [];
         let SlotAvailableOptions;
         this.WargearSlots.forEach(slot => {
             SlotAvailableOptions = {
-                AvailableOptions: this.GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel, Validating),
+                AvailableOptions: this.GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel, Validating, lastChangedSlot),
                 SlotId: slot.id
             }
             SlotConnections.push(SlotAvailableOptions)
@@ -62,7 +62,7 @@ class WargearSelection extends Component {
     return SlotConnections;
     }
 
-    GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel, Validating) => {
+    GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel, Validating, lastChangedSlot) => {
         let AvailableOptions = [];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
@@ -89,20 +89,16 @@ class WargearSelection extends Component {
                 couldBeIncluded = couldBeIncluded && (BaseOptions[i].UpToXModels > UnitAlreadyHave);
 
             }
-            //if (!Validating) {
-                if (couldBeIncluded && !!BaseOptions[i].CountPerModel && ((BaseOptions[i].id != CurrentSlot.SelectedOption.id) || Validating) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(BaseOptions[i].id))) {
-                    let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (option.LinkedOptionsId.includes(BaseOptions[i].id))).length;
-                     
-                    couldBeIncluded = couldBeIncluded && (Validating ? (ModelAlreadyHave <= BaseOptions[i].CountPerModel) : (ModelAlreadyHave < BaseOptions[i].CountPerModel));
+
+            if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
+                let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (option.LinkedOptionsId.includes(BaseOptions[i].id)));
+                if ((BaseOptions[i].id != CurrentSlot.SelectedOption.id) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(BaseOptions[i].id))) {
+                    couldBeIncluded = 
                 }
-            /*} else {
-                if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
-                    let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && option.LinkedOptionsId.includes(BaseOptions[i].id))).length;
-                    
-                    couldBeIncluded = couldBeIncluded && (ModelAlreadyHave <= BaseOptions[i].CountPerModel);
-                }
-            
-            }*/
+               
+                couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
+                
+            }
 
             if (couldBeIncluded) {
                 AvailableOptions.push(BaseOptions[i]);
