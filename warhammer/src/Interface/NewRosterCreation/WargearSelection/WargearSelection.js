@@ -18,21 +18,46 @@ class WargearSelection extends Component {
     constructor(props) {
         super(props);
         this.GetSelectedUnitOptions = this.GetSelectedUnitOptions.bind(this);
-        this.WargearSlots = [];
+        this.AggregateOptions = this.AggregateOptions.bind(this);
         this.ReturnedTraits = [];
         this.ReturnedRelics = [];
         this.UnitIsWarlord = false;
         this.ChosenTrait = null;
         this.ChosenRelic = null;
+        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
+        this.UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
+        this.AggregatedOptions = this.AggregateOptions(false);
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
-        CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.filter(option => option.id == SelectedOptionId)[0];
+        CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.find(option => option.id == SelectedOptionId);
+        this.AggregatedOptions = this.AggregateOptions(true, CurrentSlot);
+        this.ValidateOptions();
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
     }
     
-    GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel) => {
-        let AvailableOptions = [CurrentSlot.SelectedOption];
+    ValidateOptions = () => {
+        this.WargearSlots.forEach(slot => {
+            let AvailableOptions = this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions;
+            if (!AvailableOptions.includes(slot.SelectedOption)) slot.SelectedOption = AvailableOptions[0];
+        });
+    }
+
+    AggregateOptions = (Validating, lastChangedSlot) => {
+        let SlotConnections = [];
+        let SlotAvailableOptions;
+        this.WargearSlots.forEach(slot => {
+            SlotAvailableOptions = {
+                AvailableOptions: this.GetAvailableOptions(slot, this.UnitSelectedOptions, this.props.CurrentModel, Validating, lastChangedSlot),
+                SlotId: slot.id
+            }
+            SlotConnections.push(SlotAvailableOptions)
+        });
+    return SlotConnections;
+    }
+
+    GetAvailableOptions = (CurrentSlot, UnitSelectedOptions, CurrentModel, Validating, lastChangedSlot) => {
+        let AvailableOptions = [];
         let BaseOptions = CurrentSlot.BaseSlot.Options;
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
@@ -45,8 +70,8 @@ class WargearSelection extends Component {
         
         for (let i = 0; i < BaseOptions.length; i++) {
             let couldBeIncluded = true;
-            let HasLinkedOptions = !!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0;
-            let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
+            let HasLinkedOptions = (!!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0);
+            let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.includes(option.id))).length;
 
             if (!!BaseOptions[i].PerXmodels) {
                 let CanCarry = this.props.RosterModels.length / BaseOptions[i].PerXmodels;
@@ -60,13 +85,25 @@ class WargearSelection extends Component {
             }
 
             if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
-                let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.indexOf(option.id) != -1)).length;
-                couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
+                let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (option.LinkedOptionsId.includes(BaseOptions[i].id)));
+                if ((BaseOptions[i].id != CurrentSlot.SelectedOption.id) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(BaseOptions[i].id))) {
+
+                    couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length < BaseOptions[i].CountPerModel);
+                
+                } else {
+                    if (Validating && CurrentSlot.id != lastChangedSlot.id) {
+                        couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length <= BaseOptions[i].CountPerModel);
+                    } else {
+                        couldBeIncluded = true;
+                    }
+                }
+                
             }
 
-            if (couldBeIncluded && BaseOptions[i] != CurrentSlot.SelectedOption) {
+            if (couldBeIncluded) {
                 AvailableOptions.push(BaseOptions[i]);
             }
+
         }
         return AvailableOptions;
     }
@@ -103,6 +140,7 @@ class WargearSelection extends Component {
     }
 
     render() {
+        console.log(this.AggregatedOptions);
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions;
         let WarlordTraitAndRelic;
@@ -149,11 +187,9 @@ class WargearSelection extends Component {
                 </div>
         }
         
-        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
-        const UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.GetAvailableOptions(slot, UnitSelectedOptions, this.props.CurrentModel)} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
             );
         return (
             <div className = 'WargearSelection__Component'>
