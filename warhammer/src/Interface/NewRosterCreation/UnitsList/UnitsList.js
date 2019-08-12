@@ -14,16 +14,16 @@ class UnitsList extends Component {
     }
     */
     render() {
-        var Roles = utils.GetAvailableRoles(this.props.Faction.id);
-       if(Roles && (Roles.length > 0)) {
-            var Roles = Roles.map(
+        let UnitsByRolesComponent = null;
+       if(this.props.Roles && (this.props.Roles.length > 0)) {
+            UnitsByRolesComponent = this.props.Roles.map(
                 (role) =>
                 <UnitsListByRole key = {role.id} Faction = {this.props.Faction} UnitRole = {role} handleUnitSelection = {this.props.handleUnitSelection} Detachment = {this.props.Detachment}/>
             )
         }
         return (
             <div>
-                {Roles}
+                {UnitsByRolesComponent}
             </div>
         )
     } 
