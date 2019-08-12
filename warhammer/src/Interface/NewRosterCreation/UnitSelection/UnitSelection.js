@@ -56,7 +56,7 @@ class UnitSelection extends Component {
 
     render() {
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
-        console.log("Скрытый класс "+HideButtonClass)
+        //console.log("Скрытый класс "+HideButtonClass)
         return (
             <div id = "UnitsSelection">
                 <div id = "UnitsSelectionHeader" className = "UnitSelection__SelectionArea">

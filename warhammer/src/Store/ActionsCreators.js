@@ -30,54 +30,13 @@ export function UnitPsychicPowers(SelectedSpells, CurrentUnit) {
     }
 }
 
-//??? Нужно проверить необходимость этого экшена
-export function UnitSelection(BaseUnit) {
-    return {
-        type: "UnitSelection",
-        BaseUnit: BaseUnit
-    }
-}
-//???
-
-export function DetachmentFaction(DetachmentId, Faction) {
-    return {
-        type: "DetachmentFaction",
-        Faction: Faction,
-        DetachmentId: DetachmentId
-    }
-}
-
-export function DetachmentType(DetachmentId, DetachmentType) {
-    return {
-        type: "DetachmentType",
-        DetachmentType: DetachmentType,
-        DetachmentId: DetachmentId
-    }
-}
-
-export function ChapterTactic(DetachmentId, ChapterTactic) {
-    return {
-        type: "ChapterTactic",
-        ChapterTactic: ChapterTactic,
-        DetachmentId: DetachmentId
-    }
-}
-
-export function NewDetachment(NewId) {
+export function NewDetachment(Roster, ActiveDetachment) {
     return {
         type: "NewDetachment",
-        NewId: NewId
+        Roster,
+        ActiveDetachment
     }
 }
-/*WTF???
-export function NewDetachment(DetachmentId, NewId) {
-    return {
-        type: "NewDetachment",
-        DetachmentId: DetachmentId,
-        NewId: NewId
-    }
-}
-*/
 
 export function CopyDetachment(DetachmentId, NewId) {
     return {
@@ -133,7 +92,7 @@ export function RosterAction(ActionNAme) {
         ActionNAme: ActionNAme
     }
 }
-
+/*
 export function RosterName(RosterName) {
     return {
         type: "RosterName",
@@ -152,6 +111,13 @@ export function RosterMaxPTS(RosterMaxPTS) {
     return {
         type: "RosterMaxPTS",
         RosterMaxPTS: RosterMaxPTS
+    }
+}
+*/
+export function UpdateRoster(Roster) {
+    return {
+        type: "UpdateRoster",
+        Roster
     }
 }
 
@@ -224,5 +190,13 @@ export function SetUnitRelic(ChosenRelic) {
     return {
         type: "SetUnitRelic",
         ChosenRelic
+    }
+}
+
+export function SetDetachmentParameters(NewRoster,NeededDetachment) {
+    return {
+        type: "SetDetachmentParameters",
+        NewRoster,
+        NeededDetachment
     }
 }

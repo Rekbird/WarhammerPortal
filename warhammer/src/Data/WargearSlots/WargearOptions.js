@@ -479,7 +479,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [1]
     };
     WargearOptions.push(AutarchAvengerShurikenCatapult);
@@ -492,7 +492,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [41],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [33]
     };
     WargearOptions.push(AutarchDeathSpinner);
@@ -503,9 +503,9 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [40,42,44],
+        LinkedOptionsId: [41,42,44],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [16]
     };
     WargearOptions.push(AutarchFusionGun);
@@ -516,9 +516,9 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [40,42,44],
+        LinkedOptionsId: [41,42,44],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [34]
     };
     WargearOptions.push(AutarchLasblaster);
@@ -531,7 +531,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [21]
     };
     WargearOptions.push(AutarchPowerSword);
@@ -542,9 +542,9 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [40,42,44],
+        LinkedOptionsId: [41,42,44],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [35]
     };
     WargearOptions.push(AutarchReaperLauncher);
@@ -557,7 +557,7 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [33,34],
+        WargearSlotId: [33,32],
         WargearIds: [24]
     };
     WargearOptions.push(AutarchScorpionChainsword);
@@ -954,7 +954,6 @@ const ReturnWargearOptions = (SlotId) => {
     };
     WargearOptions.push(AdrenalGlandsMonstrous);
 
-    //=============
 
     //return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
     return WargearOptions.filter((option) => option.WargearSlotId.indexOf(SlotId) != -1);
