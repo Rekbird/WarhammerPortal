@@ -55,9 +55,11 @@ class UnitSelection extends Component {
     }
 
     render() {
+        let FilteredRoles = utils.GetAvailableRoles(this.props.RetrievedUnits);
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
-        //console.log("Скрытый класс "+HideButtonClass)
-        return (
+        let UnitSelectionComponent;
+        if (!this.props.isLoading) {
+            UnitSelectionComponent = 
             <div id = "UnitsSelection">
                 <div id = "UnitsSelectionHeader" className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList">
@@ -67,12 +69,14 @@ class UnitSelection extends Component {
                             handleUnitSelection = {this.handleUnitSelection} 
                             Detachment = {this.props.Detachment}
                             handleScroll = {this.handleScroll}
+                            Roles = {FilteredRoles}
                         />
                     </div>
                     <div className = "UnitSelection__RolesList">
                         <UnitRolesList 
                             FactionId = {this.props.Faction.id} 
                             ScrollToUnitsByRole = {this.ScrollToUnitsByRole}
+                            Roles = {FilteredRoles}
                         />
                         <div className = {"UnitSelection__ToTopButton"+HideButtonClass} onClick = {this.scrollToTop}>
                             <img className = "UnitSelection__ToTop" src = {ToTopButton}/>
@@ -80,6 +84,11 @@ class UnitSelection extends Component {
                     </div>
                 </div>
             </div>
+        } else {
+            UnitSelectionComponent = <h1>Components is loading</h1>
+        }
+        return (
+            {UnitSelectionComponent}
         )
     }
 }
@@ -88,6 +97,8 @@ const mapStateToProps = (state) => {
     return {
         Detachment: state.RosterEditing.ActiveDetachment,
         Faction: state.RosterEditing.ActiveDetachment.Faction,
+        RetrievedUnits: state.retrievedUnits,
+        isLoading: state.isLoading, 
         Roster: state.RosterEditing.Roster,
         CurrentScroll: state.CurrentScrollCount
     }

@@ -1,15 +1,14 @@
-
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
-import WarhammerPortalStore from './Store/reducers.js';
+import Reducers from './Store/reducers.js';
 import './index.css';
 import Warhammerportal from './WarhammerPortal.js';
 import {Roster} from "../src/Classes/CommonClasses.js";
+import { rootSaga } from './Sagas/Sagas.js';
 
 //const heading = <h1 className="site-heading">Hello, React</h1>; new Roster(1,"New Roster",[],null,null,null,null,null,null)
 
@@ -29,14 +28,20 @@ const InitialState = {
         ActiveDetachment: null,
         ActiveUnit: null,
         ActiveModel: null	
-    }	
-}
+    },
+    isLoading: false,
+    retrievedUnits: []
+};
 
+const sagaMiddleware = createSagaMiddleware();
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-                WarhammerPortalStore,
+                Reducers,
                 InitialState,
-                window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+                applyMiddleware(sagaMiddleware),
             );
+
+sagaMiddleware.run(rootSaga);
 
 class Application extends Component {
     render() {

@@ -13,7 +13,6 @@ import "./NewRosterCreation.css";
 import RosterEditing from "./RosterEditing/RosterEditing.js";
 import {TransitionGroup} from 'react-transition-group';
 import { CSSTransitionGroup } from 'react-transition-group';
-
 import * as ActionCreators from "../../Store/ActionsCreators.js";
 
 class RosterCreation extends Component{
@@ -79,9 +78,10 @@ class RosterCreation extends Component{
     }
 
     showUnitSelectionList = (Detachment) => {
-        
-       this.props.SetActiveDetachment(Detachment);
-       this.props.RosterAction("Unit Selection");
+        this.props.SetLoading(true);
+        this.props.ASYNC_RetrieveUnits(Detachment.Faction.id);
+        this.props.SetActiveDetachment(Detachment);
+        this.props.RosterAction("Unit Selection");
     }
 
     render = () => {
@@ -166,6 +166,8 @@ const mapDispatchToProps = (dispatch) => {
         CopyUnit: (DetachmentId, UnitId, NewId) => dispatch(ActionCreators.CopyUnit(DetachmentId, UnitId, NewId)),
         DeleteUnit: (DetachmentId, UnitId) => dispatch(ActionCreators.DeleteUnit(DetachmentId, UnitId)),
         RosterAction: (ActionNAme) => dispatch(ActionCreators.RosterAction(ActionNAme)),
+        SetLoading: (isLoading) => dispatch(ActionCreators.SetLoading(isLoading)),
+        ASYNC_RetrieveUnits: (FactionId) => dispatch(ActionCreators.ASYNC_RetrieveUnits(FactionId)),
         //RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
         //RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
         //RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS)),
