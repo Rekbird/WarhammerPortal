@@ -18,7 +18,7 @@ import WaveSerpentImage from "./WaveSerpentImage.jpg";
 
 //---Tyranid images
 
-function ReturnUnits() {
+function ReturnUnits(FactionId) {
     const Factions = ReturnFactions();
     const UnitsRoles = ReturnUnitRoles();
     let Units = [];
@@ -351,7 +351,7 @@ const HiveTyrant = {
 };
 Units.push(HiveTyrant);
 
-    return Units;
+    return Units.filter(unit => unit.Faction.id == FactionId);
 }
 
 export default ReturnUnits;

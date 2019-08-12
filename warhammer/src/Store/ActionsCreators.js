@@ -200,3 +200,32 @@ export function SetDetachmentParameters(NewRoster,NeededDetachment) {
         NeededDetachment
     }
 }
+
+export function SetLoading(isLoading) {
+    return {
+        type: "SetLoading",
+        isLoading
+    }
+}
+
+export function SetRetrievedUnits(Units) {
+    return {
+        type: "SetRetrievedUnits",
+        Units
+    }
+}
+
+export function ASYNC_RetrieveUnits(FactionId) {
+    return {
+        type: "ASYNC_RetrieveUnits",
+        FactionId
+    }
+}
+
+export function ASYNC_REQUEST_FAILED(error) {
+    return {
+        type: "ASYNC_REQUEST_FAILED",
+        error
+    }
+}
+
