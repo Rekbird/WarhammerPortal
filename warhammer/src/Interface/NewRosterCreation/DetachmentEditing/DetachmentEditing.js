@@ -19,19 +19,42 @@ class DetachmentEditing extends Component {
     }
    
     handleDetachmentNameChange(DetachmentId) {
-        let Detachment = utils.GetDetachment(DetachmentId);
-        this.props.DetachmentType(this.props.RosterDetachment.id, Detachment);
+        const DetachmentType = utils.GetDetachment(DetachmentId);
+        let Detachments = this.props.Roster.RosterDetachments.slice();
+        let NeededDetachment = Detachments.find((detach) => detach.id == this.props.RosterDetachment.id);
+        const DetachIndex = Detachments.indexOf(NeededDetachment);
+        NeededDetachment = Object.assign({}, NeededDetachment);
+        NeededDetachment.Detachment = DetachmentType;
+        NeededDetachment.TotalDetachCP = NeededDetachment.Detachment.CommandBenefit;
+        Detachments.splice(DetachIndex, 1, NeededDetachment);
+        let NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
+        NewRoster = utils.recalculateRosterCost(NewRoster);
+       this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
     }
 
     handleDetachmentFactionChange(FactionId) {
-        let Faction = utils.GetFaction(FactionId);
-        this.props.DetachmentFaction(this.props.RosterDetachment.id, Faction);
+        const Faction = utils.GetFaction(FactionId);
+        let Detachments = this.props.Roster.RosterDetachments.slice();
+        let NeededDetachment = Detachments.find((detach) => detach.id == this.props.RosterDetachment.id);
+        const DetachIndex = Detachments.indexOf(NeededDetachment);
+        NeededDetachment = Object.assign({}, NeededDetachment);
+        NeededDetachment.Faction = Faction;
+        Detachments.splice(DetachIndex, 1, NeededDetachment);
+        const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
+        this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
         this.props.FactionSelectionWindow(false);
     }
 
     handleDetachmentChapterTacticChange(ChapterTacticId) {
         let ChapterTactic = utils.GetChapterTactic(ChapterTacticId, this.props.RosterDetachment.Faction.id);
-        this.props.ChapterTactic(this.props.RosterDetachment.id, ChapterTactic);
+        let Detachments = this.props.Roster.RosterDetachments.slice();
+        let NeededDetachment = Detachments.find((detach) => detach.id == this.props.RosterDetachment.id);
+        const DetachIndex = Detachments.indexOf(NeededDetachment);
+        NeededDetachment = Object.assign({}, NeededDetachment);
+        NeededDetachment.ChapterTactic = ChapterTactic;
+        Detachments.splice(DetachIndex, 1, NeededDetachment);
+        const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
+        this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
     }
 
     showFactionSelectionWindow() {
@@ -106,16 +129,15 @@ class DetachmentEditing extends Component {
 const mapStateToProps = (state) => {
     return {
         RosterDetachment: state.RosterEditing.ActiveDetachment,
-        FactionSelection: state.FactionSelection
+        FactionSelection: state.FactionSelection,
+        Roster: state.RosterEditing.Roster
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        DetachmentFaction: (DetachmentId, Faction) => dispatch(ActionCreators.DetachmentFaction(DetachmentId, Faction)),
-        DetachmentType: (DetachmentId, DetachmentType) => dispatch(ActionCreators.DetachmentType(DetachmentId, DetachmentType)),
-        ChapterTactic: (DetachmentId, ChapterTactic) => dispatch(ActionCreators.ChapterTactic(DetachmentId, ChapterTactic)),
-        FactionSelectionWindow: (FlagValue) => dispatch(ActionCreators.FactionSelectionWindow(FlagValue))
+        FactionSelectionWindow: (FlagValue) => dispatch(ActionCreators.FactionSelectionWindow(FlagValue)),
+        SetDetachmentParameters: (NewRoster,NeededDetachment) => dispatch(ActionCreators.SetDetachmentParameters(NewRoster,NeededDetachment))
     }
 }
 

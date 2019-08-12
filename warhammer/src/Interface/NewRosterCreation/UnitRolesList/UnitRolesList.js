@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import "./UnitRolesList.css";
 import GetAvailableRoles from "../../../Scripts/GetAvailableRoles.js";
+import * as utils from "../../../Scripts/CommonFunctions.js";
 
 class UnitRolesList extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class UnitRolesList extends Component {
     }
 
     render() {
-        var Roles = GetAvailableRoles(this.props.FactionId);
+        var Roles = utils.GetAvailableRoles(this.props.FactionId);
         if(Roles && (Roles.length > 0)) {
             Roles = Roles.map(
                 (role) =>
