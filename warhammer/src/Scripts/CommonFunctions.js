@@ -125,8 +125,8 @@ export function GetAvailableSpells(UnitId) {
     return ReturnedPsychicPowers;
 }
 
-export const GetUnits = (FactionId, RoleId) => {
-    let DictionaryUnits = GetFactionUnitsByRole(FactionId, RoleId);
+export const GetUnits = (FactionId) => {
+    let DictionaryUnits = ReturnUnits(FactionId);
     let ReturnedUnits = [];
 
     DictionaryUnits.forEach((element) =>
@@ -166,22 +166,9 @@ export const GetUnitRoles = () => {
     return ReturnedRoles;
 }
 
-export const GetAvailableRoles = (FactionId) => {
-    const Units = GetFactionUnits(FactionId);
-    let Roles =[];
-    for(let j=0;j<Units.length;j++) {
-        let Unit = Units[j];
-         Roles.push(Unit.UnitRole);
-    }
+export const GetAvailableRoles = (Units) => {
     let ReturnedRoles = [];
-    if(Roles && (Roles.length > 0)) {
-        for(let i=0;i<Roles.length;i++) {
-            let Role = Roles[i];
-            if(ReturnedRoles.indexOf(Role) == -1) {
-                ReturnedRoles.push(Role);
-            }
-        }
-    }
+    Units.forEach(function(unit){if(ReturnedRoles.includes(unit.UnitRole)) ReturnedRoles.push(unit.UnitRole)});
     return ReturnedRoles;
 }
 

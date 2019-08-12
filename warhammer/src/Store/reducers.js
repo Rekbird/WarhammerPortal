@@ -7,26 +7,45 @@ import {RosterDetachment} from "../Classes/CommonClasses.js";
 
 const _ = require('lodash');
 
-const WarhammerPortalStore = combineReducers(
+const Reducers = combineReducers(
                             {
                                 MainMenuCategoryKey,
                                 FactionSelection,
                                 CurrentScrollCount,
                                 PsychicPowerMenuButtons,
-                                RosterEditing
+                                RosterEditing,
+                                isLoading,
+                                retrievedUnits
                             }
                         );
 
-export default WarhammerPortalStore;
+export default Reducers;
 
+const RosterEditingInitialState = { 
+    Action: "Roster Editing", 
+    Roster: null, 
+    ActiveDetachment: null, 
+    ActiveUnit: null, 
+    ActiveModel: null 
+    }
 
-const RosterEditingInitialState = {
-    Action: "Roster Editing",
-    Roster: null,		
-	ActiveDetachment: null,
-    ActiveUnit: null,
-    ActiveModel: null			
+function retrievedUnits(state = [], action){
+    switch(action.type) {
+        case "SetRetrievedUnits":
+            return action.retrievedUnits;
+        default:
+            return state;
+    }
 }
+
+function isLoading(state = false, action){
+    switch(action.type) {
+        case "SetLoading":
+            return action.isLoading;
+        default:
+            return state;
+    }
+} 
 
 function MainMenuCategoryKey(state = 1, action) {
     switch(action.type) {

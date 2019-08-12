@@ -14,9 +14,9 @@ class UnitRolesList extends Component {
     }
 
     render() {
-        var Roles = utils.GetAvailableRoles(this.props.FactionId);
-        if(Roles && (Roles.length > 0)) {
-            Roles = Roles.map(
+        let RolesComponent = null;
+        if (this.props.Roles && (this.props.Roles.length > 0)) {
+            RolesComponent = this.props.Roles.map(
                 (role) =>
                 <h3 key = {role.id} className = "UnitRolesList__RoleButton" onClick = {this.ScrollToUnitsByRole.bind(this, role.Name)}>{role.Name}</h3>
             )
@@ -24,7 +24,7 @@ class UnitRolesList extends Component {
         return(
             <div className = "UnitRolesList__Block">
                 <h2>Available roles</h2>
-                {Roles}
+                {RolesComponent}
             </div>
         )
     }
