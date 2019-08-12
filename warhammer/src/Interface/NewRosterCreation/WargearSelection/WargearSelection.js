@@ -37,17 +37,13 @@ class WargearSelection extends Component {
     }
     
     ValidateOptions = () => {
-        console.log("Validated!!!");
         this.WargearSlots.forEach(slot => {
             let AvailableOptions = this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions;
             if (!AvailableOptions.includes(slot.SelectedOption)) slot.SelectedOption = AvailableOptions[0];
         });
-        console.log(this.WargearSlots);
-        console.log("--------------");
     }
 
     AggregateOptions = (Validating, lastChangedSlot) => {
-        console.log("Aggregated!!!=========");
         let SlotConnections = [];
         let SlotAvailableOptions;
         this.WargearSlots.forEach(slot => {
@@ -57,8 +53,6 @@ class WargearSelection extends Component {
             }
             SlotConnections.push(SlotAvailableOptions)
         });
-        console.log(SlotConnections);
-        console.log("--------------");
     return SlotConnections;
     }
 
@@ -93,10 +87,16 @@ class WargearSelection extends Component {
             if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
                 let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (option.LinkedOptionsId.includes(BaseOptions[i].id)));
                 if ((BaseOptions[i].id != CurrentSlot.SelectedOption.id) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(BaseOptions[i].id))) {
-                    couldBeIncluded = 
+
+                    couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length < BaseOptions[i].CountPerModel);
+                
+                } else {
+                    if (Validating && CurrentSlot.id != lastChangedSlot.id) {
+                        couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length <= BaseOptions[i].CountPerModel);
+                    } else {
+                        couldBeIncluded = true;
+                    }
                 }
-               
-                couldBeIncluded = couldBeIncluded && (ModelAlreadyHave < BaseOptions[i].CountPerModel);
                 
             }
 
@@ -140,9 +140,7 @@ class WargearSelection extends Component {
     }
 
     render() {
-        console.log("----------------RENDERED--------------");
         console.log(this.AggregatedOptions);
-        console.log("--------------------------------------");
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions;
         let WarlordTraitAndRelic;
