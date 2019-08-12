@@ -804,7 +804,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [365]
@@ -817,7 +817,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [366]
@@ -843,7 +843,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [368]
@@ -856,7 +856,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [369,369]
@@ -869,7 +869,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [367],
+        LinkedOptionsId: [],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3610,3610]
@@ -882,7 +882,7 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [3612,367],
+        LinkedOptionsId: [3612],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3611]
@@ -895,25 +895,12 @@ const ReturnWargearOptions = (SlotId) => {
         CountPerModel: 1,
         PerXmodels: null,
         Default: false,
-        LinkedOptionsId: [3611,367],
+        LinkedOptionsId: [3611],
         UpToXModels: null,
         WargearSlotId: [365,366],
         WargearIds: [3612]
     };
     WargearOptions.push(HvVenomCannon);
-
-    const AdrenalGlandsMonstrous = {
-        id: 3612,
-        Name: "Adrenal glands",
-        CountPerModel: 1,
-        PerXmodels: null,
-        Default: false,
-        LinkedOptionsId: [],
-        UpToXModels: null,
-        WargearSlotId: [367],
-        WargearIds: [3613]
-    };
-    WargearOptions.push(AdrenalGlandsMonstrous);
 
     const ToxinSacs1 = {
         id: 3613,
@@ -949,13 +936,24 @@ const ReturnWargearOptions = (SlotId) => {
         Default: false,
         LinkedOptionsId: [],
         UpToXModels: null,
-        WargearSlotId: [365],
+        WargearSlotId: [],
         WargearIds: [99]
     };
     WargearOptions.push(NullOptionTyranids);
 
-    //=============
-    
+    const AdrenalGlandsMonstrous = {
+        id: 3616,
+        Name: "Adrenal glands",
+        CountPerModel: 1,
+        PerXmodels: null,
+        Default: false,
+        LinkedOptionsId: [],
+        UpToXModels: null,
+        WargearSlotId: [367],
+        WargearIds: [3613]
+    };
+    WargearOptions.push(AdrenalGlandsMonstrous);
+
 
     //return WargearOptions.filter((option) => !!option.WargearSlotId.find((id) => parseInt(id) == parseInt(SlotId)));
     return WargearOptions.filter((option) => option.WargearSlotId.indexOf(SlotId) != -1);
