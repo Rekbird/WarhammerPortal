@@ -1,8 +1,7 @@
 import * as utils from "../Scripts/CommonFunctions.js";
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 
 import {RosterUnit} from "../Classes/CommonClasses.js";
-import {Roster} from "../Classes/CommonClasses.js";
 import {RosterDetachment} from "../Classes/CommonClasses.js";
 
 const _ = require('lodash');
