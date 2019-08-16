@@ -9,6 +9,7 @@ function* requestUnitList(action) {
         yield delay(2000);
         const retrievedUnits = yield call(utils.GetUnits, action.FactionId);
         yield put(ActionCreators.SetRetrievedUnits(retrievedUnits));
+        yield put(ActionCreators.SetLoading(false));
     } catch (error) {
         yield put(ActionCreators.ASYNC_REQUEST_FAILED(error));
     }

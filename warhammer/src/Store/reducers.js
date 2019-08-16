@@ -31,7 +31,7 @@ const RosterEditingInitialState = {
 function retrievedUnits(state = [], action){
     switch(action.type) {
         case "SetRetrievedUnits":
-            return action.retrievedUnits;
+            return action.Units;
         default:
             return state;
     }
