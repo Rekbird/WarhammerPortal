@@ -168,7 +168,7 @@ export const GetUnitRoles = () => {
 
 export const GetAvailableRoles = (Units) => {
     let ReturnedRoles = [];
-    Units.forEach(function(unit){if(ReturnedRoles.includes(unit.UnitRole)) ReturnedRoles.push(unit.UnitRole)});
+    Units.forEach(function(unit){if(!ReturnedRoles.includes(unit.UnitRole)) ReturnedRoles.push(unit.UnitRole)});
     return ReturnedRoles;
 }
 

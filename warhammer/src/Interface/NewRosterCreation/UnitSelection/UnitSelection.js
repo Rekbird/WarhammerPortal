@@ -55,12 +55,13 @@ class UnitSelection extends Component {
     }
 
     render() {
+        console.log(this.props.RetrievedUnits);
         let FilteredRoles = utils.GetAvailableRoles(this.props.RetrievedUnits);
+        console.log(FilteredRoles);
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
         let UnitSelectionComponent;
         if (!this.props.isLoading) {
             UnitSelectionComponent = 
-            <div id = "UnitsSelection">
                 <div id = "UnitsSelectionHeader" className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList">
                         <h1 className = "UnitSelection__Header">Select a unit</h1>
@@ -83,12 +84,13 @@ class UnitSelection extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
         } else {
             UnitSelectionComponent = <h1>Components is loading</h1>
         }
         return (
+            <div id = "UnitsSelection">
             {UnitSelectionComponent}
+            </div>
         )
     }
 }
