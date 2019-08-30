@@ -10,6 +10,7 @@ import {RosterUnit} from "../../../Classes/CommonClasses.js";
 import {Unit} from "../../../Classes/CommonClasses.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 import ToTopButton from "../../../Data/UnitSelection/ToTopIcon.png";
+import LoadingCircle from "../../LoadingCircle/LoadingCircle.js";
 
 class UnitSelection extends Component {
     constructor(props) {
@@ -85,7 +86,12 @@ class UnitSelection extends Component {
                     </div>
                 </div>
         } else {
-            UnitSelectionComponent = <h1>Components is loading</h1>
+            UnitSelectionComponent = <div className = "UnitSelection__SelectionArea">
+                 <div className = "UnitSelection__UnitList" style = {{height:"300px"}}>
+                    <h1 className = "UnitSelection__Header">Select a unit</h1>
+                    <LoadingCircle />
+                </div>
+                </div>
         }
         return (
             <div id = "UnitsSelection">
