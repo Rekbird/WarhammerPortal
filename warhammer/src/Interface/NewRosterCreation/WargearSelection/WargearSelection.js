@@ -140,7 +140,6 @@ class WargearSelection extends Component {
     }
 
     render() {
-        console.log(this.AggregatedOptions);
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
         let WarlordOptions;
         let WarlordTraitAndRelic;

@@ -26,7 +26,9 @@
     color: rgba(6, 86, 87, 1);
     font-size: 18px;
     margin:5px;
-    padding:5px;
+    margin-top: 0px;
+    padding: 5px;
+    padding-top: 0px;
 }
 
 .WargearSelection__SelectDiv {
@@ -42,7 +44,7 @@
     font-size: 18px;
     display: block;
     margin-left: 30px;
-    padding-bottom: 0px;
+    padding-bottom: 15px;
     padding-top:10px;
 }
 
@@ -83,9 +85,6 @@
 }
 
 .WargearSelection__WarlordTraitAndRelicDiv {
-    margin: 0px;
-    margin: 5px;
-    padding:10px;
-    padding-bottom: 0px;
-    padding-top: 0px;
+    margin: 0px 5px;
+    padding:0px 10px 0px 10px;
 }
