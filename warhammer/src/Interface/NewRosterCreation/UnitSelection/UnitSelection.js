@@ -56,9 +56,9 @@ class UnitSelection extends Component {
     }
 
     render() {
-        console.log(this.props.RetrievedUnits);
+        //console.log(this.props.RetrievedUnits);
         let FilteredRoles = utils.GetAvailableRoles(this.props.RetrievedUnits);
-        console.log(FilteredRoles);
+       // console.log(FilteredRoles);
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
         let UnitSelectionComponent;
         if (!this.props.isLoading) {
@@ -105,8 +105,8 @@ const mapStateToProps = (state) => {
     return {
         Detachment: state.RosterEditing.ActiveDetachment,
         Faction: state.RosterEditing.ActiveDetachment.Faction,
-        RetrievedUnits: state.retrievedUnits,
-        isLoading: state.isLoading, 
+        RetrievedUnits: state.retrievedUnits.Units,
+        isLoading: state.retrievedUnits.isLoading, 
         Roster: state.RosterEditing.Roster,
         CurrentScroll: state.CurrentScrollCount
     }

@@ -13,23 +13,17 @@ class DetachmentParameterChoice extends Component {
     }
 
     render() {
-            let ObjectsArray = [];
+            //let ObjectsArray = [];
             let SelectLabel = "";
             if(this.props.ListTypeNumber == 1) {
-                ObjectsArray = utils.GetDetachments();
                 SelectLabel = "Select Detachment";
             } else if(this.props.ListTypeNumber == 2) {
-                ObjectsArray = utils.GetFactions();
                 SelectLabel = "Select Faction";
             } else {
                 SelectLabel = "Select Tactic";
-                if(this.props.FactionId) {
-                    
-                    ObjectsArray = utils.GetChapterTactics(this.props.FactionId);
-                }
             }
             let options = (!(this.props.ObjectId > 0)) ? [<option className = "DetachmentEditing__Option" key = {0} value = ''>--none--</option>] : [];
-            options = options.concat(ObjectsArray.map(
+            options = options.concat(this.props.ObjectsArray.map(
                 (object) =>
                 <option className = "DetachmentEditing__Option" key = {object.id} value = {object.id}>{object.Name}</option>
             ));

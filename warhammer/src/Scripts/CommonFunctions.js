@@ -314,11 +314,12 @@ export function GetFaction(FactionId) {
 
 export function GetChapterTactics(FactionId) {
     let ChapterTactics = [];
-    let ReturnedChapterTactics = ReturnSubFactions(FactionId);
-    ReturnedChapterTactics.forEach(tactic => 
-        ChapterTactics.push(new ChapterTactic(tactic.id, tactic.Name, tactic.FactionId))
-    );
-
+    if(!!FactionId) {
+        let ReturnedChapterTactics = ReturnSubFactions(FactionId);
+        ReturnedChapterTactics.forEach(tactic => 
+            ChapterTactics.push(new ChapterTactic(tactic.id, tactic.Name, tactic.FactionId))
+        );
+    }
     return ChapterTactics;
 }
 

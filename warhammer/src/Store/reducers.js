@@ -13,8 +13,10 @@ const Reducers = combineReducers(
                                 CurrentScrollCount,
                                 PsychicPowerMenuButtons,
                                 RosterEditing,
-                                isLoading,
-                                retrievedUnits
+                                retrievedUnits,
+                                retrievedFactions,
+                                retrievedDetachments,
+                                retrievedChapterTactics
                             }
                         );
 
@@ -28,15 +30,54 @@ const RosterEditingInitialState = {
     ActiveModel: null 
     }
 
-function retrievedUnits(state = [], action){
+function retrievedUnits(state = {Units: [], isLoading: false}, action){
     switch(action.type) {
         case "SetRetrievedUnits":
-            return action.Units;
+            return {
+                Units: action.Units, 
+                isLoading: action.Flag
+            };
         default:
             return state;
     }
 }
 
+function retrievedFactions(state = {Factions: [], isLoading: false}, action){
+    switch(action.type) {
+        case "SetRetrievedFactions":
+            return {
+                Factions: action.Factions, 
+                isLoading: action.Flag
+            };
+        default:
+            return state;
+    }
+}
+
+function retrievedDetachments(state = {Detachments: [], isLoading: false}, action){
+    switch(action.type) {
+        case "SetRetrievedDetachments":
+            return {
+                Detachments: action.Detachments, 
+                isLoading: action.Flag
+            };
+        default:
+            return state;
+    }
+}
+
+function retrievedChapterTactics(state = {ChapterTactics: [], isLoading: false}, action){
+    switch(action.type) {
+        case "SetRetrievedChapterTactics":
+            return {
+                ChapterTactics: action.ChapterTactics, 
+                isLoading: action.Flag
+            };
+        default:
+            return state;
+    }
+}
+/*
 function isLoading(state = false, action){
     switch(action.type) {
         case "SetLoading":
@@ -45,7 +86,7 @@ function isLoading(state = false, action){
             return state;
     }
 } 
-
+*/
 function MainMenuCategoryKey(state = 1, action) {
     switch(action.type) {
         case "CategoryClick":
