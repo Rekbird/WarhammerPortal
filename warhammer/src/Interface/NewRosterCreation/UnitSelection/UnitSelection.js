@@ -10,6 +10,7 @@ import {RosterUnit} from "../../../Classes/CommonClasses.js";
 import {Unit} from "../../../Classes/CommonClasses.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 import ToTopButton from "../../../Data/UnitSelection/ToTopIcon.png";
+import LoadingCircle from "../../LoadingCircle/LoadingCircle.js";
 
 class UnitSelection extends Component {
     constructor(props) {
@@ -55,9 +56,9 @@ class UnitSelection extends Component {
     }
 
     render() {
-        console.log(this.props.RetrievedUnits);
+        //console.log(this.props.RetrievedUnits);
         let FilteredRoles = utils.GetAvailableRoles(this.props.RetrievedUnits);
-        console.log(FilteredRoles);
+       // console.log(FilteredRoles);
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
         let UnitSelectionComponent;
         if (!this.props.isLoading) {
@@ -85,7 +86,12 @@ class UnitSelection extends Component {
                     </div>
                 </div>
         } else {
-            UnitSelectionComponent = <h1>Components is loading</h1>
+            UnitSelectionComponent = <div className = "UnitSelection__SelectionArea">
+                 <div className = "UnitSelection__UnitList" style = {{height:"300px"}}>
+                    <h1 className = "UnitSelection__Header">Select a unit</h1>
+                    <LoadingCircle />
+                </div>
+                </div>
         }
         return (
             <div id = "UnitsSelection">
@@ -99,8 +105,8 @@ const mapStateToProps = (state) => {
     return {
         Detachment: state.RosterEditing.ActiveDetachment,
         Faction: state.RosterEditing.ActiveDetachment.Faction,
-        RetrievedUnits: state.retrievedUnits,
-        isLoading: state.isLoading, 
+        RetrievedUnits: state.retrievedUnits.Units,
+        isLoading: state.retrievedUnits.isLoading, 
         Roster: state.RosterEditing.Roster,
         CurrentScroll: state.CurrentScrollCount
     }

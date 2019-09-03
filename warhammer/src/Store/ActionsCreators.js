@@ -201,17 +201,19 @@ export function SetDetachmentParameters(NewRoster,NeededDetachment) {
     }
 }
 
+/*
 export function SetLoading(isLoading) {
     return {
         type: "SetLoading",
         isLoading
     }
 }
-
-export function SetRetrievedUnits(Units) {
+*/
+export function SetRetrievedUnits(Units, Flag) {
     return {
         type: "SetRetrievedUnits",
-        Units
+        Units,
+        Flag
     }
 }
 
@@ -219,6 +221,49 @@ export function ASYNC_RetrieveUnits(FactionId) {
     return {
         type: "ASYNC_RetrieveUnits",
         FactionId
+    }
+}
+
+export function ASYNC_RetrieveFactions() {
+    return {
+        type: "ASYNC_RetrieveFactions"
+    }
+}
+
+export function SetRetrievedFactions(Factions, Flag) {
+    return {
+        type: "SetRetrievedFactions",
+        Factions,
+        Flag
+    }
+}
+
+export function ASYNC_RetrieveDetachments() {
+    return {
+        type: "ASYNC_RetrieveDetachments"
+    }
+}
+
+export function SetRetrievedDetachments(Detachments, Flag) {
+    return {
+        type: "SetRetrievedDetachments",
+        Detachments,
+        Flag
+    }
+}
+
+export function ASYNC_RetrieveChapterTactics(FactionId) {
+    return {
+        type: "ASYNC_RetrieveChapterTactics",
+        FactionId
+    }
+}
+
+export function SetRetrievedChapterTactics(ChapterTactics, Flag) {
+    return {
+        type: "SetRetrievedChapterTactics",
+        ChapterTactics,
+        Flag
     }
 }
 

@@ -37,13 +37,19 @@ class RosterCreation extends Component{
         let NewDetachment = new RosterDetachment(NewId,[],null,null,null,this.props.Roster.id,null,null);
         Detachments.push(NewDetachment);
         const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
+        this.props.ASYNC_RetrieveFactions();
+        this.props.ASYNC_RetrieveDetachments();
+        this.props.ASYNC_RetrieveChapterTactics(null);
         this.props.NewDetachment(NewRoster,NewDetachment);
     }
 
     EditDetachment = (Detachment) => {
-       this.props.SetActiveDetachment(Detachment);
-       this.props.SetActiveUnit(null);
-       this.props.RosterAction("Detachment Editing");
+        this.props.SetActiveDetachment(Detachment);
+        this.props.SetActiveUnit(null);
+        this.props.ASYNC_RetrieveFactions();
+        this.props.ASYNC_RetrieveDetachments();
+        this.props.ASYNC_RetrieveChapterTactics(!!Detachment.Faction ? Detachment.Faction.id : null);
+        this.props.RosterAction("Detachment Editing");
     }
 
     CopyDetachment = (Detachment) => {
@@ -78,7 +84,7 @@ class RosterCreation extends Component{
     }
 
     showUnitSelectionList = (Detachment) => {
-        this.props.SetLoading(true);
+        //this.props.SetLoading(true);
         this.props.ASYNC_RetrieveUnits(Detachment.Faction.id);
         this.props.SetActiveDetachment(Detachment);
         this.props.RosterAction("Unit Selection");
@@ -168,6 +174,9 @@ const mapDispatchToProps = (dispatch) => {
         RosterAction: (ActionNAme) => dispatch(ActionCreators.RosterAction(ActionNAme)),
         SetLoading: (isLoading) => dispatch(ActionCreators.SetLoading(isLoading)),
         ASYNC_RetrieveUnits: (FactionId) => dispatch(ActionCreators.ASYNC_RetrieveUnits(FactionId)),
+        ASYNC_RetrieveFactions: () => dispatch(ActionCreators.ASYNC_RetrieveFactions()),
+        ASYNC_RetrieveDetachments: () => dispatch(ActionCreators.ASYNC_RetrieveDetachments()),
+        ASYNC_RetrieveChapterTactics: (FactionId) => dispatch(ActionCreators.ASYNC_RetrieveChapterTactics(FactionId)),
         //RosterName: (RosterName) => dispatch(ActionCreators.RosterName(RosterName)),
         //RosterMaxPL: (RosterMaxPL) => dispatch(ActionCreators.RosterMaxPL(RosterMaxPL)),
         //RosterMaxPTS: (RosterMaxPTS) => dispatch(ActionCreators.RosterMaxPTS(RosterMaxPTS)),
