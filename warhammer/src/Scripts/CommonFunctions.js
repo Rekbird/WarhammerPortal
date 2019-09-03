@@ -168,7 +168,12 @@ export const GetUnitRoles = () => {
 
 export const GetAvailableRoles = (Units) => {
     let ReturnedRoles = [];
-    Units.forEach(function(unit){if(!ReturnedRoles.includes(unit.UnitRole)) ReturnedRoles.push(unit.UnitRole)});
+    Units.forEach(
+        function(unit){
+            if(!ReturnedRoles.find((role) => role.id == unit.UnitRole.id)) {
+                ReturnedRoles.push(unit.UnitRole)
+            }
+        });
     return ReturnedRoles;
 }
 
@@ -309,11 +314,12 @@ export function GetFaction(FactionId) {
 
 export function GetChapterTactics(FactionId) {
     let ChapterTactics = [];
-    let ReturnedChapterTactics = ReturnSubFactions(FactionId);
-    ReturnedChapterTactics.forEach(tactic => 
-        ChapterTactics.push(new ChapterTactic(tactic.id, tactic.Name, tactic.FactionId))
-    );
-
+    if(!!FactionId) {
+        let ReturnedChapterTactics = ReturnSubFactions(FactionId);
+        ReturnedChapterTactics.forEach(tactic => 
+            ChapterTactics.push(new ChapterTactic(tactic.id, tactic.Name, tactic.FactionId))
+        );
+    }
     return ChapterTactics;
 }
 
