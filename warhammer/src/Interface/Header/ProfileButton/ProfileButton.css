@@ -1,27 +1,32 @@
 .Header__profile_block {
     
     overflow: auto;
-    display:table;
-    
+    display:flex;
+    align-items: center;
+    align-self: center;
+    padding-right: 20px;
 }
 
 p {
     color: white;
     font-family: "Times New Roman", fantasy;
+    font-size: 20px;
+    padding-top: 5px;
+    margin-right: 20px;
 }
 
 .Header__profile_div {
     
-    display:table-cell;
-    top:0px;
+    
     overflow: auto;
     margin: 0 auto;
     padding:0px;
+    
 }
 
 .ProfileButton,
 .ProfileButton:focus {
-    margin: 20px;
+    
     background-color: rgb(6, 41, 34);
     color: white;
     padding:20px;
@@ -33,7 +38,7 @@ p {
     box-shadow: none;
     outline: none;
     height: 40px;
-    display:table-cell;
+    font-size: 20px;
 }
 
 .ProfileButton:hover {
@@ -42,6 +47,7 @@ p {
     outline: none;
     background: rgb(6, 86, 87);
     box-shadow: none;
+    text-shadow: 0px 0px 3px white;
 }
  
 .ProfileButton:active {
@@ -51,11 +57,8 @@ p {
 
 .ProfileButton__button_div {
     
-    display:table;
-    top:0px;
     overflow: auto;
     margin: 0 auto;
     padding:0px;
-    height: 40px;
 }
 

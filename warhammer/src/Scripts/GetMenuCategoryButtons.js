@@ -4,64 +4,64 @@
 function GetMenuCategoryButtons(CategoryName) {
     var Button1 = {
         id : 1,
-        CategoryName : "Художественные статьи",
-        name : "Устройство вселенной"
+        CategoryName : "Art Articles",
+        name : "Description of Universe"
 
     };
     var Button2 = {
         id : 2,
-        CategoryName : "Художественные статьи",
-        name : "Арты"
+        CategoryName : "Art Articles",
+        name : "Arts"
 
     };
     var Button3 = {
         id : 3,
-        CategoryName : "Правила",
-        name : "Общие правила"
+        CategoryName : "Rules",
+        name : "Core Rules"
     };
     var Button4 = {
         id : 4,
-        CategoryName : "Правила",
-        name : "Дополнительные правила"
+        CategoryName : "Rules",
+        name : "Advanced Rules"
     };
     var Button5 = {
         id : 5,
-        CategoryName : "Правила",
-        name : "Кодексы фракций"
+        CategoryName : "Rules",
+        name : "Fractions Codices"
     };
     var Button6 = {
         id : 6,
-        CategoryName : "Ростеры",
-        name : "Создать новый"
+        CategoryName : "Rosters",
+        name : "Create New"
     };
     var Button7 = {
         id : 7,
-        CategoryName : "Ростеры",
-        name : "Сохраненные ростеры"
+        CategoryName : "Rosters",
+        name : "Saved Rosters"
     };
     var Button8 = {
         id : 8,
-        CategoryName : "Дополнительная информация",
-        name : "Полезные ссылки"
+        CategoryName : "Additional Information",
+        name : "Useful Links"
     };
     var Button9 = {
         id : 9,
-        CategoryName : "Правила",
+        CategoryName : "Rosters",
         name : "Open play"
     };
     var Button10 = {
         id : 10,
-        CategoryName : "Правила",
+        CategoryName : "Rosters",
         name : "Narrative play"
     };
     var Button11 = {
         id : 11,
-        CategoryName : "Правила",
+        CategoryName : "Rosters",
         name : "Matched play"
     };
     var Button12 = {
         id : 12,
-        CategoryName : "Правила",
+        CategoryName : "Rosters",
         name : "Battle-forged Armies"
     };
     
