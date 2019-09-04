@@ -77,3 +77,30 @@
 .UnitSelection__HideButton {
     opacity: 0;
 }
+
+.UnitSelection__Component-appear {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-appear-active {
+    opacity: 1;
+    transition: 0.5s linear;   
+}
+
+.UnitSelection__Component-enter {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-enter-active {
+    opacity: 1;
+    transition: 0.5s linear;   
+}
+
+.UnitSelection__Component-leave {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-leave-active {
+    opacity: 1;
+    transition: 0.5s linear;   
+}
