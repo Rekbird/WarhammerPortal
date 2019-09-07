@@ -37,88 +37,49 @@ import ReturnRelics from "../Data/Relics/Relics.js";
 const _ = require('lodash');
 
 export function GetWarlordTraits(FactionId, ChapterTacticId, ActiveUnit) {
-    //let WarlordTraits = [];
+
+    let WarlordTraits = ReturnWarlordTraits(FactionId, ChapterTacticId);
     let ReturnedTraits = [];
-    let promise = new Promise(function(resolve, reject) {
-        let WarlordTraits = ReturnWarlordTraits(FactionId, ChapterTacticId);
-        if(!_.isEmpty(WarlordTraits)){ 
-            resolve(WarlordTraits);
-        } else {
-            reject("Error");
-        }
-    });
-    ReturnedTraits = promise.then(
-        result => {
-            let traits = [];
-            result.forEach(trait => {
-                let NewWarlordTrait = new WarlordTrait(trait.id, trait.Name, trait.Description);
-                    traits.push(NewWarlordTrait);
-                });
-                traits = !!ActiveUnit ? traits.filter(elem => elem.id == ActiveUnit.WarlordTraitId) : traits;
-                return traits;
-        },
-        error => {
-            return [];
-        }
-    );
+    if (!!WarlordTraits && WarlordTraits.length > 0) {
+        WarlordTraits.forEach(trait => {
+            let NewWarlordTrait = new WarlordTrait(trait.id, trait.Name, trait.Description);
+            ReturnedTraits.push(NewWarlordTrait);
+        });
+    }
+    ReturnedTraits = !!ActiveUnit ? ReturnedTraits.filter(elem => elem.id == ActiveUnit.WarlordTraitId) : ReturnedTraits;
     return ReturnedTraits;
 }
 
 export function GetFactionRelics(FactionId, ChapterTacticId, Unit) {
+
+    let Relics = ReturnRelics(FactionId, ChapterTacticId, Unit);
     let ReturnedRelics = [];
-    let promise = new Promise(function(resolve, reject) {
-        let Relics = ReturnRelics(FactionId, ChapterTacticId, Unit);
-        if(!_.isEmpty(Relics)) {
-            resolve(Relics);
-        } else {
-            reject("Error");
-        }
-    });
-    
-    ReturnedRelics = promise.then(
-        result => {
-            let Relics = [];
-            result.forEach(relic => {
-                let NewRelic = new WarlordTrait(relic.id, relic.Name, relic.Description, relic.keyWordRetriction, relic.UnitRestriction, relic.ReplacingWargear, relic.ChapterTacticId, relic.FactionId);
-                Relics.push(NewRelic);
-            });
-            return Relics;
-        },
-        error => {
-            return [];
-        }
-    )
+    if (!!Relics && Relics.length > 0) {
+        Relics.forEach(relic => {
+            let NewRelic = new WarlordTrait(relic.id, relic.Name, relic.Description, relic.keyWordRetriction, relic.UnitRestriction, relic.ReplacingWargear, relic.ChapterTacticId, relic.FactionId);
+            ReturnedRelics.push(NewRelic);
+        });
+    }
     return ReturnedRelics;
 }
 
 export function GetNumberOfSpells(UnitId) {
     
     let ReturnedNumberOfSpells = [];
+    let NumberOfSpellsFromBase = [];
     //Селект из базы по юнит айди
-    let promise = new Promise(function(resolve, reject) {
-        let NumberOfSpellsFromBase = [];
-        if (!!UnitId) {
-            NumberOfSpellsFromBase = ReturnNumbersOfSpells(UnitId);
+    if (!!UnitId) {
+        NumberOfSpellsFromBase = ReturnNumbersOfSpells(UnitId);
+    }
+
+    //Эмуляция вызова
+    if(NumberOfSpellsFromBase && NumberOfSpellsFromBase.length > 0) {
+        
+        for(let i=0;i<NumberOfSpellsFromBase.length;i++) {
+            ReturnedNumberOfSpells.push(new NumberOfSpells(NumberOfSpellsFromBase[i].id,NumberOfSpellsFromBase[i].NumberOfModels,NumberOfSpellsFromBase[i].NumberOfSpells))
         }
-        if(_.isEmpty(NumberOfSpellsFromBase)) {
-            resolve(NumberOfSpellsFromBase);
-        } else {
-            reject("Error");
-        }
-    });
-    //
-    ReturnedNumberOfSpells = promise.then(
-        result => {
-            let spells = [];
-            result.forEach(element =>  {
-                spells.push(new NumberOfSpells(element.id,element.NumberOfModels,element.NumberOfSpells))
-            })
-            return spells;
-        },
-        error => {
-            return [];
-        }
-    )
+         
+    }
     return ReturnedNumberOfSpells;
 }
 
@@ -165,46 +126,27 @@ export function GetAvailableSpells(UnitId) {
 }
 
 export const GetUnits = (FactionId) => {
+    let DictionaryUnits = ReturnUnits(FactionId);
     let ReturnedUnits = [];
-    let promise = new Promise(function(resolve, reject) {
-        console.log("GetUnits "+FactionId);
-        let DictionaryUnits = ReturnUnits(FactionId);
-        if(!_.isEmpty(DictionaryUnits)) {
-            resolve(DictionaryUnits);
-            console.log("GetUnits "+DictionaryUnits.length);
-        } else {
-            reject("Error");
-        }
-    });
-    ReturnedUnits = promise.then(
-    result => {
-        let units = [];
-        result.forEach((element) =>
-            units.push(
-                new Unit(
-                    element.id,
-                    element.Name,
-                    element.Description,
-                    element.MaxModelQuantity,
-                    element.KnowsSmite,
-                    element.Named,
-                    element.WarlordTraitId,
-                    element.UnitRole.id,
-                    false,
-                    element.ForeignLink,
-                    element.Faction.id,
-                    element.Image
-                )
+
+    DictionaryUnits.forEach((element) =>
+        ReturnedUnits.push(
+            new Unit(
+                element.id,
+                element.Name,
+                element.Description,
+                element.MaxModelQuantity,
+                element.KnowsSmite,
+                element.Named,
+                element.WarlordTraitId,
+                element.UnitRole.id,
+                false,
+                element.ForeignLink,
+                element.Faction.id,
+                element.Image
             )
-        );
-        console.log("GetUnits "+units.length);
-        return units;
-    },
-    error => {
-        return [];
-    }
+        )
     );
-    console.log("GetUnits "+ReturnedUnits.length);
     return ReturnedUnits;
 }
 
