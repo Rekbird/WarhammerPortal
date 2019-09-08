@@ -1,6 +1,7 @@
 .Header__profile_block {
-    
-    overflow: auto;
+    margin: 0px;
+    height: 60px;
+    overflow: hidden;
     display:flex;
     align-items: center;
     align-self: center;
