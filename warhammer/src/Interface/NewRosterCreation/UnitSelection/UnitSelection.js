@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import "./UnitSelection.css";
@@ -63,7 +64,7 @@ class UnitSelection extends Component {
         let UnitSelectionComponent;
         if (!this.props.isLoading) {
             UnitSelectionComponent = 
-                <div id = "UnitsSelectionHeader" className = "UnitSelection__SelectionArea">
+                <div key= {1} id = "UnitsSelectionHeader" className = "UnitSelection__SelectionArea">
                     <div className = "UnitSelection__UnitList">
                         <h1 className = "UnitSelection__Header">Select a unit</h1>
                         <UnitsList 
@@ -86,16 +87,25 @@ class UnitSelection extends Component {
                     </div>
                 </div>
         } else {
-            UnitSelectionComponent = <div className = "UnitSelection__SelectionArea">
-                 <div className = "UnitSelection__UnitList" style = {{height:"300px"}}>
+            UnitSelectionComponent = 
+                 <div key= {2} className = "UnitSelection__UnitList" style = {{height:"300px"}}>
                     <h1 className = "UnitSelection__Header">Select a unit</h1>
                     <LoadingCircle />
-                </div>
                 </div>
         }
         return (
             <div id = "UnitsSelection">
-            {UnitSelectionComponent}
+                <CSSTransitionGroup 
+                    transitionName="UnitSelection__Component" 
+                    transitionAppear={true}
+                    transitionAppearTimeout={500}
+                    transitionEnter={true} 
+                    transitionEnterTimeout={500}
+                    transitionLeave={false} 
+                    transitionLeaveTimeout = {500}
+                >
+                    {UnitSelectionComponent}
+                </CSSTransitionGroup>
             </div>
         )
     }
