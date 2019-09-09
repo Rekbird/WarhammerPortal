@@ -114,7 +114,7 @@ class RosterCreation extends Component{
             break;
         }
         return(
-            <div>
+            <div className = "RosterEditing">
                 <CSSTransitionGroup 
                     transitionName="RosterEditing_WorkingArea_Content" 
                     transitionAppear={true}

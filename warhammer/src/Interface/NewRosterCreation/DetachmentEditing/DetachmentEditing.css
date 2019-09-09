@@ -9,6 +9,8 @@
     border-radius: 5px;
     box-shadow: 1px 1px 2px rgb(163, 173, 173);
     position: relative;
+    height: 100%;
+    width: auto;
 }
 
 .DetachmentEditing__Transition-appear {
@@ -122,7 +124,8 @@
     
     padding:10px;
     height: 230px;
-    margin:10px;
+    margin:10px auto;
+    margin-left: 75px auto;
     margin-bottom: 5px;
     vertical-align: middle;
     width:400px;
@@ -198,17 +201,18 @@
 
 .DetachmentEditing__FactionSelectionWindow {
     background: white;
-    height: 60%;
-    width:auto;
     border: 2px solid rgb(6, 86, 87);
     border-radius: 5px;
-    margin:5%;
-    margin-right: 10%;
-    margin-left: 10%;
+    height: 70%;
+    width: 50%;
+    margin:10%;
+    margin-top:1%;
     position: fixed;
     z-index: 9999;
     overflow: hidden;
     box-shadow: 2px 2px 8px rgb(108, 159, 160);
+    padding: 0px;
+    padding-bottom: 50px;
 }
 
 .DetachmentEditing__FactionSelectionWindow_Header {

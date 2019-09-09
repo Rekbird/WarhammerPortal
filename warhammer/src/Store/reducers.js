@@ -158,7 +158,7 @@ function RosterEditing(state = RosterEditingInitialState, action) {
             });
         case "AddNewUnit":
             Result = AddNewUnit(state.Roster, action);
-            return Object.assign({}, state, {Roster:Result.Roster, ActiveUnit: Result.Unit});
+            return Object.assign({}, state, {Roster:Result.Roster, ActiveDetachment: Result.Detachment, ActiveUnit: Result.Unit});
         case "ActiveUnit":
             Result = SetActiveUnit(action);
             return Object.assign({}, state, {ActiveUnit: Result.Unit, ActiveModel: Result.Model});
@@ -396,7 +396,8 @@ const RemoveDetachment = (roster, ActiveDetachment, ActiveUnit, ActiveModel, Ros
 
 const AddNewUnit = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
-    let Detachment = Detachments.filter((detach) => detach.id == action.DetachmentId)[0];
+    let Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
+    Detachment = Object.assign({}, Detachment);
     let NewUnit = new RosterUnit(
         action.NewId,
         [],
@@ -422,7 +423,8 @@ const AddNewUnit = (roster, action) => {
     NewRoster = utils.recalculateRosterCost(NewRoster);
     return {
         Roster: NewRoster,
-        Unit: NewUnit
+        Unit: NewUnit,
+        Detachment
     }
 }
 

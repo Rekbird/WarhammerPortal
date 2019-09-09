@@ -417,7 +417,11 @@ export function CheckDetachmentOptionFull(DetachmentUnits, Role, Detachment) {
             } else {
                 const UnitsByRole = GetRosterUnitsByRole(DetachmentUnits, Role.id);
                 const DetachmentOption = Detachment.DetachOptions.find((option) => parseInt(option.UnitRole.id) == parseInt(Role.id));
+                console.log(DetachmentOption);
                 Answer = (UnitsByRole.length >= DetachmentOption.MaxQuant);
+                console.log(UnitsByRole.length);
+                console.log(DetachmentOption.MaxQuant);
+                console.log(Answer);
             }  
         }     
     }

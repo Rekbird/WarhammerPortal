@@ -9,3 +9,13 @@
     float: left;
 }
 
+.WarhammerPortal_Middle {
+    top:0px;
+    bottom:0px;
+    height: auto;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
+}
+

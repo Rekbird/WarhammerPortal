@@ -11,7 +11,8 @@ class UnitsListByRole extends Component {
     }
 
     render() {
-        let AllowedAdding = !utils.CheckDetachmentOptionFull(this.props.Detachment.RosterUnits, this.props.UnitRole, this.props.Detachment.Detachment)
+        let AllowedAdding = !utils.CheckDetachmentOptionFull(this.props.Detachment.RosterUnits, this.props.UnitRole, this.props.Detachment.Detachment);
+        console.log(AllowedAdding);
         let Units = this.props.RetrievedUnits.filter(unit => unit.UnitRole.id == this.props.UnitRole.id);
         if(Units && (Units.length > 0)) {
             Units = Units.map(
@@ -33,7 +34,7 @@ class UnitsListByRole extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        RetrievedUnits: state.retrievedUnits.Units,
+        RetrievedUnits: state.retrievedUnits.Units
     }
 }
 

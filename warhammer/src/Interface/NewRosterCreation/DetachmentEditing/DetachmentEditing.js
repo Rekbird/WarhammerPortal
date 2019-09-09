@@ -36,7 +36,7 @@ class DetachmentEditing extends Component {
     }
 
     handleDetachmentFactionChange(FactionId) {
-        const PreviousFactionId = null;
+        let PreviousFactionId = null;
         if(!_.isEmpty(this.props.RosterDetachment) && !_.isEmpty(this.props.RosterDetachment.Faction)){
             PreviousFactionId = this.props.RosterDetachment.Faction.id;
         }

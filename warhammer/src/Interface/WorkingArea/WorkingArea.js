@@ -89,7 +89,7 @@ class WorkingArea extends Component {
     }
     
     return (
-        <div className = "WorkingArea_Body" id = "WorkingArea">
+        <div className = "WorkingArea_Body" id = "WorkingArea" style = {{height: (document.documentElement.clientHeight -60)+"px"}}>
             {NeededArea}
         </div>     
     );
