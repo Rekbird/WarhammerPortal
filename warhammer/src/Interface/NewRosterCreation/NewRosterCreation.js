@@ -15,6 +15,8 @@ import {TransitionGroup} from 'react-transition-group';
 import { CSSTransitionGroup } from 'react-transition-group';
 import * as ActionCreators from "../../Store/ActionsCreators.js";
 
+const _ = require('lodash');
+
 class RosterCreation extends Component{
     constructor(props) {
         super(props)
@@ -85,7 +87,9 @@ class RosterCreation extends Component{
 
     showUnitSelectionList = (Detachment) => {
         //this.props.SetLoading(true);
-        this.props.ASYNC_RetrieveUnits(Detachment.Faction.id);
+        if(_.isEmpty(this.props.RetrievedUnits) || this.props.RetrievedUnits[0].Faction.id != Detachment.Faction.id) { 
+            this.props.ASYNC_RetrieveUnits(Detachment.Faction.id);
+        }
         this.props.SetActiveDetachment(Detachment);
         this.props.RosterAction("Unit Selection");
     }
@@ -154,7 +158,8 @@ const mapStateToProps = (state) => {
         Action: state.RosterEditing.Action,
         Roster: state.RosterEditing.Roster,
         ActiveDetachment: state.RosterEditing.ActiveDetachment,
-        ActiveUnit: state.RosterEditing.ActiveUnit
+        ActiveUnit: state.RosterEditing.ActiveUnit,
+        RetrievedUnits: state.retrievedUnits.Units
     }
 }
 

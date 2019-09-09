@@ -1,8 +1,18 @@
+.UnitSelection__SelectionArea {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: nowrap;
+}
+
 .UnitSelection__UnitList {
-   width: 75%;
+   width: 80%;
    height: 100%;
    margin: 5px;
    margin-left: 0px;
+   margin-right: 0px;
    padding:5px;
    padding-top: 0px;
    float: left;
@@ -14,13 +24,12 @@
 }
 
 .UnitSelection__RolesList {
-    width: 15%;
+    width: 20%;
     height: 75%;
     overflow: hidden;
-    position: fixed;
-    right: 1.8%;
-    top: 10.3%;
-    
+    padding:5px;
+    padding-top: 3px;
+    margin:0px;
 }
 
 .UnitSelection__Header {
@@ -67,4 +76,31 @@
 
 .UnitSelection__HideButton {
     opacity: 0;
+}
+
+.UnitSelection__Component-appear {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-appear-active {
+    opacity: 1;
+    transition: 0.5s linear;   
+}
+
+.UnitSelection__Component-enter {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-enter-active {
+    opacity: 1;
+    transition: 0.5s linear;   
+}
+
+.UnitSelection__Component-leave {
+    opacity: 0.01;   
+}
+
+.UnitSelection__Component-leave-active {
+    opacity: 1;
+    transition: 0.5s linear;   
 }

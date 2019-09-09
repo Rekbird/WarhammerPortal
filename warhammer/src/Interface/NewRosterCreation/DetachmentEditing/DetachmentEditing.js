@@ -9,6 +9,8 @@ import FactionGraphicList from "../../FactionGraphicList/FactionGraphicList.js";
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import LoadingCircle from "../../LoadingCircle/LoadingCircle.js";
 
+const _ = require('lodash');
+
 class DetachmentEditing extends Component {
     constructor(props) {
         super(props);
@@ -34,6 +36,10 @@ class DetachmentEditing extends Component {
     }
 
     handleDetachmentFactionChange(FactionId) {
+        const PreviousFactionId = null;
+        if(!_.isEmpty(this.props.RosterDetachment) && !_.isEmpty(this.props.RosterDetachment.Faction)){
+            PreviousFactionId = this.props.RosterDetachment.Faction.id;
+        }
         const Faction = this.props.retrievedFactions.find(faction => faction.id == FactionId);
         let Detachments = this.props.Roster.RosterDetachments.slice();
         let NeededDetachment = Detachments.find((detach) => detach.id == this.props.RosterDetachment.id);
@@ -44,7 +50,9 @@ class DetachmentEditing extends Component {
         const NewRoster = Object.assign({}, this.props.Roster, {RosterDetachments: Detachments});
         this.props.SetDetachmentParameters(NewRoster,NeededDetachment);
         this.props.FactionSelectionWindow(false);
-        this.props.ASYNC_RetrieveChapterTactics(FactionId);
+        if(PreviousFactionId != FactionId) {
+            this.props.ASYNC_RetrieveChapterTactics(FactionId);
+        }
     }
 
     handleDetachmentChapterTacticChange(ChapterTacticId) {

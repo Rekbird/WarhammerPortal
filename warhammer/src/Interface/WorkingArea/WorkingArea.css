@@ -2,7 +2,9 @@
 
 .WorkingArea_Body {
     top: 10%;
-    height: 90%;
+    height: 90.7%;
     overflow: auto;
     margin: 0px;
+    background-color: white;
+    border-radius: 1px;
 }
