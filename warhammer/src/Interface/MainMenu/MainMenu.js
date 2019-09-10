@@ -30,7 +30,7 @@ class MainMenu extends Component {
                 <MenuCategory key = {category.id} category = {category} handleCategoryClick = {this.handleCategoryClick} openCategoryKey = {this.state.openCategoryKey} selectMenuButton = {this.props.selectMenuButton}/>
           );
          return (
-             <div className="MainMenu__Body" style = {{height: (document.documentElement.clientHeight -60)+"px"}}>
+             <div className="MainMenu__Body">
                 <ul className="MainMenu__Categories_list">{CategoriesList}</ul>
              </div>
          )
