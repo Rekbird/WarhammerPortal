@@ -4,6 +4,8 @@ import WargearElement from "./WargearElement/WargearElement.js"
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 import { connect } from 'react-redux';
+
+const _ = require('lodash');
 /*
 in:
 RosterModels
@@ -30,7 +32,7 @@ class WargearSelection extends Component {
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
-        CurrentSlot.SelectedOption = CurrentSlot.BaseSlot.Options.find(option => option.id == SelectedOptionId);
+        CurrentSlot.SelectedOption = _.find(CurrentSlot.BaseSlot.Options, option => option.id == SelectedOptionId);
         this.AggregatedOptions = this.AggregateOptions(true, CurrentSlot);
         this.ValidateOptions();
         this.props.UpdateSelectedWargearOptions(this.WargearSlots);
@@ -38,7 +40,7 @@ class WargearSelection extends Component {
     
     ValidateOptions = () => {
         this.WargearSlots.forEach(slot => {
-            let AvailableOptions = this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions;
+            let AvailableOptions = _.find(this.AggregatedOptions, elem => elem.SlotId == slot.id).AvailableOptions;
             if (!AvailableOptions.includes(slot.SelectedOption)) slot.SelectedOption = AvailableOptions[0];
         });
     }
@@ -62,65 +64,49 @@ class WargearSelection extends Component {
         let ModelSelectedOptions = [];
         let AllSelectedOptions = UnitSelectedOptions;
 
-        if (!!CurrentModel.RosterWargearSlots && CurrentModel.RosterWargearSlots.length > 0) {
-            for (let i = 0; i < CurrentModel.RosterWargearSlots.length; i++) {
-                ModelSelectedOptions.push(CurrentModel.RosterWargearSlots[i].SelectedOption);
-            }
+        if (!_.isEmpty(CurrentModel.RosterWargearSlots)) {
+            CurrentModel.RosterWargearSlots.forEach(slot => ModelSelectedOptions.push(slot.SelectedOption));
         }
-        
-        for (let i = 0; i < BaseOptions.length; i++) {
+
+        BaseOptions.forEach(function (baseOption) {
             let couldBeIncluded = true;
-            let HasLinkedOptions = (!!BaseOptions[i].LinkedOptionsId && BaseOptions[i].LinkedOptionsId.length > 0);
-            let UnitAlreadyHave = AllSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (HasLinkedOptions && BaseOptions[i].LinkedOptionsId.includes(option.id))).length;
+            let HasLinkedOptions = !_.isEmpty(baseOption.LinkedOptionsId);
+            let UnitAlreadyHave = _.filter(AllSelectedOptions, option => (option.id == baseOption.id) || (HasLinkedOptions && baseOption.LinkedOptionsId.includes(option.id))).length;
 
-            if (!!BaseOptions[i].PerXmodels) {
-                let CanCarry = this.props.RosterModels.length / BaseOptions[i].PerXmodels;
+            if (!!baseOption.PerXmodels) {
+                let CanCarry = this.props.RosterModels.length / baseOption.PerXmodels;
                 couldBeIncluded = couldBeIncluded && (CanCarry > UnitAlreadyHave);
-
             }
 
-            if (couldBeIncluded && !!BaseOptions[i].UpToXModels) {
-                couldBeIncluded = couldBeIncluded && (BaseOptions[i].UpToXModels > UnitAlreadyHave);
-
+            if (couldBeIncluded && !!baseOption.UpToXModels) {
+                couldBeIncluded = couldBeIncluded && (baseOption.UpToXModels > UnitAlreadyHave);
             }
 
-            if (couldBeIncluded && !!BaseOptions[i].CountPerModel) {
-                let ModelAlreadyHave = ModelSelectedOptions.filter(option => (option.id == BaseOptions[i].id) || (option.LinkedOptionsId.includes(BaseOptions[i].id)));
-                if ((BaseOptions[i].id != CurrentSlot.SelectedOption.id) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(BaseOptions[i].id))) {
+            if (couldBeIncluded && !!baseOption.CountPerModel) {
+                let ModelAlreadyHave = _.filter(ModelSelectedOptions, option => (option.id == baseOption.id) || (option.LinkedOptionsId.includes(baseOption.id)));
 
-                    couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length < BaseOptions[i].CountPerModel);
-                
+                if ((baseOption.id != CurrentSlot.SelectedOption.id) && !(CurrentSlot.SelectedOption.LinkedOptionsId.includes(baseOption.id))) {
+                    couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length < baseOption.CountPerModel);
                 } else {
-                    if (Validating && CurrentSlot.id != lastChangedSlot.id) {
-                        couldBeIncluded = couldBeIncluded && (ModelAlreadyHave.length <= BaseOptions[i].CountPerModel);
-                    } else {
-                        couldBeIncluded = true;
-                    }
+                    couldBeIncluded = (Validating && CurrentSlot.id != lastChangedSlot.id) ? couldBeIncluded && (ModelAlreadyHave.length <= baseOption.CountPerModel) : true
                 }
-                
             }
 
             if (couldBeIncluded) {
-                AvailableOptions.push(BaseOptions[i]);
+                AvailableOptions.push(baseOption);
             }
 
-        }
+        });
         return AvailableOptions;
     }
 
     GetSelectedUnitOptions = (RosterModels) => {
         let AllSelectedOptions = [];
-        if (!!RosterModels && RosterModels.length > 0) {
-            for (let i = 0; i < RosterModels.length; i++) {
-                let Slots = RosterModels[i].RosterWargearSlots;
-                if (!!Slots && Slots.length > 0) {
-                    for (let j = 0; j < Slots.length; j++) {
-                        if (!!Slots[j].SelectedOption) {
-                            AllSelectedOptions.push(Slots[j].SelectedOption);
-                        }
-                    }
-                }
-            }
+        if (!_.isEmpty(RosterModels)) {
+            RosterModels.forEach(rosterModel =>
+                !_.isEmpty(rosterModel.RosterWargearSlots) && rosterModel.RosterWargearSlots.forEach(slot => 
+                    !!slot.SelectedOption && AllSelectedOptions.push(slot.SelectedOption))
+            );
         }
         return AllSelectedOptions;
     }
@@ -130,12 +116,12 @@ class WargearSelection extends Component {
     }
 
     SelectedWarlordTrait = (event) => {
-        this.ChosenTrait = this.ReturnedTraits.find(elem => elem.id == event.target.value);
+        this.ChosenTrait = _.find(this.ReturnedTraits, elem => elem.id == event.target.value);
         this.props.SetUnitWarlordTrait(this.ChosenTrait);
     }
 
     SelectedRelic = (event) => {
-        this.ChosenRelic = this.ReturnedRelics.find(elem => elem.id == event.target.value);
+        this.ChosenRelic = _.find(this.ReturnedRelics, elem => elem.id == event.target.value);
         this.props.SetUnitRelic(this.ChosenRelic);
     }
 
@@ -148,9 +134,9 @@ class WargearSelection extends Component {
             if (this.UnitIsWarlord) {
                 this.ReturnedTraits = utils.GetWarlordTraits(this.props.ActiveDetachment.Faction.id, this.props.ActiveDetachment.ChapterTactic.id);
                 if (this.props.ActiveUnit.BaseUnit.Named) this.ReturnedTraits = this.ReturnedTraits.filter(trait => trait.id == this.props.ActiveUnit.BaseUnit.WarlordTraitId); 
-                let AvailableWarlordTraits = this.ReturnedTraits.map((option) =>
-                    <option className = "WargearSelection__Option" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenWarlordTrait && (option.id == this.props.ActiveUnit.ChosenWarlordTrait.id)}>{option.Name}</option>
-                );
+                    let AvailableWarlordTraits = this.ReturnedTraits.map((option) =>
+                        <option className = "WargearSelection__Option" key = {option.id} value = {option.id} disabled = {!!this.props.ActiveUnit.ChosenWarlordTrait && (option.id == this.props.ActiveUnit.ChosenWarlordTrait.id)}>{option.Name}</option>
+                    );
                 this.ChosenTrait = !!this.props.ActiveUnit.ChosenWarlordTrait ? this.props.ActiveUnit.ChosenWarlordTrait : this.ReturnedTraits[0];
                 let RelicSelection = null;
                 if (!this.props.ActiveUnit.BaseUnit.Named) {
@@ -188,7 +174,7 @@ class WargearSelection extends Component {
         
         const RosterWargearSlots = this.WargearSlots.map(
             (slot) => 
-                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {this.AggregatedOptions.find(elem => elem.SlotId == slot.id).AvailableOptions} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
+                <WargearElement  key = {slot.id} CurrentSlot = {slot} AvailableOptions = {_.find(this.AggregatedOptions,elem => elem.SlotId == slot.id).AvailableOptions} SelectedWargearOption = {this.SelectedWargearOption} SelectedOption = {slot.SelectedOption}/>
             );
         return (
             <div className = 'WargearSelection__Component'>
