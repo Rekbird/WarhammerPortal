@@ -9,6 +9,7 @@
     box-shadow: 1px 1px 2px rgb(163, 173, 173);
     opacity: 1;
     transition: 0.5s linear;
+    background-color: white;
 }
 
 .RosterEditing__Div-hidden {

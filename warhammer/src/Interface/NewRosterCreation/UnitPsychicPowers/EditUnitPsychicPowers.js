@@ -64,7 +64,7 @@ class EditUnitPsychicPowers extends Component {
         let SelectedOptions = event.target.selectedOptions;
         let Spells = [];
         let AddButtonLocked;
-        if(SelectedOptions && (SelectedOptions.length > 0)) {
+        if(!_.isEmpty(SelectedOptions)) {
 
             
             for(let i=0;i<SelectedOptions.length;i++) {
@@ -75,10 +75,10 @@ class EditUnitPsychicPowers extends Component {
         }
         if(Spells.length + this.props.SelectedSpells.length > this.props.MaxSpells) {
             this.ChosenAvailableSpells = [];
-          AddButtonLocked = true;
+            AddButtonLocked = true;
         } else {
             this.ChosenAvailableSpells = Spells;
-          AddButtonLocked = false;
+            AddButtonLocked = false;
         }
        this.props.SetPsychicPowerMenuButtons(this.props.AvailableSpells, this.props.SelectedSpells, this.props.RemoveButtonLocked, AddButtonLocked);
       
@@ -88,7 +88,7 @@ class EditUnitPsychicPowers extends Component {
         let SelectedOptions = event.target.selectedOptions;
         let Spells = [];
         let RemoveButtonLocked;
-        if(SelectedOptions && (SelectedOptions.length > 0)) {
+        if(!_.isEmpty(SelectedOptions)) {
             for(let i=0;i<SelectedOptions.length;i++) {
                 const Spell = this.props.SelectedSpells.find((spell) => spell.id == SelectedOptions.item(i).value);
                 Spells.push(Spell);
@@ -96,7 +96,7 @@ class EditUnitPsychicPowers extends Component {
         }
         if(Spells.length == 1 && Spells[0].id == 1) {
             this.ChosenSelectedSpells = [];
-          RemoveButtonLocked = true;
+            RemoveButtonLocked = true;
         } else {
             this.ChosenSelectedSpells = Spells;
             RemoveButtonLocked = false;
@@ -109,12 +109,11 @@ class EditUnitPsychicPowers extends Component {
         let RemoveButtonLocked;
         let AvailableSpells = this.props.AvailableSpells.slice();
         let SelectedSpells = this.props.SelectedSpells.slice();
-        if(this.ChosenAvailableSpells &&(this.ChosenAvailableSpells.length > 0)) {
-            for(let i =0;i<this.ChosenAvailableSpells.length;i++) {
-                const Spell = this.ChosenAvailableSpells[i];
-                AvailableSpells.splice(AvailableSpells.indexOf(Spell), 1);
-                SelectedSpells.push(Spell);
-            }
+        if(!_.isEmpty(this.ChosenAvailableSpells)) {
+            this.ChosenAvailableSpells.forEach((element) => {
+                AvailableSpells.splice(AvailableSpells.indexOf(element), 1);
+                SelectedSpells.push(element);
+            });
             AddButtonLocked = (SelectedSpells.length >= this.props.MaxSpells);
             RemoveButtonLocked = false;
             this.ChosenAvailableSpells = [];
@@ -129,14 +128,13 @@ class EditUnitPsychicPowers extends Component {
         let RemoveButtonLocked;
         let SelectedSpells = this.props.SelectedSpells.slice();
         let AvailableSpells = this.props.AvailableSpells.slice();
-        if(this.ChosenSelectedSpells &&(this.ChosenSelectedSpells.length > 0)) {
-            for(let i = 0; i<this.ChosenSelectedSpells.length;i++) {
-                const Spell = this.ChosenSelectedSpells[i];
-                if(!(this.props.KnowsSmite && Spell.id == 1)) {
-                    SelectedSpells.splice(SelectedSpells.indexOf(Spell), 1);
-                    AvailableSpells.push(Spell);
+        if(!_.isEmpty(this.ChosenSelectedSpells)) {
+            this.ChosenSelectedSpells.forEach((element) => {
+                if(!(this.props.KnowsSmite && element.id == 1)) {
+                    SelectedSpells.splice(SelectedSpells.indexOf(element), 1);
+                    AvailableSpells.push(element);
                 }
-            }
+            });
             RemoveButtonLocked = (!SelectedSpells || SelectedSpells.length == 0 || (SelectedSpells.length == 1 && SelectedSpells[0].id == 1));
             AddButtonLocked = false;
             this.ChosenAvailableSpells = [];

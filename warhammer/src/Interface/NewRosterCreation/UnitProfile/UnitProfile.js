@@ -14,9 +14,9 @@ class UnitProfile extends Component {
     render() {
         var AddButton = (this.props.UnitSelection && (
         (this.props.AllowedAdding) ? (
-                <button className = "UnitProfile__Button" style = {{float: "left"}} onClick = {this.handleUnitSelection}>ADD</button>
+                <button className = "UnitProfile__Button UnitProfile__Float" onClick = {this.handleUnitSelection}>ADD</button>
             ) : (
-                <button className = "UnitProfile__Button" style = {{float: "left"}} disabled = {true}>ADD</button>)
+                <button className = "UnitProfile__Button UnitProfile__Float" disabled = {true}>ADD</button>)
             )
         );
         return(

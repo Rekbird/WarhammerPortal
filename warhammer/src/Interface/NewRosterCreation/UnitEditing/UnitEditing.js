@@ -17,10 +17,10 @@ class UnitEditing extends Component {
 
     render() {
         let WargearSelectionComponent = (this.props.ActiveModel) ? <WargearSelection/> : null;
-        let EditUnitPsychicPowersComponent = (!!this.props.Unit && (this.props.Unit.BaseUnit.KnowsSmite || this.props.Unit.BaseUnit.AvailableSpells > 0)) ? <EditUnitPsychicPowers /> : null;
+        let EditUnitPsychicPowersComponent = (!_.isEmpty(this.props.Unit) && (this.props.Unit.BaseUnit.KnowsSmite || !_.isEmpty(this.props.Unit.BaseUnit.AvailableSpells))) ? <EditUnitPsychicPowers /> : null;
         
         if (this.props.Unit.BaseUnit.MaxModelQuant > 1) { 
-            let AddNewModelComponent = (!!this.props.Unit && (this.props.Unit.BaseUnit.MaxModelQuant > this.props.Unit.Models.length || !this.props.Unit.BaseUnit.MaxModelQuant)) ? <AddNewModel/> : null;
+            let AddNewModelComponent = (!_.isEmpty(this.props.Unit) && (this.props.Unit.BaseUnit.MaxModelQuant > this.props.Unit.Models.length || !this.props.Unit.BaseUnit.MaxModelQuant)) ? <AddNewModel/> : null;
             return (
                 <div className = 'UnitEditing__Common'>
                     <UnitProfile Unit = {this.props.Unit.BaseUnit} UnitSelection = {false}/>

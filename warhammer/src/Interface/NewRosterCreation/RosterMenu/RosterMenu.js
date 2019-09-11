@@ -27,7 +27,7 @@ class RosterMenu extends Component{
         let MaxPTS = (this.props.Roster.MaxPTS) ? (<text>/{this.props.Roster.MaxPTS}</text>) : null;
         let MaxPL = (this.props.Roster.MaxPL) ? (<text>/{this.props.Roster.MaxPL}</text>) : null;
         let NewButton = <li key = {0} className = "RosterMenu__DetachmentListNewButton" onClick = {this.handleNewClick}>+ New Detachment</li>
-        if(!!this.props.Roster.RosterDetachments && this.props.Roster.RosterDetachments.length > 0) {
+        if(!_.isEmpty(this.props.Roster.RosterDetachments)) {
             Detachments = this.props.Roster.RosterDetachments.map((detachment) => 
                 <RosterDetachmentItem 
                     key = {detachment.id} 

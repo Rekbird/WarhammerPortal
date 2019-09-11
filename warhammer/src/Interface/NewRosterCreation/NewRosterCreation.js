@@ -66,9 +66,8 @@ class RosterCreation extends Component{
     EditUnit = (Unit) => {
        const Detach = this.props.Roster.RosterDetachments.find((detach) => detach.id == Unit.RosterDetachmentId);
        this.props.SetActiveUnit(Unit);
-       this.props.SetActiveDetachment(Detach);
+       (Detach.id != this.props.ActiveDetachment.id) && this.props.SetActiveDetachment(Detach);
        this.props.RosterAction("Unit Editing");
-       
     }
 
     CopyUnit = (Detachment, Unit) => {
@@ -114,7 +113,7 @@ class RosterCreation extends Component{
             break;
         }
         return(
-            <div>
+            <div className = "RosterEditing">
                 <CSSTransitionGroup 
                     transitionName="RosterEditing_WorkingArea_Content" 
                     transitionAppear={true}

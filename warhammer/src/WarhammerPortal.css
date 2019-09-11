@@ -1,11 +1,20 @@
-.HeaderBox {
-    position: fixed;
+.WarhammerPortal {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+    margin: 0px;
+    padding: 0px;
 }
 
-.MainMenuBox {
-    
-    height: 100;
-    width: 20;
-    float: left;
+
+.WarhammerPortal_Middle {
+    top:0px;
+    bottom:0px;
+    height: auto;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
 }
 

@@ -5,6 +5,7 @@
     align-items: stretch;
     align-content: stretch;
     flex-wrap: nowrap;
+    background-color: white;
 }
 
 .UnitSelection__UnitList {

@@ -2,6 +2,7 @@
     border: 1px solid rgb(6, 41, 34);
     border-radius:5px;
     box-shadow: 1px 1px 2px rgb(163, 173, 173);
+    background-color: white;
 }
 
 .WargearSelection__List {

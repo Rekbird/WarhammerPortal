@@ -40,7 +40,7 @@ export function GetWarlordTraits(FactionId, ChapterTacticId, ActiveUnit) {
 
     let WarlordTraits = ReturnWarlordTraits(FactionId, ChapterTacticId);
     let ReturnedTraits = [];
-    if (!!WarlordTraits && WarlordTraits.length > 0) {
+    if (!_.isEmpty(WarlordTraits)) {
         WarlordTraits.forEach(trait => {
             let NewWarlordTrait = new WarlordTrait(trait.id, trait.Name, trait.Description);
             ReturnedTraits.push(NewWarlordTrait);
@@ -54,7 +54,7 @@ export function GetFactionRelics(FactionId, ChapterTacticId, Unit) {
 
     let Relics = ReturnRelics(FactionId, ChapterTacticId, Unit);
     let ReturnedRelics = [];
-    if (!!Relics && Relics.length > 0) {
+    if (!_.isEmpty(Relics)) {
         Relics.forEach(relic => {
             let NewRelic = new WarlordTrait(relic.id, relic.Name, relic.Description, relic.keyWordRetriction, relic.UnitRestriction, relic.ReplacingWargear, relic.ChapterTacticId, relic.FactionId);
             ReturnedRelics.push(NewRelic);
@@ -73,11 +73,17 @@ export function GetNumberOfSpells(UnitId) {
     }
 
     //Эмуляция вызова
-    if(NumberOfSpellsFromBase && NumberOfSpellsFromBase.length > 0) {
+    if(!_.isEmpty(NumberOfSpellsFromBase)) {
         
-        for(let i=0;i<NumberOfSpellsFromBase.length;i++) {
-            ReturnedNumberOfSpells.push(new NumberOfSpells(NumberOfSpellsFromBase[i].id,NumberOfSpellsFromBase[i].NumberOfModels,NumberOfSpellsFromBase[i].NumberOfSpells))
-        }
+        NumberOfSpellsFromBase.forEach(function(element) {
+            ReturnedNumberOfSpells.push(
+                new NumberOfSpells(
+                    element.id,
+                    element.NumberOfModels,
+                    element.NumberOfSpells
+                )
+            )
+        });
          
     }
     return ReturnedNumberOfSpells;
@@ -119,7 +125,13 @@ export function GetAvailableSpells(UnitId) {
     //Эмуляция вызова
     
     Spells.forEach(function(spell) {
-            ReturnedPsychicPowers.push(new PsychicPower(spell.id,spell.Name,spell.DisciplineName));
+            ReturnedPsychicPowers.push(
+                new PsychicPower(
+                    spell.id,
+                    spell.Name,
+                    spell.DisciplineName
+                )
+            );
         }
     );
     return ReturnedPsychicPowers;
@@ -170,7 +182,7 @@ export const GetAvailableRoles = (Units) => {
     let ReturnedRoles = [];
     Units.forEach(
         function(unit){
-            if(!ReturnedRoles.find((role) => role.id == unit.UnitRole.id)) {
+            if(_.isEmpty(ReturnedRoles.find((role) => role.id == unit.UnitRole.id))) {
                 ReturnedRoles.push(unit.UnitRole)
             }
         });
@@ -205,9 +217,20 @@ export function GetUnitModels(UnitId) {
     let ReturnedModels = [];
     let UnitModels = ReturnUnitModels(UnitId);
 
-    for(let i=0;i<UnitModels.length;i++) {
-        ReturnedModels.push(new Model(UnitModels[i].id,UnitModels[i].Name,UnitModels[i].Cost,UnitModels[i].MaxQuant,UnitModels[i].MinQuant,UnitModels[i].ModelsIncluding,UnitModels[i].PerXmodels,UnitModels[i].UnitId));
-    }
+    UnitModels.forEach(function(element) {
+        ReturnedModels.push(
+            new Model(
+                element.id,
+                element.Name,
+                element.Cost,
+                element.MaxQuant,
+                element.MinQuant,
+                element.ModelsIncluding,
+                element.PerXmodels,
+                element.UnitId
+            )
+        );
+    });
     return ReturnedModels;
 }
 
@@ -228,15 +251,16 @@ export function GetWargearOptions(SlotId) {
     let WargearOptions = ReturnWargearOptions(SlotId);
 
     WargearOptions.forEach(function(option) {
-            ReturnedWargearOptions.push(new WargearOption(
-                option.id,
-                option.Name,
-                option.CountPerModel,
-                option.PerXmodels,
-                option.Default,
-                option.LinkedOptionsId,
-                option.UpToXModels,
-                option.WargearIds
+            ReturnedWargearOptions.push(
+                new WargearOption(
+                    option.id,
+                    option.Name,
+                    option.CountPerModel,
+                    option.PerXmodels,
+                    option.Default,
+                    option.LinkedOptionsId,
+                    option.UpToXModels,
+                    option.WargearIds
                 )
             );
         }
@@ -268,16 +292,22 @@ export function GetWargear(WargearIds) {
 
 export function GetRosterWargearSlots(BaseWargearSlots) {
     let ReturnedSlots = [];
-    if (!!BaseWargearSlots && BaseWargearSlots.length > 0) {
+    if (!_.isEmpty(BaseWargearSlots)) {
         let count = 1;
-        for (let i = 0; i < BaseWargearSlots.length; i++) {
+        BaseWargearSlots.forEach(function(element) {
 
-            const SelectedOption = BaseWargearSlots[i].Options.filter(Option => Option.Default == true);
+            const SelectedOption = element.Options.find(Option => Option.Default == true);
 
-            let CurrentSlot = new RosterWargearSlot(count, BaseWargearSlots[i].Name, SelectedOption[0], BaseWargearSlots[i]);
-            ReturnedSlots.push(CurrentSlot);
+            ReturnedSlots.push(
+                new RosterWargearSlot(
+                    count,
+                    element.Name,
+                    SelectedOption,
+                    element
+                )
+            );
             count++;
-        }
+        });
         return ReturnedSlots;
     } else {
         return null;
@@ -289,18 +319,17 @@ export function GetFactions() {
     let Factions = ReturnFactions();
     let ReturnedFactions = [];
 
-    Factions.forEach((element) => (
+    Factions.forEach((element) => {
         ReturnedFactions.push(
-                    new Faction(
-                        element.id,
-                        element.Name,
-                        element.Image,
-                        null,
-                        element.Logo
-                    )
+            new Faction(
+                element.id,
+                element.Name,
+                element.Image,
+                null,
+                element.Logo
+            )
         )
-    )
-   )
+    });
 
     return ReturnedFactions;
 }
@@ -370,8 +399,7 @@ export function GetDetachmentOptions(DetachmentId) {
                 option.MinQuant
             )
         );
-        }
-    );
+    });
     
     return ReturnedOptions;
 }
@@ -380,8 +408,8 @@ export function GetDetachmentOptions(DetachmentId) {
 
 export function GetDetachmentUnitsRoles(DetachmentUnits) {
     let Roles = [];
-    for(let i = 0;i<DetachmentUnits.length;i++) {
-        let Role = DetachmentUnits[i].BaseUnit.UnitRole;
+    DetachmentUnits.forEach(function(unit) {
+        let Role = unit.BaseUnit.UnitRole;
         if(Roles.length > 0) {
             if(!Roles.find((role) => role.id == Role.id)) {
                 Roles.push(Role);
@@ -389,7 +417,7 @@ export function GetDetachmentUnitsRoles(DetachmentUnits) {
         } else {
             Roles.push(Role);
         }
-    }
+    });
     return Roles.sort(function(a,b) {
         if(a.id < b.id) {
             return -1;
@@ -428,14 +456,14 @@ export function GetRosterUnitModels(RosterUnit) {
     let RosterUnitModels = [];
     let BaseModels = RosterUnit.BaseUnit.Models;
     let count = 0;
-    for(let i=0; i<BaseModels.length; i++) {
-        for (let j=0; j < BaseModels[i].MinQuant; j++) {
-        let NewRosterModel = new RosterModel(count+1,BaseModels[i],RosterUnit.id,BaseModels[i].Cost);
-        count++;
-        RosterUnitModels.push(NewRosterModel);
-        NewRosterModel = recalculateRosterModel(NewRosterModel);
+    BaseModels.forEach(function(model) {
+        for (let j=0; j < model.MinQuant; j++) {
+            let NewRosterModel = new RosterModel(count+1,model,RosterUnit.id,model.Cost);
+            count++;
+            RosterUnitModels.push(NewRosterModel);
+            NewRosterModel = recalculateRosterModel(NewRosterModel);
         }
-    }
+    });
     return RosterUnitModels;
 }
 
@@ -514,9 +542,9 @@ export const recalculateRosterCost = (Roster = this) => {
     let TotalCP = 3;
    
     Roster.RosterDetachments.forEach(function(detach) {
-        TotalPTS += detach.TotalDetachCost;
-        TotalPL += detach.TotalDetachPL;
-        TotalCP += detach.TotalDetachCP;
+            TotalPTS += detach.TotalDetachCost;
+            TotalPL += detach.TotalDetachPL;
+            TotalCP += detach.TotalDetachCP;
         }
     );
     Roster.TotalPTS = TotalPTS;

@@ -1,8 +1,14 @@
+.RosterEditing {
+    position: relative;
+}
+
+
 .RosterEditing_WorkingArea {
     height:100%;
     width: 80%;
     overflow: auto;
-    left: 23%;
+    
+    position: relative;
 }
 
 .RosterEditing_WorkingArea_Content-appear {
