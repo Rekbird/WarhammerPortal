@@ -16,6 +16,7 @@ import DetachmentEditing from "../NewRosterCreation/DetachmentEditing/Detachment
 import {Roster} from "../../Classes/CommonClasses.js";
 import RosterCreation from "../NewRosterCreation/NewRosterCreation.js";
 import * as ActionCreators from "../../Store/ActionsCreators.js";
+import ConstructionPlaceholder from "../ConstructionPlaceholder/ConstructionPlaceholder.js";
 
 
 
