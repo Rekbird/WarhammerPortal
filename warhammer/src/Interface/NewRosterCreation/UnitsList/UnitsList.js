@@ -15,7 +15,7 @@ class UnitsList extends Component {
     */
     render() {
         let UnitsByRolesComponent = null;
-       if(this.props.Roles && (this.props.Roles.length > 0)) {
+       if(!_.isEmpty(this.props.Roles)) {
             UnitsByRolesComponent = this.props.Roles.map(
                 (role) =>
                 <UnitsListByRole key = {role.id} Faction = {this.props.Faction} UnitRole = {role} handleUnitSelection = {this.props.handleUnitSelection} Detachment = {this.props.Detachment}/>

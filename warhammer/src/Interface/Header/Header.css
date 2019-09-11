@@ -24,15 +24,22 @@
     display: flex;
 }
 
+.Header__LogoDiv {
+    height: 100%;
+    width: 15%;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+}
+
 .Header__Logo {
     max-width: 220px;
     width: auto;
     height: 80%;
     min-height:60px;
     margin:0px;
-    margin-left: 35px;
-    align-self: center;
     padding: 0px;
+    align-self: center;
 }
 
 .Header__Title {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import "./FactionButton.css";
 import "./FactionGraphicList.css";
 import FactionButton from "./FactionButton.js";
@@ -11,27 +12,26 @@ class FactionGraphicList extends Component {
 
     
     render() {
-        let Factions = utils.GetFactions();
-        let TableRows = [];
-        let RowsCount = 0;
-        while(Factions && Factions.length > 0) {
-            let RowButtons = Factions.splice(0,4);
-            RowButtons = RowButtons.map(
-                (Button)  => <FactionButton key = {Button.id} buttonClick = {this.props.buttonClick} Faction = {Button} />
-            )
-            RowsCount++;
-            TableRows.push(<tr key = {RowsCount}>{RowButtons}</tr>)
-        }
+        let Factions = this.props.retrievedFactions.slice();
+        Factions = Factions.map(
+            (Faction)  => <FactionButton key = {Faction.id} buttonClick = {this.props.buttonClick} Faction = {Faction} />
+        )
         return (
             <div className="FactionGraphciList__Div">
-                <table className="FactionGraphciList__Table">
-                    <tbody>
-                        {TableRows}
-                    </tbody>
-                </table>
+                {Factions}
             </div>
         )        
     }
 }
 
-export default FactionGraphicList;
+const mapStateToProps = (state) => {
+    return {
+        retrievedFactions: state.retrievedFactions.Factions,
+    }
+}
+
+const containerFactionGraphicList = connect(
+    mapStateToProps
+  )(FactionGraphicList);
+
+export default containerFactionGraphicList;

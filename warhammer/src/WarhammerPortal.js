@@ -30,7 +30,7 @@ class Warhammerportal extends Component {
     }
     render() {
         return (
-            <div style = {{height: "100%", width: "100%",position: "absolute", overflow: "auto", margin: "0px", Padding: "0px"}}>
+            <div className = "WarhammerPortal">
                 <Header />
                 <MainMenu selectMenuButton = {this.selectMenuButton}/>
                 <WorkingArea SelectedMenuId = {this.props.SelectedMenuId} />

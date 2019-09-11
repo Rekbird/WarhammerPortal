@@ -6,8 +6,16 @@
 }
 
 .FactionGraphciList__Div {
-    height: 80%;
-    margin-top: 10px;
-    margin-bottom: 25px;
+    height: 100%;
+    width: auto;
     overflow: auto;
+    margin: auto;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 5px;
 }

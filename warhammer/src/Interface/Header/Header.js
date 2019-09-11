@@ -11,7 +11,7 @@ class Header extends Component {
     render() {
         return (
             <div className="Header">
-                <div className='Header__div_block'><img  className='Header__Logo' src={logo} alt='Здесь должно быть лого, но оно опаздывает.'/></div>
+                <div className='Header__div_block Header__LogoDiv'><img  className='Header__Logo' src={logo} alt='Здесь должно быть лого, но оно опаздывает.'/></div>
                 <div className='Header__div_block Header__TitleDiv'> <span className='Header__Title'>Tabletop game portal</span></div>
                     <div className='Header__div_block'>
                         <LoginButton user = {null} />
