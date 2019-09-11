@@ -57,9 +57,7 @@ class UnitSelection extends Component {
     }
 
     render() {
-        //console.log(this.props.RetrievedUnits);
         let FilteredRoles = utils.GetAvailableRoles(this.props.RetrievedUnits);
-       // console.log(FilteredRoles);
         let HideButtonClass = (parseInt(this.props.CurrentScroll) < parseInt(100)) ? " UnitSelection__HideButton" : "";
         let UnitSelectionComponent;
         if (!this.props.isLoading) {

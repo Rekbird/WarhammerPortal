@@ -4,7 +4,8 @@
     height:calc(100vh - 60px);
     overflow: auto;
     margin: 0px;
-    background-color: white;
+    background-color: azure;
+    /*background-color: rgb(6, 41, 34, 0.1);*/
     
     /*background-image: url("../../Data/Pictures/BackGroundImage.png");*/
     border-radius: 1px;

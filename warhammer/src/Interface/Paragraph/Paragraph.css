@@ -1,3 +1,14 @@
+.SingleParagraph {
+    background-color: white;
+    padding: 10px;
+    margin: 5px;
+    border: 1.5px solid rgb(6, 86, 87);
+    border-radius: 5px;
+    box-shadow: 1px 1px 6px rgb(108, 159, 160);
+}
+
+
 .CommonParagraph {
     color: black;
 }
+
