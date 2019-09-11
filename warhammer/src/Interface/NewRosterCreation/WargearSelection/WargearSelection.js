@@ -26,9 +26,9 @@ class WargearSelection extends Component {
         this.UnitIsWarlord = false;
         this.ChosenTrait = null;
         this.ChosenRelic = null;
-        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
-        this.UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
-        this.AggregatedOptions = this.AggregateOptions(false);
+        this.WargearSlots = [];
+        this.UnitSelectedOptions = [];
+        this.AggregatedOptions = [];
     }
     
     SelectedWargearOption = (SelectedOptionId, CurrentSlot) => {
@@ -127,9 +127,14 @@ class WargearSelection extends Component {
 
     render() {
         this.UnitIsWarlord = this.props.ActiveUnit.Warlord;
+        this.WargearSlots = this.props.CurrentModel.RosterWargearSlots.slice();
+        this.UnitSelectedOptions = this.GetSelectedUnitOptions(this.props.RosterModels);
+        this.AggregatedOptions = this.AggregateOptions(false);
         let WarlordOptions;
         let WarlordTraitAndRelic;
-
+        console.log('RENDERED---');
+        console.log(this.WargearSlots);
+        console.log('------------')
         if (this.props.ActiveUnit.BaseUnit.UnitRole.id == 3 && this.props.ActiveUnit.BaseUnit.MaxModelQuant < 2) {
             if (this.UnitIsWarlord) {
                 this.ReturnedTraits = utils.GetWarlordTraits(this.props.ActiveDetachment.Faction.id, this.props.ActiveDetachment.ChapterTactic.id);
