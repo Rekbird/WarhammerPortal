@@ -5,6 +5,8 @@ import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import { connect } from 'react-redux';
 import * as utils from "../../../Scripts/CommonFunctions.js";
 
+const _ = require('lodash');
+
 class UnitModelsList extends Component {
      constructor(props) {
         super(props);
@@ -32,7 +34,7 @@ class UnitModelsList extends Component {
     showCopyButton = (currentBaseModel) => {
         let ShowButton = true;
         if (!!currentBaseModel.PerXmodels) {
-            let AlreadyHave = this.models.filter(model => (model.id == currentBaseModel.id)).length;
+            let AlreadyHave = _.filter(this.models, model => (model.id == currentBaseModel.id)).length;
             let Available = this.models.length / currentBaseModel.PerXmodels;
             
             ShowButton = ShowButton && (Available > AlreadyHave);
@@ -43,7 +45,7 @@ class UnitModelsList extends Component {
         }
 
         if (!!currentBaseModel.MaxQuant) {
-            ShowButton = ShowButton && (this.models.filter((model) => model.BaseModel.id == currentBaseModel.id).length < currentBaseModel.MaxQuant);
+            ShowButton = ShowButton && (_.filter(this.models, (model) => model.BaseModel.id == currentBaseModel.id).length < currentBaseModel.MaxQuant);
         }
         return ShowButton;
     }

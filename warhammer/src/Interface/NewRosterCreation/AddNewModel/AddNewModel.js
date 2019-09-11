@@ -6,6 +6,8 @@ import AddMenuButton from '../../../Data/ModelMenuButtons/AddMenuButton.png';
 import {RosterModel} from "../../../Classes/CommonClasses.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
 
+const _ = require('lodash');
+
 /*
 in:
 ActiveUnit.Models
@@ -25,9 +27,9 @@ class AddNewModel extends Component {
 
         BaseModels.forEach((model) => {
             let PerXmodelsCheck = true;
-            let MaxQuantCheck = (!model.MaxQuant || (RosterModels.filter((rosterModel) => rosterModel.BaseModel.id == model.id).length < model.MaxQuant));
+            let MaxQuantCheck = (!model.MaxQuant || (_.filter(RosterModels, (rosterModel) => rosterModel.BaseModel.id == model.id).length < model.MaxQuant));
             if (!!model.PerXmodels) {
-                let AlreadyHave = RosterModels.filter((rosterModel) => rosterModel.BaseModel.id == model.id).length;
+                let AlreadyHave = _.filter(RosterModels, (rosterModel) => rosterModel.BaseModel.id == model.id).length;
                 let Available = RosterModels.length / model.PerXmodels;
                 PerXmodelsCheck = PerXmodelsCheck && (Available > AlreadyHave);
             }
@@ -49,7 +51,7 @@ class AddNewModel extends Component {
 
     HandleOnchangeSelect = (event) => {
         let ChosenModelId = event.target.value;
-        this.ChosenModel = this.props.BaseModels.filter((model) => model.id == ChosenModelId)[0];
+        this.ChosenModel = _.find(this.props.BaseModels, (model) => model.id == ChosenModelId);
     }
 
     render() {
