@@ -124,16 +124,27 @@
     text-align: left;
     vertical-align: middle;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    word-wrap: normal;
+    word-break: normal;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    align-content: center;
 }
 
 .RosterMenu__ButtonBlock {
     text-align: center;
-    vertical-align: bottom;
-    width:25%;
+    vertical-align: middle;
+    /*width:25%;*/
     min-width: 52px;
-    display: inline-block;
+    display: flex;
     margin:0px;
-    margin-top: 2px;
+    margin-top: 2px auto;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: end;
+    align-self: stretch;
 }
 
 .RosterMenu__DetachmentListNewButton {
@@ -226,6 +237,7 @@
 
 .RosterMenu__UnitItem {
     margin:2px;
+    width: auto;
     margin-right:0px;
     padding:5px;
     border: 1px solid rgb(6, 86, 87);
@@ -237,7 +249,14 @@
     font-size: 14px;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
     overflow: auto;
-    word-break: break-all;
+    word-wrap: normal;
+    word-break: normal;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-basis: 52px;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: stretch;
 }
 
 .RosterMenu__UnitItem:hover {
@@ -256,12 +275,13 @@
 
 .RosterMenu__UnitItemName {
     width: 75%;
-    min-width: 140px;
-    word-break: break-all;
+    /*min-width: 140px;*/
     text-align: left;
     margin: 0px;
     padding: 0px;
     padding-bottom: 3px;
     display: inline-block;
     vertical-align: middle;
+    word-wrap: normal;
+    word-break: normal;
 }
