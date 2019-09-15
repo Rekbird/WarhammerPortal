@@ -32,6 +32,7 @@
     margin-right: -4px;
     transition: 0.2s;
     box-shadow: 1px 1px 2px rgb(108, 159, 160);
+    user-select: none;
 }
 
 .UnitProfile__Button:hover {
@@ -50,7 +51,8 @@
 }
 
 .UnitProfile__Button:disabled {
-    opacity: 0.8;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .UnitProfile__Float {
@@ -63,6 +65,7 @@
     margin:0px;
     margin-right: 10px;
     text-align: center;
+    user-select: none;
 }
 
 .UnitProfile__Image {
