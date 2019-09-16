@@ -28,7 +28,7 @@ class UnitEditing extends Component {
                         <div className = 'UnitEditing__ModelsList'>
                             <UnitModelsList/>
                         </div>
-                        <div className = 'UnitEditing__AddNewModel'>
+                        <div>
                             {AddNewModelComponent}
                         </div >
                     </div>

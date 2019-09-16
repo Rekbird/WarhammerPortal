@@ -356,12 +356,6 @@ const RemoveDetachment = (roster, ActiveDetachment, ActiveUnit, ActiveModel, Ros
         const Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
         if(!_.isEmpty(Detachment)) {
             //Проверяем что детачмент найден
-            if(ActiveDetachment.id == Detachment.id) {
-                //Если удаляем активный детачмент - затираем активных юнит, модель и тд.
-                ActiveDetachment = null;
-                ActiveUnit =null;
-                ActiveModel = null;
-            }
             Detachments.splice(Detachments.indexOf(Detachment), 1);
             if(_.isEmpty(Detachments)) {
                 //Если детачменты пусты - ставим состояние "Редактирование ростера"
@@ -375,13 +369,24 @@ const RemoveDetachment = (roster, ActiveDetachment, ActiveUnit, ActiveModel, Ros
             }
             let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
             NewRoster = utils.recalculateRosterCost(NewRoster);
-            return {
-                Roster: NewRoster,
-                ActiveDetachment,
-                ActiveUnit,
-                ActiveModel,
-                RosterAction
-            };
+
+            if(ActiveDetachment.id == Detachment.id) {
+                return {
+                    Roster: NewRoster,
+                    ActiveDetachment: null,
+                    ActiveUnit: null,
+                    ActiveModel: null,
+                    RosterAction
+                };
+            } else {
+                return {
+                    Roster: NewRoster,
+                    ActiveDetachment,
+                    ActiveUnit,
+                    ActiveModel,
+                    RosterAction
+                };
+            }
         }
     } else {
         return {

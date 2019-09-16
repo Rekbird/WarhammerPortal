@@ -16,15 +16,15 @@ class UnitsListByRole extends Component {
         if(!_.isEmpty(Units)) {
             Units = Units.map(
                 (unit) => 
-                <div>
                     <UnitProfile key = {unit.id} Unit = {unit} UnitSelection = {true} handleUnitSelection = {this.props.handleUnitSelection} AllowedAdding = {AllowedAdding}/>
-                </div>
             );
         }
         return (
             <div id = {"UnitListByRole"+this.props.UnitRole.Name}>
                 <h2 className = "UnitsListByRole__Header">{this.props.UnitRole.Name}</h2>
-                {Units}
+                <div className = 'UnitsListByRole__UnitsList'>
+                    {Units}
+                </div>
             </div>
 
         );
