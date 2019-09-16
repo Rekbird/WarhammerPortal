@@ -281,8 +281,7 @@
     margin: 0px;
     padding: 0px;
     padding-bottom: 3px;
-    display: inline-block;
-    vertical-align: middle;
+    /*display: inline-block;*/
     word-wrap: normal;
     word-break: normal;
 }
