@@ -112,7 +112,7 @@ class UnitSelection extends Component {
 const mapStateToProps = (state) => {
     return {
         Detachment: state.RosterEditing.ActiveDetachment,
-        Faction: state.RosterEditing.ActiveDetachment.Faction,
+        Faction: _.isEmpty(state.RosterEditing.ActiveDetachment) ? null : state.RosterEditing.ActiveDetachment.Faction,
         RetrievedUnits: state.retrievedUnits.Units,
         isLoading: state.retrievedUnits.isLoading, 
         Roster: state.RosterEditing.Roster,

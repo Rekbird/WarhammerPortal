@@ -63,7 +63,7 @@ class AddNewModel extends Component {
                     <option className = "AddNewModel__Option" key = {option.id} value = {option.id}>{option.Name}</option>
                 );
             return (
-                <div>
+                <div className = 'AddNewModel__CoreContainer'>
                     <select className = 'AddNewModel__SelectModel' onChange = {this.HandleOnchangeSelect}>{Options}</select>
                     <img src = {AddMenuButton} className = 'AddNewModel__AddButton' alt = 'Add' onClick = {this.HandleButtonClick}/>
                 </div>
