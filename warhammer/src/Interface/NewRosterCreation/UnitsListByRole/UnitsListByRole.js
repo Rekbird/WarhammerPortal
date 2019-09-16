@@ -33,7 +33,8 @@ class UnitsListByRole extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        RetrievedUnits: state.retrievedUnits.Units
+        RetrievedUnits: state.retrievedUnits.Units,
+        Roster: state.RosterEditing.Roster
     }
 }
 

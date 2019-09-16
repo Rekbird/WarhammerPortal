@@ -397,7 +397,7 @@ const RemoveDetachment = (roster, ActiveDetachment, ActiveUnit, ActiveModel, Ros
 const AddNewUnit = (roster, action) => {
     const Detachments = roster.RosterDetachments.slice();
     let Detachment = Detachments.find((detach) => detach.id == action.DetachmentId);
-    Detachment = Object.assign({}, Detachment);
+    //Detachment = Object.assign({}, Detachment);
     let NewUnit = new RosterUnit(
         action.NewId,
         [],

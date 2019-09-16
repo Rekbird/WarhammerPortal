@@ -1,28 +1,42 @@
 .image {
-   width: 60%;
-   height: auto;
-   display: block;
-   margin:0 auto;
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
+    transition: 0.3s;
+   width: auto;
+   height: 150px;
 }
-.image_center {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    
+
+.link:hover > .image {
+   height: 155px;
 }
 
 .UsefulLinksBody {
     position: relative;
-    
+    height:calc(100vh - 60px);
+    overflow: auto;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .link {
-    
-    float: left;
-    
-    
-    overflow: auto;
+    transition: 0.3s;
+    border: 1.5px solid rgb(6, 41, 34);
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 2px 6px rgb(108, 159, 160);
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+.link:hover {
+    border-width: 2px;
+}*/
+
+.link:active {
+    box-shadow: inset 2px 2px 2px 5px rgb(163, 173, 173), 1px 1px 1px rgb(163, 173, 173);
 }
