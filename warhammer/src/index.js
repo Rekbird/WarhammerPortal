@@ -6,7 +6,7 @@ import Application from './App.js'
 import rootSaga from './Sagas/Sagas.js'
 import configureStore from './store/configureStore'
 
-const store = configureStore()
+export const store = configureStore()
 
 store.runSaga(rootSaga)
 
@@ -17,4 +17,3 @@ ReactDOM.render(
     </Provider>, 
     document.getElementById('root')
     )
-

@@ -5,6 +5,7 @@ import "./EditUnitPsychicPowers.css";
 import ChoiceUnitPsychicPower from "./ChoiceUnitPsychicPower.js";
 import * as ActionCreators from "../../../Store/ActionsCreators.js";
 import * as utils from "../../../Scripts/CommonFunctions.js";
+import {SetUnitPsychicPowers} from "../../../Scripts/BusinessLogicObjectCreators.js";
 
 
 class EditUnitPsychicPowers extends Component {
@@ -47,7 +48,7 @@ class EditUnitPsychicPowers extends Component {
             }
         }
        this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
-       this.props.SetUnitPsychicPowers(SelectedSpells, this.props.Unit);
+       this.props.UpdateActiveUnit(SetUnitPsychicPowers(SelectedSpells));
     }
 
     componentWillMount() {
@@ -119,7 +120,7 @@ class EditUnitPsychicPowers extends Component {
             this.ChosenAvailableSpells = [];
             this.ChosenSelectedSpells = [];
             this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
-            this.props.SetUnitPsychicPowers(SelectedSpells, this.props.Unit);
+            this.props.UpdateActiveUnit(SetUnitPsychicPowers(SelectedSpells));
         }
     }
 
@@ -140,7 +141,7 @@ class EditUnitPsychicPowers extends Component {
             this.ChosenAvailableSpells = [];
             this.ChosenSelectedSpells = [];
             this.props.SetPsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked);
-            this.props.SetUnitPsychicPowers(SelectedSpells, this.props.Unit);
+            this.props.UpdateActiveUnit(SetUnitPsychicPowers(SelectedSpells));
         }
     }
 
@@ -188,7 +189,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         SetPsychicPowerMenuButtons: (AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked) => dispatch(ActionCreators.PsychicPowerMenuButtons(AvailableSpells, SelectedSpells, RemoveButtonLocked, AddButtonLocked)),
-        SetUnitPsychicPowers: (SelectedSpells, Unit) => dispatch(ActionCreators.UnitPsychicPowers(SelectedSpells, Unit))
+        UpdateActiveUnit: (ResultObject) => dispatch(ActionCreators.UpdateActiveUnit(ResultObject))
     }
 }
 

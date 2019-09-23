@@ -201,6 +201,13 @@ export function SetDetachmentParameters(NewRoster,NeededDetachment) {
     }
 }
 
+export function UpdateActiveUnit(ResultObject) {
+    return {
+        type: "UpdateActiveUnit",
+        ResultObject
+    }
+}
+
 /*
 export function SetLoading(isLoading) {
     return {

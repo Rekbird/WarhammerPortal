@@ -137,9 +137,13 @@ function CurrentScrollCount(state = 0, action) {
 function RosterEditing(state = RosterEditingInitialState, action) {
     let Result = null;
     switch(action.type) {
+        case "UpdateActiveUnit":
+            return Object.assign({}, state, {Roster: action.ResultObject.NewRoster, ActiveUnit: action.ResultObject.NewUnit});
+        /*
         case "UnitPsychicPowers":
             Result = SetUnitPsychicPowers(state.Roster, action);
             return Object.assign({}, state, {Roster: Result.NewRoster, ActiveUnit: Result.NewUnit});
+        */
         case "SetDetachmentParameters":
             return Object.assign({}, state, {Roster: action.NewRoster, ActiveDetachment: action.NeededDetachment});
         case "NewDetachment":
@@ -369,24 +373,19 @@ const RemoveDetachment = (roster, ActiveDetachment, ActiveUnit, ActiveModel, Ros
             }
             let NewRoster = Object.assign({}, roster, {RosterDetachments: Detachments});
             NewRoster = utils.recalculateRosterCost(NewRoster);
-
-            if(ActiveDetachment.id == Detachment.id) {
-                return {
-                    Roster: NewRoster,
-                    ActiveDetachment: null,
-                    ActiveUnit: null,
-                    ActiveModel: null,
-                    RosterAction
-                };
-            } else {
-                return {
-                    Roster: NewRoster,
-                    ActiveDetachment,
-                    ActiveUnit,
-                    ActiveModel,
-                    RosterAction
-                };
+            let test = {
+                Roster: NewRoster,
+                ActiveDetachment: null,
+                ActiveUnit: null,
+                ActiveModel: null,
+                RosterAction
+            };
+            if(ActiveDetachment.id != Detachment.id) {
+                test.ActiveUnit = ActiveUnit;
+                test.ActiveDetachment = ActiveDetachment;
+                test.ActiveModel = ActiveModel;
             }
+            return test;
         }
     } else {
         return {
