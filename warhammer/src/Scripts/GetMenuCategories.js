@@ -3,19 +3,19 @@
 function GetMenuCategories() {
     var Category1 = {
         id : 1,
-        CategoryName : "Художественные статьи"
+        CategoryName : "Art Articles"
     };
     var Category2 = {
         id : 2,
-        CategoryName : "Правила"
+        CategoryName : "Rules"
     };
     var Category3 = {
         id : 3,
-        CategoryName : "Ростеры"
+        CategoryName : "Rosters"
     };
     var Category4 = {
         id : 4,
-        CategoryName : "Дополнительная информация"
+        CategoryName : "Additional Information"
     };
 
     var categories = [Category1,Category2,Category3,Category4];

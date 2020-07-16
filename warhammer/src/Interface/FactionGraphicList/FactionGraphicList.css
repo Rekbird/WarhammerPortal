@@ -1,4 +1,21 @@
 .FactionGraphciList__Table {
     margin: auto;
     padding: 3%;
+    width:100%;
+    table-layout: fixed;
+}
+
+.FactionGraphciList__Div {
+    height: 100%;
+    width: auto;
+    overflow: auto;
+    margin: auto;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: 5px;
 }

@@ -1,20 +1,20 @@
+import * as React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+
+import Application from './App.js'
+import rootSaga from './Sagas/Sagas.js'
+import configureStore from './store/configureStore'
+
+const store = configureStore()
+
+store.runSaga(rootSaga)
 
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import Warhammerportal from './WarhammerPortal.js';
-
-//const heading = <h1 className="site-heading">Hello, React</h1>;
-
-class Application extends Component {
-    render() {
-        return (
-            <div className = "MainClass">
-                <Warhammerportal />
-            </div>
-        )
-    }
-}
-ReactDOM.render(<Application />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <Application />
+    </Provider>, 
+    document.getElementById('root')
+    )
 

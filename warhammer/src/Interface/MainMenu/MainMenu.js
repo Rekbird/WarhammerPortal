@@ -31,7 +31,7 @@ class MainMenu extends Component {
           );
          return (
              <div className="MainMenu__Body">
-                <ul>{CategoriesList}</ul>
+                <ul className="MainMenu__Categories_list">{CategoriesList}</ul>
              </div>
          )
     }
